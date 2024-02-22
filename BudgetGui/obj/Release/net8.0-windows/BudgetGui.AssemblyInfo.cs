@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BudgetGui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c47454a1784379093eff02c3e44da218d9cc3c6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f022f4477c04c6c1c6585350001dfe77fc272116")]
 [assembly: System.Reflection.AssemblyProductAttribute("BudgetGui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BudgetGui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,8 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <Compile Update="Form1.cs">
-            <SubType>Form</SubType>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Screens\cards\conversation_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\cards\review_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\cards\self_message_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\home_view.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\item_full_view.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\cards\item_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\login.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\cards\message_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\main_screen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\message_screen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\search_view.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\user_view.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
