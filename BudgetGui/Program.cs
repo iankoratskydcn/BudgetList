@@ -13,7 +13,7 @@ namespace BudgetGui
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Form1 form1 = new Form1();
+            Form form1 = new Form();
             Application.Run(form1);
         }
     }
