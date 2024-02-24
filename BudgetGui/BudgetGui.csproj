@@ -14,9 +14,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Screens\conversation_screen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +21,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Functions\" />
   </ItemGroup>
 
 </Project>
