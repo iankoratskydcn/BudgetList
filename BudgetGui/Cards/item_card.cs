@@ -33,10 +33,11 @@ namespace BudgetGui.Screens
 
         private void clicked(object sender, EventArgs e)
         {
+            
             try
             {
                 //send the args to the main screen
-                Form1.changeState(4, _screen, [], [item_id]);
+                Form1.changeState(4, _screen, new string[] { }, new int[] { item_id });
 
             }
             catch (Exception)

@@ -4,19 +4,22 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Screens\cards\conversation_card.cs">
+    <Compile Update="Cards\conversation_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\cards\item_card.cs">
+    <Compile Update="Cards\item_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\cards\message_card.cs">
+    <Compile Update="Cards\message_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\cards\review_card.cs">
+    <Compile Update="Cards\review_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\cards\self_message_card.cs">
+    <Compile Update="Cards\self_message_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\conversation_screen.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Screens\home_view.cs">

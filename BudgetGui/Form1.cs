@@ -14,11 +14,12 @@ namespace BudgetGui
         }
 
         private static Login _login_screen = new Login();
-        private static item_full_view _item_Full_view = new item_full_view();
         private static main_screen main_Screen = new main_screen();
-        private static message_screen message_Screen = new message_screen();
-        private static search_view search_View = new search_view();
         private static user_view user_View = new user_view();
+        private static search_view search_View = new search_view();
+        private static item_full_view _item_Full_view = new item_full_view();
+        private static message_screen message_Screen = new message_screen();
+        private static conversation_screen conversation_Screen = new conversation_screen();
 
 
 
@@ -29,11 +30,31 @@ namespace BudgetGui
 
             //if they're not, default to the login screen
 
+            /*
+             
+             case 0:
+                        _login_screen = new Login();
+                        break;
+                    case 1:
+                        _item_Full_view = new item_full_view();
+                        break;
+                    case 2:
+                        main_Screen = new main_screen();
+                        break;
+                    case 3:
+                        message_Screen = new message_screen();
+                        break;
+                    case 4:
+                        search_View = new search_view();
+                        break;
+                    case 5:
+                        user_View = new user_view();
+             */
 
             switch (state)
             {
                 case 0:
-                    //the user has logged out, switch to the login screen
+                    //switch to the login screen and log the user out
 
                     break;
                 case 1:
@@ -55,6 +76,10 @@ namespace BudgetGui
                     break;
                 case 5:
                     //the user has selected to view their messages
+
+                    break;
+                case 6:
+                    //the user has selected to view a particular set of messages
 
                     break;
                 default:

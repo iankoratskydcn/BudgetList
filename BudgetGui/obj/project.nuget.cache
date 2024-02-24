@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2LTfgWWuyhZoYYbsczFnqBHjkEOwSkxZhI/Ul9RvDe2brCtUylclboQd+fahRstTyVY/dqBKmPOWlt+F84sOsA==",
+  "dgSpecHash": "ELciBaZWpU0BgxzEQz6dGJHHPj5ZQMGU+jIEEqjk44u4ao4GTnBU7s0IrI2t9fp4C56dY3Xjgan+tBKrGS+S5w==",
   "success": true,
   "projectFilePath": "C:\\Users\\ianko\\Documents\\GitHub\\BudgeetList\\BudgetGui\\BudgetGui.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ianko\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.15\\microsoft.windowsdesktop.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\ianko\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.15\\microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\ianko\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.15\\microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512",
+    "C:\\Users\\ianko\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.15\\microsoft.netcore.app.host.win-x64.7.0.15.nupkg.sha512"
+  ],
   "logs": []
 }
