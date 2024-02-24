@@ -13,12 +13,12 @@ namespace BudgetGui
 
         }
 
-        private Login _login_screen = new Login();
-        private item_full_view _item_Full_view = new item_full_view();
-        private main_screen main_Screen = new main_screen();
-        private message_screen message_Screen = new message_screen();
-        private search_view search_View = new search_view();
-        private user_view user_View = new user_view();
+        private static Login _login_screen = new Login();
+        private static item_full_view _item_Full_view = new item_full_view();
+        private static main_screen main_Screen = new main_screen();
+        private static message_screen message_Screen = new message_screen();
+        private static search_view search_View = new search_view();
+        private static user_view user_View = new user_view();
 
 
 
