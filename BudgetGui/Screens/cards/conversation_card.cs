@@ -21,7 +21,7 @@ namespace BudgetGui.Screens.cards
         {
             try
             {
-                BudgetGui.Program.
+                //BudgetGui.Program.
             }
             catch (Exception)
             {

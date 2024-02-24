@@ -7,6 +7,12 @@
     <Compile Update="Screens\cards\conversation_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Screens\cards\item_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Screens\cards\message_card.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Screens\cards\review_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -19,13 +25,7 @@
     <Compile Update="Screens\item_full_view.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\cards\item_card.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Screens\login.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Screens\cards\message_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Screens\main_screen.cs">
