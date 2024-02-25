@@ -1,25 +1,29 @@
 using BudgetGui.Screens;
+using System.Windows.Forms;
 
 namespace BudgetGui
 {
     public partial class Form1 : Form
     {
+
+
+        private static Login _login_screen;
+        private static main_screen main_Screen;
+        private static user_view user_View;
+        private static search_view search_View;
+        private static item_full_view _item_Full_view;
+        private static message_screen message_Screen;
+        private static conversation_screen conversation_Screen;
+
         public Form1()
         {
+
             InitializeComponent();
-
-            //create a login screen in the container
-
+            _login_screen = new Login();
+            _login_screen.Dock = DockStyle.Fill;
+            panel1.Controls.Add(_login_screen);
 
         }
-
-        private static Login _login_screen = new Login();
-        private static main_screen main_Screen = new main_screen();
-        private static user_view user_View = new user_view();
-        private static search_view search_View = new search_view();
-        private static item_full_view _item_Full_view = new item_full_view();
-        private static message_screen message_Screen = new message_screen();
-        private static conversation_screen conversation_Screen = new conversation_screen();
 
 
 
