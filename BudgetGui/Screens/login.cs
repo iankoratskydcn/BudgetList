@@ -12,6 +12,11 @@ namespace BudgetGui.Screens
 {
     public partial class Login : UserControl
     {
+        public Login()
+        {
+            InitializeComponent();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             //login check
@@ -28,6 +33,11 @@ namespace BudgetGui.Screens
 
             //if failure poppup
             MessageBox.Show("Login Failed");
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

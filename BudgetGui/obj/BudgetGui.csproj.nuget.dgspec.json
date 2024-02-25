@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ianko\\Documents\\GitHub\\BudgeetList\\BudgetGui\\BudgetGui.csproj": {}
+    "C:\\Users\\ianko\\Documents\\GitHub\\BudgetList\\BudgetGui\\BudgetGui.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ianko\\Documents\\GitHub\\BudgeetList\\BudgetGui\\BudgetGui.csproj": {
+    "C:\\Users\\ianko\\Documents\\GitHub\\BudgetList\\BudgetGui\\BudgetGui.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ianko\\Documents\\GitHub\\BudgeetList\\BudgetGui\\BudgetGui.csproj",
+        "projectUniqueName": "C:\\Users\\ianko\\Documents\\GitHub\\BudgetList\\BudgetGui\\BudgetGui.csproj",
         "projectName": "BudgetGui",
-        "projectPath": "C:\\Users\\ianko\\Documents\\GitHub\\BudgeetList\\BudgetGui\\BudgetGui.csproj",
+        "projectPath": "C:\\Users\\ianko\\Documents\\GitHub\\BudgetList\\BudgetGui\\BudgetGui.csproj",
         "packagesPath": "C:\\Users\\ianko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ianko\\Documents\\GitHub\\BudgeetList\\BudgetGui\\obj\\",
+        "outputPath": "C:\\Users\\ianko\\Documents\\GitHub\\BudgetList\\BudgetGui\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
