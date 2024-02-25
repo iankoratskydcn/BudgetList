@@ -42,11 +42,12 @@ public class sqlDriver
         }
     }
 
-    public void createTableIfNotExists(string connectionString, string createTableSql) {
+    public void createTableIfNotExists(string connectionString, string tableName, string createTableSql) {
         bool tableExists = false;
+        string query = $"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '{tableName}'";
         using (SqlConnection connection = new SqlConnection(connectionString)) {
             connection.Open();
-            SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '_user'", connection);
+            SqlCommand command = new SqlCommand(query, connection);
             int count = (int)command.ExecuteScalar();
             if (count > 0) {
                 tableExists = true;
