@@ -56,7 +56,7 @@ CREATE TABLE bids(
     bidDate DATE,
     currency VARCHAR(50),
     amount DECIMAL(10,2),
-    PRIMARY KEY(_user, itemId, bidDate),
+    CONSTRAINT pk_bids PRIMARY KEY(_user, itemId, bidDate),
     CONSTRAINT fk_user FOREIGN KEY(_user) REFERENCES _user(userId),
     CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
 );
