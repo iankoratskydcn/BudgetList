@@ -3,8 +3,28 @@ using Microsoft.Data.SqlClient;
 
 public class sqlDriver
 {
+
+    private string connectionString = ""; //figure out connection
+    private string databaseName = ""; //maybe just name is localDB or something?
+
+    private string userTableSql = "";
+    private string messageTableSql = "";
+    private string itemTableSql = "";
+    private string logsTableSql = "";
+    private string bidsTableSql = "";
+
     public sqlDriver()
     {
+    }
+
+    public void databaseStartup() {
+        createDatabaseIfNotExists(connectionString, databaseName);
+
+        createTableIfNotExists(connectionString, "_user", userTableSql);
+        createTableIfNotExists(connectionString, "_message", messageTableSql);
+        createTableIfNotExists(connectionString, "item", itemTableSql);
+        createTableIfNotExists(connectionString, "logs", logsTableSql);
+        createTableIfNotExists(connectionString, "bids", bidsTableSql);
     }
 
     public void createDatabaseIfNotExists(string connectionString, string databaseName) {
