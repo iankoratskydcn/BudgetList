@@ -410,6 +410,3 @@ BudgetGui/.vs/BudgetGui/v17/.suo
 BudgetGui/obj/BudgetGui.csproj.nuget.dgspec.json
 BudgetGui/obj/project.assets.json
 BudgetGui/obj/project.nuget.cache
-
-*.suo
-*.json
