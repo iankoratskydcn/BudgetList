@@ -1,90 +1,120 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
+using System.Data.SQLite;
+using System.Reflection;
 
 public class sqlDriver
 {
 
-    private string connectionString = ""; //figure out connection
-    private string databaseName = ""; //maybe just name is localDB or something?
+    private string userTableSql = @"CREATE TABLE _user(
+                                    userId INT PRIMARY KEY,
+                                    fName VARCHAR(50),
+                                    lName VARCHAR(50),
+                                    DOB VARCHAR(10),
+                                    streetnum INT,
+                                    street VARCHAR(100),
+                                    city VARCHAR(50),
+                                    zip INT,
+                                    age INT, --should be changed to derived attribute
+                                    profilePicture VARCHAR(100) --No idea how to do this unless its holding the link to the picture
+                                );";
+    private string messageTableSql = @"CREATE TABLE _message(
+                                    sender INT,
+                                    timeDate DATE,
+                                    recipient INT,
+                                    text1 VARCHAR(255),
+                                    PRIMARY KEY(sender, timeDate),
+                                    CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
+                                    CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
+                                );";
+    private string itemTableSql = @"CREATE TABLE item(
+                                    itemId INT PRIMARY KEY,
+                                    sellerId INT,
+                                    postDate DATE,
+                                    title VARCHAR(100),
+                                    description VARCHAR(255),
+                                    photoUrl VARCHAR(255),
+                                    basePrice DECIMAL(10,2),
+                                    endDate DATE,
+                                    minimum DECIMAL(10,2),
+                                    buyerId INT,
+                                    rating DECIMAL(2,1),
+                                    text1 VARCHAR(255),
+                                    CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
+                                    CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
+                                );";
+    private string logsTableSql = @"CREATE TABLE logs(
+                                    logId INT PRIMARY KEY,
+                                    userId INT,
+                                    timeDate DATE,
+                                    type VARCHAR(50),
+                                    dataJson VARCHAR(255),
+                                    CONSTRAINT fk_userId FOREIGN KEY(userId) REFERENCES _user(userId)
+                                );";
+    private string bidsTableSql = @"CREATE TABLE bids(
+                                    _user INT,
+                                    itemId INT,
+                                    bidDate DATE,
+                                    currency VARCHAR(50),
+                                    amount DECIMAL(10,2),
+                                    CONSTRAINT pk_bids PRIMARY KEY(_user, itemId, bidDate),
+                                    CONSTRAINT fk_user FOREIGN KEY(_user) REFERENCES _user(userId),
+                                    CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
+                                );";
 
-    private string userTableSql = "";
-    private string messageTableSql = "";
-    private string itemTableSql = "";
-    private string logsTableSql = "";
-    private string bidsTableSql = "";
+    private string databaseFileName = "budgetList.db";
+    private string databaseFilePath;
 
     public sqlDriver()
     {
+        databaseFilePath = getDatabaseFilePath(databaseFileName);
     }
 
     public void databaseStartup() {
-        createDatabaseIfNotExists(connectionString, databaseName);
+        createDatabaseIfNotExists(databaseFilePath);
 
-        createTableIfNotExists(connectionString, "_user", userTableSql);
-        createTableIfNotExists(connectionString, "_message", messageTableSql);
-        createTableIfNotExists(connectionString, "item", itemTableSql);
-        createTableIfNotExists(connectionString, "logs", logsTableSql);
-        createTableIfNotExists(connectionString, "bids", bidsTableSql);
+        createTableIfNotExists(databaseFilePath, "_user", userTableSql);
+        createTableIfNotExists(databaseFilePath, "_message", messageTableSql);
+        createTableIfNotExists(databaseFilePath, "item", itemTableSql);
+        createTableIfNotExists(databaseFilePath, "logs", logsTableSql);
+        createTableIfNotExists(databaseFilePath, "bids", bidsTableSql);
     }
 
-    public void createDatabaseIfNotExists(string connectionString, string databaseName) {
-        bool databaseExists = checkIfDatabaseExists(connectionString, databaseName);
-
-        if (!databaseExists) {
-            createDatabase(connectionString, databaseName);
-            Console.WriteLine($"Database '{databaseName}' created successfully.");
-        }
-        else {
-            Console.WriteLine($"Database '{databaseName}' already exists.");
+    public void createDatabaseIfNotExists(string databaseFilePath) {
+        if (!File.Exists(databaseFilePath)) {
+            SQLiteConnection.CreateFile(databaseFilePath);
+            Console.WriteLine($"Database '{databaseFilePath}' created successfully.");
+        } else {
+            Console.WriteLine($"Database '{databaseFilePath}' already exists.");
         }
     }
 
-    private bool checkIfDatabaseExists(string connectionString, string databaseName) {
-        string query = $"SELECT COUNT(*) FROM sys.databases WHERE name = '{databaseName}'";
-
-        using (SqlConnection connection = new SqlConnection(connectionString)) {
-            connection.Open();
-            using (SqlCommand command = new SqlCommand(query, connection)) {
-                int count = (int)command.ExecuteScalar();
-                return count > 0;
-            }
-        }
-    }
-
-    private void createDatabase(string connectionString, string databaseName) {
-        string query = $"CREATE DATABASE [{databaseName}]";
-
-        using (SqlConnection connection = new SqlConnection(connectionString)) {
-            connection.Open();
-            using (SqlCommand command = new SqlCommand(query, connection)) {
-                command.ExecuteNonQuery();
-            }
-        }
-    }
-
-    public void createTableIfNotExists(string connectionString, string tableName, string createTableSql) {
+    public void createTableIfNotExists(string databaseFilePath, string tableName, string createTableSql) {
         bool tableExists = false;
-        string query = $"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '{tableName}'";
-        using (SqlConnection connection = new SqlConnection(connectionString)) {
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath}")) {
             connection.Open();
-            SqlCommand command = new SqlCommand(query, connection);
-            int count = (int)command.ExecuteScalar();
-            if (count > 0) {
-                tableExists = true;
+            using (SQLiteCommand command = new SQLiteCommand($"SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='{tableName}'", connection)) {
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                tableExists = count > 0;
             }
         }
 
         if (!tableExists) {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath}")) {
                 connection.Open();
-                SqlCommand createTableCommand = new SqlCommand(createTableSql, connection);
-                createTableCommand.ExecuteNonQuery();
+                using (SQLiteCommand createTableCommand = new SQLiteCommand(createTableSql, connection)) {
+                    createTableCommand.ExecuteNonQuery();
+                }
             }
             Console.WriteLine("Table created successfully.");
-        }
-        else {
+        } else {
             Console.WriteLine("Table already exists.");
         }
+    }
+
+    public string getDatabaseFilePath(string databaseFileName) {
+        string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+        string assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+        return Path.Combine(assemblyDirectory, databaseFileName);
     }
 }
