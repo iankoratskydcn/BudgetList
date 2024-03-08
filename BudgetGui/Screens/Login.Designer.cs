@@ -97,7 +97,6 @@
             textBox2.Size = new Size(73, 23);
             textBox2.TabIndex = 2;
             textBox2.TextChanged += textBox2_TextChanged;
-            textBox2.Enter += button1_Click;
             // 
             // textBox1
             // 
@@ -106,7 +105,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(73, 23);
             textBox1.TabIndex = 1;
-            textBox1.Enter += button1_Click;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 

@@ -12,9 +12,34 @@ namespace BudgetGui.Screens
 {
     public partial class main_screen : UserControl
     {
-        public main_screen()
+        static Form1 mainForm;
+        public main_screen(Form1 _mainForm)
         {
             InitializeComponent();
+            mainForm = _mainForm;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void change_state_template(object sender, EventArgs e)
+        {
+
+            //sql query
+
+            //if success, next screen
+            if (false)
+            {
+                string[] _strings = { };
+                int[] _ints = { };
+                Form1.changeState(1, 0, _strings, _ints);
+            }
+            else
+            {
+                //if failure
+            }
+
         }
     }
 }
