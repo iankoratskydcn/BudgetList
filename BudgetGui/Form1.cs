@@ -7,9 +7,17 @@ namespace BudgetGui
         public Form1()
         {
             InitializeComponent();
+<<<<<<< Updated upstream
 
             //create a login screen in the container
 
+=======
+            form1 = this;
+            panel_1 = this.panel1;
+            _login_screen = new Login(form1);
+            _login_screen.Dock = DockStyle.Fill;
+            panel1.Controls.Add(_login_screen);
+>>>>>>> Stashed changes
 
         }
 
@@ -24,13 +32,7 @@ namespace BudgetGui
 
 
         //for each of the states, we'll use this to switch the control
-        public static void changeState(int state, int prev_state, string[] string_arguments, int[] int_arguments)
-        {
-            //check login to ensure that the user is logged in
-
-            //if they're not, default to the login screen
-
-            /*
+        /*
              
              case 0:
                         _login_screen = new Login();
@@ -50,11 +52,32 @@ namespace BudgetGui
                     case 5:
                         user_View = new user_view();
              */
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="prev_state"></param>
+        /// <param name="string_arguments"></param>
+        /// <param name="int_arguments"></param>
+        public static void changeState(int state, int prev_state, string[] string_arguments, int[] int_arguments)
+        {
+            //check login to ensure that the user is logged in
 
+            //if they're not, default to the login screen
+
+            
             switch (state)
             {
                 case 0:
                     //switch to the login screen and log the user out
+<<<<<<< Updated upstream
+=======
+                    panel_1.Controls.Clear();
+
+                    _login_screen = new Login(form1);
+                    _login_screen.Dock = DockStyle.Fill;
+                    form1.panel1.Controls.Add(_login_screen);
+>>>>>>> Stashed changes
 
                     break;
                 case 1:
@@ -94,7 +117,7 @@ namespace BudgetGui
                 switch (prev_state)
                 {
                     case 0:
-                        _login_screen = new Login();
+                        _login_screen = new Login(form1);
                         break;
                     case 1:
                         _item_Full_view = new item_full_view();
