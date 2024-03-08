@@ -2,6 +2,7 @@ CREATE TABLE _user(
     userId INT PRIMARY KEY,
     fName VARCHAR(50),
     lName VARCHAR(50),
+    _password VARCHAR(50),
     DOB VARCHAR(10),
     streetnum INT,
     street VARCHAR(100),
