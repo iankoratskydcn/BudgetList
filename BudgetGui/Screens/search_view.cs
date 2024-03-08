@@ -12,9 +12,29 @@ namespace BudgetGui.Screens
 {
     public partial class search_view : UserControl
     {
-        public search_view()
+        static Form1 mainForm;
+        public search_view(Form1 _mainForm)
         {
             InitializeComponent();
+            mainForm = _mainForm;
+        }
+        private void change_state_template(object sender, EventArgs e)
+        {
+
+            //sql query
+
+            //if success, next screen
+            if (false)
+            {
+                string[] _strings = { };
+                int[] _ints = { };
+                Form1.changeState(1, 0, _strings, _ints);
+            }
+            else
+            {
+                //if failure
+            }
+
         }
     }
 }
