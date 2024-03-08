@@ -12,8 +12,6 @@ namespace BudgetGui.Screens
 {
     public partial class Login : UserControl
     {
-<<<<<<< Updated upstream
-=======
         static Form1 mainForm;
         public Login(Form1 _mainForm)
         {
@@ -21,7 +19,6 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
->>>>>>> Stashed changes
         private void button1_Click(object sender, EventArgs e)
         {
             //login check
@@ -52,8 +49,6 @@ namespace BudgetGui.Screens
             }
 
         }
-<<<<<<< Updated upstream
-=======
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
@@ -63,6 +58,5 @@ namespace BudgetGui.Screens
         {
             
         }
->>>>>>> Stashed changes
     }
 }

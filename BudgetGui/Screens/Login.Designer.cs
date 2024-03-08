@@ -53,7 +53,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(841, 636);
+            tableLayoutPanel1.Size = new Size(232, 218);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -68,7 +68,7 @@
             tableLayoutPanel2.Controls.Add(label1, 0, 1);
             tableLayoutPanel2.Controls.Add(label2, 1, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(323, 221);
+            tableLayoutPanel2.Location = new Point(19, 12);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -96,11 +96,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(73, 23);
             textBox2.TabIndex = 2;
-<<<<<<< Updated upstream
-            textBox2.Enter += button1_Click;
-=======
             textBox2.TextChanged += textBox2_TextChanged;
->>>>>>> Stashed changes
             // 
             // textBox1
             // 
@@ -137,7 +133,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
             Name = "Login";
-            Size = new Size(841, 636);
+            Size = new Size(232, 218);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();

@@ -1,5 +1,3 @@
-
-
 CREATE TABLE _user(
     userId INT PRIMARY KEY,
     fName VARCHAR(50),
@@ -21,12 +19,12 @@ CREATE TABLE _message(
     PRIMARY KEY(sender, timeDate),
     
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
-    CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId),
+    CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
 
 CREATE TABLE item(
     itemId INT PRIMARY KEY,
-    seller VARCHAR(50),
+    sellerId INT,
     postDate DATE,
     title VARCHAR(100),
     description VARCHAR(255),
@@ -37,13 +35,13 @@ CREATE TABLE item(
     buyerId INT,
     rating DECIMAL(2,1),
     text1 VARCHAR(255),
-    CONSTRAINT fk_seller FOREIGN KEY(seller) REFERENCES _user(userId),
+    CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
 
 CREATE TABLE logs(
     logId INT PRIMARY KEY,
-    _userId INT,
+    userId INT,
     timeDate DATE,
     type VARCHAR(50),
     dataJson VARCHAR(255),
@@ -56,7 +54,7 @@ CREATE TABLE bids(
     bidDate DATE,
     currency VARCHAR(50),
     amount DECIMAL(10,2),
-    PRIMARY KEY(_user, itemId, bidDate),
+    CONSTRAINT pk_bids PRIMARY KEY(_user, itemId, bidDate),
     CONSTRAINT fk_user FOREIGN KEY(_user) REFERENCES _user(userId),
     CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
 );
