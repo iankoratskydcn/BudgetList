@@ -19,7 +19,7 @@ CREATE TABLE _message(
     PRIMARY KEY(sender, timeDate),
     
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
-    CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId),
+    CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
 
 CREATE TABLE item(
