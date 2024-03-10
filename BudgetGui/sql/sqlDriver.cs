@@ -12,6 +12,8 @@ public class sqlDriver
     private string tablesFilePath;
     private string fakeDataFilePath;
 
+    public string loggedInUsername;
+
     public sqlDriver() {
         databaseFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), databaseFileName);
         tablesFilePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\sql", tablesFileName);
@@ -60,7 +62,8 @@ public class sqlDriver
             }
         }
         if (count > 0) {
-            return username;
+            loggedInUsername = username;
+            return loggedInUsername;
         } else {
             return null;
         }

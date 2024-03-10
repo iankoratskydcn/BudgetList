@@ -31,7 +31,7 @@ namespace BudgetGui.Screens
             string passwordResult = sqlDriver.login(username, password);
 
             //if success, next screen
-            if (username== passwordResult)
+            if (username == passwordResult)
             {
                 string[] _strings = { username, password };
                 int[] _ints = { };
