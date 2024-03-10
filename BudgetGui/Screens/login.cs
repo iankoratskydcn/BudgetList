@@ -21,22 +21,17 @@ namespace BudgetGui.Screens
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //login check
-
-
-            //get username
+            sqlDriver sqlDriver = new sqlDriver();
+          
+            //get username and password
             string username = textBox1.Text;
-
-            //get password
             string password = textBox2.Text;
 
             //check data
-            string pw_result = "";
-
-            //sql query
+            string passwordResult = sqlDriver.login(username, password);
 
             //if success, next screen
-            if (password==pw_result)
+            if (username== passwordResult)
             {
                 string[] _strings = { username, password };
                 int[] _ints = { };

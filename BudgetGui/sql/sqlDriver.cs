@@ -19,10 +19,10 @@ public class sqlDriver
     }
 
     public void databaseStartup() {
-        createDatabaseIfNotExists(databaseFilePath, tablesFilePath, fakeDataFilePath);
+        createDatabaseIfNotExists();
     }
 
-    public void createDatabaseIfNotExists(string databaseFilePath, string tablesFilePath, string fakeDataFilePath) {
+    public void createDatabaseIfNotExists() {
         if (!File.Exists(databaseFilePath)) {
             SQLiteConnection.CreateFile(databaseFilePath);
             Console.WriteLine($"Database '{databaseFilePath}' created successfully.");
@@ -45,6 +45,24 @@ public class sqlDriver
             }
         } else {
             Console.WriteLine($"Database '{databaseFilePath}' already exists.");
+        }
+    }
+
+    public string login(string username, string password) {
+        string query = "SELECT COUNT(*) FROM _user WHERE username = @username AND _password = @password";
+        int count = 0;
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;")) {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection)) {
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+                count = Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
+        if (count > 0) {
+            return username;
+        } else {
+            return null;
         }
     }
 }
