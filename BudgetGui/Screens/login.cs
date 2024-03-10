@@ -28,10 +28,10 @@ namespace BudgetGui.Screens
             string password = textBox2.Text;
 
             //check data
-            string passwordResult = sqlDriver.login(username, password);
+            string result = sqlDriver.login(username, password);
 
             //if success, next screen
-            if (username == passwordResult)
+            if (username == result)
             {
                 string[] _strings = { username, password };
                 int[] _ints = { };
