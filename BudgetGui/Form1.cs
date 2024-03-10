@@ -85,7 +85,7 @@ namespace BudgetGui
                     //the user has selected the main screen
                     panel_1.Controls.Clear();
 
-                    main_Screen = new main_screen();
+                    main_Screen = new main_screen(form1);
                     main_Screen.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(main_Screen);
 
@@ -95,7 +95,7 @@ namespace BudgetGui
 
                     panel_1.Controls.Clear();
 
-                    user_View = new user_view();
+                    user_View = new user_view(form1);
                     user_View.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(user_View);
 
@@ -105,7 +105,7 @@ namespace BudgetGui
 
                     panel_1.Controls.Clear();
 
-                    search_View = new search_view();
+                    search_View = new search_view(form1);
                     search_View.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(search_View);
 
@@ -117,7 +117,7 @@ namespace BudgetGui
 
                     panel_1.Controls.Clear();
 
-                    _item_Full_view = new item_full_view();
+                    _item_Full_view = new item_full_view(form1);
                     _item_Full_view.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(_item_Full_view);
 
@@ -127,7 +127,7 @@ namespace BudgetGui
 
                     panel_1.Controls.Clear();
 
-                    message_Screen = new message_screen();
+                    message_Screen = new message_screen(form1);
                     message_Screen.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(message_Screen);
 
@@ -151,19 +151,19 @@ namespace BudgetGui
                         _login_screen = new Login(form1);
                         break;
                     case 1:
-                        _item_Full_view = new item_full_view();
+                        _item_Full_view = new item_full_view(form1);
                         break;
                     case 2:
-                        main_Screen = new main_screen();
+                        main_Screen = new main_screen(form1);
                         break;
                     case 3:
-                        message_Screen = new message_screen();
+                        message_Screen = new message_screen(form1);
                         break;
                     case 4:
-                        search_View = new search_view();
+                        search_View = new search_view(form1);
                         break;
                     case 5:
-                        user_View = new user_view();
+                        user_View = new user_view(form1);
                         break;
                     default:
                         //error, do nothing
