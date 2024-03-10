@@ -20,10 +20,6 @@ public class sqlDriver
         fakeDataFilePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\sql", fakeDataFileName);
     }
 
-    public void databaseStartup() {
-        createDatabaseIfNotExists();
-    }
-
     public void createDatabaseIfNotExists() {
         if (!File.Exists(databaseFilePath)) {
             SQLiteConnection.CreateFile(databaseFilePath);
