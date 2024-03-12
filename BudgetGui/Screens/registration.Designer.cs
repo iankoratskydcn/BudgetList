@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Label label2;
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();

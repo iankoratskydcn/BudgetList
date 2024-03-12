@@ -20,6 +20,13 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string[] _strings = { };
+            int[] _ints = { };
+            Form1.changeState(0, 1, _strings, _ints);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -28,13 +35,6 @@ namespace BudgetGui.Screens
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string[] _strings = { };
-            int[] _ints = { };
-            Form1.changeState(0, 7, _strings, _ints);
         }
     }
 }

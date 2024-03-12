@@ -36,7 +36,7 @@ namespace BudgetGui.Screens
             {
                 string[] _strings = { username, password };
                 int[] _ints = { };
-                Form1.changeState(1, 0, _strings, _ints);
+                Form1.changeState(2, 0, _strings, _ints);
             }
             else
             {
@@ -46,20 +46,21 @@ namespace BudgetGui.Screens
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void register_Click(object sender, EventArgs e)
         {
             string[] _strings = { };
             int[] _ints = { };
-            Form1.changeState(7, 0, _strings, _ints);
+            Form1.changeState(1, 0, _strings, _ints);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
