@@ -115,7 +115,7 @@
             // 
             // loginHere
             // 
-            loginHere.ActiveLinkColor = Color.Black;
+            loginHere.ActiveLinkColor = SystemColors.Highlight;
             loginHere.AutoSize = true;
             loginHere.LinkColor = Color.Black;
             loginHere.Location = new Point(305, 417);
