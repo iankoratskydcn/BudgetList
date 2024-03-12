@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BudgetGui.Screens
 {
@@ -22,7 +23,7 @@ namespace BudgetGui.Screens
         private void button1_Click(object sender, EventArgs e)
         {
             sqlDriver sqlDriver = new sqlDriver();
-          
+
             //get username and password
             string username = textBox1.Text;
             string password = textBox2.Text;
@@ -47,11 +48,18 @@ namespace BudgetGui.Screens
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void register_Click(object sender, EventArgs e)
+        {
+            string[] _strings = { };
+            int[] _ints = { };
+            Form1.changeState(7, 0, _strings, _ints);
         }
     }
 }

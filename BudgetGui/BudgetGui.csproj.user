@@ -40,6 +40,9 @@
     <Compile Update="Screens\message_screen.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Screens\registration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Screens\search_view.cs">
       <SubType>UserControl</SubType>
     </Compile>
