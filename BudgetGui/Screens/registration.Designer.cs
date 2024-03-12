@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             Label label2;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(registration));
             lastName = new TextBox();
             email = new TextBox();
             password1 = new TextBox();
@@ -38,13 +39,15 @@
             firstName = new TextBox();
             loginHere = new LinkLabel();
             username = new TextBox();
+            pictureBox1 = new PictureBox();
             label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(166, 417);
+            label2.Location = new Point(111, 410);
             label2.Name = "label2";
             label2.Size = new Size(142, 15);
             label2.TabIndex = 8;
@@ -52,7 +55,7 @@
             // 
             // lastName
             // 
-            lastName.Location = new Point(146, 209);
+            lastName.Location = new Point(91, 202);
             lastName.Name = "lastName";
             lastName.PlaceholderText = "Last Name";
             lastName.Size = new Size(253, 23);
@@ -60,7 +63,7 @@
             // 
             // email
             // 
-            email.Location = new Point(146, 238);
+            email.Location = new Point(91, 231);
             email.Name = "email";
             email.PlaceholderText = "Email";
             email.Size = new Size(253, 23);
@@ -68,7 +71,7 @@
             // 
             // password1
             // 
-            password1.Location = new Point(146, 296);
+            password1.Location = new Point(91, 289);
             password1.Name = "password1";
             password1.PlaceholderText = "Password";
             password1.Size = new Size(253, 23);
@@ -76,7 +79,7 @@
             // 
             // password2
             // 
-            password2.Location = new Point(146, 325);
+            password2.Location = new Point(91, 318);
             password2.Name = "password2";
             password2.PlaceholderText = "Repeat Your Password";
             password2.Size = new Size(253, 23);
@@ -84,7 +87,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(146, 391);
+            button1.Location = new Point(91, 384);
             button1.Name = "button1";
             button1.Size = new Size(253, 23);
             button1.TabIndex = 4;
@@ -96,7 +99,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(166, 107);
+            label1.Location = new Point(111, 100);
             label1.Name = "label1";
             label1.Size = new Size(213, 37);
             label1.TabIndex = 5;
@@ -106,7 +109,7 @@
             // 
             // firstName
             // 
-            firstName.Location = new Point(146, 180);
+            firstName.Location = new Point(91, 173);
             firstName.Name = "firstName";
             firstName.PlaceholderText = "First Name";
             firstName.Size = new Size(253, 23);
@@ -118,7 +121,7 @@
             loginHere.ActiveLinkColor = SystemColors.Highlight;
             loginHere.AutoSize = true;
             loginHere.LinkColor = Color.Black;
-            loginHere.Location = new Point(305, 417);
+            loginHere.Location = new Point(250, 410);
             loginHere.Name = "loginHere";
             loginHere.Size = new Size(65, 15);
             loginHere.TabIndex = 7;
@@ -129,11 +132,21 @@
             // 
             // username
             // 
-            username.Location = new Point(146, 267);
+            username.Location = new Point(91, 260);
             username.Name = "username";
             username.PlaceholderText = "Username";
             username.Size = new Size(253, 23);
             username.TabIndex = 9;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(805, 534);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
             // 
             // registration
             // 
@@ -150,8 +163,10 @@
             Controls.Add(password1);
             Controls.Add(email);
             Controls.Add(lastName);
+            Controls.Add(pictureBox1);
             Name = "registration";
-            Size = new Size(548, 512);
+            Size = new Size(805, 534);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -168,5 +183,6 @@
         private LinkLabel loginHere;
         private Label label2;
         private TextBox username;
+        private PictureBox pictureBox1;
     }
 }
