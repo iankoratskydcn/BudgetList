@@ -14,6 +14,7 @@ namespace BudgetGui
         private static item_full_view _item_Full_view;
         private static message_screen message_Screen;
         private static conversation_screen conversation_Screen;
+        private static registration registration;
 
         private static Form1 form1;
         private static Panel panel_1;
@@ -134,6 +135,15 @@ namespace BudgetGui
                     break;
                 case 6:
                     //the user has selected to view a particular set of messages
+
+                    break;
+                case 7:
+                    //the user has selected create an account
+                    panel_1.Controls.Clear();
+
+                    registration = new registration(form1);
+                    registration.Dock = DockStyle.Fill;
+                    form1.panel1.Controls.Add(registration);
 
                     break;
                 default:

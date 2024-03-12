@@ -35,6 +35,7 @@
             textBox1 = new TextBox();
             label1 = new Label();
             label2 = new Label();
+            register = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
@@ -67,6 +68,7 @@
             tableLayoutPanel2.Controls.Add(textBox1, 0, 2);
             tableLayoutPanel2.Controls.Add(label1, 0, 1);
             tableLayoutPanel2.Controls.Add(label2, 1, 1);
+            tableLayoutPanel2.Controls.Add(register, 0, 3);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(19, 12);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -127,6 +129,16 @@
             label2.TabIndex = 4;
             label2.Text = "Password";
             // 
+            // register
+            // 
+            register.Location = new Point(3, 124);
+            register.Name = "register";
+            register.Size = new Size(73, 23);
+            register.TabIndex = 5;
+            register.Text = "Register";
+            register.UseVisualStyleBackColor = true;
+            register.Click += register_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -149,5 +161,6 @@
         private TextBox textBox1;
         private Label label1;
         private Label label2;
+        private Button register;
     }
 }
