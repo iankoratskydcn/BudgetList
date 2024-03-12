@@ -48,9 +48,7 @@ namespace BudgetGui.Screens
 
         private void register_Click(object sender, EventArgs e)
         {
-            string[] _strings = { };
-            int[] _ints = { };
-            Form1.changeState(1, 0, _strings, _ints);
+            Form1.changeState(1, 0);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

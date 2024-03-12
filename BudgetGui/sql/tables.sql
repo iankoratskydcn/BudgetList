@@ -4,6 +4,7 @@ CREATE TABLE _user(
     lName VARCHAR(50),
     username VARCHAR(50),
     _password VARCHAR(50),
+    email VARCHAR(50),
     DOB VARCHAR(10),
     streetnum INT,
     street VARCHAR(100),
@@ -19,7 +20,6 @@ CREATE TABLE _message(
     recipient INT,
     text1 VARCHAR(255),
     PRIMARY KEY(sender, timeDate),
-    
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );

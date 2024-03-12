@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BudgetGui.Screens
@@ -20,19 +21,39 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string[] _strings = { };
-            int[] _ints = { };
-            Form1.changeState(0, 1, _strings, _ints);
+        private void button1_Click(object sender, EventArgs e) {
+            sqlDriver sqlDriver = new sqlDriver();
+
+            string[] fields = { firstName.Text, lastName.Text, email.Text, username.Text, password1.Text, password2.Text };
+            string[] labels = { "First Name", "Last Name", "Email", "Username", "Password", "Repeat Password" };
+
+            for (int i = 0; i < fields.Length; i++) {
+                if (string.IsNullOrEmpty(fields[i])) {
+                    MessageBox.Show($"Enter your {labels[i]}");
+                    return;
+                }
+            }
+            if (password1.Text != password2.Text) {
+                MessageBox.Show("Passwords do not Match");
+            } else if (sqlDriver.checkIfUsernameExists(username.Text)) {
+                MessageBox.Show("Username Already Exists");
+            } else {
+                sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, password1.Text, email.Text);
+                MessageBox.Show("Account Created Successfully");
+                Form1.changeState(0, 1);
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            Form1.changeState(0, 1);
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void firstName_TextChanged(object sender, EventArgs e)
         {
 
         }

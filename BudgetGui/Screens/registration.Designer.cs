@@ -29,52 +29,62 @@
         private void InitializeComponent()
         {
             Label label2;
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            lastName = new TextBox();
+            email = new TextBox();
+            password1 = new TextBox();
+            password2 = new TextBox();
             button1 = new Button();
             label1 = new Label();
-            textBox5 = new TextBox();
+            firstName = new TextBox();
             loginHere = new LinkLabel();
+            username = new TextBox();
             label2 = new Label();
             SuspendLayout();
             // 
-            // textBox1
+            // label2
             // 
-            textBox1.Location = new Point(146, 209);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Last Name";
-            textBox1.Size = new Size(253, 23);
-            textBox1.TabIndex = 0;
+            label2.AutoSize = true;
+            label2.Location = new Point(166, 417);
+            label2.Name = "label2";
+            label2.Size = new Size(142, 15);
+            label2.TabIndex = 8;
+            label2.Text = "Already have an account?";
             // 
-            // textBox2
+            // lastName
             // 
-            textBox2.Location = new Point(146, 238);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Email";
-            textBox2.Size = new Size(253, 23);
-            textBox2.TabIndex = 1;
+            lastName.Location = new Point(146, 209);
+            lastName.Name = "lastName";
+            lastName.PlaceholderText = "Last Name";
+            lastName.Size = new Size(253, 23);
+            lastName.TabIndex = 0;
             // 
-            // textBox3
+            // email
             // 
-            textBox3.Location = new Point(146, 267);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Password";
-            textBox3.Size = new Size(253, 23);
-            textBox3.TabIndex = 2;
+            email.Location = new Point(146, 238);
+            email.Name = "email";
+            email.PlaceholderText = "Email";
+            email.Size = new Size(253, 23);
+            email.TabIndex = 1;
             // 
-            // textBox4
+            // password1
             // 
-            textBox4.Location = new Point(146, 296);
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = "Repeat Your Password";
-            textBox4.Size = new Size(253, 23);
-            textBox4.TabIndex = 3;
+            password1.Location = new Point(146, 296);
+            password1.Name = "password1";
+            password1.PlaceholderText = "Password";
+            password1.Size = new Size(253, 23);
+            password1.TabIndex = 2;
+            // 
+            // password2
+            // 
+            password2.Location = new Point(146, 325);
+            password2.Name = "password2";
+            password2.PlaceholderText = "Repeat Your Password";
+            password2.Size = new Size(253, 23);
+            password2.TabIndex = 3;
             // 
             // button1
             // 
-            button1.Location = new Point(146, 356);
+            button1.Location = new Point(146, 391);
             button1.Name = "button1";
             button1.Size = new Size(253, 23);
             button1.TabIndex = 4;
@@ -94,20 +104,21 @@
             label1.TextAlign = ContentAlignment.TopCenter;
             label1.Click += label1_Click;
             // 
-            // textBox5
+            // firstName
             // 
-            textBox5.Location = new Point(146, 180);
-            textBox5.Name = "textBox5";
-            textBox5.PlaceholderText = "First Name";
-            textBox5.Size = new Size(253, 23);
-            textBox5.TabIndex = 6;
+            firstName.Location = new Point(146, 180);
+            firstName.Name = "firstName";
+            firstName.PlaceholderText = "First Name";
+            firstName.Size = new Size(253, 23);
+            firstName.TabIndex = 6;
+            firstName.TextChanged += firstName_TextChanged;
             // 
             // loginHere
             // 
             loginHere.ActiveLinkColor = Color.Black;
             loginHere.AutoSize = true;
             loginHere.LinkColor = Color.Black;
-            loginHere.Location = new Point(305, 394);
+            loginHere.Location = new Point(305, 417);
             loginHere.Name = "loginHere";
             loginHere.Size = new Size(65, 15);
             loginHere.TabIndex = 7;
@@ -116,29 +127,29 @@
             loginHere.VisitedLinkColor = Color.Black;
             loginHere.LinkClicked += linkLabel1_LinkClicked;
             // 
-            // label2
+            // username
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(166, 394);
-            label2.Name = "label2";
-            label2.Size = new Size(142, 15);
-            label2.TabIndex = 8;
-            label2.Text = "Already have an account?";
+            username.Location = new Point(146, 267);
+            username.Name = "username";
+            username.PlaceholderText = "Username";
+            username.Size = new Size(253, 23);
+            username.TabIndex = 9;
             // 
             // registration
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
+            Controls.Add(username);
             Controls.Add(label2);
             Controls.Add(loginHere);
-            Controls.Add(textBox5);
+            Controls.Add(firstName);
             Controls.Add(label1);
             Controls.Add(button1);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(password2);
+            Controls.Add(password1);
+            Controls.Add(email);
+            Controls.Add(lastName);
             Name = "registration";
             Size = new Size(548, 512);
             ResumeLayout(false);
@@ -147,14 +158,15 @@
 
         #endregion
 
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox lastName;
+        private TextBox email;
+        private TextBox password1;
+        private TextBox password2;
         private Button button1;
         private Label label1;
-        private TextBox textBox5;
+        private TextBox firstName;
         private LinkLabel loginHere;
         private Label label2;
+        private TextBox username;
     }
 }
