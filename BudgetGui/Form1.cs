@@ -78,13 +78,13 @@ namespace BudgetGui
                     message_Screen.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(message_Screen);
                     break;
-                case 7:
+                case 7: //the user has selected to view their items
                     panel_1.Controls.Clear();
                     items_view = new items_view(form1);
                     items_view.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(items_view);
                     break;
-                case 8:
+                case 8: //the user has selected to view a specific conversation
                     panel_1.Controls.Clear();
                     conversation_Screen = new conversation_screen(form1);
                     conversation_Screen.Dock = DockStyle.Fill;
