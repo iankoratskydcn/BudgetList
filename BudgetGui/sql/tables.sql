@@ -9,6 +9,7 @@ CREATE TABLE _user(
     streetnum INT,
     street VARCHAR(100),
     city VARCHAR(50),
+    state VARCHAR(50),
     zip INT,
     age INT, --should be changed to derived attribute
     profilePicture VARCHAR(100) --No idea how to do this unless its holding the link to the picture
