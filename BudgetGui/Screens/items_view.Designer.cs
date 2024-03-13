@@ -1,6 +1,6 @@
 ﻿namespace BudgetGui.Screens
 {
-    partial class conversation_screen
+    partial class items_view
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,36 +29,59 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            back = new Button();
+            home = new Button();
+            viewItem = new Button();
+            label2 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(277, 195);
+            label1.Location = new Point(355, 181);
             label1.Name = "label1";
-            label1.Size = new Size(259, 32);
+            label1.Size = new Size(120, 32);
             label1.TabIndex = 0;
-            label1.Text = "Current Conversation";
+            label1.Text = "My Items";
             // 
-            // back
+            // home
             // 
-            back.Location = new Point(368, 330);
-            back.Name = "back";
-            back.Size = new Size(75, 23);
-            back.TabIndex = 1;
-            back.Text = "Back";
-            back.UseVisualStyleBackColor = true;
-            back.Click += back_Click;
+            home.Location = new Point(370, 321);
+            home.Name = "home";
+            home.Size = new Size(75, 23);
+            home.TabIndex = 1;
+            home.Text = "Home";
+            home.UseVisualStyleBackColor = true;
+            home.Click += home_Click;
             // 
-            // conversation_screen
+            // viewItem
+            // 
+            viewItem.Location = new Point(370, 292);
+            viewItem.Name = "viewItem";
+            viewItem.Size = new Size(75, 23);
+            viewItem.TabIndex = 2;
+            viewItem.Text = "View Item";
+            viewItem.UseVisualStyleBackColor = true;
+            viewItem.Click += viewItem_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(451, 300);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Can't come back yet";
+            // 
+            // items_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(back);
+            Controls.Add(label2);
+            Controls.Add(viewItem);
+            Controls.Add(home);
             Controls.Add(label1);
-            Name = "conversation_screen";
+            Name = "items_view";
             Size = new Size(805, 534);
             ResumeLayout(false);
             PerformLayout();
@@ -67,6 +90,8 @@
         #endregion
 
         private Label label1;
-        private Button back;
+        private Button home;
+        private Button viewItem;
+        private Label label2;
     }
 }

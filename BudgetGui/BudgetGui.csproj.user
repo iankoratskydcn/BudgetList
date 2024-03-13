@@ -25,7 +25,7 @@
     <Compile Update="Screens\conversation_screen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\home_view.cs">
+    <Compile Update="Screens\items_view.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Screens\item_full_view.cs">
@@ -37,7 +37,7 @@
     <Compile Update="Screens\main_screen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\message_screen.cs">
+    <Compile Update="Screens\messages_screen.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Screens\registration.cs">

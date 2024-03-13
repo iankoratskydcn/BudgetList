@@ -18,23 +18,10 @@ namespace BudgetGui.Screens
             InitializeComponent();
             mainForm = _mainForm;
         }
-        private void change_state_template(object sender, EventArgs e)
+
+        private void back_Click(object sender, EventArgs e)
         {
-
-            //sql query
-
-            //if success, next screen
-            if (false)
-            {
-                string[] _strings = { };
-                int[] _ints = { };
-                Form1.changeState(1, 0, _strings, _ints);
-            }
-            else
-            {
-                //if failure
-            }
-
+            Form1.changeState(6, 8);
         }
     }
 }

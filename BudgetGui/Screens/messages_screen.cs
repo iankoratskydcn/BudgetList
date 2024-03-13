@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace BudgetGui.Screens
 {
-    public partial class user_view : UserControl
+    public partial class messages_screen : UserControl
     {
         static Form1 mainForm;
-        public user_view(Form1 _mainForm)
+        public messages_screen(Form1 _mainForm)
         {
             InitializeComponent();
             mainForm = _mainForm;
@@ -21,7 +21,12 @@ namespace BudgetGui.Screens
 
         private void home_Click(object sender, EventArgs e)
         {
-            Form1.changeState(2, 3);
+            Form1.changeState(2, 6);
+        }
+
+        private void viewConversation_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(8, 6);
         }
     }
 }

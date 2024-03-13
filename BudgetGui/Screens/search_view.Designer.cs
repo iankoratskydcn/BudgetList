@@ -28,10 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            label1 = new Label();
+            home = new Button();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(366, 184);
+            label1.Name = "label1";
+            label1.Size = new Size(89, 32);
+            label1.TabIndex = 6;
+            label1.Text = "Search";
+            // 
+            // home
+            // 
+            home.Location = new Point(366, 335);
+            home.Name = "home";
+            home.Size = new Size(75, 23);
+            home.TabIndex = 7;
+            home.Text = "Home";
+            home.UseVisualStyleBackColor = true;
+            home.Click += home_Click;
+            // 
+            // search_view
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(home);
+            Controls.Add(label1);
+            Name = "search_view";
+            Size = new Size(805, 534);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label1;
+        private Button home;
     }
 }

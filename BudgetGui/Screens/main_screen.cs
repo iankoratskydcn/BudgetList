@@ -19,27 +19,29 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void logout_Click(object sender, EventArgs e)
         {
-
+            Form1.changeState(0, 2);
         }
-        private void change_state_template(object sender, EventArgs e)
+
+        private void userView_Click(object sender, EventArgs e)
         {
+            Form1.changeState(3, 2);
+        }
 
-            //sql query
+        private void searchView_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(4, 2);
+        }
 
-            //if success, next screen
-            if (false)
-            {
-                string[] _strings = { };
-                int[] _ints = { };
-                Form1.changeState(1, 0, _strings, _ints);
-            }
-            else
-            {
-                //if failure
-            }
+        private void messageScreen_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(6, 2);
+        }
 
+        private void items_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(7, 2);
         }
     }
 }

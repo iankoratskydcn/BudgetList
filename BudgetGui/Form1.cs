@@ -10,8 +10,9 @@ namespace BudgetGui
         private static main_screen main_Screen;
         private static user_view user_View;
         private static search_view search_View;
+        private static items_view items_view;
         private static item_full_view _item_Full_view;
-        private static message_screen message_Screen;
+        private static messages_screen message_Screen;
         private static conversation_screen conversation_Screen;
         private static registration registration;
         private static Form1 form1;
@@ -73,11 +74,21 @@ namespace BudgetGui
                     break;
                 case 6: //the user has selected to view their messages
                     panel_1.Controls.Clear();
-                    message_Screen = new message_screen(form1);
+                    message_Screen = new messages_screen(form1);
                     message_Screen.Dock = DockStyle.Fill;
                     form1.panel1.Controls.Add(message_Screen);
                     break;
-                case 7: //the user has selected to view a particular set of messages
+                case 7:
+                    panel_1.Controls.Clear();
+                    items_view = new items_view(form1);
+                    items_view.Dock = DockStyle.Fill;
+                    form1.panel1.Controls.Add(items_view);
+                    break;
+                case 8:
+                    panel_1.Controls.Clear();
+                    conversation_Screen = new conversation_screen(form1);
+                    conversation_Screen.Dock = DockStyle.Fill;
+                    form1.panel1.Controls.Add(conversation_Screen);
                     break;
                 default: //error, do nothing
                     break;
@@ -108,9 +119,13 @@ namespace BudgetGui
                         _item_Full_view = new item_full_view(form1);
                         break;
                     case 6:
-                        message_Screen = new message_screen(form1);
+                        message_Screen = new messages_screen(form1);
                         break;
                     case 7:
+                        items_view = new items_view(form1);
+                        break;
+                    case 8:
+                        conversation_Screen = new conversation_screen(form1);
                         break;
                     default: //error, do nothing
                         break;
