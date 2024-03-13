@@ -33,7 +33,9 @@ namespace BudgetGui.Screens
                     return;
                 }
             }
-            if (password1.Text != password2.Text) {
+            if (!password1.Text.Any(char.IsUpper) || !password1.Text.Any(char.IsDigit) || !password1.Text.Any(char.IsPunctuation) || password1.Text.Length < 8) {
+                MessageBox.Show("Password must contain a capital letter, a digit, a special character, and have at least 8 characters");
+            } else if (password1.Text != password2.Text) {
                 MessageBox.Show("Passwords do not Match");
             } else if (sqlDriver.checkIfUsernameExists(username.Text)) {
                 MessageBox.Show("Username Already Exists");
