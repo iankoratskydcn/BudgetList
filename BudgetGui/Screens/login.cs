@@ -16,12 +16,16 @@ namespace BudgetGui.Screens
         static Form1 mainForm;
         public Login(Form1 _mainForm)
         {
-            InitializeComponent();
             mainForm = _mainForm;
+            InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text=="" || textBox2.Text == "")
+            {
+                return;
+            }
             sqlDriver sqlDriver = new sqlDriver();
 
             //get username and password
@@ -51,14 +55,5 @@ namespace BudgetGui.Screens
             Form1.changeState(1, 0);
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             Label label2;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(registration));
             lastName = new TextBox();
             email = new TextBox();
             password1 = new TextBox();
@@ -145,7 +144,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             Controls.Add(username);
             Controls.Add(label2);
             Controls.Add(loginHere);
@@ -156,6 +154,7 @@
             Controls.Add(password1);
             Controls.Add(email);
             Controls.Add(lastName);
+            BackColor = Color.Transparent;
             Name = "registration";
             Size = new Size(805, 534);
             ResumeLayout(false);
