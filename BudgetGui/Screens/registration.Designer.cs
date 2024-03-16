@@ -99,10 +99,10 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(111, 100);
+            label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(76, 82);
             label1.Name = "label1";
-            label1.Size = new Size(213, 37);
+            label1.Size = new Size(287, 50);
             label1.TabIndex = 5;
             label1.Text = "Create Account";
             label1.TextAlign = ContentAlignment.TopCenter;
