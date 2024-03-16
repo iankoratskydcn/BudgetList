@@ -46,13 +46,14 @@
             // 
             // label2
             // 
+            label2.AccessibleRole = AccessibleRole.OutlineButton;
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Location = new Point(111, 410);
             label2.Name = "label2";
             label2.Size = new Size(142, 15);
             label2.TabIndex = 8;
             label2.Text = "Already have an account?";
-            label2.BackColor = System.Drawing.Color.Transparent;
             // 
             // lastName
             // 
@@ -99,6 +100,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(111, 100);
             label1.Name = "label1";
@@ -107,7 +109,6 @@
             label1.Text = "Create Account";
             label1.TextAlign = ContentAlignment.TopCenter;
             label1.Click += label1_Click;
-            label1.BackColor = System.Drawing.Color.Transparent;
             // 
             // firstName
             // 
@@ -122,6 +123,7 @@
             // 
             loginHere.ActiveLinkColor = SystemColors.Highlight;
             loginHere.AutoSize = true;
+            loginHere.BackColor = Color.Transparent;
             loginHere.LinkColor = Color.Black;
             loginHere.Location = new Point(250, 410);
             loginHere.Name = "loginHere";
@@ -131,7 +133,6 @@
             loginHere.Text = "Login Here";
             loginHere.VisitedLinkColor = Color.Black;
             loginHere.LinkClicked += linkLabel1_LinkClicked;
-            loginHere.BackColor = System.Drawing.Color.Transparent;
             // 
             // username
             // 
