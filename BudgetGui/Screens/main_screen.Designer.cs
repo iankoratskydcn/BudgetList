@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main_screen));
             logout = new Button();
             userView = new Button();
             searchView = new Button();
@@ -80,9 +79,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
             label1.Location = new Point(328, 156);
             label1.Name = "label1";
             label1.Size = new Size(145, 32);
@@ -103,7 +100,6 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             Controls.Add(items);
             Controls.Add(label1);
             Controls.Add(messageScreen);
