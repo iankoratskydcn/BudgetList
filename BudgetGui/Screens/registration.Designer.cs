@@ -146,6 +146,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(username);
             Controls.Add(label2);
             Controls.Add(loginHere);
