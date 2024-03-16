@@ -14,6 +14,17 @@ namespace BudgetGui.CustomControls
 
     //
 
+    /*
+     <palette>
+  <color name="Dark moss green" hex="616A37" r="97" g="106" b="55" />
+  <color name="Drab dark brown" hex="29300E" r="41" g="48" b="14" />
+  <color name="UCLA Blue" hex="3E779C" r="62" g="119" b="156" />
+  <color name="Dark moss green" hex="364015" r="54" g="64" b="21" />
+  <color name="Dark moss green" hex="4C5221" r="76" g="82" b="33" />
+</palette>
+     
+     */
+
     public partial class card_view_panel : UserControl
     {
         //        public card_view_panel()
