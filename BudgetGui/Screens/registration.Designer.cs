@@ -39,9 +39,7 @@
             firstName = new TextBox();
             loginHere = new LinkLabel();
             username = new TextBox();
-            pictureBox1 = new PictureBox();
             label2 = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -142,23 +140,12 @@
             username.Size = new Size(253, 23);
             username.TabIndex = 9;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(805, 534);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 10;
-            pictureBox1.TabStop = false;
-            // 
             // registration
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             Controls.Add(username);
             Controls.Add(label2);
             Controls.Add(loginHere);
@@ -169,10 +156,8 @@
             Controls.Add(password1);
             Controls.Add(email);
             Controls.Add(lastName);
-            Controls.Add(pictureBox1);
             Name = "registration";
             Size = new Size(805, 534);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -189,6 +174,5 @@
         private LinkLabel loginHere;
         private Label label2;
         private TextBox username;
-        private PictureBox pictureBox1;
     }
 }
