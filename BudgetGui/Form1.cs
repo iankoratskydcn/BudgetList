@@ -42,11 +42,9 @@ namespace BudgetGui
             _login_screen.Dock = DockStyle.Fill;
             panel1.Controls.Add(_login_screen);
 
-
-
         }
 
-        
+
 
         public static void changeState(int state, int prev_state, string[] string_arguments = null, int[] int_arguments = null)
         {
@@ -63,10 +61,10 @@ namespace BudgetGui
                     break;
                 case 2: //the user has selected the main screen
                     form1.panel1.Controls.Add(main_Screen);
-                    break; 
+                    break;
                 case 3: //the user has selected a user view
                     form1.panel1.Controls.Add(user_View);
-                    break; 
+                    break;
                 case 4: //the user has selected a searched items screen
                     form1.panel1.Controls.Add(search_View);
                     break;
@@ -85,70 +83,11 @@ namespace BudgetGui
                 default: //error, do nothing
                     break;
             }
-            
 
-            //check if the previous state is different, as we overwrite it
-            //if (prev_state != state)
-            //{
-            //    //if successful, clear the previous state
-            //    switch (prev_state)
-            //    {
-            //        case 0:
-            //            _login_screen = new Login(form1);
-            //            break;
-            //        case 1:
-            //            registration = new registration(form1);
-            //            break;
-            //        case 2:
-            //            main_Screen = new main_screen(form1);
-            //            break;
-            //        case 3:
-            //            user_View = new user_view(form1);
-            //            break;
-            //        case 4:
-            //            search_View = new search_view(form1);
-            //            break;
-            //        case 5:
-            //            _item_Full_view = new item_full_view(form1);
-            //            break;
-            //        case 6:
-            //            message_Screen = new messages_screen(form1);
-            //            break;
-            //        case 7:
-            //            items_view = new items_view(form1);
-            //            break;
-            //        case 8:
-            //            conversation_Screen = new conversation_screen(form1);
-            //            break;
-            //        default: //error, do nothing
-            //            break;
-            //    }
-            //}
+
         }
-
-        //for each of the states, we'll use this to switch the control
-        /*
-             
-             case 0:
-                        _login_screen = new Login();
-                        break;
-                    case 1:
-                        _item_Full_view = new item_full_view();
-                        break;
-                    case 2:
-                        main_Screen = new main_screen();
-                        break;
-                    case 3:
-                        message_Screen = new message_screen();
-                        break;
-                    case 4:
-                        search_View = new search_view();
-                        break;
-                    case 5:
-                        user_View = new user_view();
-             */
-    
     }
+
     public static class MyExtensions
     {
         public static void SetDoubleBuffered(this Panel panel)
