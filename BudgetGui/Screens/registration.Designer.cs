@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             Label label2;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(registration));
             lastName = new TextBox();
             email = new TextBox();
             password1 = new TextBox();
@@ -99,11 +98,10 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.ControlText;
-            label1.Location = new Point(76, 82);
+            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(111, 100);
             label1.Name = "label1";
-            label1.Size = new Size(287, 50);
+            label1.Size = new Size(213, 37);
             label1.TabIndex = 5;
             label1.Text = "Create Account";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -146,8 +144,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(username);
             Controls.Add(label2);
             Controls.Add(loginHere);
@@ -158,6 +154,7 @@
             Controls.Add(password1);
             Controls.Add(email);
             Controls.Add(lastName);
+            BackColor = Color.Transparent;
             Name = "registration";
             Size = new Size(805, 534);
             ResumeLayout(false);
