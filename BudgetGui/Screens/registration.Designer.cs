@@ -52,6 +52,7 @@
             label2.Size = new Size(142, 15);
             label2.TabIndex = 8;
             label2.Text = "Already have an account?";
+            label2.BackColor = System.Drawing.Color.Transparent;
             // 
             // lastName
             // 
@@ -106,6 +107,7 @@
             label1.Text = "Create Account";
             label1.TextAlign = ContentAlignment.TopCenter;
             label1.Click += label1_Click;
+            label1.BackColor = System.Drawing.Color.Transparent;
             // 
             // firstName
             // 
@@ -129,6 +131,7 @@
             loginHere.Text = "Login Here";
             loginHere.VisitedLinkColor = Color.Black;
             loginHere.LinkClicked += linkLabel1_LinkClicked;
+            loginHere.BackColor = System.Drawing.Color.Transparent;
             // 
             // username
             // 
@@ -141,6 +144,7 @@
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
