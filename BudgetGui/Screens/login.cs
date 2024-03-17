@@ -18,6 +18,7 @@ namespace BudgetGui.Screens
         {
             mainForm = _mainForm;
             InitializeComponent();
+            this.BackColor = Color.Transparent;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace BudgetGui.Screens
             if (username == result)
             {
                 string[] _strings = { username, password };
-                int[] _ints = { };
+                int[] _ints = { sqlDriver.getUserIdByUsername(username) };
                 Form1.changeState(2, 0, _strings, _ints);
             }
             else

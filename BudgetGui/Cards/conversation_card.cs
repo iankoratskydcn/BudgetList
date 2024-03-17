@@ -18,6 +18,7 @@ namespace BudgetGui.Screens.cards
         private string user;
         private string item;
         private int conversation_id;
+        private messages_screen screen;
 
         public conversation_card(string[] _string_arguments, int[] _int_arugments)
         {
@@ -40,15 +41,12 @@ namespace BudgetGui.Screens.cards
         {
             try
             {
-                //Form1.changeState(, _string_arguments_int_arugments)
+                screen.change_convo(conversation_id);
             }
             catch (Exception)
             {
-
                 throw;
             }
-
-
         }
     }
 }

@@ -92,7 +92,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Transparent;
+            BackColor = SystemColors.Control;
             BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(button1);
             Controls.Add(textBox2);

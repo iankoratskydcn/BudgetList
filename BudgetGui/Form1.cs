@@ -1,4 +1,5 @@
 using BudgetGui.Screens;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -18,6 +19,13 @@ namespace BudgetGui
         private static registration registration;
         private static Form1 form1;
         private static Panel panel_1;
+
+        private static int userId;
+
+        public int getUserId()
+        {
+            return userId;
+        }
 
         public Form1()
         {
@@ -49,12 +57,17 @@ namespace BudgetGui
         public static void changeState(int state, int prev_state, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
+            
 
             panel_1.Controls.Clear();
             switch (state)
             {
                 case 0: //switch to the login screen and log the user out
+
+                    userId = int_arguments[0];
+
                     form1.panel1.Controls.Add(_login_screen);
+
                     break;
                 case 1: //the user has selected create an account                    
                     form1.panel1.Controls.Add(registration);

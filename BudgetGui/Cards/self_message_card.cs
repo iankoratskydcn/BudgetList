@@ -12,9 +12,11 @@ namespace BudgetGui.Screens.cards
 {
     public partial class self_message_card : UserControl
     {
-        public self_message_card(string text, string image_location)
+        public self_message_card(string[] strings, int[] ints)
         {
             InitializeComponent();
+            string text = strings[0];
+            string image_location = strings[1];
 
             //set the image and text
             richTextBox1.Text = text;

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.Reflection;
+using System.Runtime.InteropServices.JavaScript;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-public class sqlDriver
+public partial class sqlDriver
 {
 
     private string databaseFileName = "budgetList.db";
@@ -47,76 +50,6 @@ public class sqlDriver
         else
         {
             Console.WriteLine($"Database '{databaseFilePath}' already exists.");
-        }
-    }
-
-    public string login(string username, string password)
-    {
-        string query = "SELECT COUNT(*) FROM _user WHERE username = @username AND _password = @password";
-        int count = 0;
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", password);
-                count = Convert.ToInt32(command.ExecuteScalar());
-            }
-        }
-        if (count > 0)
-        {
-            loggedInUsername = username;
-            return loggedInUsername;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public bool checkIfUsernameExists(string username)
-    {
-        string query = "SELECT COUNT(*) FROM _user WHERE username = @username";
-        int count = 0;
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@username", username);
-                count = Convert.ToInt32(command.ExecuteScalar());
-            }
-        }
-        return count > 0;
-    }
-
-    public void InsertUser(string firstName, string lastName, string username, string password, string email)
-    {
-        string maxUserIdQuery = "SELECT MAX(userId) FROM _user";
-        string query = @"INSERT INTO _user (userId, fName, lName, username, _password, email) VALUES (@userId, @firstName, @lastName, @username, @password, @email)";
-        int newUserId = 1;
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(maxUserIdQuery, connection))
-            {
-                object result = command.ExecuteScalar();
-                if (result != DBNull.Value)
-                {
-                    newUserId = Convert.ToInt32(result) + 1;
-                }
-            }
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@userId", newUserId);
-                command.Parameters.AddWithValue("@firstName", firstName);
-                command.Parameters.AddWithValue("@lastName", lastName);
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@password", password);
-                command.Parameters.AddWithValue("@email", email);
-                command.ExecuteNonQuery();
-            }
         }
     }
 }

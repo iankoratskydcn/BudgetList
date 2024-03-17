@@ -19,7 +19,7 @@ CREATE TABLE _message(
     sender INT,
     timeDate DATE,
     recipient INT,
-    text1 VARCHAR(255),
+    text1 VARCHAR(255) NOT NULL,
     PRIMARY KEY(sender, timeDate),
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
@@ -31,6 +31,7 @@ CREATE TABLE item(
     postDate DATE,
     title VARCHAR(100),
     description VARCHAR(255),
+    category VARCHAR(255),
     photoUrl VARCHAR(255),
     basePrice DECIMAL(10,2),
     endDate DATE,
