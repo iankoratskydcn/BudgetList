@@ -1,10 +1,10 @@
 CREATE TABLE _user(
     userId INT PRIMARY KEY,
-    fName VARCHAR(50),
-    lName VARCHAR(50),
-    username VARCHAR(50),
-    _password VARCHAR(50),
-    email VARCHAR(50),
+    fName VARCHAR(50) NOT NULL,
+    lName VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    _password VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     DOB VARCHAR(10),
     streetnum INT,
     street VARCHAR(100),
@@ -16,48 +16,40 @@ CREATE TABLE _user(
 );
 
 CREATE TABLE _message(
-    sender INT,
-    timeDate DATE,
-    recipient INT,
+    sender INT NOT NULL,
+    timeDate DATE NOT NULL,
+    recipient INT NOT NULL,
     text1 VARCHAR(255),
     PRIMARY KEY(sender, timeDate),
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
 
-CREATE TABLE item(
-    itemId INT PRIMARY KEY,
-    sellerId INT,
-    postDate DATE,
-    title VARCHAR(100),
+CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
+    itemId INT PRIMARY KEY NOT NULL,
+    sellerId INT NOT NULL, --Sells relationship 
+    postDate DATE NOT NULL,
+    title VARCHAR(100) NOT NULL,
     description VARCHAR(255),
     photoUrl VARCHAR(255),
-    basePrice DECIMAL(10,2),
-    endDate DATE,
-    minimum DECIMAL(10,2),
-    buyerId INT,
-    rating DECIMAL(2,1),
-    text1 VARCHAR(255),
+    basePrice DECIMAL(10,2) NOT NULL, --change to just itemPrice
+    endDate DATE,--consider dropping this attribute
+    minimum DECIMAL(10,2),--drop this attribute
+    buyerId INT, --Buys relationship
+    rateing DECIMAL(2,1),
+    purchaseDate TIMESTAMP,--Buys relationship attribute
+    currencyType VARCHAR(50),--Buys relationship attribute
+    amount DECIMAL(10,2),--Buys relationship attribute
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
 
 CREATE TABLE logs(
-    logId INT PRIMARY KEY,
-    userId INT,
+    logId INT PRIMARY KEY NOT NULL,
+    userId INT NOT NULL,
     timeDate DATE,
     type VARCHAR(50),
     dataJson VARCHAR(255),
     CONSTRAINT fk_userId FOREIGN KEY(userId) REFERENCES _user(userId)
 );
 
-CREATE TABLE bids(
-    _user INT,
-    itemId INT,
-    bidDate DATE,
-    currency VARCHAR(50),
-    amount DECIMAL(10,2),
-    CONSTRAINT pk_bids PRIMARY KEY(_user, itemId, bidDate),
-    CONSTRAINT fk_user FOREIGN KEY(_user) REFERENCES _user(userId),
-    CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
-);
