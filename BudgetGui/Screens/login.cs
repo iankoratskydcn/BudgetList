@@ -22,7 +22,7 @@ namespace BudgetGui.Screens
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text=="" || textBox2.Text == "")
+            if (textBox1.Text == "" || textBox2.Text == "")
             {
                 return;
             }
@@ -47,13 +47,11 @@ namespace BudgetGui.Screens
                 //if failure poppup
                 MessageBox.Show("Login Failed");
             }
-
         }
 
-        private void register_Click(object sender, EventArgs e)
+        private void register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Form1.changeState(1, 0);
         }
-
     }
 }

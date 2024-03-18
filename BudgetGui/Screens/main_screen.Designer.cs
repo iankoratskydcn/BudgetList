@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main_screen));
             logout = new Button();
             userView = new Button();
             searchView = new Button();
             messageScreen = new Button();
             label1 = new Label();
             items = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // logout
             // 
-            logout.Location = new Point(362, 318);
+            logout.BackgroundImageLayout = ImageLayout.Stretch;
+            logout.Location = new Point(3, 212);
             logout.Name = "logout";
-            logout.Size = new Size(75, 23);
+            logout.Size = new Size(126, 34);
             logout.TabIndex = 1;
             logout.Text = "Logout";
             logout.UseVisualStyleBackColor = true;
@@ -49,9 +51,10 @@
             // 
             // userView
             // 
-            userView.Location = new Point(240, 238);
+            userView.BackgroundImageLayout = ImageLayout.Stretch;
+            userView.Location = new Point(3, 96);
             userView.Name = "userView";
-            userView.Size = new Size(75, 23);
+            userView.Size = new Size(126, 34);
             userView.TabIndex = 2;
             userView.Text = "Account";
             userView.UseVisualStyleBackColor = true;
@@ -59,9 +62,10 @@
             // 
             // searchView
             // 
-            searchView.Location = new Point(321, 238);
+            searchView.BackgroundImageLayout = ImageLayout.Stretch;
+            searchView.Location = new Point(3, 125);
             searchView.Name = "searchView";
-            searchView.Size = new Size(75, 23);
+            searchView.Size = new Size(126, 34);
             searchView.TabIndex = 3;
             searchView.Text = "Search";
             searchView.UseVisualStyleBackColor = true;
@@ -69,9 +73,10 @@
             // 
             // messageScreen
             // 
-            messageScreen.Location = new Point(483, 238);
+            messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
+            messageScreen.Location = new Point(3, 183);
             messageScreen.Name = "messageScreen";
-            messageScreen.Size = new Size(75, 23);
+            messageScreen.Size = new Size(126, 34);
             messageScreen.TabIndex = 4;
             messageScreen.Text = "Messages";
             messageScreen.UseVisualStyleBackColor = true;
@@ -83,7 +88,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(328, 156);
+            label1.Location = new Point(132, 36);
             label1.Name = "label1";
             label1.Size = new Size(145, 32);
             label1.TabIndex = 5;
@@ -91,19 +96,32 @@
             // 
             // items
             // 
-            items.Location = new Point(402, 238);
+            items.BackgroundImageLayout = ImageLayout.Stretch;
+            items.Location = new Point(3, 154);
             items.Name = "items";
-            items.Size = new Size(75, 23);
+            items.Size = new Size(126, 34);
             items.TabIndex = 6;
             items.Text = "My Items";
             items.UseVisualStyleBackColor = true;
             items.Click += items_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.BackColor = SystemColors.ButtonHighlight;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(132, 96);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(630, 378);
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            // 
             // main_screen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            Controls.Add(pictureBox1);
             Controls.Add(items);
             Controls.Add(label1);
             Controls.Add(messageScreen);
@@ -112,6 +130,7 @@
             Controls.Add(logout);
             Name = "main_screen";
             Size = new Size(805, 534);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,5 +142,6 @@
         private Button messageScreen;
         private Label label1;
         private Button items;
+        private PictureBox pictureBox1;
     }
 }
