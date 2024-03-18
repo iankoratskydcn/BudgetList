@@ -7,7 +7,7 @@ CREATE TABLE _user(
     email VARCHAR(50) NOT NULL,
     DOB VARCHAR(10),
     streetnum INT,
-    street VARCHAR(100) NOT NULL,
+    street VARCHAR(100),
     city VARCHAR(50),
     state VARCHAR(50),
     zip INT,
