@@ -28,11 +28,11 @@ CREATE TABLE _message(
 CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
     itemId INT PRIMARY KEY NOT NULL,
     sellerId INT NOT NULL, --Sells relationship 
-    postDate DATE NOT NULL,
+    postDate DATE,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(255),
     photoUrl VARCHAR(255),
-    basePrice DECIMAL(10,2) NOT NULL, --change to just itemPrice
+    basePrice DECIMAL(10,2), --change to just itemPrice
     endDate DATE,--consider dropping this attribute
     minimum DECIMAL(10,2),--drop this attribute
     buyerId INT, --Buys relationship
