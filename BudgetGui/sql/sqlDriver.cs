@@ -1,6 +1,9 @@
-﻿using System;
+﻿using BudgetGui;
+using System;
 using System.Data.SQLite;
 using System.Reflection;
+using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 public class sqlDriver
 {
@@ -13,6 +16,7 @@ public class sqlDriver
     private string fakeDataFilePath;
 
     public string loggedInUsername;
+    public string loggedInUserId;
 
     public sqlDriver()
     {
@@ -52,8 +56,7 @@ public class sqlDriver
 
     public string login(string username, string password)
     {
-        string query = "SELECT COUNT(*) FROM _user WHERE username = @username AND _password = @password";
-        int count = 0;
+        string query = "SELECT userId FROM _user WHERE username = @username AND _password = @password";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -61,18 +64,17 @@ public class sqlDriver
             {
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
-                count = Convert.ToInt32(command.ExecuteScalar());
+
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    loggedInUsername = username;
+                    loggedInUserId = result.ToString();
+                    return username;
+                }
             }
         }
-        if (count > 0)
-        {
-            loggedInUsername = username;
-            return loggedInUsername;
-        }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 
     public bool checkIfUsernameExists(string username)
@@ -95,7 +97,7 @@ public class sqlDriver
     {
         string maxUserIdQuery = "SELECT MAX(userId) FROM _user";
         string query = @"INSERT INTO _user (userId, fName, lName, username, _password, email) VALUES (@userId, @firstName, @lastName, @username, @password, @email)";
-        int newUserId = 1;
+        int newUserId = 0;
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -119,4 +121,72 @@ public class sqlDriver
             }
         }
     }
+
+    public List<string> checkForItemsBeingSold()
+    {
+        List<string> itemList = new List<string>();
+        string query = @"
+                    SELECT i.itemId, i.sellerId, i.title
+                    FROM _user u
+                    LEFT JOIN item i ON u.userId = i.sellerId
+                    WHERE u.userId = @userId;
+                    ";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int itemId = reader.GetInt32(0);
+                            int sellerId = reader.GetInt32(1);
+                            string title = reader.GetString(2);
+                            string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                            itemList.Add(itemInfo);
+                        }
+                        return itemList;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+        }
+    }
+
+    public void createNewItem(string title)
+    {
+        string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
+        string query = @"
+                        INSERT INTO item (itemId, sellerId, title)
+                        VALUES (@itemId, @sellerId, @title);
+                        ";
+        int newItemId = 1;
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(maxItemIdQuery, connection))
+            {
+                object result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    newItemId = Convert.ToInt32(result) + 1;
+                }
+            }
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", newItemId);
+                command.Parameters.AddWithValue("@sellerId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@title", title);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
 }

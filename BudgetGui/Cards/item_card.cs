@@ -37,7 +37,7 @@ namespace BudgetGui.Screens
             try
             {
                 //send the args to the main screen
-                Form1.changeState(4, _screen, new string[] { }, new int[] { item_id });
+                Form1.changeState(4, _screen);
 
             }
             catch (Exception)

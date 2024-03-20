@@ -13,6 +13,7 @@ namespace BudgetGui.Screens
 {
     public partial class Login : UserControl
     {
+        sqlDriver sqlDriver = new sqlDriver();
         static Form1 mainForm;
         public Login(Form1 _mainForm)
         {
@@ -26,25 +27,21 @@ namespace BudgetGui.Screens
             {
                 return;
             }
-            sqlDriver sqlDriver = new sqlDriver();
-
+           
             //get username and password
             string username = textBox1.Text;
             string password = textBox2.Text;
-
-            //check data
             string result = sqlDriver.login(username, password);
 
             //if success, next screen
             if (username == result)
             {
-                string[] _strings = { username, password };
-                int[] _ints = { };
-                Form1.changeState(2, 0, _strings, _ints);
+                string[] strings = { sqlDriver.loggedInUsername, sqlDriver.loggedInUserId };
+                Program.GlobalStrings = strings;
+                Form1.changeState(2, 0);
             }
             else
             {
-                //if failure poppup
                 MessageBox.Show("Login Failed");
             }
         }

@@ -32,16 +32,17 @@
             userView = new Button();
             searchView = new Button();
             messageScreen = new Button();
-            label1 = new Label();
+            title = new Label();
             items = new Button();
             pictureBox1 = new PictureBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // logout
             // 
             logout.BackgroundImageLayout = ImageLayout.Stretch;
-            logout.Location = new Point(3, 212);
+            logout.Location = new Point(3, 220);
             logout.Name = "logout";
             logout.Size = new Size(126, 34);
             logout.TabIndex = 1;
@@ -52,7 +53,7 @@
             // userView
             // 
             userView.BackgroundImageLayout = ImageLayout.Stretch;
-            userView.Location = new Point(3, 96);
+            userView.Location = new Point(3, 104);
             userView.Name = "userView";
             userView.Size = new Size(126, 34);
             userView.TabIndex = 2;
@@ -63,7 +64,7 @@
             // searchView
             // 
             searchView.BackgroundImageLayout = ImageLayout.Stretch;
-            searchView.Location = new Point(3, 125);
+            searchView.Location = new Point(3, 133);
             searchView.Name = "searchView";
             searchView.Size = new Size(126, 34);
             searchView.TabIndex = 3;
@@ -74,7 +75,7 @@
             // messageScreen
             // 
             messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
-            messageScreen.Location = new Point(3, 183);
+            messageScreen.Location = new Point(3, 191);
             messageScreen.Name = "messageScreen";
             messageScreen.Size = new Size(126, 34);
             messageScreen.TabIndex = 4;
@@ -82,22 +83,22 @@
             messageScreen.UseVisualStyleBackColor = true;
             messageScreen.Click += messageScreen_Click;
             // 
-            // label1
+            // title
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(132, 36);
-            label1.Name = "label1";
-            label1.Size = new Size(145, 32);
-            label1.TabIndex = 5;
-            label1.Text = "Main Menu";
+            title.AutoSize = true;
+            title.BackColor = Color.Transparent;
+            title.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            title.ForeColor = Color.Black;
+            title.Location = new Point(130, 44);
+            title.Name = "title";
+            title.Size = new Size(145, 32);
+            title.TabIndex = 5;
+            title.Text = "Main Menu";
             // 
             // items
             // 
             items.BackgroundImageLayout = ImageLayout.Stretch;
-            items.Location = new Point(3, 154);
+            items.Location = new Point(3, 162);
             items.Name = "items";
             items.Size = new Size(126, 34);
             items.TabIndex = 6;
@@ -110,20 +111,32 @@
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.BackColor = SystemColors.ButtonHighlight;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(132, 96);
+            pictureBox1.Location = new Point(130, 104);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(630, 378);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.ButtonHighlight;
+            label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(325, 189);
+            label2.Name = "label2";
+            label2.Size = new Size(233, 30);
+            label2.TabIndex = 8;
+            label2.Text = "Welcome to BudgetList!";
             // 
             // main_screen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
+            Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(items);
-            Controls.Add(label1);
+            Controls.Add(title);
             Controls.Add(messageScreen);
             Controls.Add(searchView);
             Controls.Add(userView);
@@ -140,8 +153,9 @@
         private Button userView;
         private Button searchView;
         private Button messageScreen;
-        private Label label1;
+        private Label title;
         private Button items;
         private PictureBox pictureBox1;
+        private Label label2;
     }
 }

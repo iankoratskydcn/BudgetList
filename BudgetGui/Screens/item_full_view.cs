@@ -29,7 +29,7 @@ namespace BudgetGui.Screens
             {
                 string[] _strings = { };
                 int[] _ints = { };
-                Form1.changeState(1, 0, _strings, _ints);
+                Form1.changeState(1, 0);
             }
             else
             {
