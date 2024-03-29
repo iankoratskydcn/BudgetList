@@ -13,7 +13,7 @@ using Microsoft.VisualBasic;
 
 public partial class sqlDriver
 {
-    public void SendMessage(int sender, DateTime timeDate, int recipient, string text1)
+    public void SendMessage(string sender, DateTime timeDate, string recipient, string text1)
     {
 
         string query = @"INSERT INTO _message (sender, timeDate, recipient, text1) VALUES (@sender, @timeDate, @recipient, @text1)";
@@ -38,9 +38,9 @@ public partial class sqlDriver
     /// <param name="selfID"></param>
     /// <param name="otherID"></param>
     /// <returns></returns>
-    public List<message_card> getMessages(int selfID, int otherID)
+    public List<message_card> getMessages(string selfID, string otherID)
     {
-        string query = @"SELECT * FROM _messages WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate";
+        string query = @"SELECT * FROM _message WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate";
 
         List<message_card> message_Cards = new List<message_card>();
 
@@ -52,14 +52,13 @@ public partial class sqlDriver
             {
                 command.Parameters.AddWithValue("@selfID", selfID);
                 command.Parameters.AddWithValue("@otherID", otherID);
-                System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
                 int[] ints = { 0 };
 
                 using (var xx = command.ExecuteReader())
                 {
                     foreach (DbDataRecord s in xx)
                     {
-                        int sender = (Int32)s["sender"];
+                        string sender = s["sender"].ToString();
                         string text = s["text1"].ToString();
 
 
@@ -72,7 +71,7 @@ public partial class sqlDriver
                             ints[0] = 1;
                         }
 
-                        string pic_location = getUsersById(sender)["profilePicture"].ToString();
+                        string pic_location = getUserById(sender).Rows[0]["profilePicture"].ToString() == "" ? "" : getUserById(sender).Rows[0]["profilePicture"].ToString();
 
                         string[] strings = { text, pic_location };
                         message_card m = new message_card(strings, ints);
@@ -85,23 +84,28 @@ public partial class sqlDriver
     }
 
 
-    public JObject getConversations(int selfID)
+    public DataTable getConversations(string selfID)
     {
-        string query = @"SELECT DISTINCT recipient FROM _messages WHERE sender = @selfID";
+        string query = @"SELECT DISTINCT recipient FROM _message WHERE sender = @selfID";
 
-        JObject obj;
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
-
+            DataTable dataTable = new DataTable();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@selfID", selfID);
-                System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
-                var r = Serialize(reader);
-                obj = JObject.Parse(JsonConvert.SerializeObject(r));
+                try
+                {
+                    command.Parameters.AddWithValue("@selfID", selfID);
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    dataTable.Load(reader);
+                }
+                catch (Exception e)
+                {
+                }
+                
             }
-            return obj;
+            return dataTable;
         }
     }
 }

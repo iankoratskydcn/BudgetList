@@ -14,10 +14,10 @@ namespace BudgetGui
 
             Program.GlobalStrings = new string[2];
 
-            sqlDriver sqlDriver = new sqlDriver();
-            sqlDriver.createDatabaseIfNotExists();
+            sqlDriver _sqlDriver = new sqlDriver();
+            _sqlDriver.createDatabaseIfNotExists();
 
-            Form1 form1 = new Form1();
+            Form1 form1 = new Form1(_sqlDriver);
             Application.Run(form1);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,39 +14,48 @@ namespace BudgetGui.Screens.cards
 {
     public partial class conversation_card : UserControl
     {
-        private string[] string_arguments;
-        private int[] int_arugments;
-        private string user;
-        private string item;
-        private int conversation_id;
-        private messages_screen screen;
+        private static string[] string_arguments;
+        private static int[] int_arugments;
+        private static string _secondary_user;
+        private static messages_screen screen;
 
-        public conversation_card(string[] _string_arguments, int[] _int_arugments)
+        public conversation_card(string[] _string_arguments, int[] _int_arugments, sqlDriver driver, messages_screen _screen)
         {
-
+            screen = _screen;
             //store the arguments
             string_arguments = _string_arguments;
             int_arugments = _int_arugments;
 
             //unpack the arguments
-            user = _string_arguments[0];
-            item = _string_arguments[1];
-            conversation_id = _int_arugments[0];
+            _secondary_user = _string_arguments[0];
 
             //draw
             InitializeComponent();
-        }
 
-        //when you click a convo card, it should load that conversation
-        private void clicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
+            DataTable j = driver.getUserById(_secondary_user);
             try
             {
-                screen.change_convo(conversation_id);
+                if (j.Rows[0]["profilePicture"].ToString() != "" && j.Rows[0]["profilePicture"].ToString().Length != 0 && j.Rows[0]["profilePicture"].ToString() != null)
+                {
+                    pictureBox1.Image = Image.FromFile(j.Rows[0]["profilePicture"].ToString());
+                }
             }
             catch (Exception)
             {
-                throw;
+            }
+            linkLabel1.Text = j.Rows[0]["username"].ToString();
+
+        }
+
+        //when you click a convo card, it should load that conversation
+        private void clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                screen.change_convo(_secondary_user);
+            }
+            catch (Exception)
+            {
             }
         }
     }

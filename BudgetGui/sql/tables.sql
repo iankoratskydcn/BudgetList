@@ -1,5 +1,5 @@
 CREATE TABLE _user(
-    userId INT PRIMARY KEY,
+    userId VARCHAR(10) PRIMARY KEY,
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,

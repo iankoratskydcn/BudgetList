@@ -12,7 +12,6 @@ public partial class sqlDriver
     public string login(string username, string password)
     {
         string query = "SELECT userId FROM _user WHERE username = @username AND _password = @password";
-
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -20,30 +19,19 @@ public partial class sqlDriver
             {
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
-                command.CommandType = System.Data.CommandType.Text;
-                MessageBox.Show(command.CommandText);
 
-                try
+                object result = command.ExecuteScalar();
+                if (result != null)
                 {
-                    object result = command.ExecuteScalar();
-                    if (result != null)
-                    {
-                        loggedInUsername = username;
-                        loggedInUserId = result.ToString();
-                        connection.Close();
-                        return username;
-                    }
+                    loggedInUsername = username;
+                    loggedInUserId = result.ToString();
+                    return username;
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-                connection.Close();
             }
-            return null;
         }
+        return null;
     }
+
 
     public bool checkIfUsernameExists(string username)
     {

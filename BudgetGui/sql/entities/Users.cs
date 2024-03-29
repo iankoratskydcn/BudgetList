@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices.JavaScript;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data;
 
 public partial class sqlDriver
 {
@@ -44,7 +45,7 @@ public partial class sqlDriver
     public JObject getUsersByCity(string city)
     {
 
-        string query = @"SELECT * FROM _users WHERE city = @city";
+        string query = @"SELECT * FROM _user WHERE city = @city";
 
         JObject obj;
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
@@ -54,7 +55,7 @@ public partial class sqlDriver
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@itemId", city);
-                System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
+                SQLiteDataReader reader = command.ExecuteReader();
                 var r = Serialize(reader);
                 obj = JObject.Parse(JsonConvert.SerializeObject(r));
 
@@ -62,12 +63,11 @@ public partial class sqlDriver
             return obj;
         }
     }
-    public JObject getUsersById(int id)
+    public DataTable getUserById(string id)
     {
-
-        string query = @"SELECT * FROM _users WHERE userId = @id";
-
+        string query = "SELECT * FROM _user WHERE userId = @userId";
         JObject obj;
+        DataTable dataTable = new DataTable();
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -75,12 +75,10 @@ public partial class sqlDriver
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@userId", id);
-                System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
-                var r = Serialize(reader);
-                obj = JObject.Parse(JsonConvert.SerializeObject(r));
-
+                SQLiteDataReader reader = command.ExecuteReader();
+                dataTable.Load(reader);
             }
-            return obj;
         }
+        return dataTable;
     }
 }

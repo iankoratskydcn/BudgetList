@@ -1,4 +1,5 @@
 using BudgetGui.Screens;
+using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Reflection;
 using System.Windows.Forms;
@@ -19,34 +20,24 @@ namespace BudgetGui
         private static registration registration;
         private static Form1 form1;
         private static Panel panel_1;
+        private static sqlDriver driver;
+        
 
-        private static int userId;
+        private static string userId;
 
-        public int getUserId()
-        {
-            return userId;
-        }
 
-        public Form1()
+        public Form1(sqlDriver _sqlDriver)
         {
             InitializeComponent();
 
             //create a login screen in the container
             form1 = this;
+            driver = _sqlDriver;
             this.DoubleBuffered = true;
             panel_1 = this.panel1;
             panel_1.SetDoubleBuffered();
 
             _login_screen = new Login(form1);
-            registration = new registration(form1);
-            main_Screen = new main_screen(form1);
-            user_View = new user_view(form1);
-            search_View = new search_view(form1);
-            _item_Full_view = new item_full_view(form1);
-            message_Screen = new messages_screen(form1);
-            items_view = new items_view(form1);
-            conversation_Screen = new conversation_screen(form1);
-
             _login_screen.Dock = DockStyle.Fill;
             panel1.Controls.Add(_login_screen);
 
@@ -57,42 +48,60 @@ namespace BudgetGui
         public static void changeState(int state, int prev_state, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
-            
 
             panel_1.Controls.Clear();
             switch (state)
             {
                 case 0: //switch to the login screen and log the user out
 
-                    userId = int_arguments[0];
-
                     form1.panel1.Controls.Add(_login_screen);
+                    _login_screen.Dock = DockStyle.Fill;
 
                     break;
-                case 1: //the user has selected create an account                    
+                case 1: //the user has selected create an account
+                    registration = new registration(form1);
                     form1.panel1.Controls.Add(registration);
+                    registration.Dock = DockStyle.Fill;
                     break;
                 case 2: //the user has selected the main screen
+
+                    //make sure the user id is updated
+                    userId = Program.GlobalStrings[1];
+
+                    main_Screen = new main_screen(form1);
                     form1.panel1.Controls.Add(main_Screen);
+                    main_Screen.Dock = DockStyle.Fill;
                     break;
                 case 3: //the user has selected a user view
+                    user_View = new user_view(form1);
                     form1.panel1.Controls.Add(user_View);
+                    user_View.Dock = DockStyle.Fill;
                     break;
                 case 4: //the user has selected a searched items screen
+                    search_View = new search_view(form1);
                     form1.panel1.Controls.Add(search_View);
+                    search_View.Dock = DockStyle.Fill;
                     break;
                 case 5: //the user has selected an item view
+                    _item_Full_view = new item_full_view(form1);
                     form1.panel1.Controls.Add(_item_Full_view);
+                    _item_Full_view.Dock = DockStyle.Fill;
                     break;
                 case 6: //the user has selected to view their messages
+                    message_Screen = new messages_screen(form1, driver);
                     form1.panel1.Controls.Add(message_Screen);
+                    message_Screen.Dock = DockStyle.Fill;
                     break;
                 case 7: //the user has selected to view their items
+                    items_view = new items_view(form1);
                     form1.panel1.Controls.Add(items_view);
+                    items_view.Dock = DockStyle.Fill;
                     break;
-                case 8: //the user has selected to view a specific conversation
-                    form1.panel1.Controls.Add(conversation_Screen);
-                    break;
+                //case 8: //the user has selected to view a specific conversation
+                //    conversation_Screen = new conversation_screen(form1);
+                //    form1.panel1.Controls.Add(conversation_Screen);
+                //    conversation_Screen.Dock = DockStyle.Fill;
+                //    break;
                 default: //error, do nothing
                     break;
             }
