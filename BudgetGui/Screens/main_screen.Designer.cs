@@ -110,7 +110,8 @@
             Controls.Add(logout);
             Name = "main_screen";
             Size = new Size(805, 534);
-            ResumeLayout(false);
+            BackColor = Color.Transparent;
+            ResumeLayout(true);
             PerformLayout();
         }
 

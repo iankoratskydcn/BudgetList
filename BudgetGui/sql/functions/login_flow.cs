@@ -62,7 +62,7 @@ public partial class sqlDriver
             {
                 command.Parameters.AddWithValue("@username", username);
                 System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
-                return reader.GetInt32(reader.GetOrdinal('userId'));
+                return reader.GetInt32(reader.GetOrdinal("userId"));
             }
         }
     }
