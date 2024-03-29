@@ -10,6 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 public partial class sqlDriver
 {
+    //Dr. Hendrix wants this cited
     //this code was taken directly from here
     // https://stackoverflow.com/questions/5083709/convert-from-sqldatareader-to-json
     public IEnumerable<Dictionary<string, object>> Serialize(System.Data.SQLite.SQLiteDataReader reader)

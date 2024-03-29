@@ -11,8 +11,8 @@ public partial class sqlDriver
 {
     public string login(string username, string password)
     {
-        string query = "SELECT COUNT(*) FROM _user WHERE username = @username AND _password = @password";
-        int count = 0;
+        string query = "SELECT userId FROM _user WHERE username = @username AND _password = @password";
+
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -20,16 +20,27 @@ public partial class sqlDriver
             {
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
-                count = Convert.ToInt32(command.ExecuteScalar());
+                command.CommandType = System.Data.CommandType.Text;
+                MessageBox.Show(command.CommandText);
+
+                try
+                {
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        loggedInUsername = username;
+                        loggedInUserId = result.ToString();
+                        connection.Close();
+                        return username;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                connection.Close();
             }
-        }
-        if (count > 0)
-        {
-            loggedInUsername = username;
-            return loggedInUsername;
-        }
-        else
-        {
             return null;
         }
     }

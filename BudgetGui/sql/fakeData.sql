@@ -1,4 +1,4 @@
-INSERT INTO _user (userId, fName, lName, username, _password, email, DOB, streetnum, street, city, state, zip, age, profilePicture)
+INSERT INTO _user (userId, fName, lName, _username, _password, email, DOB, streetnum, street, city, state, zip, age, profilePicture)
 VALUES
     (1, 'Joshua', 'Bernard', 'jbernard2024', 'Josh1234!', 'joshua@gmail.com', '2002-04-28', 4202, 'E. Fowler Avenue', 'Tampa', 'Florida', 33620, 21, 'http://example.com/joshua.jpg'),
     (2, 'John', 'Doe', 'johndoe', 'Password1!', 'john@gmail.com', '1990-01-01', 123, 'Main Street','New York', 'New York', 10001, 32, 'http://example.com/john.jpg'),
