@@ -14,6 +14,7 @@ namespace BudgetGui.Screens
 {
     public partial class registration : UserControl
     {
+        sqlDriver sqlDriver = new sqlDriver();
         static Form1 mainForm;
         public registration(Form1 _mainForm)
         {
@@ -22,7 +23,6 @@ namespace BudgetGui.Screens
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            sqlDriver sqlDriver = new sqlDriver();
 
             string[] fields = { firstName.Text, lastName.Text, email.Text, username.Text, password1.Text, password2.Text };
             string[] labels = { "First Name", "Last Name", "Email", "Username", "Password", "Repeat Password" };

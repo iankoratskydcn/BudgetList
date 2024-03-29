@@ -4,11 +4,15 @@ namespace BudgetGui
 {
     internal static class Program
     {
-        //The main entry point for the application.
+
+        public static string[] GlobalStrings { get; set; }
+
         [STAThread]
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+
+            Program.GlobalStrings = new string[2];
 
             sqlDriver sqlDriver = new sqlDriver();
             sqlDriver.createDatabaseIfNotExists();
