@@ -189,4 +189,43 @@ public class sqlDriver
         }
     }
 
+    public void insertAddressToUser(string streetnum, string street, string city, string state, string zip)
+    {
+        string query = @"
+                        UPDATE _user
+                        SET streetnum = @streetnum,
+                            street = @street,
+                            city = @city,
+                            state = @state,
+                            zip = @zip
+                        WHERE userId = @id;
+                        ";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@streetnum", streetnum);
+                command.Parameters.AddWithValue("@street", street);
+                command.Parameters.AddWithValue("@city", city);
+                command.Parameters.AddWithValue("@state", state);
+                command.Parameters.AddWithValue("@zip", zip);
+                command.Parameters.AddWithValue("@id", Program.GlobalStrings[1]);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public void executeDbInsertQuery(string query)
+    {
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
 }

@@ -11,9 +11,8 @@ CREATE TABLE _user(
     city VARCHAR(50),
     state VARCHAR(50),
     zip INT,
-    age INT, --should be changed to derived attribute
-    profilePicture VARCHAR(100) --No idea how to do this unless its holding the link to the picture
-);
+    age INT --should be changed to derived attribute
+    );
 
 CREATE TABLE _message(
     sender INT NOT NULL,
