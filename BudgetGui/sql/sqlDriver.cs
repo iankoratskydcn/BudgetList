@@ -139,23 +139,22 @@ public class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    if (reader.HasRows)
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                        int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+
+                        if (itemId == null || sellerId == null || title == null)
                         {
-                            int itemId = reader.GetInt32(0);
-                            int sellerId = reader.GetInt32(1);
-                            string title = reader.GetString(2);
-                            string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
-                            itemList.Add(itemInfo);
+                            return null;
                         }
-                        return itemList;
-                    }
-                    else
-                    {
-                        return null;
+
+                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        itemList.Add(itemInfo);
                     }
                 }
+                return itemList;
             }
         }
     }

@@ -76,9 +76,13 @@ namespace BudgetGui
                     break;
                 case 7: //the user has selected to view their items
                     form1.panel1.Controls.Add(items_view);
+                    items_view.checkItems();
                     break;
                 case 8: //the user has selected to view a specific conversation
                     form1.panel1.Controls.Add(conversation_Screen);
+                    break;
+                case 9: //the user has selected to view shopping menu
+                    //form1.panel1.Controls.Add(conversation_Screen); Change to shopping_screen
                     break;
                 default: //error, do nothing
                     break;

@@ -45,5 +45,10 @@ namespace BudgetGui.Screens
         {
             Form1.changeState(7, 2);
         }
+
+        private void shopping_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(9, 2);
+        }
     }
 }

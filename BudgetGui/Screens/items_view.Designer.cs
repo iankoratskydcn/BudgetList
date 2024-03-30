@@ -35,10 +35,12 @@
             searchView = new Button();
             userView = new Button();
             logout = new Button();
-            label1 = new Label();
             testButton = new Button();
+            myItems = new ListBox();
+            soldItems = new ListBox();
+            label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
+            shopping = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -78,7 +80,7 @@
             // messageScreen
             // 
             messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
-            messageScreen.Location = new Point(3, 191);
+            messageScreen.Location = new Point(3, 221);
             messageScreen.Name = "messageScreen";
             messageScreen.Size = new Size(126, 34);
             messageScreen.TabIndex = 12;
@@ -111,7 +113,7 @@
             // logout
             // 
             logout.BackgroundImageLayout = ImageLayout.Stretch;
-            logout.Location = new Point(3, 220);
+            logout.Location = new Point(3, 250);
             logout.Name = "logout";
             logout.Size = new Size(126, 34);
             logout.TabIndex = 9;
@@ -119,20 +121,9 @@
             logout.UseVisualStyleBackColor = true;
             logout.Click += logout_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.ButtonHighlight;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(163, 135);
-            label1.Name = "label1";
-            label1.Size = new Size(44, 25);
-            label1.TabIndex = 16;
-            label1.Text = "Test";
-            // 
             // testButton
             // 
-            testButton.Location = new Point(135, 110);
+            testButton.Location = new Point(390, 133);
             testButton.Name = "testButton";
             testButton.Size = new Size(104, 23);
             testButton.TabIndex = 17;
@@ -140,34 +131,69 @@
             testButton.UseVisualStyleBackColor = true;
             testButton.Click += testButton_Click;
             // 
+            // myItems
+            // 
+            myItems.FormattingEnabled = true;
+            myItems.ItemHeight = 15;
+            myItems.Location = new Point(130, 162);
+            myItems.Name = "myItems";
+            myItems.Size = new Size(316, 319);
+            myItems.TabIndex = 23;
+            // 
+            // soldItems
+            // 
+            soldItems.FormattingEnabled = true;
+            soldItems.ItemHeight = 15;
+            soldItems.Location = new Point(444, 162);
+            soldItems.Name = "soldItems";
+            soldItems.Size = new Size(316, 319);
+            soldItems.TabIndex = 24;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.ButtonHighlight;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(225, 133);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 21);
+            label1.TabIndex = 25;
+            label1.Text = "My Items";
+            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.BackColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(520, 114);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(568, 133);
             label2.Name = "label2";
-            label2.Size = new Size(147, 15);
-            label2.TabIndex = 18;
-            label2.Text = "Needs to reset after logout";
+            label2.Size = new Size(90, 21);
+            label2.TabIndex = 26;
+            label2.Text = "Sold Items";
             // 
-            // label3
+            // shopping
             // 
-            label3.AutoSize = true;
-            label3.BackColor = SystemColors.ButtonHighlight;
-            label3.Location = new Point(494, 135);
-            label3.Name = "label3";
-            label3.Size = new Size(206, 15);
-            label3.TabIndex = 19;
-            label3.Text = "Needs to show when click \"My Items\"";
+            shopping.BackgroundImageLayout = ImageLayout.Stretch;
+            shopping.Location = new Point(3, 191);
+            shopping.Name = "shopping";
+            shopping.Size = new Size(126, 34);
+            shopping.TabIndex = 27;
+            shopping.Text = "Shopping";
+            shopping.UseVisualStyleBackColor = true;
+            shopping.Click += shopping_Click;
             // 
             // items_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label3);
+            Controls.Add(shopping);
             Controls.Add(label2);
-            Controls.Add(testButton);
             Controls.Add(label1);
+            Controls.Add(soldItems);
+            Controls.Add(myItems);
+            Controls.Add(testButton);
             Controls.Add(pictureBox1);
             Controls.Add(items);
             Controls.Add(title);
@@ -190,9 +216,11 @@
         private Button searchView;
         private Button userView;
         private Button logout;
-        private Label label1;
         private Button testButton;
+        private ListBox myItems;
+        private ListBox soldItems;
+        private Label label1;
         private Label label2;
-        private Label label3;
+        private Button shopping;
     }
 }

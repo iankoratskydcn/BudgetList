@@ -23,18 +23,18 @@ namespace BudgetGui.Screens
 
         public void checkItems()
         {
-            label1.Text = null;
+            myItems.Items.Clear();
             List<string> itemList = sqlDriver.checkForItemsBeingSold();
             if (itemList != null)
             {
                 foreach (string item in itemList)
                 {
-                    label1.Text = label1.Text + item + Environment.NewLine;
+                    myItems.Items.Add(item);
                 }
             }
             else
             {
-                label1.Text = "You have no items.";
+                myItems.Items.Add("You have no items.");
             }
         }
 
@@ -51,6 +51,11 @@ namespace BudgetGui.Screens
         private void messageScreen_Click(object sender, EventArgs e)
         {
             Form1.changeState(6, 7);
+        }
+
+        private void shopping_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(9, 2);
         }
 
         private void logout_Click(object sender, EventArgs e)

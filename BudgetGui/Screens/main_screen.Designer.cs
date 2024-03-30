@@ -36,13 +36,14 @@
             items = new Button();
             pictureBox1 = new PictureBox();
             label2 = new Label();
+            shopping = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // logout
             // 
             logout.BackgroundImageLayout = ImageLayout.Stretch;
-            logout.Location = new Point(3, 220);
+            logout.Location = new Point(3, 250);
             logout.Name = "logout";
             logout.Size = new Size(126, 34);
             logout.TabIndex = 1;
@@ -75,7 +76,7 @@
             // messageScreen
             // 
             messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
-            messageScreen.Location = new Point(3, 191);
+            messageScreen.Location = new Point(3, 221);
             messageScreen.Name = "messageScreen";
             messageScreen.Size = new Size(126, 34);
             messageScreen.TabIndex = 4;
@@ -128,11 +129,23 @@
             label2.TabIndex = 8;
             label2.Text = "Welcome to BudgetList!";
             // 
+            // shopping
+            // 
+            shopping.BackgroundImageLayout = ImageLayout.Stretch;
+            shopping.Location = new Point(3, 191);
+            shopping.Name = "shopping";
+            shopping.Size = new Size(126, 34);
+            shopping.TabIndex = 9;
+            shopping.Text = "Shopping";
+            shopping.UseVisualStyleBackColor = true;
+            shopping.Click += shopping_Click;
+            // 
             // main_screen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
+            Controls.Add(shopping);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(items);
@@ -157,5 +170,6 @@
         private Button items;
         private PictureBox pictureBox1;
         private Label label2;
+        private Button shopping;
     }
 }

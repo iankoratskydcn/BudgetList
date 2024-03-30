@@ -49,6 +49,11 @@ namespace BudgetGui.Screens
             Form1.changeState(0, 2);
         }
 
+        private void shopping_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(9, 2);
+        }
+
         private void save_Click(object sender, EventArgs e)
         {
             string[] fields = { street.Text, city.Text, state.Text, zip.Text };
@@ -70,14 +75,15 @@ namespace BudgetGui.Screens
             {
                 sqlDriver.executeDbInsertQuery($"UPDATE _user SET email = '{email.Text}' WHERE userId = {Program.GlobalStrings[1]};");
             }
-            
+
             if (!(string.IsNullOrEmpty(password.Text)))
             {
                 if (!password.Text.Any(char.IsUpper) || !password.Text.Any(char.IsDigit) || !password.Text.Any(char.IsPunctuation) || password.Text.Length < 8)
                 {
                     MessageBox.Show("Password must contain a capital letter, a digit, a special character, and have at least 8 characters");
                     return;
-                } else
+                }
+                else
                 {
                     sqlDriver.executeDbInsertQuery($"UPDATE _user SET _password = '{password.Text}' WHERE userId = {Program.GlobalStrings[1]};");
                 }
@@ -90,7 +96,8 @@ namespace BudgetGui.Screens
                 {
                     MessageBox.Show("Date of Birthday must be in yyyy-MM-dd format");
                     return;
-                } else
+                }
+                else
                 {
                     sqlDriver.executeDbInsertQuery($"UPDATE _user SET DOB = '{dateOfBirth.Text}' WHERE userId = {Program.GlobalStrings[1]};");
                 }

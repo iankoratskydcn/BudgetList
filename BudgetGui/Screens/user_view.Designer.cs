@@ -43,6 +43,7 @@
             street = new TextBox();
             password = new TextBox();
             email = new TextBox();
+            shopping = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             // messageScreen
             // 
             messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
-            messageScreen.Location = new Point(3, 191);
+            messageScreen.Location = new Point(3, 221);
             messageScreen.Name = "messageScreen";
             messageScreen.Size = new Size(126, 34);
             messageScreen.TabIndex = 12;
@@ -115,7 +116,7 @@
             // logout
             // 
             logout.BackgroundImageLayout = ImageLayout.Stretch;
-            logout.Location = new Point(3, 220);
+            logout.Location = new Point(3, 250);
             logout.Name = "logout";
             logout.Size = new Size(126, 34);
             logout.TabIndex = 9;
@@ -189,10 +190,22 @@
             email.Size = new Size(253, 23);
             email.TabIndex = 24;
             // 
+            // shopping
+            // 
+            shopping.BackgroundImageLayout = ImageLayout.Stretch;
+            shopping.Location = new Point(3, 191);
+            shopping.Name = "shopping";
+            shopping.Size = new Size(126, 34);
+            shopping.TabIndex = 28;
+            shopping.Text = "Shopping";
+            shopping.UseVisualStyleBackColor = true;
+            shopping.Click += shopping_Click;
+            // 
             // user_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(shopping);
             Controls.Add(email);
             Controls.Add(password);
             Controls.Add(city);
@@ -231,5 +244,6 @@
         private TextBox street;
         private TextBox password;
         private TextBox email;
+        private Button shopping;
     }
 }
