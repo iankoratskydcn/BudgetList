@@ -44,6 +44,7 @@
             password = new TextBox();
             email = new TextBox();
             shopping = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -126,7 +127,7 @@
             // 
             // city
             // 
-            city.Location = new Point(318, 285);
+            city.Location = new Point(318, 307);
             city.Name = "city";
             city.PlaceholderText = "City";
             city.Size = new Size(253, 23);
@@ -134,7 +135,7 @@
             // 
             // dateOfBirth
             // 
-            dateOfBirth.Location = new Point(318, 227);
+            dateOfBirth.Location = new Point(318, 249);
             dateOfBirth.Name = "dateOfBirth";
             dateOfBirth.PlaceholderText = "Date of Birth (yyyy-MM-dd)";
             dateOfBirth.Size = new Size(253, 23);
@@ -142,7 +143,7 @@
             // 
             // save
             // 
-            save.Location = new Point(318, 409);
+            save.Location = new Point(318, 431);
             save.Name = "save";
             save.Size = new Size(253, 23);
             save.TabIndex = 20;
@@ -152,7 +153,7 @@
             // 
             // zip
             // 
-            zip.Location = new Point(318, 343);
+            zip.Location = new Point(318, 365);
             zip.Name = "zip";
             zip.PlaceholderText = "Zip";
             zip.Size = new Size(253, 23);
@@ -160,7 +161,7 @@
             // 
             // state
             // 
-            state.Location = new Point(318, 314);
+            state.Location = new Point(318, 336);
             state.Name = "state";
             state.PlaceholderText = "State";
             state.Size = new Size(253, 23);
@@ -168,7 +169,7 @@
             // 
             // street
             // 
-            street.Location = new Point(318, 256);
+            street.Location = new Point(318, 278);
             street.Name = "street";
             street.PlaceholderText = "Street";
             street.Size = new Size(253, 23);
@@ -176,7 +177,7 @@
             // 
             // password
             // 
-            password.Location = new Point(318, 198);
+            password.Location = new Point(318, 220);
             password.Name = "password";
             password.PlaceholderText = "Password";
             password.Size = new Size(253, 23);
@@ -184,7 +185,7 @@
             // 
             // email
             // 
-            email.Location = new Point(318, 169);
+            email.Location = new Point(318, 191);
             email.Name = "email";
             email.PlaceholderText = "Email";
             email.Size = new Size(253, 23);
@@ -201,10 +202,23 @@
             shopping.UseVisualStyleBackColor = true;
             shopping.Click += shopping_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.ButtonHighlight;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(343, 133);
+            label2.Name = "label2";
+            label2.Size = new Size(203, 21);
+            label2.TabIndex = 42;
+            label2.Text = "Edit Account Information";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
             // user_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label2);
             Controls.Add(shopping);
             Controls.Add(email);
             Controls.Add(password);
@@ -245,5 +259,6 @@
         private TextBox password;
         private TextBox email;
         private Button shopping;
+        private Label label2;
     }
 }
