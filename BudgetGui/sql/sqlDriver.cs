@@ -196,12 +196,12 @@ public class sqlDriver
         }
     }
 
-    public void createNewItem(string title)
+    public void createNewItem(string title, string description, string itemPrice)
     {
         string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
         string query = @"
-                        INSERT INTO item (itemId, sellerId, title)
-                        VALUES (@itemId, @sellerId, @title);
+                        INSERT INTO item (itemId, sellerId, postDate, title, description, itemPrice)
+                        VALUES (@itemId, @sellerId, @postDate, @title, @description, @itemPrice);
                         ";
         int newItemId = 1;
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
@@ -219,7 +219,10 @@ public class sqlDriver
             {
                 command.Parameters.AddWithValue("@itemId", newItemId);
                 command.Parameters.AddWithValue("@sellerId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@postDate", DateTime.Now);
                 command.Parameters.AddWithValue("@title", title);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@itemPrice", itemPrice);
                 command.ExecuteNonQuery();
             }
         }

@@ -43,6 +43,7 @@
             shopping = new Button();
             button1 = new Button();
             textBox1 = new TextBox();
+            createItem = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -204,10 +205,21 @@
             textBox1.Size = new Size(70, 23);
             textBox1.TabIndex = 29;
             // 
+            // createItem
+            // 
+            createItem.Location = new Point(388, 114);
+            createItem.Name = "createItem";
+            createItem.Size = new Size(113, 42);
+            createItem.TabIndex = 30;
+            createItem.Text = "Create New Item";
+            createItem.UseVisualStyleBackColor = true;
+            createItem.Click += createItem_Click;
+            // 
             // items_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(createItem);
             Controls.Add(textBox1);
             Controls.Add(button1);
             Controls.Add(shopping);
@@ -246,5 +258,6 @@
         private Button shopping;
         private Button button1;
         private TextBox textBox1;
+        private Button createItem;
     }
 }

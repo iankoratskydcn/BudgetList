@@ -78,9 +78,14 @@ namespace BudgetGui.Screens
             Form1.changeState(0, 7);
         }
 
+        private void createItem_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(5, 7);
+        }
+
         private void testButton_Click(object sender, EventArgs e)
         {
-            sqlDriver.createNewItem("Test");
+            sqlDriver.createNewItem("Test", "This is a test item", "9.99");
             checkItems();
         }
 

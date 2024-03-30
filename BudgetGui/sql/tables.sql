@@ -25,17 +25,15 @@ CREATE TABLE _message(
 
 CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
     itemId INT PRIMARY KEY NOT NULL,
-    sellerId INT NOT NULL, --Sells relationship 
+    sellerId INT NOT NULL, --Sells relationship
+    buyerId INT, --Buys relationship
     postDate DATE,
+    purchaseDate TIMESTAMP,--Buys relationship attribute
     title VARCHAR(100) NOT NULL,
     description VARCHAR(255),
+    itemPrice DECIMAL(10,2), --change to just itemPrice
     photoUrl VARCHAR(255),
-    basePrice DECIMAL(10,2), --change to just itemPrice
-    endDate DATE,--consider dropping this attribute
-    minimum DECIMAL(10,2),--drop this attribute
-    buyerId INT, --Buys relationship
-    rating DECIMAL(2,1),
-    purchaseDate TIMESTAMP,--Buys relationship attribute
+    rating DECIMAL(2,1), --Should change to user rating, not item
     currencyType VARCHAR(50),--Buys relationship attribute
     amount DECIMAL(10,2),--Buys relationship attribute
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),

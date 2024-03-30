@@ -12,7 +12,7 @@ namespace BudgetGui
         private static user_view user_View;
         private static search_view search_View;
         private static items_view items_view;
-        private static item_full_view _item_Full_view;
+        private static create_item_screen _item_Full_view;
         private static messages_screen message_Screen;
         private static conversation_screen conversation_Screen;
         private static registration registration;
@@ -34,7 +34,7 @@ namespace BudgetGui
             main_Screen = new main_screen(form1);
             user_View = new user_view(form1);
             search_View = new search_view(form1);
-            _item_Full_view = new item_full_view(form1);
+            _item_Full_view = new create_item_screen(form1);
             message_Screen = new messages_screen(form1);
             items_view = new items_view(form1);
             conversation_Screen = new conversation_screen(form1);
@@ -46,7 +46,7 @@ namespace BudgetGui
 
 
 
-        public static void changeState(int state, int prev_state, string[] string_arguments = null, int[] int_arguments = null)
+        public static void changeState(int state, int prev_state = 0, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
 
