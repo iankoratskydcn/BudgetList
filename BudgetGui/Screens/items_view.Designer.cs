@@ -41,6 +41,8 @@
             label1 = new Label();
             label2 = new Label();
             shopping = new Button();
+            button1 = new Button();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -123,7 +125,7 @@
             // 
             // testButton
             // 
-            testButton.Location = new Point(390, 133);
+            testButton.Location = new Point(522, 64);
             testButton.Name = "testButton";
             testButton.Size = new Size(104, 23);
             testButton.TabIndex = 17;
@@ -184,10 +186,30 @@
             shopping.UseVisualStyleBackColor = true;
             shopping.Click += shopping_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(666, 64);
+            button1.Name = "button1";
+            button1.Size = new Size(70, 23);
+            button1.TabIndex = 28;
+            button1.Text = "Make Sold";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(666, 35);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "itemId";
+            textBox1.Size = new Size(70, 23);
+            textBox1.TabIndex = 29;
+            // 
             // items_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(textBox1);
+            Controls.Add(button1);
             Controls.Add(shopping);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -222,5 +244,7 @@
         private Label label1;
         private Label label2;
         private Button shopping;
+        private Button button1;
+        private TextBox textBox1;
     }
 }

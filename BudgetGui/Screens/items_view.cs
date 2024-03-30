@@ -36,6 +36,20 @@ namespace BudgetGui.Screens
             {
                 myItems.Items.Add("You have no items.");
             }
+
+            soldItems.Items.Clear();
+            List<string> itemList2 = sqlDriver.checkForItemsSold();
+            if (itemList2 != null)
+            {
+                foreach (string item2 in itemList2)
+                {
+                    soldItems.Items.Add(item2);
+                }
+            }
+            else
+            {
+                soldItems.Items.Add("You have no items.");
+            }
         }
 
         private void userView_Click(object sender, EventArgs e)
@@ -67,6 +81,12 @@ namespace BudgetGui.Screens
         private void testButton_Click(object sender, EventArgs e)
         {
             sqlDriver.createNewItem("Test");
+            checkItems();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            sqlDriver.executeDbInsertQuery($"UPDATE item SET buyerId = 1 WHERE itemId = {textBox1.Text};");
             checkItems();
         }
     }

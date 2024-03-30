@@ -34,7 +34,7 @@ CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buye
     endDate DATE,--consider dropping this attribute
     minimum DECIMAL(10,2),--drop this attribute
     buyerId INT, --Buys relationship
-    rateing DECIMAL(2,1),
+    rating DECIMAL(2,1),
     purchaseDate TIMESTAMP,--Buys relationship attribute
     currencyType VARCHAR(50),--Buys relationship attribute
     amount DECIMAL(10,2),--Buys relationship attribute

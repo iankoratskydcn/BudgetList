@@ -129,6 +129,43 @@ public class sqlDriver
                     SELECT i.itemId, i.sellerId, i.title
                     FROM _user u
                     LEFT JOIN item i ON u.userId = i.sellerId
+                    WHERE u.userId = @userId AND i.buyerId IS NULL;
+                    ";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                        int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+
+                        if (itemId == null)
+                        {
+                            return null;
+                        }
+
+                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        itemList.Add(itemInfo);
+                    }
+                }
+                return itemList;
+            }
+        }
+    }
+
+    public List<string> checkForItemsSold()
+    {
+        List<string> itemList = new List<string>();
+        string query = @"
+                    SELECT i.itemId, i.sellerId, i.title
+                    FROM _user u
+                    LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
                     WHERE u.userId = @userId;
                     ";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
@@ -145,7 +182,7 @@ public class sqlDriver
                         int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                         string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        if (itemId == null || sellerId == null || title == null)
+                        if (itemId == null)
                         {
                             return null;
                         }
