@@ -83,12 +83,6 @@ namespace BudgetGui.Screens
             Form1.changeState(5, 7);
         }
 
-        private void testButton_Click(object sender, EventArgs e)
-        {
-            sqlDriver.createNewItem("Test", "This is a test item", "9.99");
-            checkItems();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             sqlDriver.executeDbInsertQuery($"UPDATE item SET buyerId = 1 WHERE itemId = {textBox1.Text};");

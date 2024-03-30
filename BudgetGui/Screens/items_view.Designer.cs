@@ -35,7 +35,6 @@
             searchView = new Button();
             userView = new Button();
             logout = new Button();
-            testButton = new Button();
             myItems = new ListBox();
             soldItems = new ListBox();
             label1 = new Label();
@@ -123,16 +122,6 @@
             logout.Text = "Logout";
             logout.UseVisualStyleBackColor = true;
             logout.Click += logout_Click;
-            // 
-            // testButton
-            // 
-            testButton.Location = new Point(522, 64);
-            testButton.Name = "testButton";
-            testButton.Size = new Size(104, 23);
-            testButton.TabIndex = 17;
-            testButton.Text = "Create Fake Item";
-            testButton.UseVisualStyleBackColor = true;
-            testButton.Click += testButton_Click;
             // 
             // myItems
             // 
@@ -227,7 +216,6 @@
             Controls.Add(label1);
             Controls.Add(soldItems);
             Controls.Add(myItems);
-            Controls.Add(testButton);
             Controls.Add(pictureBox1);
             Controls.Add(items);
             Controls.Add(title);
@@ -250,7 +238,6 @@
         private Button searchView;
         private Button userView;
         private Button logout;
-        private Button testButton;
         private ListBox myItems;
         private ListBox soldItems;
         private Label label1;
