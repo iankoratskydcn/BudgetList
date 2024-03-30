@@ -189,12 +189,11 @@ public class sqlDriver
         }
     }
 
-    public void insertAddressToUser(string streetnum, string street, string city, string state, string zip)
+    public void insertAddressToUser(string street, string city, string state, string zip)
     {
         string query = @"
                         UPDATE _user
-                        SET streetnum = @streetnum,
-                            street = @street,
+                        SET street = @street,
                             city = @city,
                             state = @state,
                             zip = @zip
@@ -205,7 +204,6 @@ public class sqlDriver
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@streetnum", streetnum);
                 command.Parameters.AddWithValue("@street", street);
                 command.Parameters.AddWithValue("@city", city);
                 command.Parameters.AddWithValue("@state", state);

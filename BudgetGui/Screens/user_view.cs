@@ -51,9 +51,9 @@ namespace BudgetGui.Screens
 
         private void save_Click(object sender, EventArgs e)
         {
-            string[] fields = { streetNum.Text, street.Text, city.Text, state.Text, zip.Text };
-            string[] labels = { "Street Number", "Street", "City", "State", "Zip" };
-            if (!(string.IsNullOrEmpty(streetNum.Text)) || !(string.IsNullOrEmpty(street.Text)) || !(string.IsNullOrEmpty(city.Text)) || !(string.IsNullOrEmpty(state.Text)) || !(string.IsNullOrEmpty(zip.Text)))
+            string[] fields = { street.Text, city.Text, state.Text, zip.Text };
+            string[] labels = { "Street", "City", "State", "Zip" };
+            if (!(string.IsNullOrEmpty(street.Text)) || !(string.IsNullOrEmpty(city.Text)) || !(string.IsNullOrEmpty(state.Text)) || !(string.IsNullOrEmpty(zip.Text)))
             {
                 for (int i = 0; i < fields.Length; i++)
                 {
@@ -63,7 +63,7 @@ namespace BudgetGui.Screens
                         return;
                     }
                 }
-                sqlDriver.insertAddressToUser(streetNum.Text, street.Text, city.Text, state.Text, zip.Text);
+                sqlDriver.insertAddressToUser(street.Text, city.Text, state.Text, zip.Text);
             }
 
             if (!(string.IsNullOrEmpty(email.Text)))

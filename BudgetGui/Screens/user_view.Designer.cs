@@ -134,7 +134,7 @@
             // 
             // dateOfBirth
             // 
-            dateOfBirth.Location = new Point(318, 198);
+            dateOfBirth.Location = new Point(318, 227);
             dateOfBirth.Name = "dateOfBirth";
             dateOfBirth.PlaceholderText = "Date of Birth (yyyy-MM-dd)";
             dateOfBirth.Size = new Size(253, 23);
@@ -176,7 +176,7 @@
             // 
             // streetNum
             // 
-            streetNum.Location = new Point(318, 227);
+            streetNum.Location = new Point(494, 26);
             streetNum.Name = "streetNum";
             streetNum.PlaceholderText = "Street Number";
             streetNum.Size = new Size(253, 23);
@@ -184,7 +184,7 @@
             // 
             // password
             // 
-            password.Location = new Point(318, 169);
+            password.Location = new Point(318, 198);
             password.Name = "password";
             password.PlaceholderText = "Password";
             password.Size = new Size(253, 23);
@@ -192,7 +192,7 @@
             // 
             // email
             // 
-            email.Location = new Point(318, 140);
+            email.Location = new Point(318, 169);
             email.Name = "email";
             email.PlaceholderText = "Email";
             email.Size = new Size(253, 23);
