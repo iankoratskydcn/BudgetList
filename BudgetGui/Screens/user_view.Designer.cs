@@ -41,7 +41,6 @@
             zip = new TextBox();
             state = new TextBox();
             street = new TextBox();
-            streetNum = new TextBox();
             password = new TextBox();
             email = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -174,14 +173,6 @@
             street.Size = new Size(253, 23);
             street.TabIndex = 17;
             // 
-            // streetNum
-            // 
-            streetNum.Location = new Point(494, 26);
-            streetNum.Name = "streetNum";
-            streetNum.PlaceholderText = "Street Number";
-            streetNum.Size = new Size(253, 23);
-            streetNum.TabIndex = 16;
-            // 
             // password
             // 
             password.Location = new Point(318, 198);
@@ -210,7 +201,6 @@
             Controls.Add(zip);
             Controls.Add(state);
             Controls.Add(street);
-            Controls.Add(streetNum);
             Controls.Add(pictureBox1);
             Controls.Add(items);
             Controls.Add(title);
@@ -239,7 +229,6 @@
         private TextBox zip;
         private TextBox state;
         private TextBox street;
-        private TextBox streetNum;
         private TextBox password;
         private TextBox email;
     }
