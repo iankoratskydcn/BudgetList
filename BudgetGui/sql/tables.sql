@@ -40,12 +40,3 @@ CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buye
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
 
-CREATE TABLE logs(
-    logId INT PRIMARY KEY NOT NULL,
-    userId INT NOT NULL,
-    timeDate DATE,
-    type VARCHAR(50),
-    dataJson VARCHAR(255),
-    CONSTRAINT fk_userId FOREIGN KEY(userId) REFERENCES _user(userId)
-);
-
