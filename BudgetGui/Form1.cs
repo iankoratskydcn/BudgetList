@@ -102,6 +102,7 @@ namespace BudgetGui
                 //    form1.panel1.Controls.Add(conversation_Screen);
                 //    conversation_Screen.Dock = DockStyle.Fill;
                 //    break;
+
                 default: //error, do nothing
                     break;
             }
