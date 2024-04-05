@@ -46,6 +46,9 @@
     <Compile Update="Screens\search_view.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Screens\shopping.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Screens\user_view.cs">
       <SubType>UserControl</SubType>
     </Compile>

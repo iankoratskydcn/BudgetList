@@ -15,6 +15,7 @@ namespace BudgetGui
         private static create_item_screen _item_Full_view;
         private static messages_screen message_Screen;
         private static conversation_screen conversation_Screen;
+        private static shopping shopping_screen;
         private static registration registration;
         private static Form1 form1;
         private static Panel panel_1;
@@ -38,6 +39,7 @@ namespace BudgetGui
             message_Screen = new messages_screen(form1);
             items_view = new items_view(form1);
             conversation_Screen = new conversation_screen(form1);
+            shopping_screen = new shopping(form1);
 
             _login_screen.Dock = DockStyle.Fill;
             panel1.Controls.Add(_login_screen);
@@ -82,7 +84,7 @@ namespace BudgetGui
                     form1.panel1.Controls.Add(conversation_Screen);
                     break;
                 case 9: //the user has selected to view shopping menu
-                    //form1.panel1.Controls.Add(conversation_Screen); Change to shopping_screen
+                    form1.panel1.Controls.Add(shopping_screen); //Change to shopping_screen
                     break;
                 default: //error, do nothing
                     break;
