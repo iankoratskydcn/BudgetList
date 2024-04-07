@@ -12,12 +12,15 @@ namespace BudgetGui.Screens
 {
     public partial class search_view : UserControl
     {
+        sqlDriver sqlDriver = new sqlDriver();
         static Form1 mainForm;
+
         public search_view(Form1 _mainForm)
         {
             InitializeComponent();
             mainForm = _mainForm;
         }
+
 
         private void home_Click(object sender, EventArgs e)
         {
@@ -48,6 +51,28 @@ namespace BudgetGui.Screens
         {
             Program.GlobalStrings = null;
             Form1.changeState(0);
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView.DataSource = sqlDriver.searchButton(txtSearch.Text);
+                IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+                SearchButton.PerformClick();
         }
     }
 }
