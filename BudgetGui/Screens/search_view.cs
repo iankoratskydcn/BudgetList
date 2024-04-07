@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace BudgetGui.Screens
 {
     public partial class search_view : UserControl
@@ -53,11 +54,12 @@ namespace BudgetGui.Screens
             Form1.changeState(0);
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private void sButton_Click(object sender, EventArgs e)
         {
+
             try
             {
-                dataGridView.DataSource = sqlDriver.searchButton(txtSearch.Text);
+                dataGridView.DataSource = sqlDriver.sButton(txtSearch.Text);
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
 
             }
@@ -72,7 +74,7 @@ namespace BudgetGui.Screens
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
-                SearchButton.PerformClick();
+                sButton.PerformClick();
         }
     }
 }

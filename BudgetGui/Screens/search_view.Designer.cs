@@ -37,7 +37,7 @@
             userView = new Button();
             logout = new Button();
             txtSearch = new TextBox();
-            SearchButton = new Button();
+            sButton = new Button();
             label1 = new Label();
             IbITotal = new Label();
             dataGridView = new DataGridView();
@@ -152,17 +152,17 @@
             txtSearch.Text = "\r\n";
             txtSearch.KeyPress += txtSearch_KeyPress;
             // 
-            // SearchButton
+            // sButton
             // 
-            SearchButton.FlatAppearance.BorderSize = 0;
-            SearchButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            SearchButton.Location = new Point(959, 183);
-            SearchButton.Name = "SearchButton";
-            SearchButton.Size = new Size(112, 39);
-            SearchButton.TabIndex = 19;
-            SearchButton.Text = "Search";
-            SearchButton.UseVisualStyleBackColor = true;
-            SearchButton.Click += SearchButton_Click;
+            sButton.FlatAppearance.BorderSize = 0;
+            sButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            sButton.Location = new Point(959, 183);
+            sButton.Name = "sButton";
+            sButton.Size = new Size(112, 39);
+            sButton.TabIndex = 19;
+            sButton.Text = "Search";
+            sButton.UseVisualStyleBackColor = true;
+            sButton.Click += sButton_Click;
             // 
             // label1
             // 
@@ -202,7 +202,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(SearchButton);
+            Controls.Add(sButton);
             Controls.Add(IbITotal);
             Controls.Add(label1);
             Controls.Add(dataGridView);
@@ -234,7 +234,7 @@
         private Button userView;
         private Button logout;
         private TextBox txtSearch;
-        private Button SearchButton;
+        private Button sButton;
         private Label label1;
         private Label IbITotal;
         private DataGridView dataGridView;
