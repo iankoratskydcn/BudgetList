@@ -1,8 +1,11 @@
 ﻿using BudgetGui;
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Reflection;
 using System.Text;
+using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 public class sqlDriver
@@ -264,5 +267,41 @@ public class sqlDriver
             }
         }
     }
+
+    public DataTable sButton(string query)
+    {
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            DataTable dt;
+            connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand("Select * from item where itemId=@itemId", connection))
+            //or title like @title
+            {
+                command.Parameters.AddWithValue("itemID", query);
+                //command.Parameters.AddWithValue("title",string.Format("%{0}%", query));
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
+                dt = new DataTable("Items");
+                adapter.Fill(dt);
+                return dt;
+                    
+                }
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
