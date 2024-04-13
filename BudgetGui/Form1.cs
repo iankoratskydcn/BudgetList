@@ -45,7 +45,7 @@ namespace BudgetGui
 
 
 
-        public static void changeState(int state, int prev_state, string[] string_arguments = null, int[] int_arguments = null)
+        public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
 
