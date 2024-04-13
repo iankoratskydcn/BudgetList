@@ -25,33 +25,33 @@ namespace BudgetGui.Screens
 
         private void home_Click(object sender, EventArgs e)
         {
-            Form1.changeState(2, 3);
+            Form1.changeState(2);
         }
 
         private void searchView_Click(object sender, EventArgs e)
         {
-            Form1.changeState(4, 2);
+            Form1.changeState(4);
         }
 
         private void items_Click(object sender, EventArgs e)
         {
-            Form1.changeState(7, 2);
+            Form1.changeState(7);
         }
 
         private void messageScreen_Click(object sender, EventArgs e)
         {
-            Form1.changeState(6, 2);
+            Form1.changeState(6);
         }
 
         private void logout_Click(object sender, EventArgs e)
         {
             Program.GlobalStrings = null;
-            Form1.changeState(0, 2);
+            Form1.changeState(0);
         }
 
         private void shopping_Click(object sender, EventArgs e)
         {
-            Form1.changeState(9, 2);
+            Form1.changeState(9);
         }
 
         private void save_Click(object sender, EventArgs e)

@@ -25,7 +25,7 @@ namespace BudgetGui.Screens
 
         private void home_Click(object sender, EventArgs e)
         {
-            Form1.changeState(2, 4);
+            Form1.changeState(2);
         }
 
         private void userView_Click(object sender, EventArgs e)
