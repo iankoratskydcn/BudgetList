@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -10,111 +11,103 @@ using System.Windows.Forms;
 
 namespace BudgetGui.CustomControls
 {
-    //our goal is to make apanel with some required override functions that allow us to easily create the cards and tile a space
+    //our goal is to make  apanel with some required override functions
+    //that allow us to easily create the cards and tile a space
 
     //
 
-    /*
-     <palette>
-  <color name="Dark moss green" hex="616A37" r="97" g="106" b="55" />
-  <color name="Drab dark brown" hex="29300E" r="41" g="48" b="14" />
-  <color name="UCLA Blue" hex="3E779C" r="62" g="119" b="156" />
-  <color name="Dark moss green" hex="364015" r="54" g="64" b="21" />
-  <color name="Dark moss green" hex="4C5221" r="76" g="82" b="33" />
-</palette>
-     
-     */
-
     public partial class card_view_panel : UserControl
     {
-        //        public card_view_panel()
-        //        {
+        //    public card_view_panel()
+        //    {
 
-        //        }
-
-        //        public int CardWidth { get; private set; }
-        //        public int CardHeight { get; private set; }
-
-        //        public CardsViewModel ViewModel { get; set; }
-
-        //        public CardsPanel(CardsViewModel viewModel)
-        //        {
-        //            ViewModel = viewModel;
-        //            ViewModel.Cards.CollectionChanged += Cards_CollectionChanged;
-        //        }
-
-        //        private void Cards_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        //        {
-        //            DataBind();
-        //        }
-
-        //        public void DataBind()
-        //        {
-        //            SuspendLayout();
-        //            Controls.Clear();
-
-        //            for (int i = 0; i < ViewModel.Cards.Count; i++)
-        //            {
-        //                var newCtl = new CardControl(ViewModel.Cards[i]);
-        //                newCtl.DataBind();
-        //                SetCardControlLayout(newCtl, i);
-        //                Controls.Add(newCtl);
-        //            }
-        //            ResumeLayout();
-        //        }
-
-        //        void SetCardControlLayout(CardControl ctl, int atIndex)
-        //        {
-        //            ctl.Width = CardWidth;
-        //            ctl.Height = CardHeight;
-
-        //            //calc visible column count
-        //            int columnCount = Width / CardWidth;
-
-        //            //calc the x index and y index.
-        //            int xPos = (atIndex % columnCount) * CardWidth;
-        //            int yPos = (atIndex / columnCount) * CardHeight;
-
-        //            ctl.Location = new Point(xPos, yPos);
-        //        }
         //    }
 
-        //    public partial class CardControl : UserControl
+        //    public int CardWidth { get; private set; }
+        //    public int CardHeight { get; private set; }
+
+        //    public CardsViewModel ViewModel { get; set; }
+
+        //    public CardsPanel(CardsViewModel viewModel)
         //    {
-        //        public CardViewModel ViewModel { get; set; }
-
-        //        public CardControl()
-        //        {
-        //            InitializeComponent();
-        //        }
-        //        public CardControl(CardViewModel viewModel)
-        //        {
-        //            ViewModel = viewModel;
-        //            InitializeComponent();
-        //        }
-
-        //        public void DataBind()
-        //        {
-        //            SuspendLayout();
-
-        //            tbAge.Text = ViewModel.Age.ToString();
-        //            tbAge.Name = ViewModel.Name;
-        //            pbPicture.Image = ViewModel.Picture;
-
-        //            ResumeLayout();
-        //        }
+        //        ViewModel = viewModel;
+        //        ViewModel.Cards.CollectionChanged += Cards_CollectionChanged;
         //    }
 
-        //    public class CardsViewModel
+        //    private void Cards_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         //    {
-        //        public ObservableCollection<CardViewModel> Cards { get; set; }
+        //        DataBind();
         //    }
 
-        //    public class CardViewModel
+        //    public void DataBind()
         //    {
-        //        public string Name { get; set; }
-        //        public int Age { get; set; }
-        //        public Bitmap Picture { get; set; }
+        //        SuspendLayout();
+        //        Controls.Clear();
+
+        //        for (int i = 0; i < ViewModel.Cards.Count; i++)
+        //        {
+        //            var newCtl = new CardControl(ViewModel.Cards[i]);
+        //            newCtl.DataBind();
+        //            SetCardControlLayout(newCtl, i);
+        //            Controls.Add(newCtl);
+        //        }
+        //        ResumeLayout();
+        //    }
+
+        //    void SetCardControlLayout(CardControl ctl, int atIndex)
+        //    {
+        //        ctl.Width = CardWidth;
+        //        ctl.Height = CardHeight;
+
+        //        //calc visible column count
+        //        int columnCount = Width / CardWidth;
+
+        //        //calc the x index and y index.
+        //        int xPos = (atIndex % columnCount) * CardWidth;
+        //        int yPos = (atIndex / columnCount) * CardHeight;
+
+        //        ctl.Location = new Point(xPos, yPos);
+        //    }
+        //}
+
+        //public partial class CardControl : UserControl
+        //{
+        //    public CardViewModel ViewModel { get; set; }
+
+        //    public CardControl()
+        //    {
+        //        InitializeComponent();
+        //    }
+        //    public CardControl(CardViewModel viewModel)
+        //    {
+        //        ViewModel = viewModel;
+        //        InitializeComponent();
+        //    }
+
+        //    public void DataBind()
+        //    {
+        //        SuspendLayout();
+
+        //        tbAge.Text = ViewModel.Age.ToString();
+        //        tbAge.Name = ViewModel.Name;
+        //        pbPicture.Image = ViewModel.Picture;
+
+        //        ResumeLayout();
+        //    }
+        //}
+
+        //public class CardsViewModel
+        //{
+        //    public ObservableCollection<CardViewModel> Cards { get; set; }
+        //}
+
+        //public class CardViewModel
+        //{
+        //    public string Name { get; set; }
+        //    public int Age { get; set; }
+        //    public Bitmap Picture { get; set; }
+        //}
     }
+
 }
 

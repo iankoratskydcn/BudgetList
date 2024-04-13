@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             tableLayoutPanel1 = new TableLayoutPanel();
-            pictureBox1 = new PictureBox();
             linkLabel1 = new LinkLabel();
+            pictureBox1 = new PictureBox();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -49,6 +49,20 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(355, 101);
             tableLayoutPanel1.TabIndex = 1;
+            tableLayoutPanel1.Click += clicked;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Dock = DockStyle.Fill;
+            linkLabel1.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            linkLabel1.Location = new Point(103, 0);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(249, 101);
+            linkLabel1.TabIndex = 2;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "User";
+            linkLabel1.LinkClicked += clicked;
             // 
             // pictureBox1
             // 
@@ -58,19 +72,7 @@
             pictureBox1.Size = new Size(94, 95);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Dock = DockStyle.Fill;
-            linkLabel1.Font = new Font("Segoe UI", 15F);
-            linkLabel1.Location = new Point(103, 0);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(249, 101);
-            linkLabel1.TabIndex = 2;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Item - User";
-            linkLabel1.LinkClicked += clicked;
+            pictureBox1.Click += clicked;
             // 
             // conversation_card
             // 

@@ -17,7 +17,10 @@ namespace BudgetGui
             sqlDriver sqlDriver = new sqlDriver();
             sqlDriver.createDatabaseIfNotExists();
 
-            Form1 form1 = new Form1();
+            sqlDriver _sqlDriver = new sqlDriver();
+            _sqlDriver.createDatabaseIfNotExists();
+
+            Form1 form1 = new Form1(_sqlDriver);
             Application.Run(form1);
         }
     }

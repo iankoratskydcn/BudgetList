@@ -18,6 +18,7 @@ namespace BudgetGui.Screens
         {
             InitializeComponent();
             mainForm = _mainForm;
+            this.BackColor = Color.Transparent;
         }
 
         private void logout_Click(object sender, EventArgs e)
