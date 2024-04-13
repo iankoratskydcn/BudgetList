@@ -31,9 +31,6 @@
     <Compile Update="Screens\create_item_screen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\item_full_view.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Screens\login.cs">
       <SubType>UserControl</SubType>
     </Compile>
