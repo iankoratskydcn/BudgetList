@@ -20,7 +20,7 @@ using System.Text;
 
 public partial class sqlDriver
 {
-    public void InsertItem( int itemId, int sellerId, DateTime postDate, string title, string description, string photoUrl, double basePrice, DateTime endDate, double minimum )
+    public void InsertItem(int itemId, int sellerId, DateTime postDate, string title, string description, string photoUrl, double basePrice, DateTime endDate, double minimum)
     {
         string query = @"INSERT INTO item (itemId, sellerId, postDate, title, description, photoUrl, basePrice, endDate, minimum) VALUES (@itemId, @sellerId, @postDate, @title, @description, @photoUrl, @basePrice, @endDate, @minimum)";
 
@@ -341,124 +341,34 @@ public partial class sqlDriver
         }
     }
 
-    /*
-    public DataTable sButton(string titleQuery = null, string itemIdQuery = null)
-{
-    using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+
+    public DataTable sButton(string titleQuery)
     {
-        DataTable dt;
-        connection.Open();
-
-        StringBuilder query = new StringBuilder("SELECT * FROM item WHERE ");
-        if (itemIdQuery != null)
-        {
-            query.Append("itemId = @itemId ");
-        }
-        if (titleQuery != null)
-        {
-            if (itemIdQuery != null)
-            {
-                query.Append("OR ");
-            }
-            query.Append("title LIKE @title");
-        }
-
-        using (SQLiteCommand command = new SQLiteCommand(query.ToString(), connection))
-        {
-            if (itemIdQuery != null)
-            {
-                command.Parameters.AddWithValue("@itemId", itemIdQuery);
-            }
-            if (titleQuery != null)
-            {
-                command.Parameters.AddWithValue("@title", "%" + titleQuery + "%");
-            }
-
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
-            dt = new DataTable("Items");
-            adapter.Fill(dt);
-            return dt;
-        }
-    }
-}
-    */
-
-
-
-    public List<Commodity> sButton(string titleQuery = null, string itemIdQuery = null)
-    {
-        List<Commodity> items = new List<Commodity>();
-
-        int itemId = 0;
-        if (itemIdQuery != null && !int.TryParse(itemIdQuery, out itemId))
-        {
-            throw new ArgumentException("itemIdQuery must be a valid integer.");
-        }
-
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
+            DataTable dt;
+
             connection.Open();
 
-            StringBuilder query = new StringBuilder("SELECT * FROM item WHERE ");
-            bool hasCondition = false;
+            StringBuilder query = new StringBuilder("SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item");
 
-            if (itemIdQuery != null)
-            {
-                query.Append("itemId = @itemId ");
-                hasCondition = true;
-            }
-            if (titleQuery != null)
-            {
-                if (hasCondition)
-                {
-                    query.Append("OR ");
-                }
-                query.Append("title LIKE @title");
-            }
+            query.Append(" WHERE title LIKE @title");
+            
 
             using (SQLiteCommand command = new SQLiteCommand(query.ToString(), connection))
             {
-                if (itemIdQuery != null)
-                {
-                    command.Parameters.AddWithValue("@itemId", itemId);
-                }
-                if (titleQuery != null)
-                {
-                    command.Parameters.AddWithValue("@title", "%" + titleQuery + "%");
-                }
+                command.Parameters.AddWithValue("@title", "%" + titleQuery + "%");
 
-                using (SQLiteDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Commodity com = new Commodity
-                        {
-                            itemId = reader.GetInt32(0),
-                            sellerId = reader.GetInt32(1),
-                            buyerId = reader.IsDBNull(2) ? (int?)null : reader.GetInt32(2),
-                            postDate = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
-                            purchaseDate = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4),
-                            title = reader.GetString(5),
-                            description = reader.IsDBNull(6) ? null : reader.GetString(6),
-                            itemPrice = reader.GetDecimal(7),
-                            photoUrl = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            rating = reader.IsDBNull(9) ? (decimal?)null : reader.GetDecimal(9),
-                            currencyType = reader.IsDBNull(10) ? null : reader.GetString(10),
-                            amount = reader.IsDBNull(11) ? (decimal?)null : reader.GetDecimal(11)
-                        };
-
-                        items.Add(com);
-                    }
-                }
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
+                dt = new DataTable("Items");
+                adapter.Fill(dt);
+                return dt;
             }
         }
-
-        return items; // Return the list of items, not a single commodity
     }
-
-
-
-
 }
+    
+
+
 
 
