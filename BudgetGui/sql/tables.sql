@@ -40,3 +40,16 @@ CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buye
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
 
+CREATE TABLE savedItems(
+    creatorUserId NOT NULL,
+    savedUserId INT NOT NULL,
+	itemId VARCHAR(10) NOT NULL,
+	PRIMARY KEY(userId, itemId),
+	CONSTRAINT fk_userId FOREIGN KEY(userId) REFERENCES _user(userId),
+	CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
+);
+
+
+
+)
+
