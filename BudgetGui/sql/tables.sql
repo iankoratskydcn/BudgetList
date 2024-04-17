@@ -26,12 +26,14 @@ CREATE TABLE _message(
 );
 
 CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
-    itemId INT PRIMARY KEY NOT NULL,
-    sellerId INT NOT NULL, --Sells relationship 
+    itemId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    sellerId INT NOT NULL, --Sells relationship
+    buyerId INT, --Buys relationship
     postDate DATE,
-    title VARCHAR(100) NOT NULL,
-    description VARCHAR(255),
-    category VARCHAR(255),
+    purchaseDate TIMESTAMP,--Buys relationship attribute
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(1000),
+    itemPrice DECIMAL(10,2), --change to just itemPrice
     photoUrl VARCHAR(255),
     basePrice DECIMAL(10,2), --change to just itemPrice
     endDate DATE,--consider dropping this attribute
