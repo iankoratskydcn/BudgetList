@@ -14,10 +14,14 @@ using System.Collections.Generic;
 using static System.Windows.Forms.AxHost;
 using BudgetGui;
 using System.Data;
+using BudgetGui.sql.entities;
+using System.Data.SqlTypes;
+using System.Text;
+using System.Windows.Forms;
 
 public partial class sqlDriver
 {
-    public void InsertItem( int itemId, int sellerId, DateTime postDate, string title, string description, string photoUrl, double basePrice, DateTime endDate, double minimum )
+    public void InsertItem(int itemId, int sellerId, DateTime postDate, string title, string description, string photoUrl, double basePrice, DateTime endDate, double minimum)
     {
         string query = @"INSERT INTO item (itemId, sellerId, postDate, title, description, photoUrl, basePrice, endDate, minimum) VALUES (@itemId, @sellerId, @postDate, @title, @description, @photoUrl, @basePrice, @endDate, @minimum)";
 
@@ -338,28 +342,58 @@ public partial class sqlDriver
         }
     }
 
-    public DataTable sButton(string query)
+
+    public DataGridView sButton(string titleQuery, DataGridView dgv)
     {
+        // Check if the button column already exists
+        bool buttonColumnExists = false;
+        foreach (DataGridViewColumn column in dgv.Columns)
+        {
+            if (column.Name == "buttonColumn")
+            {
+                buttonColumnExists = true;
+                break;
+            }
+        }
+
+        // If the button column doesn't exist, create and add it
+        if (!buttonColumnExists)
+        {
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "buttonColumn";
+            buttonColumn.Text = "Save";
+            buttonColumn.HeaderText = "Save to Shopping";
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            dgv.Columns.Add(buttonColumn);
+        }
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             DataTable dt;
+
             connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand("Select * from item where itemId=@itemId", connection))
-            //or title like @title
+
+            StringBuilder query = new StringBuilder("SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' FROM item");
+
+            query.Append(" WHERE title LIKE @title");
+
+            using (SQLiteCommand command = new SQLiteCommand(query.ToString(), connection))
             {
-                command.Parameters.AddWithValue("itemID", query);
-                //command.Parameters.AddWithValue("title",string.Format("%{0}%", query));
+                command.Parameters.AddWithValue("@title", "%" + titleQuery + "%");
+
                 SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
                 dt = new DataTable("Items");
                 adapter.Fill(dt);
-                return dt;
-
+                dgv.DataSource = dt;
+                return dgv;
             }
-
         }
-
     }
 
-
 }
+    
+
+
+
+

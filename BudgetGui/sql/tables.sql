@@ -23,7 +23,7 @@ CREATE TABLE _message(
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
 
-CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
+CREATE TABLE item(
     itemId INT PRIMARY KEY NOT NULL,
     sellerId INT NOT NULL, --Sells relationship
     buyerId INT, --Buys relationship
@@ -35,8 +35,23 @@ CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buye
     photoUrl VARCHAR(255),
     rating DECIMAL(2,1), --Should change to user rating, not item
     currencyType VARCHAR(50),--Buys relationship attribute
-    amount DECIMAL(10,2),--Buys relationship attribute
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
+
+CREATE TABLE savedItems(
+    itemId VARCHAR(10) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
+    postDate DATE,
+    creatorUserId INT NOT NULL,
+    savedUserId INT NOT NULL,
+    currencyType VARCHAR(50),
+    itemPrice DECIMAL(10,2),
+	PRIMARY KEY(savedUserId, itemId),
+	CONSTRAINT fk_userId FOREIGN KEY(savedUserId) REFERENCES _user(userId),
+	CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
+);
+
+
 

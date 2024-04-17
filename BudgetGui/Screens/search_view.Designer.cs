@@ -146,7 +146,7 @@
             txtSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtSearch.Location = new Point(287, 183);
             txtSearch.Name = "txtSearch";
-            txtSearch.PlaceholderText = "Enter itemId or item name";
+            txtSearch.PlaceholderText = "Enter item name";
             txtSearch.Size = new Size(666, 39);
             txtSearch.TabIndex = 18;
             txtSearch.Text = "\r\n";
