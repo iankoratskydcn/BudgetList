@@ -23,17 +23,8 @@ namespace BudgetGui.Screens
         {
             InitializeComponent();
             mainForm = _mainForm;
+            //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"
 
-            
-            // Create a new button column
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "buttonColumn";
-            buttonColumn.Text = "Save";
-            buttonColumn.HeaderText = "Save to Shopping";
-            buttonColumn.UseColumnTextForButtonValue = true;
-
-            // Add the button column to the DataGridView
-            dataGridView.Columns.Add(buttonColumn);
             
         }
 
@@ -73,9 +64,25 @@ namespace BudgetGui.Screens
         {
             try
             {
-                DataTable commodities = sqlDriver.sButton(txtSearch.Text);
-                dataGridView.DataSource = commodities;
+                //DataTable commodities = sqlDriver.sButton(txtSearch.Text);
 
+                dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
+
+
+                /*
+                // Create a new button column
+                DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+                buttonColumn.Name = "buttonColumn";
+                buttonColumn.Text = "Save";
+                buttonColumn.HeaderText = "Save to Shopping";
+                buttonColumn.UseColumnTextForButtonValue = true;
+
+                // Add the button column to the DataGridView
+                dataGridView.Columns.Add(buttonColumn);
+
+
+               // dataGridView.DataSource = commodities;
+                */
 
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             }
