@@ -58,5 +58,6 @@ namespace BudgetGui.Screens.cards
             {
             }
         }
+
     }
 }

@@ -90,8 +90,8 @@ namespace BudgetGui.Screens
         /// <param name="ints"></param>
         private void add_msg(string[] strings, int[] ints)
         {
-            message_card self_msg_card = new message_card(strings, ints);
-            messages.Controls.Add(self_msg_card);
+            message_card msg_card = new message_card(strings, ints);
+            messages.Controls.Add(msg_card);
         }
 
         /// <summary>
@@ -102,9 +102,14 @@ namespace BudgetGui.Screens
         {
             messages.Controls.Clear();
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
+            message_card x;
+            int c;
+            int max_w = messages.Size.Width - 10;
             foreach (var item in convo_messages)
             {
+                item.Size = new Size(max_w, 40);
                 messages.Controls.Add(item);
+
             }
             currentConvoId = otherId;
         }

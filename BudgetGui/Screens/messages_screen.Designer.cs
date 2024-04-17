@@ -68,6 +68,7 @@
             // conversations
             // 
             conversations.Dock = DockStyle.Fill;
+            conversations.FlowDirection = FlowDirection.TopDown;
             conversations.Location = new Point(3, 38);
             conversations.Name = "conversations";
             conversations.Size = new Size(187, 497);

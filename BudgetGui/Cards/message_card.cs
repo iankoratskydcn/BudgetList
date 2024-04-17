@@ -28,6 +28,11 @@ namespace BudgetGui.Screens
             if(is_self == 0 )
             {
                 //change to the self message card format
+
+                //clear the controls
+                this.Controls.Clear();
+                self_message_card card = new self_message_card(strings, ints);
+                this.Controls.Add(card);
             }
 
         }
