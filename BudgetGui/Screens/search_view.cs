@@ -46,7 +46,7 @@ namespace BudgetGui.Screens
 
         private void shopping_Click(object sender, EventArgs e)
         {
-            Form1.changeState(9);
+            Form1.changeState(5);
         }
 
         private void messageScreen_Click(object sender, EventArgs e)

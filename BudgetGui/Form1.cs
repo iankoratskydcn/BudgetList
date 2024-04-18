@@ -16,7 +16,8 @@ namespace BudgetGui
         private static items_view items_view;
         //private static item_full_view _item_Full_view;
         private static messages_screen message_Screen;
-        private static conversation_screen conversation_Screen;
+        //private static conversation_screen conversation_Screen;
+        private static shopping shopping_screen;
         private static registration registration;
         private static Form1 form1;
         private static Panel panel_1;
@@ -82,11 +83,11 @@ namespace BudgetGui
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
                     break;
-                //case 5: //the user has selected an item view
-                //    _item_Full_view = new item_full_view(form1);
-                //    form1.panel1.Controls.Add(_item_Full_view);
-                //    _item_Full_view.Dock = DockStyle.Fill;
-                //    break;
+                case 5: //the user has selected shopping screen
+                    shopping_screen = new shopping(form1);
+                    form1.panel1.Controls.Add(shopping_screen);
+                    shopping_screen.Dock = DockStyle.Fill;
+                    break;
                 case 6: //the user has selected to view their messages
                     message_Screen = new messages_screen(form1, driver);
                     form1.panel1.Controls.Add(message_Screen);
