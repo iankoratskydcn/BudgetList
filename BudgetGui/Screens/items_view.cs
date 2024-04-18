@@ -21,6 +21,11 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            checkItems();
+        }
+
         public void checkItems()
         {
             myItems.Items.Clear();
@@ -80,7 +85,7 @@ namespace BudgetGui.Screens
 
         private void createItem_Click(object sender, EventArgs e)
         {
-            Form1.changeState(5);
+            Form1.changeState(8);
         }
 
         private void button1_Click(object sender, EventArgs e)

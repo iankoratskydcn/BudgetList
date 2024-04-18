@@ -14,7 +14,7 @@ namespace BudgetGui
         private static user_view user_View;
         private static search_view search_View;
         private static items_view items_view;
-        //private static item_full_view _item_Full_view;
+        private static create_item_screen _create_item_screen;
         private static messages_screen message_Screen;
         //private static conversation_screen conversation_Screen;
         private static shopping shopping_screen;
@@ -97,12 +97,13 @@ namespace BudgetGui
                     items_view = new items_view(form1);
                     form1.panel1.Controls.Add(items_view);
                     items_view.Dock = DockStyle.Fill;
+                    items_view.checkItems();
                     break;
-                //case 8: //the user has selected to view a specific conversation
-                //    conversation_Screen = new conversation_screen(form1);
-                //    form1.panel1.Controls.Add(conversation_Screen);
-                //    conversation_Screen.Dock = DockStyle.Fill;
-                //    break;
+                case 8: //the user has selected to create an item
+                    _create_item_screen = new create_item_screen(form1);
+                    form1.panel1.Controls.Add(_create_item_screen);
+                    _create_item_screen.Dock = DockStyle.Fill;
+                    break;
 
                 default: //error, do nothing
                     break;
