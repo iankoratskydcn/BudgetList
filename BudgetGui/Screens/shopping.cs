@@ -20,6 +20,37 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
+        public void checkItems()
+        {
+            savedItems.Items.Clear();
+            List<string> itemList = sqlDriver.checkForSavedItems();
+            if (itemList != null)
+            {
+                foreach (string item in itemList)
+                {
+                    savedItems.Items.Add(item);
+                }
+            }
+            else
+            {
+                savedItems.Items.Add("You have no items.");
+            }
+
+            boughtItems.Items.Clear();
+            List<string> itemList2 = sqlDriver.checkForBoughtItems();
+            if (itemList2 != null)
+            {
+                foreach (string item2 in itemList2)
+                {
+                    boughtItems.Items.Add(item2);
+                }
+            }
+            else
+            {
+                boughtItems.Items.Add("You have no items.");
+            }
+        }
+
         private void userView_Click(object sender, EventArgs e)
         {
             Form1.changeState(3);

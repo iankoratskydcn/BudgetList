@@ -21,11 +21,6 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
-        private void MainForm_Shown(object sender, EventArgs e)
-        {
-            checkItems();
-        }
-
         public void checkItems()
         {
             myItems.Items.Clear();
