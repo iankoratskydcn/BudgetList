@@ -119,6 +119,12 @@ namespace BudgetGui.Screens
                 decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
                 string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
 
+                if (sellerId == Convert.ToInt32(Program.GlobalStrings[1]))
+                {
+                    MessageBox.Show($"You can't save your own items");
+                    return;
+                }
+
                 if (sqlDriver.checkIfItemAlreadySaved(itemId))
                 {
                     // Create SQL command
