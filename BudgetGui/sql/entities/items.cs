@@ -470,20 +470,13 @@ public partial class sqlDriver
         }
     }
 
-    //Todo
     public List<string> checkForBoughtItems()
     {
         List<string> itemList = new List<string>();
-        /*string query = @"
-                    SELECT i.itemId, i.sellerId, i.title
-                    FROM _user u
-                    LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
-                    WHERE u.userId = @userId;
-                    ";*/
         string query = @"
                     SELECT i.itemId, i.sellerId, i.title
                     FROM _user u
-                    LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
+                    JOIN item i ON u.userId = i.buyerId
                     WHERE u.userId = @userId;
                     ";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
