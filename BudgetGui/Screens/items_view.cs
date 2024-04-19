@@ -18,7 +18,8 @@ namespace BudgetGui.Screens
         public items_view(Form1 _mainForm)
         {
             InitializeComponent();
-            mainForm = _mainForm;
+            mainForm = _mainForm; 
+            DoubleBuffered = true;
         }
 
         public void checkItems()

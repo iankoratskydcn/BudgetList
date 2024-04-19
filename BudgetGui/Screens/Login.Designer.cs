@@ -55,6 +55,7 @@
             textBox1.PlaceholderText = "Username";
             textBox1.Size = new Size(253, 23);
             textBox1.TabIndex = 19;
+            textBox1.Text = "jbernard2024";
             // 
             // register
             // 
@@ -100,6 +101,7 @@
             textBox2.PlaceholderText = "Password";
             textBox2.Size = new Size(253, 23);
             textBox2.TabIndex = 12;
+            textBox2.Text = "Josh1234!";
             // 
             // Login
             // 
@@ -115,6 +117,7 @@
             Controls.Add(textBox2);
             Name = "Login";
             Size = new Size(805, 534);
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -27,6 +27,7 @@ namespace BudgetGui.Screens
         public messages_screen(Form1 _mainForm, sqlDriver _sqlDriver)
         {
             InitializeComponent();
+            DoubleBuffered = true;
             messages_Screen = this;
             mainForm = _mainForm;
             selfId = Program.GlobalStrings[1];
@@ -37,13 +38,13 @@ namespace BudgetGui.Screens
         private void home_Click(object sender, EventArgs e)
         {
             Form1.changeState(2);
-        }   
+        }
 
         private void viewConversation_Click(object sender, EventArgs e)
         {
             //Form1.changeState(8, 6);
             //instead of changing the view, we'll instead fill the conversation box
-            
+
         }
 
         private void conversations_fill()
@@ -57,7 +58,7 @@ namespace BudgetGui.Screens
                 string[] strings = { r[0].ToString() };
                 add_convo(strings, ints);
             }
-            
+
         }
 
         /// <summary>
@@ -130,5 +131,35 @@ namespace BudgetGui.Screens
 
         }
 
+        private void logout_Click(object sender, EventArgs e)
+        {
+            Program.GlobalStrings = null;
+            Form1.changeState(0);
+        }
+
+        private void userView_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(3);
+        }
+
+        private void searchView_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(4);
+        }
+
+        private void messageScreen_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(6);
+        }
+
+        private void items_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(7);
+        }
+
+        private void shopping_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(5);
+        }
     }
 }

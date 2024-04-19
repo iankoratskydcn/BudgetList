@@ -19,6 +19,7 @@ namespace BudgetGui.Screens
             InitializeComponent();
             mainForm = _mainForm;
             this.BackColor = Color.Transparent;
+            DoubleBuffered = true;
         }
 
         private void logout_Click(object sender, EventArgs e)
@@ -50,6 +51,16 @@ namespace BudgetGui.Screens
         private void shopping_Click(object sender, EventArgs e)
         {
             Form1.changeState(5);
+        }
+
+        private void main_screen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

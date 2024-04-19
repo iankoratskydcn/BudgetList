@@ -19,6 +19,7 @@ namespace BudgetGui.Screens
         {
             mainForm = _mainForm;
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -27,7 +28,7 @@ namespace BudgetGui.Screens
             {
                 return;
             }
-           
+
             //get username and password
             string username = textBox1.Text;
             string password = textBox2.Text;
@@ -49,6 +50,11 @@ namespace BudgetGui.Screens
         private void register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Form1.changeState(1);
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

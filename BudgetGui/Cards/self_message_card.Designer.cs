@@ -51,6 +51,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(380, 52);
             tableLayoutPanel1.TabIndex = 0;
+            
             // 
             // tableLayoutPanel2
             // 
