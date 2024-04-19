@@ -404,10 +404,10 @@ public partial class sqlDriver
     {
         List<string> itemList = new List<string>();
         string query = @"
-                    SELECT itemId, savedUserId, title, 
-                    FROM savedItems
-                    WHERE savedUserId = @userId;
-                    ";
+                SELECT itemId, savedUserId, title 
+                FROM savedItems
+                WHERE savedUserId = @userId;
+                ";
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -417,16 +417,16 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
+                    if (!reader.HasRows)
+                    {
+                        return null;
+                    }
+
                     while (reader.Read())
                     {
                         int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
                         int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                         string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                        if (itemId == null)
-                        {
-                            return null;
-                        }
 
                         string itemInfo = $"ItemId: {itemId}, savedUserId: {savedUserId}, Title: {title}";
                         itemList.Add(itemInfo);
@@ -437,6 +437,7 @@ public partial class sqlDriver
         }
     }
 
+    //Todo
     public List<string> checkForBoughtItems()
     {
         List<string> itemList = new List<string>();
