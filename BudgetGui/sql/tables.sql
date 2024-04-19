@@ -40,7 +40,7 @@ CREATE TABLE item(
 );
 
 CREATE TABLE savedItems(
-    itemId VARCHAR(10) NOT NULL,
+    itemId INT NOT NULL,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(255),
     postDate DATE,
