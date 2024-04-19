@@ -14,6 +14,9 @@ namespace BudgetGui
 
             Program.GlobalStrings = new string[2];
 
+            sqlDriver sqlDriver = new sqlDriver();
+            sqlDriver.createDatabaseIfNotExists();
+
             sqlDriver _sqlDriver = new sqlDriver();
             _sqlDriver.createDatabaseIfNotExists();
 

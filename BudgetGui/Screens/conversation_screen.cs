@@ -21,7 +21,7 @@ namespace BudgetGui.Screens
 
         private void back_Click(object sender, EventArgs e)
         {
-            Form1.changeState(6, 8);
+            Form1.changeState(6);
         }
     }
 }

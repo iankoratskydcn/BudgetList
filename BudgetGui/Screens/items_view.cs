@@ -21,47 +21,76 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
         }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            checkItems();
+        }
+
         public void checkItems()
         {
-            label1.Text = null;
+            myItems.Items.Clear();
             List<string> itemList = sqlDriver.checkForItemsBeingSold();
             if (itemList != null)
             {
                 foreach (string item in itemList)
                 {
-                    label1.Text = label1.Text + item + Environment.NewLine;
+                    myItems.Items.Add(item);
                 }
             }
             else
             {
-                label1.Text = "You have no items.";
+                myItems.Items.Add("You have no items.");
+            }
+
+            soldItems.Items.Clear();
+            List<string> itemList2 = sqlDriver.checkForItemsSold();
+            if (itemList2 != null)
+            {
+                foreach (string item2 in itemList2)
+                {
+                    soldItems.Items.Add(item2);
+                }
+            }
+            else
+            {
+                soldItems.Items.Add("You have no items.");
             }
         }
 
         private void userView_Click(object sender, EventArgs e)
         {
-            Form1.changeState(3, 7);
+            Form1.changeState(3);
         }
 
         private void searchView_Click(object sender, EventArgs e)
         {
-            Form1.changeState(4, 7);
+            Form1.changeState(4);
         }
 
         private void messageScreen_Click(object sender, EventArgs e)
         {
-            Form1.changeState(6, 7);
+            Form1.changeState(6);
+        }
+
+        private void shopping_Click(object sender, EventArgs e)
+        {
+            Form1.changeState(5);
         }
 
         private void logout_Click(object sender, EventArgs e)
         {
             Program.GlobalStrings = null;
-            Form1.changeState(0, 7);
+            Form1.changeState(0);
         }
 
-        private void testButton_Click(object sender, EventArgs e)
+        private void createItem_Click(object sender, EventArgs e)
         {
-            sqlDriver.createNewItem("Test");
+            Form1.changeState(8);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            sqlDriver.executeDbInsertQuery($"UPDATE item SET buyerId = 1 WHERE itemId = {textBox1.Text};");
             checkItems();
         }
     }

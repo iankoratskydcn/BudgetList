@@ -14,9 +14,10 @@ namespace BudgetGui
         private static user_view user_View;
         private static search_view search_View;
         private static items_view items_view;
-        private static item_full_view _item_Full_view;
+        private static create_item_screen _create_item_screen;
         private static messages_screen message_Screen;
-        private static conversation_screen conversation_Screen;
+        //private static conversation_screen conversation_Screen;
+        private static shopping shopping_screen;
         private static registration registration;
         private static Form1 form1;
         private static Panel panel_1;
@@ -45,7 +46,7 @@ namespace BudgetGui
 
 
 
-        public static void changeState(int state, int prev_state, string[] string_arguments = null, int[] int_arguments = null)
+        public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
 
@@ -82,10 +83,10 @@ namespace BudgetGui
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
                     break;
-                case 5: //the user has selected an item view
-                    _item_Full_view = new item_full_view(form1);
-                    form1.panel1.Controls.Add(_item_Full_view);
-                    _item_Full_view.Dock = DockStyle.Fill;
+                case 5: //the user has selected shopping screen
+                    shopping_screen = new shopping(form1);
+                    form1.panel1.Controls.Add(shopping_screen);
+                    shopping_screen.Dock = DockStyle.Fill;
                     break;
                 case 6: //the user has selected to view their messages
                     message_Screen = new messages_screen(form1, driver);
@@ -102,6 +103,13 @@ namespace BudgetGui
                 //    form1.panel1.Controls.Add(conversation_Screen);
                 //    conversation_Screen.Dock = DockStyle.Fill;
                 //    break;
+                    items_view.checkItems();
+                    break;
+                case 8: //the user has selected to create an item
+                    _create_item_screen = new create_item_screen(form1);
+                    form1.panel1.Controls.Add(_create_item_screen);
+                    _create_item_screen.Dock = DockStyle.Fill;
+                    break;
 
                 default: //error, do nothing
                     break;

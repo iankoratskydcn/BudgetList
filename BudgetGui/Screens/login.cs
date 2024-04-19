@@ -38,7 +38,7 @@ namespace BudgetGui.Screens
             {
                 string[] strings = { sqlDriver.loggedInUsername, sqlDriver.loggedInUserId };
                 Program.GlobalStrings = strings;
-                Form1.changeState(2, 0);
+                Form1.changeState(2);
             }
             else
             {
@@ -48,7 +48,7 @@ namespace BudgetGui.Screens
 
         private void register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form1.changeState(1, 0);
+            Form1.changeState(1);
         }
     }
 }

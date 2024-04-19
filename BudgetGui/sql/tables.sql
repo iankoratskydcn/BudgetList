@@ -1,19 +1,17 @@
 CREATE TABLE _user(
-    userId VARCHAR(10) PRIMARY KEY,
+    userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     _password VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
     DOB VARCHAR(10),
-    streetnum INT,
     street VARCHAR(100),
     city VARCHAR(50),
     state VARCHAR(50),
     zip INT,
-    age INT, --should be changed to derived attribute
-    profilePicture VARCHAR(100) --No idea how to do this unless its holding the link to the picture
-);
+    age INT --should be changed to derived attribute
+    );
 
 CREATE TABLE _message(
     sender INT NOT NULL,
@@ -31,28 +29,29 @@ CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buye
     buyerId INT, --Buys relationship
     postDate DATE,
     purchaseDate TIMESTAMP,--Buys relationship attribute
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(100) NOT NULL,
     description VARCHAR(1000),
     itemPrice DECIMAL(10,2), --change to just itemPrice
-    photoUrl VARCHAR(255),
-    basePrice DECIMAL(10,2), --change to just itemPrice
-    endDate DATE,--consider dropping this attribute
-    minimum DECIMAL(10,2),--drop this attribute
-    buyerId INT, --Buys relationship
-    rateing DECIMAL(2,1),
-    purchaseDate TIMESTAMP,--Buys relationship attribute
+    photoUrl VARCHAR(500),
+    rating DECIMAL(2,1), --Should change to user rating, not item
     currencyType VARCHAR(50),--Buys relationship attribute
-    amount DECIMAL(10,2),--Buys relationship attribute
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
 
-CREATE TABLE logs(
-    logId INT PRIMARY KEY NOT NULL,
-    userId INT NOT NULL,
-    timeDate DATE,
-    type VARCHAR(50),
-    dataJson VARCHAR(255),
-    CONSTRAINT fk_userId FOREIGN KEY(userId) REFERENCES _user(userId)
+CREATE TABLE savedItems(
+    itemId VARCHAR(10) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
+    postDate DATE,
+    creatorUserId INT NOT NULL,
+    savedUserId INT NOT NULL,
+    currencyType VARCHAR(50),
+    itemPrice DECIMAL(10,2),
+	PRIMARY KEY(savedUserId, itemId),
+	CONSTRAINT fk_userId FOREIGN KEY(savedUserId) REFERENCES _user(userId),
+	CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
 );
+
+
 

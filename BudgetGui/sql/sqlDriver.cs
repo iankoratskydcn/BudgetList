@@ -1,5 +1,11 @@
 ﻿using BudgetGui;
 using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SQLite;
+using System.Reflection;
+using System.Text;
+using System.Windows.Input;
 using System.Data.SQLite;
 using System.Reflection;
 using System.Runtime.InteropServices.JavaScript;

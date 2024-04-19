@@ -42,12 +42,12 @@ namespace BudgetGui.Screens
             } else {
                 sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, password1.Text, email.Text);
                 MessageBox.Show("Account Created Successfully");
-                Form1.changeState(0, 1);
+                Form1.changeState(0);
             }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Form1.changeState(0, 1);
+            Form1.changeState(0);    
         }
 
         private void label1_Click(object sender, EventArgs e)

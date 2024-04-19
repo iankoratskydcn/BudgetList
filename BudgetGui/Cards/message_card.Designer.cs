@@ -47,7 +47,7 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle());
-            tableLayoutPanel2.Size = new Size(46, 144);
+            tableLayoutPanel2.Size = new Size(46, 46);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // pictureBox1
@@ -71,7 +71,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(150, 150);
+            tableLayoutPanel1.Size = new Size(441, 52);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // richTextBox1
@@ -81,7 +81,7 @@
             richTextBox1.Location = new Point(55, 3);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
-            richTextBox1.Size = new Size(92, 144);
+            richTextBox1.Size = new Size(383, 46);
             richTextBox1.TabIndex = 2;
             richTextBox1.Text = "message from them";
             // 
@@ -91,6 +91,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
             Name = "message_card";
+            Size = new Size(441, 52);
             tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
