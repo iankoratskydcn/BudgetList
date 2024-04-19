@@ -160,7 +160,6 @@ public partial class sqlDriver
         }
     }
 
-
     public List<string> checkForItemsBeingSold()
     {
         List<string> itemList = new List<string>();
@@ -266,6 +265,44 @@ public partial class sqlDriver
             }
         }
     }
+
+    public void createNewItem(
+        int sellerId, string postDate, string title, 
+        string description, string photoUrl, double  itemPrice 
+    )
+    {
+
+        string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
+        string query = @"
+                        INSERT INTO item (sellerId, postDate, title, description, photoUrl, itemPrice)
+                        VALUES (@itemId, @sellerId, @postDate, @title, @description, @photoUrl, @itemPrice);
+                        ";
+        int newItemId = 1;
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(maxItemIdQuery, connection))
+            {
+                object result = command.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    newItemId = Convert.ToInt32(result) + 1;
+                }
+            }
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", newItemId);
+                command.Parameters.AddWithValue("@sellerId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@postDate", DateTime.Now);
+                command.Parameters.AddWithValue("@title", title);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@photoUrl", photoUrl);
+                command.Parameters.AddWithValue("@itemPrice", itemPrice);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
 
     public void insertAddressToUser(string street, string city, string state, string zip)
     {

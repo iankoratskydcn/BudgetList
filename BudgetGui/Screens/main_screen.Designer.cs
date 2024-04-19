@@ -109,6 +109,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.BackColor = SystemColors.ButtonHighlight;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Location = new Point(130, 104);
@@ -155,6 +156,7 @@
             Controls.Add(logout);
             Name = "main_screen";
             Size = new Size(805, 534);
+            Load += main_screen_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

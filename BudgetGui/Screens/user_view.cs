@@ -20,6 +20,7 @@ namespace BudgetGui.Screens
         public user_view(Form1 _mainForm)
         {
             InitializeComponent();
+            DoubleBuffered = true;
             mainForm = _mainForm;
         }
 

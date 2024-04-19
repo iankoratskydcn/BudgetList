@@ -30,6 +30,7 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             linkLabel1 = new LinkLabel();
+            linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();

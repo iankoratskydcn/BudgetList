@@ -20,6 +20,7 @@ namespace BudgetGui.Screens
         {
             InitializeComponent();
             mainForm = _mainForm;
+            DoubleBuffered = true;
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -40,7 +41,7 @@ namespace BudgetGui.Screens
             } else if (sqlDriver.checkIfUsernameExists(username.Text)) {
                 MessageBox.Show("Username Already Exists");
             } else {
-                sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, password1.Text, email.Text);
+                sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, password1.Text, email.Text, "");
                 MessageBox.Show("Account Created Successfully");
                 Form1.changeState(0);
             }
