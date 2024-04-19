@@ -82,10 +82,7 @@ namespace BudgetGui.Screens
             else
             {
                 string dt = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-                sqlDriver.createNewItem(
-                        Int32.Parse(mainForm.getUserId()), dt, itemTitle.Text,
-                          itemDesc.Text, onlyFileName, itemPrice.Text
-                    );
+                sqlDriver.createNewItem(itemTitle.Text,itemDesc.Text, onlyFileName, itemPrice.Text);
                 //sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, itemPrice.Text);
                 MessageBox.Show("Item Created Successfully");
                 Form1.changeState(7);

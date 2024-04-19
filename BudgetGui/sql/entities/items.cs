@@ -266,10 +266,7 @@ public partial class sqlDriver
         }
     }
 
-    public void createNewItem(
-        int sellerId, string postDate, string title, 
-        string description, string photoUrl, string  itemPrice 
-    )
+    public void createNewItem(string title, string description, string photoUrl, string  itemPrice)
     {
 
         string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
