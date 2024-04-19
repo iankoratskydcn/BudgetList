@@ -69,6 +69,7 @@
             messages.Size = new Size(474, 450);
             messages.TabIndex = 10;
             messages.WrapContents = false;
+            messages.Paint += messages_Paint;
             // 
             // richTextBox1
             // 
@@ -106,7 +107,7 @@
             shopping.TabIndex = 18;
             shopping.Text = "Shopping";
             shopping.UseVisualStyleBackColor = true;
-            shopping.Click += this.shopping_Click;
+            shopping.Click += shopping_Click;
             // 
             // items
             // 
@@ -117,7 +118,7 @@
             items.TabIndex = 17;
             items.Text = "My Items";
             items.UseVisualStyleBackColor = true;
-            items.Click += this.items_Click;
+            items.Click += items_Click;
             // 
             // messageScreen
             // 
@@ -128,7 +129,7 @@
             messageScreen.TabIndex = 16;
             messageScreen.Text = "Messages";
             messageScreen.UseVisualStyleBackColor = true;
-            messageScreen.Click += this.messageScreen_Click;
+            messageScreen.Click += messageScreen_Click;
             // 
             // searchView
             // 
@@ -139,7 +140,7 @@
             searchView.TabIndex = 15;
             searchView.Text = "Search";
             searchView.UseVisualStyleBackColor = true;
-            searchView.Click += this.searchView_Click;
+            searchView.Click += searchView_Click;
             // 
             // userView
             // 
@@ -150,7 +151,7 @@
             userView.TabIndex = 14;
             userView.Text = "Account";
             userView.UseVisualStyleBackColor = true;
-            userView.Click += this.userView_Click;
+            userView.Click += userView_Click;
             // 
             // logout
             // 
