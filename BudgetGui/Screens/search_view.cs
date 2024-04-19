@@ -26,6 +26,8 @@ namespace BudgetGui.Screens
             DoubleBuffered = true;
             mainForm = _mainForm;
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
+            txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
+            
             //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"
 
         }
