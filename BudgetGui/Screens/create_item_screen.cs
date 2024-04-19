@@ -1,13 +1,19 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -29,8 +35,37 @@ namespace BudgetGui.Screens
         {
             string monetaryPattern = @"^\d+(\.\d{2})?$";
             string[] fields = { itemTitle.Text, itemDesc.Text, itemPrice.Text };
-            string[] labels = { "Title", "Description", "Price" };
+            string[] labels = { "Title", "Description", "Price", "" };
 
+            //for uploading an image
+            string _path = textBox1.Text;
+            string newpath = "";
+
+            if (_path != "")
+            {
+
+                string onlyFileName = Path.GetFileName(_path);
+
+                int iiii = 0;
+
+                string image_dir = Path.Combine(Environment.CurrentDirectory, @"..\..\..\images\items\");
+                string initial_path = Path.GetFullPath(image_dir + onlyFileName);
+                newpath = initial_path;
+
+                while (true)
+                {
+                    if (!File.Exists(newpath))
+                    {
+                        MessageBox.Show(_path);
+                        File.SetAttributes(image_dir, FileAttributes.Normal);
+                        File.Copy(_path, newpath, true);
+                        break;
+                    }
+                    newpath = Path.Combine(image_dir, Path.GetFileNameWithoutExtension(_path), " (", iiii.ToString(), ")", Path.GetExtension(_path));
+                    iiii++;
+                }
+            }
+            
             for (int i = 0; i < fields.Length; i++)
             {
                 if (string.IsNullOrEmpty(fields[i]))
@@ -45,16 +80,17 @@ namespace BudgetGui.Screens
             }
             else
             {
-                sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, itemPrice.Text);
-                MessageBox.Show("Account Created Successfully");
+                string dt = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                sqlDriver.createNewItem(
+                        Int32.Parse(mainForm.getUserId()), dt, itemTitle.Text,
+                          itemDesc.Text, newpath, itemPrice.Text
+                    );
+                //sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, itemPrice.Text);
+                MessageBox.Show("Item Created Successfully");
                 Form1.changeState(7);
             }
         }
 
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void userView_Click(object sender, EventArgs e)
         {
@@ -85,6 +121,19 @@ namespace BudgetGui.Screens
         {
             Program.GlobalStrings = null;
             Form1.changeState(0);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileloader = new OpenFileDialog();
+            fileloader.Filter = "All Files (*.*)|*.*";
+            fileloader.FilterIndex = 1;
+
+            if(fileloader.ShowDialog() == DialogResult.OK)
+            {
+                string path = fileloader.FileName;
+                textBox1.Text = path;
+            }
         }
     }
 }

@@ -268,13 +268,13 @@ public partial class sqlDriver
 
     public void createNewItem(
         int sellerId, string postDate, string title, 
-        string description, string photoUrl, double  itemPrice 
+        string description, string photoUrl, string  itemPrice 
     )
     {
 
         string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
         string query = @"
-                        INSERT INTO item (sellerId, postDate, title, description, photoUrl, itemPrice)
+                        INSERT INTO item (itemId, sellerId, postDate, title, description, photoUrl, itemPrice)
                         VALUES (@itemId, @sellerId, @postDate, @title, @description, @photoUrl, @itemPrice);
                         ";
         int newItemId = 1;
@@ -298,6 +298,7 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@photoUrl", photoUrl);
                 command.Parameters.AddWithValue("@itemPrice", itemPrice);
+                MessageBox.Show(command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
