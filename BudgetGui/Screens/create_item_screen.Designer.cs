@@ -41,6 +41,9 @@
             itemPrice = new TextBox();
             itemDesc = new TextBox();
             label1 = new Label();
+            button1 = new Button();
+            openFileDialog1 = new OpenFileDialog();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -142,7 +145,7 @@
             // 
             // createItem
             // 
-            createItem.Location = new Point(317, 380);
+            createItem.Location = new Point(317, 358);
             createItem.Name = "createItem";
             createItem.Size = new Size(253, 23);
             createItem.TabIndex = 38;
@@ -178,10 +181,31 @@
             label1.Text = "Create Item";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
+            // button1
+            // 
+            button1.Location = new Point(496, 329);
+            button1.Name = "button1";
+            button1.Size = new Size(74, 23);
+            button1.TabIndex = 42;
+            button1.Text = "Open File";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(317, 329);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Image Path";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(173, 23);
+            textBox1.TabIndex = 43;
+            // 
             // create_item_screen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(textBox1);
+            Controls.Add(button1);
             Controls.Add(label1);
             Controls.Add(itemTitle);
             Controls.Add(createItem);
@@ -217,5 +241,8 @@
         private TextBox itemPrice;
         private TextBox itemDesc;
         private Label label1;
+        private Button button1;
+        private OpenFileDialog openFileDialog1;
+        private TextBox textBox1;
     }
 }

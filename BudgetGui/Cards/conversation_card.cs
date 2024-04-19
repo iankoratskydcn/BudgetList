@@ -36,9 +36,9 @@ namespace BudgetGui.Screens.cards
             DataTable j = driver.getUserById(_secondary_user);
             try
             {
-                if (j.Rows[0]["profilePicture"].ToString() != "" && j.Rows[0]["profilePicture"].ToString().Length != 0 && j.Rows[0]["profilePicture"].ToString() != null)
+                if (j.Rows[0]["profile_pic"].ToString() != "" && j.Rows[0]["profile_pic"].ToString().Length != 0 && j.Rows[0]["profile_pic"].ToString() != null)
                 {
-                    pictureBox1.Image = Image.FromFile(j.Rows[0]["profilePicture"].ToString());
+                    pictureBox1.Image = Image.FromFile(j.Rows[0]["profile_pic"].ToString());
                 }
             }
             catch (Exception)

@@ -22,9 +22,6 @@
     <Compile Update="Cards\self_message_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Screens\conversation_screen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Screens\items_view.cs">
       <SubType>UserControl</SubType>
     </Compile>

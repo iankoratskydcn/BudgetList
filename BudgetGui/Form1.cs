@@ -44,6 +44,11 @@ namespace BudgetGui
 
         }
 
+        public string getUserId()
+        {
+            return userId;
+        }
+
 
 
         public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
@@ -104,8 +109,8 @@ namespace BudgetGui
                 //    form1.panel1.Controls.Add(conversation_Screen);
                 //    conversation_Screen.Dock = DockStyle.Fill;
                 //    break;
-                    items_view.checkItems();
-                    break;
+                //    items_view.checkItems();
+                //    break;
                 case 8: //the user has selected to create an item
                     _create_item_screen = new create_item_screen(form1);
                     form1.panel1.Controls.Add(_create_item_screen);

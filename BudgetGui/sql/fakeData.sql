@@ -1,13 +1,13 @@
  INSERT INTO _user (userId, fName, lName, username, _password, email, DOB, street, city, state, zip, profile_pic)
 VALUES
-    (1, 'Joshua', 'Bernard', 'jbernard2024', 'Josh1234!', 'joshua@gmail.com', '2002-04-28', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'BudgetGui/images/profile/download.png'),
-    (2, 'John', 'Doe', 'johndoe', 'Password1!', 'john@gmail.com', '1990-01-01', '123 Main Street','New York', 'New York', 10001,'BudgetGui/images/profile/download (5).png'),
-    (3, 'Jane', 'Smith', 'janesmith', 'Password2!', 'jane@gmail.com', '1985-05-15', '456 Broadway', 'Los Angeles', 'California', 90001,'BudgetGui/images/profile/download (2).png'),
-    (4, 'Alice', 'Johnson', 'alicejohnson', 'Password3!', 'alice@gmail.com', '1982-11-20', '789 Oak Avenue', 'Chicago', 'Illinois', 60601,'BudgetGui/images/profile/download.png'),
-    (5, 'Bob', 'Brown', 'bobbrown', 'Password4!', 'bob@gmail.com', '1978-07-10', '1011 Cedar Street', 'Houston', 'Texas', 77002,'BudgetGui/images/profile/download (3).png'),
-    (6, 'Emily', 'Taylor', 'emilytaylor', 'Password5!', 'emily@gmail.com', '1995-03-25', '1213 Elm Road', 'Miami', 'Florida', 33101,'BudgetGui/images/profile/download (7).png'),
-    (7, 'Daniel', 'Lujo', 'DLujo', 'Daniel1234!', 'daniel@gmail.com', '2002-01-05', '1213 E. Fowler Avenue', 'Tampa', 'Forida', 33620,'BudgetGui/images/profile/download (3).png'),
-    (8, 'Tommy', 'Wazoo', 'TWazoo', 'Twz1234!', 'tommy@gmail.com', '2002-01-09', '1213 E. Fowler Avenue', 'Tampa', 'Forida', 33620,'BudgetGui/images/profile/download (6).png');
+    (1, 'Joshua', 'Bernard', 'jbernard2024', 'Josh1234!', 'joshua@gmail.com', '2002-04-28', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'../../../images/profile/download.png'),
+    (2, 'John', 'Doe', 'johndoe', 'Password1!', 'john@gmail.com', '1990-01-01', '123 Main Street','New York', 'New York', 10001,'../../../images/profile/download (5).png'),
+    (3, 'Jane', 'Smith', 'janesmith', 'Password2!', 'jane@gmail.com', '1985-05-15', '456 Broadway', 'Los Angeles', 'California', 90001,'../../../images/profile/download (2).png'),
+    (4, 'Alice', 'Johnson', 'alicejohnson', 'Password3!', 'alice@gmail.com', '1982-11-20', '789 Oak Avenue', 'Chicago', 'Illinois', 60601,'../../../images/profile/download.png'),
+    (5, 'Bob', 'Brown', 'bobbrown', 'Password4!', 'bob@gmail.com', '1978-07-10', '1011 Cedar Street', 'Houston', 'Texas', 77002,'../../..//images/profile/download (3).png'),
+    (6, 'Emily', 'Taylor', 'emilytaylor', 'Password5!', 'emily@gmail.com', '1995-03-25', '1213 Elm Road', 'Miami', 'Florida', 33101,'../../../images/profile/download (7).png'),
+    (7, 'Daniel', 'Lujo', 'DLujo', 'Daniel1234!', 'daniel@gmail.com', '2002-01-05', '1213 E. Fowler Avenue', 'Tampa', 'Forida', 33620,'../../../images/profile/download (3).png'),
+    (8, 'Tommy', 'Wazoo', 'TWazoo', 'Twz1234!', 'tommy@gmail.com', '2002-01-09', '1213 E. Fowler Avenue', 'Tampa', 'Forida', 33620,'../../../images/profile/download (6).png');
     
 INSERT INTO _message(sender,timeDate,recipient,text1)
 VALUES
