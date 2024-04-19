@@ -10,14 +10,15 @@ CREATE TABLE _user(
     city VARCHAR(50),
     state VARCHAR(50),
     zip INT,
-    age INT --should be changed to derived attribute
+    age INT, --should be changed to derived attribute
+    profile_pic VARCHAR(128)
     );
 
 CREATE TABLE _message(
     sender INT NOT NULL,
     timeDate DATE NOT NULL,
     recipient INT NOT NULL,
-    text1 VARCHAR(255),
+    text1 VARCHAR(1024),
     PRIMARY KEY(sender, timeDate),
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)

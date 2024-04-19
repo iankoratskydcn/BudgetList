@@ -11,8 +11,7 @@ using System.Data;
 public partial class sqlDriver
 {
 
-
-    public void InsertUser(string firstName, string lastName, string username, string password, string email)
+    public void InsertUser(string firstName, string lastName, string username, string password, string email, string profile_pic)
     {
         string maxUserIdQuery = "SELECT MAX(userId) FROM _user";
         string query = @"INSERT INTO _user (userId, fName, lName, username, _password, email) VALUES (@userId, @firstName, @lastName, @username, @password, @email)";

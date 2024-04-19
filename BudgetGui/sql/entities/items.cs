@@ -160,7 +160,6 @@ public partial class sqlDriver
         }
     }
 
-
     public List<string> checkForItemsBeingSold()
     {
         List<string> itemList = new List<string>();
