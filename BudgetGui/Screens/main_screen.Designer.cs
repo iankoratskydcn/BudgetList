@@ -109,7 +109,6 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.BackColor = SystemColors.ButtonHighlight;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Location = new Point(130, 104);
