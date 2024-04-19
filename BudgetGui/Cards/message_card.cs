@@ -32,6 +32,7 @@ namespace BudgetGui.Screens
                 //clear the controls
                 this.Controls.Clear();
                 self_message_card card = new self_message_card(strings, ints);
+                card.Dock = DockStyle.Fill;
                 this.Controls.Add(card);
             }
 

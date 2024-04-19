@@ -28,6 +28,7 @@ namespace BudgetGui.Screens.cards
 
             //unpack the arguments
             _secondary_user = _string_arguments[0];
+            _secondary_user = _string_arguments[0];
 
             //draw
             InitializeComponent();
@@ -44,6 +45,8 @@ namespace BudgetGui.Screens.cards
             {
             }
             linkLabel1.Text = j.Rows[0]["username"].ToString();
+
+
 
         }
 

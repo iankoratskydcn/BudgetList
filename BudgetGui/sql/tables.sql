@@ -1,5 +1,5 @@
 CREATE TABLE _user(
-    userId INT PRIMARY KEY,
+    userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
@@ -24,16 +24,16 @@ CREATE TABLE _message(
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
 
-CREATE TABLE item(
-    itemId INT PRIMARY KEY NOT NULL,
+CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
+    itemId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     sellerId INT NOT NULL, --Sells relationship
     buyerId INT, --Buys relationship
     postDate DATE,
     purchaseDate TIMESTAMP,--Buys relationship attribute
     title VARCHAR(100) NOT NULL,
-    description VARCHAR(255),
+    description VARCHAR(1000),
     itemPrice DECIMAL(10,2), --change to just itemPrice
-    photoUrl VARCHAR(255),
+    photoUrl VARCHAR(500),
     rating DECIMAL(2,1), --Should change to user rating, not item
     currencyType VARCHAR(50),--Buys relationship attribute
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),

@@ -98,6 +98,12 @@ namespace BudgetGui
                     items_view = new items_view(form1);
                     form1.panel1.Controls.Add(items_view);
                     items_view.Dock = DockStyle.Fill;
+                    break;
+                //case 8: //the user has selected to view a specific conversation
+                //    conversation_Screen = new conversation_screen(form1);
+                //    form1.panel1.Controls.Add(conversation_Screen);
+                //    conversation_Screen.Dock = DockStyle.Fill;
+                //    break;
                     items_view.checkItems();
                     break;
                 case 8: //the user has selected to create an item
