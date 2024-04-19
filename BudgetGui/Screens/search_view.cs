@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -25,8 +26,17 @@ namespace BudgetGui.Screens
             InitializeComponent();
             DoubleBuffered = true;
             mainForm = _mainForm;
+            dataGridView = sqlDriver.searchInitalize(dataGridView);
+            //dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
+            txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
+
+
             //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"
+
+            
+ 
+
 
         }
 

@@ -326,10 +326,43 @@ public partial class sqlDriver
             }
         }
     }
+    public DataGridView searchInitalize(DataGridView dgv)
+    {
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            DataTable dt;
+
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "buttonColumn";
+            buttonColumn.Text = "Save";
+            buttonColumn.HeaderText = "Save to Shopping";
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            dgv.Columns.Add(buttonColumn);
+
+            connection.Open();
+
+            string query = @"
+                        SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' 
+                        FROM item
+                        WHERE buyerId IS NULL;
+                        ";
+
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
+                dt = new DataTable("Items");
+                adapter.Fill(dt);
+                dgv.DataSource = dt;
+                return dgv;
+            }
+        }
+    }
 
     public DataGridView sButton(string titleQuery, DataGridView dgv)
     {
         // Check if the button column already exists
+        /*
         bool buttonColumnExists = false;
         foreach (DataGridViewColumn column in dgv.Columns)
         {
@@ -351,6 +384,7 @@ public partial class sqlDriver
 
             dgv.Columns.Add(buttonColumn);
         }
+        */
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -358,11 +392,13 @@ public partial class sqlDriver
 
             connection.Open();
 
-            StringBuilder query = new StringBuilder("SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' FROM item");
+            string query = @"
+                        SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' 
+                        FROM item
+                        WHERE title LIKE @title AND buyerId IS NULL;
+                        ";
 
-            query.Append(" WHERE title LIKE @title");
-
-            using (SQLiteCommand command = new SQLiteCommand(query.ToString(), connection))
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@title", "%" + titleQuery + "%");
 
