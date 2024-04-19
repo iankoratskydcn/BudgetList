@@ -188,7 +188,7 @@ public partial class sqlDriver
                             return null;
                         }
 
-                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }
@@ -225,7 +225,7 @@ public partial class sqlDriver
                             return null;
                         }
 
-                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }
@@ -460,7 +460,7 @@ public partial class sqlDriver
                         int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                         string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        string itemInfo = $"ItemId: {itemId}, savedUserId: {savedUserId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }
@@ -497,7 +497,7 @@ public partial class sqlDriver
                         int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                         string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }
