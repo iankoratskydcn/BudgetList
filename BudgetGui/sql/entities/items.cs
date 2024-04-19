@@ -487,16 +487,16 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
+                    if (!reader.HasRows)
+                    {
+                        return null;
+                    }
+
                     while (reader.Read())
                     {
                         int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
                         int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                         string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                        if (itemId == null)
-                        {
-                            return null;
-                        }
 
                         string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
                         itemList.Add(itemInfo);
