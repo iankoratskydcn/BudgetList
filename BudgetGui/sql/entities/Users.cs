@@ -41,7 +41,6 @@ public partial class sqlDriver
         }
     }
 
-
     public JObject getUsersByCity(string city)
     {
 

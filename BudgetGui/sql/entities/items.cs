@@ -273,9 +273,6 @@ public partial class sqlDriver
     )
     {
 
-        int sellerId, string postDate, string title, 
-        string description, string photoUrl, double  itemPrice 
-
         string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
         string query = @"
                         INSERT INTO item (sellerId, postDate, title, description, photoUrl, itemPrice)

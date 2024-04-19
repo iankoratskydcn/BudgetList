@@ -47,28 +47,14 @@ namespace BudgetGui.Screens.cards
             linkLabel1.Text = j.Rows[0]["username"].ToString();
 
 
-            DataTable j = driver.getUserById(_secondary_user);
-            try
-            {
-                if (j.Rows[0]["profilePicture"].ToString() != "" && j.Rows[0]["profilePicture"].ToString().Length != 0 && j.Rows[0]["profilePicture"].ToString() != null)
-                {
-                    pictureBox1.Image = Image.FromFile(j.Rows[0]["profilePicture"].ToString());
-                }
-            }
-            catch (Exception)
-            {
-            }
-            linkLabel1.Text = j.Rows[0]["username"].ToString();
 
         }
 
         //when you click a convo card, it should load that conversation
         private void clicked(object sender, EventArgs e)
-        private void clicked(object sender, EventArgs e)
         {
             try
             {
-                screen.change_convo(_secondary_user);
                 screen.change_convo(_secondary_user);
             }
             catch (Exception)
