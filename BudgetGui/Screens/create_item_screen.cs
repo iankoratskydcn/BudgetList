@@ -40,15 +40,16 @@ namespace BudgetGui.Screens
             //for uploading an image
             string _path = textBox1.Text;
             string newpath = "";
+            string onlyFileName = "";
 
             if (_path != "")
             {
 
-                string onlyFileName = Path.GetFileName(_path);
+                onlyFileName = Path.GetFileName(_path);
 
                 int iiii = 0;
 
-                string image_dir = Path.Combine(Environment.CurrentDirectory, @"..\..\..\images\items");
+                string image_dir = Path.Combine(Environment.CurrentDirectory, @"..\..\..\images\items\");
                 string initial_path = Path.GetFullPath(image_dir + onlyFileName);
                 newpath = initial_path;
 
@@ -83,7 +84,7 @@ namespace BudgetGui.Screens
                 string dt = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
                 sqlDriver.createNewItem(
                         Int32.Parse(mainForm.getUserId()), dt, itemTitle.Text,
-                          itemDesc.Text, newpath, itemPrice.Text
+                          itemDesc.Text, onlyFileName, itemPrice.Text
                     );
                 //sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, itemPrice.Text);
                 MessageBox.Show("Item Created Successfully");
