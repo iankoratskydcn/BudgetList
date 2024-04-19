@@ -27,6 +27,9 @@ namespace BudgetGui.Screens
             DoubleBuffered = true;
             mainForm = _mainForm;
             dataGridView = sqlDriver.searchInitalize(dataGridView);
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+            dataGridView = sqlDriver.sButton("", dataGridView);
             //dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
@@ -79,7 +82,7 @@ namespace BudgetGui.Screens
                 //DataTable commodities = sqlDriver.sButton(txtSearch.Text);
 
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
-
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
                 /*
                 // Create a new button column

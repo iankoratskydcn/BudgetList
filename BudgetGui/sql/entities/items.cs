@@ -342,8 +342,17 @@ public partial class sqlDriver
 
             connection.Open();
 
+            /*
             string query = @"
                         SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' 
+                        FROM item
+                        WHERE buyerId IS NULL;
+                        ";
+            */
+            
+            // title, price, postdate, description
+            string query = @"
+                        SELECT title as 'Title', itemPrice as 'Item Price', postDate as 'Post Date', description as 'Description'
                         FROM item
                         WHERE buyerId IS NULL;
                         ";
@@ -393,10 +402,11 @@ public partial class sqlDriver
             connection.Open();
 
             string query = @"
-                        SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' 
+                        SELECT title as 'Title',itemPrice as 'Item Price', postDate as 'Post Date',description as 'Description'
                         FROM item
                         WHERE title LIKE @title AND buyerId IS NULL;
                         ";
+  
 
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
