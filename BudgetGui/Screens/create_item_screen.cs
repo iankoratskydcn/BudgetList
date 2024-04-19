@@ -48,7 +48,7 @@ namespace BudgetGui.Screens
 
                 int iiii = 0;
 
-                string image_dir = Path.Combine(Environment.CurrentDirectory, @"..\..\..\images\items\");
+                string image_dir = Path.Combine(Environment.CurrentDirectory, @"..\..\..\images\items");
                 string initial_path = Path.GetFullPath(image_dir + onlyFileName);
                 newpath = initial_path;
 
