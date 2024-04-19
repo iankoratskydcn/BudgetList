@@ -18,6 +18,8 @@ namespace BudgetGui.Screens.cards
             string text = strings[0];
             string image_location = strings[1];
 
+            DoubleBuffered = true;
+
             //set the image and text
             richTextBox1.Text = text;
             pictureBox1.ImageLocation = image_location;

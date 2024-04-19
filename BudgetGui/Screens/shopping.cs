@@ -17,6 +17,7 @@ namespace BudgetGui.Screens
         public shopping(Form1 _mainForm)
         {
             InitializeComponent();
+            DoubleBuffered = true;
             mainForm = _mainForm;
         }
 

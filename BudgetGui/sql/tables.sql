@@ -1,5 +1,5 @@
 CREATE TABLE _user(
-    userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    userId INT PRIMARY KEY NOT NULL,
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
@@ -10,7 +10,6 @@ CREATE TABLE _user(
     city VARCHAR(50),
     state VARCHAR(50),
     zip INT,
-    age INT, --should be changed to derived attribute
     profile_pic VARCHAR(128)
     );
 
@@ -25,7 +24,7 @@ CREATE TABLE _message(
 );
 
 CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
-    itemId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    itemId INT PRIMARY KEY NOT NULL,
     sellerId INT NOT NULL, --Sells relationship
     buyerId INT, --Buys relationship
     postDate DATE,

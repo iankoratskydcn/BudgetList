@@ -29,76 +29,60 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            home = new Button();
             conversations = new FlowLayoutPanel();
             messages = new FlowLayoutPanel();
             richTextBox1 = new RichTextBox();
             button1 = new Button();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            tableLayoutPanel4 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
-            tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
-            tableLayoutPanel4.SuspendLayout();
+            shopping = new Button();
+            items = new Button();
+            messageScreen = new Button();
+            searchView = new Button();
+            userView = new Button();
+            logout = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Dock = DockStyle.Left;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(124, 35);
+            label1.Size = new Size(124, 32);
             label1.TabIndex = 6;
             label1.Text = "Messages";
             // 
-            // home
-            // 
-            home.Dock = DockStyle.Right;
-            home.Location = new Point(719, 3);
-            home.Name = "home";
-            home.Size = new Size(116, 29);
-            home.TabIndex = 7;
-            home.Text = "Home";
-            home.UseVisualStyleBackColor = true;
-            home.Click += home_Click;
-            // 
             // conversations
             // 
-            conversations.Dock = DockStyle.Fill;
             conversations.FlowDirection = FlowDirection.TopDown;
-            conversations.Location = new Point(3, 38);
+            conversations.Location = new Point(135, 47);
             conversations.Name = "conversations";
-            conversations.Size = new Size(187, 497);
+            conversations.Size = new Size(187, 450);
             conversations.TabIndex = 9;
             // 
             // messages
             // 
             messages.AutoScroll = true;
-            messages.Dock = DockStyle.Fill;
             messages.FlowDirection = FlowDirection.TopDown;
-            messages.Location = new Point(3, 3);
+            messages.Location = new Point(328, 47);
             messages.Name = "messages";
-            messages.Size = new Size(633, 451);
+            messages.Size = new Size(474, 450);
             messages.TabIndex = 10;
             messages.WrapContents = false;
+            messages.Paint += messages_Paint;
             // 
             // richTextBox1
             // 
-            richTextBox1.Dock = DockStyle.Fill;
-            richTextBox1.Location = new Point(3, 3);
+            richTextBox1.Location = new Point(135, 503);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(588, 28);
+            richTextBox1.Size = new Size(628, 28);
             richTextBox1.TabIndex = 11;
             richTextBox1.Text = "";
             richTextBox1.Enter += button1_Click;
             // 
             // button1
             // 
-            button1.Dock = DockStyle.Fill;
-            button1.Location = new Point(597, 3);
+            button1.Location = new Point(769, 503);
             button1.Name = "button1";
             button1.Size = new Size(33, 28);
             button1.TabIndex = 12;
@@ -106,86 +90,114 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 23.0769234F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 76.92308F));
-            tableLayoutPanel1.Controls.Add(label1, 0, 0);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 1);
-            tableLayoutPanel1.Controls.Add(home, 1, 0);
-            tableLayoutPanel1.Controls.Add(conversations, 0, 1);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(838, 538);
-            tableLayoutPanel1.TabIndex = 13;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 1;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 0, 1);
-            tableLayoutPanel3.Controls.Add(messages, 0, 0);
-            tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(196, 38);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel3.Size = new Size(639, 497);
-            tableLayoutPanel3.TabIndex = 0;
-            // 
-            // tableLayoutPanel4
-            // 
-            tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 93.98058F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.01941729F));
-            tableLayoutPanel4.Controls.Add(richTextBox1, 0, 0);
-            tableLayoutPanel4.Controls.Add(button1, 1, 0);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(3, 460);
-            tableLayoutPanel4.Name = "tableLayoutPanel4";
-            tableLayoutPanel4.RowCount = 1;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Size = new Size(633, 34);
-            tableLayoutPanel4.TabIndex = 0;
-            // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.Size = new Size(200, 100);
             tableLayoutPanel2.TabIndex = 0;
             // 
+            // shopping
+            // 
+            shopping.BackgroundImageLayout = ImageLayout.Stretch;
+            shopping.Location = new Point(3, 192);
+            shopping.Name = "shopping";
+            shopping.Size = new Size(126, 34);
+            shopping.TabIndex = 18;
+            shopping.Text = "Shopping";
+            shopping.UseVisualStyleBackColor = true;
+            shopping.Click += shopping_Click;
+            // 
+            // items
+            // 
+            items.BackgroundImageLayout = ImageLayout.Stretch;
+            items.Location = new Point(3, 163);
+            items.Name = "items";
+            items.Size = new Size(126, 34);
+            items.TabIndex = 17;
+            items.Text = "My Items";
+            items.UseVisualStyleBackColor = true;
+            items.Click += items_Click;
+            // 
+            // messageScreen
+            // 
+            messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
+            messageScreen.Location = new Point(3, 222);
+            messageScreen.Name = "messageScreen";
+            messageScreen.Size = new Size(126, 34);
+            messageScreen.TabIndex = 16;
+            messageScreen.Text = "Messages";
+            messageScreen.UseVisualStyleBackColor = true;
+            messageScreen.Click += messageScreen_Click;
+            // 
+            // searchView
+            // 
+            searchView.BackgroundImageLayout = ImageLayout.Stretch;
+            searchView.Location = new Point(3, 134);
+            searchView.Name = "searchView";
+            searchView.Size = new Size(126, 34);
+            searchView.TabIndex = 15;
+            searchView.Text = "Search";
+            searchView.UseVisualStyleBackColor = true;
+            searchView.Click += searchView_Click;
+            // 
+            // userView
+            // 
+            userView.BackgroundImageLayout = ImageLayout.Stretch;
+            userView.Location = new Point(3, 104);
+            userView.Name = "userView";
+            userView.Size = new Size(126, 34);
+            userView.TabIndex = 14;
+            userView.Text = "Account";
+            userView.UseVisualStyleBackColor = true;
+            userView.Click += userView_Click;
+            // 
+            // logout
+            // 
+            logout.BackgroundImageLayout = ImageLayout.Stretch;
+            logout.Location = new Point(3, 251);
+            logout.Name = "logout";
+            logout.Size = new Size(126, 34);
+            logout.TabIndex = 13;
+            logout.Text = "Logout";
+            logout.UseVisualStyleBackColor = true;
+            logout.Click += logout_Click;
+            // 
             // messages_screen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(shopping);
+            Controls.Add(items);
+            Controls.Add(messageScreen);
+            Controls.Add(searchView);
+            Controls.Add(userView);
+            Controls.Add(logout);
+            Controls.Add(label1);
+            Controls.Add(richTextBox1);
+            Controls.Add(messages);
+            Controls.Add(conversations);
+            Controls.Add(button1);
             Name = "messages_screen";
-            Size = new Size(838, 538);
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel4.ResumeLayout(false);
+            Size = new Size(805, 534);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Label label1;
-        private Button home;
         private FlowLayoutPanel conversations;
         private FlowLayoutPanel messages;
         private RichTextBox richTextBox1;
         private Button button1;
-        private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
-        private TableLayoutPanel tableLayoutPanel3;
-        private TableLayoutPanel tableLayoutPanel4;
+        private Button shopping;
+        private Button items;
+        private Button messageScreen;
+        private Button searchView;
+        private Button userView;
+        private Button logout;
     }
 }

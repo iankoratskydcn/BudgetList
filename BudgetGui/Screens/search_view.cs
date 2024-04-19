@@ -23,6 +23,7 @@ namespace BudgetGui.Screens
         public search_view(Form1 _mainForm)
         {
             InitializeComponent();
+            DoubleBuffered = true;
             mainForm = _mainForm;
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"

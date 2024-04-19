@@ -17,6 +17,7 @@ namespace BudgetGui.Screens
         {
             InitializeComponent();
             mainForm = _mainForm;
+            DoubleBuffered = true;
         }
 
         private void back_Click(object sender, EventArgs e)
