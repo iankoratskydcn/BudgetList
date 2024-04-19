@@ -52,15 +52,5 @@ namespace BudgetGui.Screens
         {
             Form1.changeState(5);
         }
-
-        private void main_screen_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

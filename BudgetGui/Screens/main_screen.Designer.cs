@@ -156,7 +156,6 @@
             Controls.Add(logout);
             Name = "main_screen";
             Size = new Size(805, 534);
-            Load += main_screen_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

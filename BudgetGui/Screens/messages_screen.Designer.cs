@@ -46,7 +46,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(3, 0);
+            label1.Location = new Point(130, 44);
             label1.Name = "label1";
             label1.Size = new Size(124, 32);
             label1.TabIndex = 6;
@@ -55,21 +55,20 @@
             // conversations
             // 
             conversations.FlowDirection = FlowDirection.TopDown;
-            conversations.Location = new Point(135, 47);
+            conversations.Location = new Point(135, 104);
             conversations.Name = "conversations";
-            conversations.Size = new Size(187, 450);
+            conversations.Size = new Size(187, 393);
             conversations.TabIndex = 9;
             // 
             // messages
             // 
             messages.AutoScroll = true;
             messages.FlowDirection = FlowDirection.TopDown;
-            messages.Location = new Point(328, 47);
+            messages.Location = new Point(328, 104);
             messages.Name = "messages";
-            messages.Size = new Size(474, 450);
+            messages.Size = new Size(474, 393);
             messages.TabIndex = 10;
             messages.WrapContents = false;
-            messages.Paint += messages_Paint;
             // 
             // richTextBox1
             // 

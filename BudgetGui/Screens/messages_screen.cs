@@ -39,7 +39,6 @@ namespace BudgetGui.Screens
         {
             Form1.changeState(2);
         }
-
         private void viewConversation_Click(object sender, EventArgs e)
         {
             //Form1.changeState(8, 6);
@@ -61,44 +60,24 @@ namespace BudgetGui.Screens
 
         }
 
-        /// <summary>
-        /// this will add a single conversation card to the conversation pane
-        /// </summary>
-        /// <param name="strings"></param>
-        /// <param name="ints"></param>
         private void add_convo(string[] strings, int[] ints)
         {
             conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
             conversations.Controls.Add(convo_card);
         }
 
-        /// <summary>
-        /// when adding messages in bulk, use this to add the self message kind
-        /// </summary>
-        /// <param name="strings"></param>
-        /// <param name="ints"></param>
         private void add_self_msg(string[] strings, int[] ints)
         {
             self_message_card self_msg_card = new self_message_card(strings, ints);
             messages.Controls.Add(self_msg_card);
         }
 
-
-        /// <summary>
-        /// when adding messages in bulk, use this to add the other message kind
-        /// </summary>
-        /// <param name="strings"></param>
-        /// <param name="ints"></param>
         private void add_msg(string[] strings, int[] ints)
         {
             message_card msg_card = new message_card(strings, ints);
             messages.Controls.Add(msg_card);
         }
 
-        /// <summary>
-        /// this will load a conversation
-        /// </summary>
-        /// <param name="id"></param>
         public void change_convo(string otherId)
         {
             messages.Controls.Clear();
@@ -115,11 +94,6 @@ namespace BudgetGui.Screens
             currentConvoId = otherId;
         }
 
-        /// <summary>
-        /// hit send
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             DateTime cur = new DateTime();
@@ -162,9 +136,5 @@ namespace BudgetGui.Screens
             Form1.changeState(5);
         }
 
-        private void messages_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
