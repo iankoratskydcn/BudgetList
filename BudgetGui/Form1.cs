@@ -87,6 +87,7 @@ namespace BudgetGui
                     shopping_screen = new shopping(form1);
                     form1.panel1.Controls.Add(shopping_screen);
                     shopping_screen.Dock = DockStyle.Fill;
+                    shopping_screen.checkItems();
                     break;
                 case 6: //the user has selected to view their messages
                     message_Screen = new messages_screen(form1, driver);

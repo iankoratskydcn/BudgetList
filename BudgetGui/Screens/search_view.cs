@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -23,9 +24,9 @@ namespace BudgetGui.Screens
         {
             InitializeComponent();
             mainForm = _mainForm;
+            dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"
 
-            
         }
 
 
@@ -94,36 +95,32 @@ namespace BudgetGui.Screens
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             // If the clicked cell is in the button column
             if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
             {
                 // Get the values from the clicked row
-                string itemId = dataGridView.Rows[e.RowIndex].Cells["itemId"].Value.ToString();
-                string title = dataGridView.Rows[e.RowIndex].Cells["title"].Value.ToString();
-                string description = dataGridView.Rows[e.RowIndex].Cells["description"].Value.ToString();
-                int sellerId = (int)dataGridView.Rows[e.RowIndex].Cells["sellerId"].Value;
-                DateTime postDate = (DateTime)dataGridView.Rows[e.RowIndex].Cells["postDate"].Value;
-                decimal itemPrice = (decimal)dataGridView.Rows[e.RowIndex].Cells["itemPrice"].Value;
-                string currencyType = dataGridView.Rows[e.RowIndex].Cells["currencyType"].Value.ToString();
+                string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
+                string title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
+                string description = dataGridView.Rows[e.RowIndex].Cells["Description"].Value?.ToString() ?? "";
+                int sellerId = dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value is int ? (int)dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value : 0;
+                DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
+                decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
+                string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
 
-                //int savedUserID;
-
-                // Create SQL command
-                string sql = $"INSERT INTO savedItems (itemId, title, description, sellerId, postDate, currencyType, itemPrice) " +
-                             $"VALUES ('{itemId}', '{title}', '{description}',{sellerId}, '{postDate.ToString("yyyy-MM-dd")}', '{currencyType}', {itemPrice})";
-
-                // Execute SQL command
-                using (SqlConnection conn = new SqlConnection(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "budgetList.db")))
+                if (sqlDriver.checkIfItemAlreadySaved(itemId))
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                    }
+                    // Create SQL command
+                    string insertSavedItemQuery = $"INSERT INTO savedItems (itemId, title, description, creatorUserId, savedUserId, postDate, currencyType, itemPrice) " +
+                                 $"VALUES ('{itemId}', '{title}', '{description}',{sellerId}, {Program.GlobalStrings[1]}, '{postDate.ToString("yyyy-MM-dd")}', '{currencyType}', {itemPrice})";
+                    
+                    sqlDriver.executeDbInsertQuery(insertSavedItemQuery);
+                    MessageBox.Show($"Item has been saved");
+                } 
+                else
+                {
+                    MessageBox.Show($"Item is already saved");
                 }
-
-                // Show a message
-                MessageBox.Show($"Item with id {itemId} saved.");
             }
         }
 

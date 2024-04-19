@@ -131,44 +131,6 @@ public partial class sqlDriver
         }
     }
 
-    //public List<string> checkForItemsBeingSold()
-    //{
-    //    List<string> itemList = new List<string>();
-    //    string query = @"
-    //                SELECT i.itemId, i.sellerId, i.title
-    //                FROM _user u
-    //                LEFT JOIN item i ON u.userId = i.sellerId
-    //                WHERE u.userId = @userId;
-    //                ";
-    //    using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-    //    {
-    //        connection.Open();
-    //        using (SQLiteCommand command = new SQLiteCommand(query, connection))
-    //        {
-    //            command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
-    //            using (SQLiteDataReader reader = command.ExecuteReader())
-    //            {
-    //                if (reader.HasRows)
-    //                {
-    //                    while (reader.Read())
-    //                    {
-    //                        int itemId = reader.GetInt32(0);
-    //                        int sellerId = reader.GetInt32(1);
-    //                        string title = reader.GetString(2);
-    //                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
-    //                        itemList.Add(itemInfo);
-    //                    }
-    //                    return itemList;
-    //                }
-    //                else
-    //                {
-    //                    return null;
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
-
     public void createNewItem(string title)
     {
         string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
@@ -330,19 +292,6 @@ public partial class sqlDriver
         }
     }
 
-    public void executeDbInsertQuery(string query)
-    {
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.ExecuteNonQuery();
-            }
-        }
-    }
-
-
     public DataGridView sButton(string titleQuery, DataGridView dgv)
     {
         // Check if the button column already exists
@@ -387,6 +336,120 @@ public partial class sqlDriver
                 adapter.Fill(dt);
                 dgv.DataSource = dt;
                 return dgv;
+            }
+        }
+    }
+
+    public bool checkIfItemAlreadySaved(string itemId)
+    {
+        string query = @"
+                    SELECT COUNT(*) 
+                    FROM savedItems 
+                    WHERE itemId = @itemId AND savedUserId = @savedUserId;
+                    ";
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", itemId);
+                command.Parameters.AddWithValue("@savedUserId", Program.GlobalStrings[1]);
+                object result = command.ExecuteScalar();
+                if (result.ToString() == "0") { return true; }
+            }
+            return false;
+        }
+    }
+
+    public List<string> checkForSavedItems()
+    {
+        List<string> itemList = new List<string>();
+        string query = @"
+                    SELECT itemId, savedUserId, title, 
+                    FROM savedItems
+                    WHERE savedUserId = @userId;
+                    ";
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                        int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+
+                        if (itemId == null)
+                        {
+                            return null;
+                        }
+
+                        string itemInfo = $"ItemId: {itemId}, savedUserId: {savedUserId}, Title: {title}";
+                        itemList.Add(itemInfo);
+                    }
+                }
+                return itemList;
+            }
+        }
+    }
+
+    public List<string> checkForBoughtItems()
+    {
+        List<string> itemList = new List<string>();
+        /*string query = @"
+                    SELECT i.itemId, i.sellerId, i.title
+                    FROM _user u
+                    LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
+                    WHERE u.userId = @userId;
+                    ";*/
+        string query = @"
+                    SELECT i.itemId, i.sellerId, i.title
+                    FROM _user u
+                    LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
+                    WHERE u.userId = @userId;
+                    ";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                        int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+
+                        if (itemId == null)
+                        {
+                            return null;
+                        }
+
+                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        itemList.Add(itemInfo);
+                    }
+                }
+                return itemList;
+            }
+        }
+    }
+
+    public void executeDbInsertQuery(string query)
+    {
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.ExecuteNonQuery();
             }
         }
     }
