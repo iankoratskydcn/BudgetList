@@ -295,7 +295,6 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@photoUrl", photoUrl);
                 command.Parameters.AddWithValue("@itemPrice", itemPrice);
-                MessageBox.Show(command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
