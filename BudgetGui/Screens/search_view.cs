@@ -35,6 +35,7 @@ namespace BudgetGui.Screens
 
         public void dgvInitialize()
         {
+            txtSearch.Clear();
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             dataGridView = sqlDriver.sButton("", dataGridView);
