@@ -352,9 +352,10 @@ public partial class sqlDriver
 
  
             string query = @"
-                        SELECT title as 'Title', '$' || itemPrice as 'Item Price', postDate as 'Post Date', description as 'Description'
-                        FROM item
-                        WHERE buyerId IS NULL;
+                            SELECT i.title as 'Title', '$' || i.itemPrice as 'Item Price', u.username as 'Seller Name', i.postDate as 'Post Date', i.itemId as 'Item ID', i.description as 'Description'
+                            FROM item i
+                            JOIN _user u ON u.userId = i.sellerId
+                            WHERE i.buyerId IS NULL;
                         ";
 
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
@@ -402,9 +403,10 @@ public partial class sqlDriver
             connection.Open();
 
             string query = @"
-                        SELECT itemId as 'Item ID', title as 'Title', '$' || itemPrice as 'Item Price', sellerId as 'Seller ID', postDate as 'Post Date',description as 'Description'
-                        FROM item
-                        WHERE title LIKE @title AND buyerId IS NULL;
+                            SELECT i.title as 'Title', '$' || i.itemPrice as 'Item Price', u.username as 'Seller Name', i.postDate as 'Post Date', i.itemId as 'Item ID', i.description as 'Description'
+                            FROM item i
+                            JOIN _user u ON u.userId = i.sellerId
+                            WHERE i.title LIKE @title AND i.buyerId IS NULL;
                         ";
   
 
