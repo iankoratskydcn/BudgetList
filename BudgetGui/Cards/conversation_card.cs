@@ -32,6 +32,7 @@ namespace BudgetGui.Screens.cards
 
             //draw
             InitializeComponent();
+
             DataTable j = driver.getUserById(_secondary_user);
             try
             {
