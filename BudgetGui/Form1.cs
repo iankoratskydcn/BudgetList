@@ -130,6 +130,7 @@ namespace BudgetGui
                     } 
                     form1.panel1.Controls.Add(user_View);
                     user_View.Dock = DockStyle.Fill;
+                    user_View.refresh_image();
                     break;
                 
                 case 4: //the user has selected a searched items screen
@@ -140,6 +141,7 @@ namespace BudgetGui
                     }
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
+                    search_View.dgvInitialize();
                     break;
                 
                 case 5: //the user has selected shopping screen
