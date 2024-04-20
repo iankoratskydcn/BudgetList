@@ -114,15 +114,16 @@ namespace BudgetGui.Screens
             if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
             {
                 // Get the values from the clicked row
-                string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
                 string title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
                 string description = dataGridView.Rows[e.RowIndex].Cells["Description"].Value?.ToString() ?? "";
-                int sellerId = dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value is int ? (int)dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value : 0;
+                string username = dataGridView.Rows[e.RowIndex].Cells["Username"].Value?.ToString() ?? "";
                 DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
                 decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
-                string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
 
-                if (sellerId == Convert.ToInt32(Program.GlobalStrings[1]))
+                //either save or make titles unique for specific users
+                string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
+
+                if (username == Program.GlobalStrings[0])
                 {
                     MessageBox.Show($"You can't save your own items");
                     return;
@@ -131,9 +132,13 @@ namespace BudgetGui.Screens
                 if (sqlDriver.checkIfItemAlreadySaved(itemId))
                 {
                     // Create SQL command
-                    string insertSavedItemQuery = $"INSERT INTO savedItems (itemId, title, description, creatorUserId, savedUserId, postDate, currencyType, itemPrice) " +
-                                 $"VALUES ('{itemId}', '{title}', '{description}',{sellerId}, {Program.GlobalStrings[1]}, '{postDate.ToString("yyyy-MM-dd")}', '{currencyType}', {itemPrice})";
-                    
+                    string insertSavedItemQuery = $@"
+                                INSERT INTO savedItems (itemId, title, description, creatorUserId, savedUserId, postDate, currencyType, itemPrice) 
+                                SELECT itemId, title, description, sellerId, {Program.GlobalStrings[1]}, postDate, currencyType, itemPrice 
+                                FROM item 
+                                WHERE itemId = '{itemId}';
+                            ";
+
                     sqlDriver.executeDbInsertQuery(insertSavedItemQuery);
                     MessageBox.Show($"Item has been saved");
                 } 
