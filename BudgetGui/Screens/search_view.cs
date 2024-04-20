@@ -38,6 +38,19 @@ namespace BudgetGui.Screens
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             dataGridView = sqlDriver.sButton("", dataGridView);
+
+            dataGridView.Columns["Item ID"].Visible = false;
+            dataGridView.Columns["Description"].Visible = false;
+            dataGridView.Columns["Seller Name"].Visible = false;
+            dataGridView.Columns["Post Date"].Visible = false;
+            dataGridView.Columns["Item Price"].Visible = false;
+
+
+            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView.Columns[1].Width = 70;
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView.Columns[0].Width = 70;
+
         }
 
 
@@ -78,7 +91,7 @@ namespace BudgetGui.Screens
                 //DataTable commodities = sqlDriver.sButton(txtSearch.Text);
 
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
-                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 /*
                 // Create a new button column
@@ -96,6 +109,9 @@ namespace BudgetGui.Screens
                 */
 
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+
+
+
             }
             catch (Exception ex)
             {
@@ -111,11 +127,11 @@ namespace BudgetGui.Screens
                 return;
             }
 
-            
 
 
-                // If the clicked cell is in the button column
-                if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
+
+            // If the clicked cell is in the button column
+            if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
             {
                 // Get the values from the clicked row
                 string username = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
@@ -139,7 +155,7 @@ namespace BudgetGui.Screens
 
                     sqlDriver.executeDbInsertQuery(insertSavedItemQuery);
                     MessageBox.Show($"Item has been saved");
-                } 
+                }
                 else
                 {
                     MessageBox.Show($"Item is already saved");
@@ -196,8 +212,6 @@ namespace BudgetGui.Screens
             int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
 
 
-
-
             JObject j = sqlDriver.getItemById(itemIdnum);
             try
             {
@@ -212,6 +226,7 @@ namespace BudgetGui.Screens
             }
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            label2.Text = "$" + j["itemPrice"].ToString();
 
         }
 
@@ -220,5 +235,6 @@ namespace BudgetGui.Screens
             if (e.KeyChar == (char)13)
                 sButton.PerformClick();
         }
+
     }
 }
