@@ -215,7 +215,6 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Enabled = false;
             richTextBox1.Location = new Point(573, 261);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
@@ -235,7 +234,6 @@
             label2.Size = new Size(60, 21);
             label2.TabIndex = 25;
             label2.Text = "Price: 0";
-            label2.Click += label2_Click;
             // 
             // search_view
             // 
