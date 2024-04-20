@@ -21,14 +21,11 @@ namespace BudgetGui.Screens
             this.BackColor = Color.Transparent;
             DoubleBuffered = true;
 
-
-
         }
 
         private void logout_Click(object sender, EventArgs e)
         {
-            Program.GlobalStrings = null;
-            Form1.changeState(0);
+            mainForm.logout();
         }
 
         private void userView_Click(object sender, EventArgs e)

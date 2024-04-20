@@ -20,8 +20,6 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
             InitializeComponent();
             DoubleBuffered = true;
-
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,16 +45,12 @@ namespace BudgetGui.Screens
             {
                 MessageBox.Show("Login Failed");
             }
+
         }
 
         private void register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Form1.changeState(1);
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

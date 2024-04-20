@@ -69,12 +69,13 @@
             messages.AutoScroll = true;
             messages.BackColor = SystemColors.Control;
             messages.BackgroundImage = (Image)resources.GetObject("messages.BackgroundImage");
-            messages.FlowDirection = FlowDirection.BottomUp;
+            messages.FlowDirection = FlowDirection.TopDown;
             messages.Location = new Point(334, 104);
             messages.Name = "messages";
             messages.Size = new Size(423, 335);
             messages.TabIndex = 10;
             messages.WrapContents = false;
+            messages.Paint += messages_Paint;
             // 
             // richTextBox1
             // 
@@ -83,7 +84,7 @@
             richTextBox1.Size = new Size(579, 28);
             richTextBox1.TabIndex = 11;
             richTextBox1.Text = "";
-            richTextBox1.Enter += button1_Click;
+            richTextBox1.KeyDown += richTextBox1_KeyDown;
             // 
             // button1
             // 

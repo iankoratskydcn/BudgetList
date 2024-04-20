@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BudgetGui.sql.entities;
+using Newtonsoft.Json.Linq;
 
 
 namespace BudgetGui.Screens
@@ -67,8 +68,7 @@ namespace BudgetGui.Screens
 
         private void logout_Click(object sender, EventArgs e)
         {
-            Program.GlobalStrings = null;
-            Form1.changeState(0);
+            mainForm.logout();
         }
 
         private void sButton_Click(object sender, EventArgs e)
@@ -111,8 +111,11 @@ namespace BudgetGui.Screens
                 return;
             }
 
-            // If the clicked cell is in the button column
-            if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
+            
+
+
+                // If the clicked cell is in the button column
+                if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
             {
                 // Get the values from the clicked row
                 string username = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
@@ -189,6 +192,25 @@ namespace BudgetGui.Screens
                 }
                 */
             }
+
+            int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
+
+
+
+
+            JObject j = sqlDriver.getItemById(itemIdnum);
+            try
+            {
+                pictureBox2.Image = Image.FromFile(
+                    Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                    j["photoUrl"].ToString()));
+                richTextBox1.Text = j["description"].ToString();
+
+            }
+            catch (Exception)
+            {
+            }
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
 
 
         }

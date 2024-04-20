@@ -58,6 +58,7 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@itemId", itemId);
                 System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
                 var r = Serialize(reader);
+
                 obj = JObject.Parse(JsonConvert.SerializeObject(r));
 
             }

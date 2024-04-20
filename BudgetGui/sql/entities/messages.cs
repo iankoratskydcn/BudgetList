@@ -41,7 +41,7 @@ public partial class sqlDriver
     /// <returns></returns>
     public List<message_card> getMessages(int selfID, int otherID)
     {
-        string query = @"SELECT * FROM _message WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate";
+        string query = @"SELECT * FROM _message WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate DESC";
         string query_photo_user = @"SELECT profile_pic FROM _user WHERE userId = @selfID LIMIT 1";
         string query_photo_other = @"SELECT profile_pic FROM _user WHERE userId = @otherID LIMIT 1";
 

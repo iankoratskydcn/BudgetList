@@ -41,17 +41,19 @@
             label1 = new Label();
             IbITotal = new Label();
             dataGridView = new DataGridView();
+            pictureBox2 = new PictureBox();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // shopping
             // 
             shopping.BackgroundImageLayout = ImageLayout.Stretch;
-            shopping.Location = new Point(4, 318);
-            shopping.Margin = new Padding(4, 5, 4, 5);
+            shopping.Location = new Point(3, 191);
             shopping.Name = "shopping";
-            shopping.Size = new Size(180, 57);
+            shopping.Size = new Size(126, 34);
             shopping.TabIndex = 17;
             shopping.Text = "Shopping";
             shopping.UseVisualStyleBackColor = true;
@@ -61,20 +63,18 @@
             // 
             pictureBox1.BackColor = SystemColors.ButtonHighlight;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(186, 173);
-            pictureBox1.Margin = new Padding(4, 5, 4, 5);
+            pictureBox1.Location = new Point(130, 104);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(900, 630);
+            pictureBox1.Size = new Size(630, 378);
             pictureBox1.TabIndex = 16;
             pictureBox1.TabStop = false;
             // 
             // items
             // 
             items.BackgroundImageLayout = ImageLayout.Stretch;
-            items.Location = new Point(4, 270);
-            items.Margin = new Padding(4, 5, 4, 5);
+            items.Location = new Point(3, 162);
             items.Name = "items";
-            items.Size = new Size(180, 57);
+            items.Size = new Size(126, 34);
             items.TabIndex = 15;
             items.Text = "My Items";
             items.UseVisualStyleBackColor = true;
@@ -86,20 +86,18 @@
             title.BackColor = Color.Transparent;
             title.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             title.ForeColor = Color.Black;
-            title.Location = new Point(186, 73);
-            title.Margin = new Padding(4, 0, 4, 0);
+            title.Location = new Point(130, 44);
             title.Name = "title";
-            title.Size = new Size(131, 48);
+            title.Size = new Size(89, 32);
             title.TabIndex = 14;
             title.Text = "Search";
             // 
             // messageScreen
             // 
             messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
-            messageScreen.Location = new Point(4, 368);
-            messageScreen.Margin = new Padding(4, 5, 4, 5);
+            messageScreen.Location = new Point(3, 221);
             messageScreen.Name = "messageScreen";
-            messageScreen.Size = new Size(180, 57);
+            messageScreen.Size = new Size(126, 34);
             messageScreen.TabIndex = 13;
             messageScreen.Text = "Messages";
             messageScreen.UseVisualStyleBackColor = true;
@@ -108,10 +106,9 @@
             // searchView
             // 
             searchView.BackgroundImageLayout = ImageLayout.Stretch;
-            searchView.Location = new Point(4, 222);
-            searchView.Margin = new Padding(4, 5, 4, 5);
+            searchView.Location = new Point(3, 133);
             searchView.Name = "searchView";
-            searchView.Size = new Size(180, 57);
+            searchView.Size = new Size(126, 34);
             searchView.TabIndex = 12;
             searchView.Text = "Search";
             searchView.UseVisualStyleBackColor = true;
@@ -119,10 +116,9 @@
             // userView
             // 
             userView.BackgroundImageLayout = ImageLayout.Stretch;
-            userView.Location = new Point(4, 173);
-            userView.Margin = new Padding(4, 5, 4, 5);
+            userView.Location = new Point(3, 104);
             userView.Name = "userView";
-            userView.Size = new Size(180, 57);
+            userView.Size = new Size(126, 34);
             userView.TabIndex = 11;
             userView.Text = "Account";
             userView.UseVisualStyleBackColor = true;
@@ -131,10 +127,9 @@
             // logout
             // 
             logout.BackgroundImageLayout = ImageLayout.Stretch;
-            logout.Location = new Point(4, 417);
-            logout.Margin = new Padding(4, 5, 4, 5);
+            logout.Location = new Point(3, 250);
             logout.Name = "logout";
-            logout.Size = new Size(180, 57);
+            logout.Size = new Size(126, 34);
             logout.TabIndex = 10;
             logout.Text = "Logout";
             logout.UseVisualStyleBackColor = true;
@@ -143,10 +138,11 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearch.Location = new Point(287, 183);
+            txtSearch.Location = new Point(201, 110);
+            txtSearch.Margin = new Padding(2, 2, 2, 2);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Enter item name";
-            txtSearch.Size = new Size(665, 39);
+            txtSearch.Size = new Size(285, 29);
             txtSearch.TabIndex = 18;
             txtSearch.Text = "\r\n";
             txtSearch.KeyPress += txtSearch_KeyPress;
@@ -155,9 +151,10 @@
             // 
             sButton.FlatAppearance.BorderSize = 0;
             sButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            sButton.Location = new Point(959, 183);
+            sButton.Location = new Point(490, 110);
+            sButton.Margin = new Padding(2, 2, 2, 2);
             sButton.Name = "sButton";
-            sButton.Size = new Size(111, 48);
+            sButton.Size = new Size(78, 29);
             sButton.TabIndex = 19;
             sButton.Text = "Search";
             sButton.UseVisualStyleBackColor = true;
@@ -168,9 +165,10 @@
             label1.AutoSize = true;
             label1.BackColor = SystemColors.ButtonHighlight;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(191, 183);
+            label1.Location = new Point(134, 110);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(90, 32);
+            label1.Size = new Size(60, 21);
             label1.TabIndex = 21;
             label1.Text = "Search:";
             // 
@@ -179,9 +177,10 @@
             IbITotal.AutoSize = true;
             IbITotal.BackColor = SystemColors.ButtonHighlight;
             IbITotal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            IbITotal.Location = new Point(191, 737);
+            IbITotal.Location = new Point(134, 442);
+            IbITotal.Margin = new Padding(2, 0, 2, 0);
             IbITotal.Name = "IbITotal";
-            IbITotal.Size = new Size(200, 32);
+            IbITotal.Size = new Size(130, 21);
             IbITotal.TabIndex = 22;
             IbITotal.Text = "Total Records: ???";
             // 
@@ -190,17 +189,38 @@
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(186, 237);
+            dataGridView.Location = new Point(130, 142);
+            dataGridView.Margin = new Padding(2, 2, 2, 2);
             dataGridView.Name = "dataGridView";
             dataGridView.RowHeadersWidth = 62;
             dataGridView.RowTemplate.Height = 33;
-            dataGridView.Size = new Size(900, 488);
+            dataGridView.Size = new Size(438, 293);
             dataGridView.TabIndex = 20;
+            dataGridView.CellClick += dataGridView_CellContentClick;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Location = new Point(573, 110);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(178, 145);
+            pictureBox2.TabIndex = 23;
+            pictureBox2.TabStop = false;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Enabled = false;
+            richTextBox1.Location = new Point(575, 264);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(176, 171);
+            richTextBox1.TabIndex = 24;
+            richTextBox1.Text = "";
             // 
             // search_view
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(richTextBox1);
+            Controls.Add(pictureBox2);
             Controls.Add(sButton);
             Controls.Add(IbITotal);
             Controls.Add(label1);
@@ -214,11 +234,11 @@
             Controls.Add(userView);
             Controls.Add(logout);
             Controls.Add(pictureBox1);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "search_view";
-            Size = new Size(1150, 890);
+            Size = new Size(805, 534);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -237,5 +257,7 @@
         private Label label1;
         private Label IbITotal;
         private DataGridView dataGridView;
+        private PictureBox pictureBox2;
+        private RichTextBox richTextBox1;
     }
 }

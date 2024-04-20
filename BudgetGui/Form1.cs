@@ -41,6 +41,27 @@ namespace BudgetGui
             panel1.Controls.Add(_login_screen);
         }
 
+        public void logout()
+        {
+
+            Program.GlobalStrings = new string[2];
+            Program.GlobalStrings[0] = "";
+            Program.GlobalStrings[1] = "";
+            //main_Screen = null;
+            //user_View = null;
+            //search_View = null;
+            //items_view = null;
+            //_create_item_screen = null;
+            //message_Screen = null;
+            //shopping_screen = null;
+            //registration = null;
+
+
+            GC.Collect();
+
+            Form1.changeState(0);
+        }
+
         public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
@@ -56,13 +77,13 @@ namespace BudgetGui
             form1.SuspendLayout();
 
             //normally i'd add the Controls.Clear here, but trying to get messages to load faster
+            panel_1.Controls.Clear();
 
             switch (state)
             {
                 
                 case 0: //switch to the login screen and log the user out
                     
-                    panel_1.Controls.Clear();
                     form1.panel1.Controls.Add(_login_screen);
                     _login_screen.Dock = DockStyle.Fill;
 
@@ -70,7 +91,6 @@ namespace BudgetGui
                 
                 case 1: //the user has selected create an account
 
-                    panel_1.Controls.Clear();
                     if (registration == null)
                     {
                         registration = new registration(form1);
@@ -83,7 +103,6 @@ namespace BudgetGui
                 
                 case 2: //the user has selected the main screen
                     
-                    panel_1.Controls.Clear();
                     //make sure the user id is updated
                     userId = Program.GlobalStrings[1];
 
@@ -99,12 +118,12 @@ namespace BudgetGui
                     message_Screen = new messages_screen(form1, driver);
                     message_Screen.convos_load();
                     message_Screen.conversations_fill();
+                    
 
                     break;
                
                 case 3: //the user has selected a user view
 
-                    panel_1.Controls.Clear();
                     if (user_View == null)
                     {
                         user_View = new user_view(form1);
@@ -116,7 +135,6 @@ namespace BudgetGui
                 
                 case 4: //the user has selected a searched items screen
 
-                    panel_1.Controls.Clear();
                     if (search_View ==null)
                     {
                         search_View = new search_view(form1);
@@ -128,7 +146,6 @@ namespace BudgetGui
                 
                 case 5: //the user has selected shopping screen
 
-                    panel_1.Controls.Clear();
                     if (shopping_screen == null) { 
 
                         shopping_screen = new shopping(form1); 
@@ -139,22 +156,17 @@ namespace BudgetGui
                     break;
                 
                 case 6: //the user has selected to view their messages
+                   
+                    message_Screen = new messages_screen(form1, driver);
+                    message_Screen.convos_load();
+                    message_Screen.conversations_fill();
 
-                    if(message_Screen ==null) //likely unnecessary for this one, since we're loading it earlier, but it's still safer to check
-                    {
-                        message_Screen = new messages_screen(form1, driver);
-                        message_Screen.convos_load();
-                        message_Screen.conversations_fill();
-                    }
-
-                    panel_1.Controls.Clear();
                     form1.panel1.Controls.Add(message_Screen);
                     message_Screen.Dock = DockStyle.Fill;
                     break;
                 
                 case 7: //the user has selected to view their items
 
-                    panel_1.Controls.Clear();
                     if (items_view ==null)
                     {
                         items_view = new items_view(form1);
@@ -166,7 +178,6 @@ namespace BudgetGui
                 
                 case 8: //the user has selected to create an item
 
-                    panel_1.Controls.Clear();
                     if (_create_item_screen ==null)
                     {
                         _create_item_screen = new create_item_screen(form1);
