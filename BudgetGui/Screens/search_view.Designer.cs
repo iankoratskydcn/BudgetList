@@ -179,7 +179,7 @@
             IbITotal.AutoSize = true;
             IbITotal.BackColor = SystemColors.ButtonHighlight;
             IbITotal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            IbITotal.Location = new Point(134, 442);
+            IbITotal.Location = new Point(130, 461);
             IbITotal.Margin = new Padding(2, 0, 2, 0);
             IbITotal.Name = "IbITotal";
             IbITotal.Size = new Size(130, 21);
@@ -200,7 +200,7 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 62;
             dataGridView.RowTemplate.Height = 33;
-            dataGridView.Size = new Size(438, 293);
+            dataGridView.Size = new Size(438, 317);
             dataGridView.TabIndex = 20;
             dataGridView.CellClick += dataGridView_CellContentClick;
             // 
@@ -218,7 +218,9 @@
             richTextBox1.Enabled = false;
             richTextBox1.Location = new Point(573, 261);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(176, 171);
+            richTextBox1.ReadOnly = true;
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            richTextBox1.Size = new Size(176, 197);
             richTextBox1.TabIndex = 24;
             richTextBox1.Text = "";
             // 
@@ -227,12 +229,13 @@
             label2.AutoSize = true;
             label2.BackColor = SystemColors.ButtonHighlight;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(631, 442);
+            label2.Location = new Point(627, 461);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(72, 21);
+            label2.Size = new Size(60, 21);
             label2.TabIndex = 25;
-            label2.Text = "Price: ???";
+            label2.Text = "Price: 0";
+            label2.Click += label2_Click;
             // 
             // search_view
             // 

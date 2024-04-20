@@ -111,7 +111,7 @@ namespace BudgetGui.Screens
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
 
 
-                
+
             }
             catch (Exception ex)
             {
@@ -234,6 +234,11 @@ namespace BudgetGui.Screens
         {
             if (e.KeyChar == (char)13)
                 sButton.PerformClick();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
