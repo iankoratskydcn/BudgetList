@@ -147,7 +147,7 @@ public partial class sqlDriver
 
     public DataTable getConversations(int selfID)
     {
-        string query = @"SELECT DISTINCT recipient FROM _message WHERE sender = @selfID";
+        string query = @"SELECT DISTINCT recipient FROM _message WHERE sender = @selfID ORDER BY DATE(timeDate) DESC";
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {

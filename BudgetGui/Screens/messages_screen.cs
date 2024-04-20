@@ -26,7 +26,7 @@ namespace BudgetGui.Screens
         static sqlDriver driver;
         private static DataTable convs = new DataTable();
         static FlowLayoutPanel convos_panel;
-        
+
         public messages_screen(Form1 _mainForm, sqlDriver _sqlDriver)
         {
 
@@ -34,7 +34,7 @@ namespace BudgetGui.Screens
 
             messages_Screen = this;
             mainForm = _mainForm;
-            selfId = Int32.Parse( Program.GlobalStrings[1]);
+            selfId = Int32.Parse(Program.GlobalStrings[1]);
             driver = _sqlDriver;
             convos_panel = this.conversations_cont;
 
@@ -49,19 +49,41 @@ namespace BudgetGui.Screens
         {
             string[] strings = { };
 
-            
-
-            //foreach(DataRow drow in convs.Rows) {
-                Parallel.ForEach(convs.AsEnumerable(), drow =>
-                {
+            foreach (DataRow drow in convs.Rows)
+            {
+            //    Parallel.ForEach(convs.AsEnumerable(), drow =>
+            //{
+                //try
+                //{
                     int[] ints = { (int)drow["recipient"] };
                     conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
                     conversations_cont.Controls.Add(convo_card);
-                });
+
+                //}
+                //catch (Exception e)
+                //{
+                //    MessageBox.Show(e.Message);
+                //}
+            }//);
 
         }
 
-        public void conversations_renew() {
+        public void _convo_from_item_start(int buyerId, int itemId)
+        {
+            JObject item = driver.getItemById(itemId);
+            int seller = Int32.Parse(item["sellerId"].ToString());
+            string text = "Hello, I just bought your " + item["title"].ToString() + " and I have a question.";
+
+
+            driver.SendMessage(buyerId, DateTime.Now, seller, text);
+            conversations_renew();
+            Form1.changeState(6);
+            change_convo(seller);
+
+        }
+
+        public void conversations_renew()
+        {
 
             convos_load();
 
@@ -76,15 +98,15 @@ namespace BudgetGui.Screens
             conversations_fill();
 
             //controls.ForEach(
-            Parallel.ForEach(controls.AsParallel().AsOrdered(),
-                (e) => {
+            Parallel.ForEach(controls.AsParallel(),
+                (e) =>
+                {
                     e.Dispose();
                 });
 
             GC.Collect();
         }
-
-
+        
         public void change_convo(int otherId)
         {
 
@@ -112,7 +134,7 @@ namespace BudgetGui.Screens
             Parallel.ForEach(controls.AsParallel().AsOrdered(),
                 (e) =>
                 {
-                    e.Dispose(); 
+                    e.Dispose();
                 });
 
             //controls.ForEach(e =>{e.Dispose();});
@@ -121,6 +143,7 @@ namespace BudgetGui.Screens
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (richTextBox1.Text == "") { return; }
             DateTime cur = new DateTime();
             driver.SendMessage(selfId, cur, currentConvoId, richTextBox1.Text);
             richTextBox1.Text = "";
