@@ -26,24 +26,14 @@ namespace BudgetGui.Screens
             InitializeComponent();
             DoubleBuffered = true;
             mainForm = _mainForm;
-            //dgvInitialize();
-            /*
+
             dataGridView = sqlDriver.searchInitalize(dataGridView);
-            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
-            dataGridView = sqlDriver.sButton("", dataGridView);
-            */
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
-
-            //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"
-
-      
         }
 
         public void dgvInitialize()
         {
-            dataGridView = sqlDriver.searchInitalize(dataGridView);
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             dataGridView = sqlDriver.sButton("", dataGridView);
