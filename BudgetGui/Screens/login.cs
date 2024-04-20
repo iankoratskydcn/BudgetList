@@ -54,10 +54,5 @@ namespace BudgetGui.Screens
         {
             Form1.changeState(1);
         }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

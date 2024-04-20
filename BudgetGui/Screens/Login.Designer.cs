@@ -118,7 +118,6 @@
             Controls.Add(textBox2);
             Name = "Login";
             Size = new Size(805, 534);
-            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }

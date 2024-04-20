@@ -39,6 +39,7 @@ namespace BudgetGui.Screens
         public void convos_load()
         {
             conversations_cont.Controls.Clear();
+            convs = new DataTable();
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             MessageBox.Show(selfId.ToString());
             convs.Load(driver.getConversations(selfId).CreateDataReader());
