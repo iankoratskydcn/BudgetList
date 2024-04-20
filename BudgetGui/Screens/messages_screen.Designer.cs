@@ -75,7 +75,6 @@
             messages.Size = new Size(423, 335);
             messages.TabIndex = 10;
             messages.WrapContents = false;
-            messages.Paint += messages_Paint;
             // 
             // richTextBox1
             // 
