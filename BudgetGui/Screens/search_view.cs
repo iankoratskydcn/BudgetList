@@ -113,14 +113,10 @@ namespace BudgetGui.Screens
             if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
             {
                 // Get the values from the clicked row
-                string title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
-                string description = dataGridView.Rows[e.RowIndex].Cells["Description"].Value?.ToString() ?? "";
-                string username = dataGridView.Rows[e.RowIndex].Cells["Username"].Value?.ToString() ?? "";
+                string username = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
                 string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
-                DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
-                decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
 
-                if (itemId == Program.GlobalStrings[1])
+                if (username == Program.GlobalStrings[0])
                 {
                     MessageBox.Show($"You can't save your own items");
                     return;
