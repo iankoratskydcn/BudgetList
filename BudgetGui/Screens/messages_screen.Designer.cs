@@ -37,10 +37,10 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             shopping = new Button();
             items = new Button();
-            messageScreen = new Button();
             searchView = new Button();
             userView = new Button();
             logout = new Button();
+            messageScreen = new Button();
             SuspendLayout();
             // 
             // label1
@@ -126,17 +126,6 @@
             items.UseVisualStyleBackColor = true;
             items.Click += items_Click;
             // 
-            // messageScreen
-            // 
-            messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
-            messageScreen.Location = new Point(3, 221);
-            messageScreen.Name = "messageScreen";
-            messageScreen.Size = new Size(126, 34);
-            messageScreen.TabIndex = 16;
-            messageScreen.Text = "Messages";
-            messageScreen.UseVisualStyleBackColor = true;
-            messageScreen.Click += messageScreen_Click;
-            // 
             // searchView
             // 
             searchView.BackgroundImageLayout = ImageLayout.Stretch;
@@ -170,16 +159,26 @@
             logout.UseVisualStyleBackColor = true;
             logout.Click += logout_Click;
             // 
+            // messageScreen
+            // 
+            messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
+            messageScreen.Location = new Point(3, 221);
+            messageScreen.Name = "messageScreen";
+            messageScreen.Size = new Size(126, 34);
+            messageScreen.TabIndex = 19;
+            messageScreen.Text = "Messages";
+            messageScreen.UseVisualStyleBackColor = true;
+            // 
             // messages_screen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(messageScreen);
             Controls.Add(button1);
             Controls.Add(richTextBox1);
             Controls.Add(messages);
             Controls.Add(shopping);
             Controls.Add(items);
-            Controls.Add(messageScreen);
             Controls.Add(searchView);
             Controls.Add(userView);
             Controls.Add(logout);
@@ -201,9 +200,9 @@
         private TableLayoutPanel tableLayoutPanel2;
         private Button shopping;
         private Button items;
-        private Button messageScreen;
         private Button searchView;
         private Button userView;
         private Button logout;
+        private Button messageScreen;
     }
 }

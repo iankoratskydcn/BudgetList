@@ -165,11 +165,6 @@ namespace BudgetGui.Screens
             Form1.changeState(4);
         }
 
-        private void messageScreen_Click(object sender, EventArgs e)
-        {
-            Form1.changeState(6);
-        }
-
         private void items_Click(object sender, EventArgs e)
         {
             Form1.changeState(7);
