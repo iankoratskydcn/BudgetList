@@ -69,12 +69,13 @@
             messages.AutoScroll = true;
             messages.BackColor = SystemColors.Control;
             messages.BackgroundImage = (Image)resources.GetObject("messages.BackgroundImage");
-            messages.FlowDirection = FlowDirection.TopDown;
+            messages.FlowDirection = FlowDirection.BottomUp;
             messages.Location = new Point(334, 104);
             messages.Name = "messages";
             messages.Size = new Size(423, 335);
             messages.TabIndex = 10;
             messages.WrapContents = false;
+            messages.Paint += messages_Paint;
             // 
             // richTextBox1
             // 
