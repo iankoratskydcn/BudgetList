@@ -331,29 +331,31 @@ public partial class sqlDriver
         {
             DataTable dt;
 
+
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.Name = "buttonColumn";
             buttonColumn.Text = "Save";
             buttonColumn.HeaderText = "Save to Shopping";
             buttonColumn.UseColumnTextForButtonValue = true;
 
+            DataGridViewButtonColumn buttonColumn2 = new DataGridViewButtonColumn();
+            buttonColumn2.Name = "buttonColumn2";
+            buttonColumn2.Text = "Buy";
+            buttonColumn2.HeaderText = "Purchasing";
+            buttonColumn2.UseColumnTextForButtonValue = true;
+
+            dgv.Columns.Add(buttonColumn2);
             dgv.Columns.Add(buttonColumn);
+ 
 
             connection.Open();
 
-            /*
+ 
             string query = @"
-                        SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' 
-                        FROM item
-                        WHERE buyerId IS NULL;
-                        ";
-            */
-            
-            // title, price, postdate, description
-            string query = @"
-                        SELECT title as 'Title', itemPrice as 'Item Price', postDate as 'Post Date', description as 'Description'
-                        FROM item
-                        WHERE buyerId IS NULL;
+                            SELECT i.title as 'Title', '$' || i.itemPrice as 'Item Price', u.username as 'Seller Name', i.postDate as 'Post Date', i.itemId as 'Item ID', i.description as 'Description'
+                            FROM item i
+                            JOIN _user u ON u.userId = i.sellerId
+                            WHERE i.buyerId IS NULL;
                         ";
 
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
@@ -401,9 +403,10 @@ public partial class sqlDriver
             connection.Open();
 
             string query = @"
-                        SELECT title as 'Title',itemPrice as 'Item Price', postDate as 'Post Date',description as 'Description'
-                        FROM item
-                        WHERE title LIKE @title AND buyerId IS NULL;
+                            SELECT i.title as 'Title', '$' || i.itemPrice as 'Item Price', u.username as 'Seller Name', i.postDate as 'Post Date', i.itemId as 'Item ID', i.description as 'Description'
+                            FROM item i
+                            JOIN _user u ON u.userId = i.sellerId
+                            WHERE i.title LIKE @title AND i.buyerId IS NULL;
                         ";
   
 
@@ -441,6 +444,7 @@ public partial class sqlDriver
             return false;
         }
     }
+
 
     public List<string> checkForSavedItems()
     {
