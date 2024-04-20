@@ -41,7 +41,7 @@ namespace BudgetGui.Screens
             } else if (sqlDriver.checkIfUsernameExists(username.Text)) {
                 MessageBox.Show("Username Already Exists");
             } else {
-                sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, password1.Text, email.Text, "");
+                sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, password1.Text, email.Text, "blank-profile-picture.png");
                 MessageBox.Show("Account Created Successfully");
                 Form1.changeState(0);
             }

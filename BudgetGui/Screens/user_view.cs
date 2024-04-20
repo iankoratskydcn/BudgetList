@@ -30,7 +30,7 @@ namespace BudgetGui.Screens
 
         }
 
-        private void refresh_image()
+        public void refresh_image()
         {
             //get the picture into the box
 
