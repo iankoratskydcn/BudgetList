@@ -106,6 +106,11 @@ namespace BudgetGui.Screens
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+
             // If the clicked cell is in the button column
             if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
             {
