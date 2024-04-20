@@ -49,12 +49,15 @@ namespace BudgetGui.Screens
         {
             string[] strings = { };
 
-            Parallel.ForEach(convs.AsEnumerable(), drow =>
-            {
-                int[] ints = { (int)drow["recipient"] };
-                conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
-                conversations_cont.Controls.Add(convo_card);
-            });
+            
+
+            //foreach(DataRow drow in convs.Rows) {
+                Parallel.ForEach(convs.AsEnumerable(), drow =>
+                {
+                    int[] ints = { (int)drow["recipient"] };
+                    conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
+                    conversations_cont.Controls.Add(convo_card);
+                });
 
         }
 
@@ -72,7 +75,7 @@ namespace BudgetGui.Screens
 
             conversations_fill();
 
-
+            //controls.ForEach(
             Parallel.ForEach(controls.AsParallel().AsOrdered(),
                 (e) => {
                     e.Dispose();
@@ -104,8 +107,11 @@ namespace BudgetGui.Screens
             //Parallel.ForEach(convo_messages.AsParallel().AsOrdered(),
             //    (e) => { messages.Controls.Add(e); } );
 
+            //controls.ForEach(
+
             Parallel.ForEach(controls.AsParallel().AsOrdered(),
-                (e) => { 
+                (e) =>
+                {
                     e.Dispose(); 
                 });
 
