@@ -14,11 +14,11 @@ CREATE TABLE _user(
 );
 
 CREATE TABLE _message(
+    messageId INTEGER PRIMARY KEY,
     sender INT NOT NULL,
     timeDate DATE NOT NULL,
     recipient INT NOT NULL,
     text1 VARCHAR(1024),
-    PRIMARY KEY(sender, timeDate),
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
