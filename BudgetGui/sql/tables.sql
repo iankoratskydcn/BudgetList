@@ -32,7 +32,7 @@ CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buye
     title VARCHAR(100) NOT NULL,
     description VARCHAR(1000),
     itemPrice DECIMAL(10,2), --change to just itemPrice
-    photoUrl VARCHAR(500),
+    photoUrl VARCHAR(100),
     rating DECIMAL(2,1), --Should change to user rating, not item
     currencyType VARCHAR(50),--Buys relationship attribute
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
