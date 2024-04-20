@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(search_view));
             shopping = new Button();
             pictureBox1 = new PictureBox();
             items = new Button();
@@ -43,6 +44,7 @@
             dataGridView = new DataGridView();
             pictureBox2 = new PictureBox();
             richTextBox1 = new RichTextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -139,7 +141,7 @@
             // 
             txtSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtSearch.Location = new Point(201, 110);
-            txtSearch.Margin = new Padding(2, 2, 2, 2);
+            txtSearch.Margin = new Padding(2);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Enter item name";
             txtSearch.Size = new Size(285, 29);
@@ -152,7 +154,7 @@
             sButton.FlatAppearance.BorderSize = 0;
             sButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             sButton.Location = new Point(490, 110);
-            sButton.Margin = new Padding(2, 2, 2, 2);
+            sButton.Margin = new Padding(2);
             sButton.Name = "sButton";
             sButton.Size = new Size(78, 29);
             sButton.TabIndex = 19;
@@ -177,7 +179,7 @@
             IbITotal.AutoSize = true;
             IbITotal.BackColor = SystemColors.ButtonHighlight;
             IbITotal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            IbITotal.Location = new Point(134, 442);
+            IbITotal.Location = new Point(130, 461);
             IbITotal.Margin = new Padding(2, 0, 2, 0);
             IbITotal.Name = "IbITotal";
             IbITotal.Size = new Size(130, 21);
@@ -188,18 +190,23 @@
             // 
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeColumns = false;
+            dataGridView.AllowUserToResizeRows = false;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Location = new Point(130, 142);
-            dataGridView.Margin = new Padding(2, 2, 2, 2);
+            dataGridView.Margin = new Padding(2);
             dataGridView.Name = "dataGridView";
+            dataGridView.ReadOnly = true;
+            dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 62;
             dataGridView.RowTemplate.Height = 33;
-            dataGridView.Size = new Size(438, 293);
+            dataGridView.Size = new Size(438, 317);
             dataGridView.TabIndex = 20;
             dataGridView.CellClick += dataGridView_CellContentClick;
             // 
             // pictureBox2
             // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(573, 110);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(178, 145);
@@ -208,17 +215,31 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Enabled = false;
-            richTextBox1.Location = new Point(575, 264);
+            richTextBox1.Location = new Point(573, 261);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(176, 171);
+            richTextBox1.ReadOnly = true;
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            richTextBox1.Size = new Size(176, 197);
             richTextBox1.TabIndex = 24;
             richTextBox1.Text = "";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.ButtonHighlight;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(627, 461);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(60, 21);
+            label2.TabIndex = 25;
+            label2.Text = "Price: 0";
             // 
             // search_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label2);
             Controls.Add(richTextBox1);
             Controls.Add(pictureBox2);
             Controls.Add(sButton);
@@ -259,5 +280,6 @@
         private DataGridView dataGridView;
         private PictureBox pictureBox2;
         private RichTextBox richTextBox1;
+        private Label label2;
     }
 }
