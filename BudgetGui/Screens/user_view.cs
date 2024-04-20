@@ -106,5 +106,6 @@ namespace BudgetGui.Screens
 
             MessageBox.Show($"Saved Successfully");
         }
+
     }
 }

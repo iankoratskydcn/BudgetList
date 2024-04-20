@@ -18,9 +18,9 @@ namespace BudgetGui.Screens.cards
         {
             InitializeComponent();
             string text = strings[0];
-            string image_location = strings[2];
+            string image_location = strings[1];
 
-            DoubleBuffered = true;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             //set the image and text
             richTextBox1.Text = text;

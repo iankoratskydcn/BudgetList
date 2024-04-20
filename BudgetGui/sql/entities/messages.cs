@@ -14,7 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 public partial class sqlDriver
 {
-    public void SendMessage(string sender, DateTime timeDate, string recipient, string text1)
+    public void SendMessage(int sender, DateTime timeDate, int recipient, string text1)
     {
 
         string query = @"INSERT INTO _message (sender, timeDate, recipient, text1) VALUES (@sender, @timeDate, @recipient, @text1)";
@@ -39,7 +39,7 @@ public partial class sqlDriver
     /// <param name="selfID"></param>
     /// <param name="otherID"></param>
     /// <returns></returns>
-    public List<message_card> getMessages(string selfID, string otherID)
+    public List<message_card> getMessages(int selfID, int otherID)
     {
         string query = @"SELECT * FROM _message WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate";
         string query_photo_user = @"SELECT profile_pic FROM _user WHERE userId = @selfID LIMIT 1";
@@ -71,7 +71,6 @@ public partial class sqlDriver
                         {
                             _user_pic = "blank-profile-picture.png";
                         }
-                        MessageBox.Show(_user_pic);
                     }
                 }
             }
@@ -100,7 +99,6 @@ public partial class sqlDriver
                         {
                             _other_pic = "blank-profile-picture.png";
                         }
-                        MessageBox.Show(_other_pic);
                     }
                 }
             }
@@ -124,7 +122,7 @@ public partial class sqlDriver
                     
                     foreach (DbDataRecord s in xx)
                     {
-                        string sender = s["sender"].ToString();
+                        int sender = Int32.Parse( s["sender"].ToString());
                         string text = s["text1"].ToString();
 
                         if(selfID == sender)
@@ -147,7 +145,7 @@ public partial class sqlDriver
     }
 
 
-    public DataTable getConversations(string selfID)
+    public DataTable getConversations(int selfID)
     {
         string query = @"SELECT DISTINCT recipient FROM _message WHERE sender = @selfID";
 
@@ -168,6 +166,8 @@ public partial class sqlDriver
                 }
                 
             }
+
+           
             return dataTable;
         }
     }

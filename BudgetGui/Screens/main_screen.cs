@@ -20,6 +20,9 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
             this.BackColor = Color.Transparent;
             DoubleBuffered = true;
+
+
+
         }
 
         private void logout_Click(object sender, EventArgs e)
