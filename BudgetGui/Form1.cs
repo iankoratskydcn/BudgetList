@@ -111,6 +111,7 @@ namespace BudgetGui
                     } 
                     form1.panel1.Controls.Add(user_View);
                     user_View.Dock = DockStyle.Fill;
+                    user_View.refresh_image();
                     break;
                 
                 case 4: //the user has selected a searched items screen
