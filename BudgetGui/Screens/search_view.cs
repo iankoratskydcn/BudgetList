@@ -151,7 +151,7 @@ namespace BudgetGui.Screens
                 }
 
                 string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'; " +
-                    $" ";
+                    $"DELETE FROM savedItems WHERE itemId = '{itemId}';";
 
                 sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
                 MessageBox.Show($"Item has been bought");
