@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(messages_screen));
             label1 = new Label();
-            conversations = new FlowLayoutPanel();
+            conversations_cont = new FlowLayoutPanel();
             messages = new FlowLayoutPanel();
             richTextBox1 = new RichTextBox();
             button1 = new Button();
@@ -52,7 +52,17 @@
             label1.Size = new Size(124, 32);
             label1.TabIndex = 6;
             label1.Text = "Messages";
-            
+            // 
+            // conversations_cont
+            // 
+            conversations_cont.BackgroundImage = (Image)resources.GetObject("conversations_cont.BackgroundImage");
+            conversations_cont.BackgroundImageLayout = ImageLayout.Stretch;
+            conversations_cont.FlowDirection = FlowDirection.TopDown;
+            conversations_cont.Location = new Point(141, 104);
+            conversations_cont.Name = "conversations_cont";
+            conversations_cont.Size = new Size(187, 335);
+            conversations_cont.TabIndex = 9;
+            conversations_cont.UseWaitCursor = true;
             // 
             // messages
             // 
@@ -158,9 +168,6 @@
             logout.Text = "Logout";
             logout.UseVisualStyleBackColor = true;
             logout.Click += logout_Click;
-
-            
-
             // 
             // messages_screen
             // 
@@ -176,33 +183,17 @@
             Controls.Add(userView);
             Controls.Add(logout);
             Controls.Add(label1);
+            Controls.Add(conversations_cont);
             Name = "messages_screen";
             Size = new Size(805, 534);
             ResumeLayout(false);
-            PerformLayout();
-
-            SuspendLayout();
-            // 
-            // conversations
-            // 
-            conversations.BackgroundImage = (Image)resources.GetObject("conversations.BackgroundImage");
-            conversations.BackgroundImageLayout = ImageLayout.Stretch;
-            conversations.FlowDirection = FlowDirection.TopDown;
-            conversations.Location = new Point(141, 104);
-            conversations.Name = "conversations";
-            conversations.Size = new Size(187, 335);
-            conversations.TabIndex = 9;
-            conversations.UseWaitCursor = true;
-
-            Controls.Add(conversations);
-            ResumeLayout(true);
             PerformLayout();
         }
 
         #endregion
 
         private Label label1;
-        private FlowLayoutPanel conversations;
+        private FlowLayoutPanel conversations_cont;
         private FlowLayoutPanel messages;
         private RichTextBox richTextBox1;
         private Button button1;

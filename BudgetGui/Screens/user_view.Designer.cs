@@ -46,8 +46,8 @@
             email = new TextBox();
             shopping = new Button();
             label2 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
+            img_path = new TextBox();
+            img_open = new Button();
             pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -136,7 +136,6 @@
             city.PlaceholderText = "City";
             city.Size = new Size(253, 23);
             city.TabIndex = 22;
-            city.TextChanged += this.city_TextChanged;
             // 
             // dateOfBirth
             // 
@@ -145,7 +144,6 @@
             dateOfBirth.PlaceholderText = "Date of Birth (yyyy-MM-dd)";
             dateOfBirth.Size = new Size(253, 23);
             dateOfBirth.TabIndex = 21;
-            dateOfBirth.TextChanged += this.dateOfBirth_TextChanged;
             // 
             // save
             // 
@@ -164,7 +162,6 @@
             zip.PlaceholderText = "Zip";
             zip.Size = new Size(253, 23);
             zip.TabIndex = 19;
-            zip.TextChanged += this.zip_TextChanged;
             // 
             // state
             // 
@@ -173,7 +170,6 @@
             state.PlaceholderText = "State";
             state.Size = new Size(253, 23);
             state.TabIndex = 18;
-            state.TextChanged += this.state_TextChanged;
             // 
             // street
             // 
@@ -182,7 +178,6 @@
             street.PlaceholderText = "Street";
             street.Size = new Size(253, 23);
             street.TabIndex = 17;
-            street.TextChanged += this.street_TextChanged;
             // 
             // password
             // 
@@ -191,7 +186,6 @@
             password.PlaceholderText = "Password";
             password.Size = new Size(253, 23);
             password.TabIndex = 23;
-            password.TextChanged += this.password_TextChanged;
             // 
             // email
             // 
@@ -200,7 +194,6 @@
             email.PlaceholderText = "Email";
             email.Size = new Size(253, 23);
             email.TabIndex = 24;
-            email.TextChanged += this.email_TextChanged;
             // 
             // shopping
             // 
@@ -224,27 +217,26 @@
             label2.TabIndex = 42;
             label2.Text = "Edit Account Information";
             label2.TextAlign = ContentAlignment.TopCenter;
-            label2.Click += this.label2_Click;
             // 
-            // textBox1
+            // img_path
             // 
-            textBox1.Location = new Point(460, 379);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Image Path";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(173, 23);
-            textBox1.TabIndex = 45;
-            textBox1.TextChanged += this.textBox1_TextChanged;
+            img_path.Location = new Point(460, 379);
+            img_path.Name = "img_path";
+            img_path.PlaceholderText = "Image Path";
+            img_path.ReadOnly = true;
+            img_path.Size = new Size(173, 23);
+            img_path.TabIndex = 45;
             // 
-            // button1
+            // img_open
             // 
-            button1.Location = new Point(639, 379);
-            button1.Name = "button1";
-            button1.Size = new Size(74, 23);
-            button1.TabIndex = 44;
-            button1.Text = "Open File";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            img_open.FlatStyle = FlatStyle.System;
+            img_open.Location = new Point(639, 379);
+            img_open.Name = "img_open";
+            img_open.Size = new Size(74, 23);
+            img_open.TabIndex = 44;
+            img_open.Text = "Open File";
+            img_open.UseVisualStyleBackColor = true;
+            img_open.Click += img_open_Click;
             // 
             // pictureBox2
             // 
@@ -255,15 +247,14 @@
             pictureBox2.Size = new Size(250, 250);
             pictureBox2.TabIndex = 46;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += this.pictureBox2_Click;
             // 
             // user_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(pictureBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
+            Controls.Add(img_path);
+            Controls.Add(img_open);
             Controls.Add(label2);
             Controls.Add(shopping);
             Controls.Add(email);
@@ -307,8 +298,8 @@
         private TextBox email;
         private Button shopping;
         private Label label2;
-        private TextBox textBox1;
-        private Button button1;
+        private TextBox img_path;
+        private Button img_open;
         private PictureBox pictureBox2;
     }
 }

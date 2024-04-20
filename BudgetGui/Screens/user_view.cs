@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BudgetGui.Screens
@@ -22,6 +24,31 @@ namespace BudgetGui.Screens
             InitializeComponent();
             DoubleBuffered = true;
             mainForm = _mainForm;
+
+            refresh_image();
+
+
+        }
+
+        private void refresh_image()
+        {
+            //get the picture into the box
+
+            DataTable j = sqlDriver.getUserById(Int32.Parse(Program.GlobalStrings[1].ToString()));
+            try
+            {
+                if (j.Rows[0]["profile_pic"].ToString() != "" && j.Rows[0]["profile_pic"].ToString().Length != 0 && j.Rows[0]["profile_pic"].ToString() != null)
+                {
+
+                    pictureBox2.Image = Image.FromFile(
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
+                        j.Rows[0]["profile_pic"].ToString()));
+                }
+            }
+            catch (Exception)
+            {
+            }
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void home_Click(object sender, EventArgs e)
@@ -53,6 +80,19 @@ namespace BudgetGui.Screens
         private void shopping_Click(object sender, EventArgs e)
         {
             Form1.changeState(5);
+        }
+
+        private void image_open_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileloader = new OpenFileDialog();
+            fileloader.Filter = "All Files (*.*)|*.*";
+            fileloader.FilterIndex = 1;
+
+            if (fileloader.ShowDialog() == DialogResult.OK)
+            {
+                string path = fileloader.FileName;
+                img_path.Text = path;
+            }
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -104,7 +144,31 @@ namespace BudgetGui.Screens
                 }
             }
 
+
+            if (!(string.IsNullOrEmpty(img_path.Text)))
+            {
+                sqlDriver.executeDbInsertQuery($"UPDATE _user SET profile_pic = '{img_path.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+                img_path.Text = "";
+                refresh_image();
+            }
+
             MessageBox.Show($"Saved Successfully");
+        }
+
+        private void img_open_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileloader = new OpenFileDialog();
+            fileloader.Filter = "All Files (*.*)|*.*";
+            fileloader.FilterIndex = 1;
+
+            if (fileloader.ShowDialog() == DialogResult.OK)
+            {
+                string path = fileloader.FileName;
+                img_path.Text = path;
+
+            }
+
+           
         }
 
     }

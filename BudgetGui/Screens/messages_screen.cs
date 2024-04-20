@@ -36,7 +36,7 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
             selfId = Int32.Parse( Program.GlobalStrings[1]);
             driver = _sqlDriver;
-            convos_panel = this.conversations;
+            convos_panel = this.conversations_cont;
 
         }
 
@@ -53,13 +53,32 @@ namespace BudgetGui.Screens
             {
                 int[] ints = { (int)drow["recipient"] };
                 conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
-                conversations.Controls.Add(convo_card);
+                conversations_cont.Controls.Add(convo_card);
             });
 
         }
 
         public void conversations_renew() {
-            //conversations.Controls;
+
+            convos_load();
+
+            List<Control> controls = new List<Control>();
+            foreach (Control e in conversations_cont.Controls)
+            {
+                controls.Add(e);
+            }
+
+            conversations_cont.Controls.Clear();
+
+            conversations_fill();
+
+
+            Parallel.ForEach(controls.AsParallel().AsOrdered(),
+                (e) => {
+                    e.Dispose();
+                });
+
+            GC.Collect();
         }
 
 
