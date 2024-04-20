@@ -28,7 +28,6 @@ namespace BudgetGui.Screens
             DoubleBuffered = true;
             mainForm = _mainForm;
 
-            dataGridView = sqlDriver.searchInitalize(dataGridView);
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
         }
@@ -36,6 +35,7 @@ namespace BudgetGui.Screens
         public void dgvInitialize()
         {
             txtSearch.Clear();
+            dataGridView = sqlDriver.searchInitalize(dataGridView);
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             dataGridView = sqlDriver.sButton("", dataGridView);
