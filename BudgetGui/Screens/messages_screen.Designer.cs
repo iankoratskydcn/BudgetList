@@ -96,7 +96,7 @@
             // shopping
             // 
             shopping.BackgroundImageLayout = ImageLayout.Stretch;
-            shopping.Location = new Point(3, 192);
+            shopping.Location = new Point(3, 191);
             shopping.Name = "shopping";
             shopping.Size = new Size(126, 34);
             shopping.TabIndex = 18;
@@ -107,7 +107,7 @@
             // items
             // 
             items.BackgroundImageLayout = ImageLayout.Stretch;
-            items.Location = new Point(3, 163);
+            items.Location = new Point(3, 162);
             items.Name = "items";
             items.Size = new Size(126, 34);
             items.TabIndex = 17;
@@ -118,7 +118,7 @@
             // messageScreen
             // 
             messageScreen.BackgroundImageLayout = ImageLayout.Stretch;
-            messageScreen.Location = new Point(3, 222);
+            messageScreen.Location = new Point(3, 221);
             messageScreen.Name = "messageScreen";
             messageScreen.Size = new Size(126, 34);
             messageScreen.TabIndex = 16;
@@ -129,7 +129,7 @@
             // searchView
             // 
             searchView.BackgroundImageLayout = ImageLayout.Stretch;
-            searchView.Location = new Point(3, 134);
+            searchView.Location = new Point(3, 133);
             searchView.Name = "searchView";
             searchView.Size = new Size(126, 34);
             searchView.TabIndex = 15;
@@ -151,7 +151,7 @@
             // logout
             // 
             logout.BackgroundImageLayout = ImageLayout.Stretch;
-            logout.Location = new Point(3, 251);
+            logout.Location = new Point(3, 250);
             logout.Name = "logout";
             logout.Size = new Size(126, 34);
             logout.TabIndex = 13;

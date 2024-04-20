@@ -188,7 +188,7 @@ public partial class sqlDriver
                             return null;
                         }
 
-                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }
@@ -225,7 +225,7 @@ public partial class sqlDriver
                             return null;
                         }
 
-                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }
@@ -266,10 +266,7 @@ public partial class sqlDriver
         }
     }
 
-    public void createNewItem(
-        int sellerId, string postDate, string title, 
-        string description, string photoUrl, string  itemPrice 
-    )
+    public void createNewItem(string title, string description, string photoUrl, string  itemPrice)
     {
 
         string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
@@ -298,7 +295,6 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@photoUrl", photoUrl);
                 command.Parameters.AddWithValue("@itemPrice", itemPrice);
-                MessageBox.Show(command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
@@ -329,10 +325,52 @@ public partial class sqlDriver
             }
         }
     }
+    public DataGridView searchInitalize(DataGridView dgv)
+    {
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            DataTable dt;
+
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "buttonColumn";
+            buttonColumn.Text = "Save";
+            buttonColumn.HeaderText = "Save to Shopping";
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            dgv.Columns.Add(buttonColumn);
+
+            connection.Open();
+
+            /*
+            string query = @"
+                        SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' 
+                        FROM item
+                        WHERE buyerId IS NULL;
+                        ";
+            */
+            
+            // title, price, postdate, description
+            string query = @"
+                        SELECT title as 'Title', itemPrice as 'Item Price', postDate as 'Post Date', description as 'Description'
+                        FROM item
+                        WHERE buyerId IS NULL;
+                        ";
+
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
+                dt = new DataTable("Items");
+                adapter.Fill(dt);
+                dgv.DataSource = dt;
+                return dgv;
+            }
+        }
+    }
 
     public DataGridView sButton(string titleQuery, DataGridView dgv)
     {
         // Check if the button column already exists
+        /*
         bool buttonColumnExists = false;
         foreach (DataGridViewColumn column in dgv.Columns)
         {
@@ -354,6 +392,7 @@ public partial class sqlDriver
 
             dgv.Columns.Add(buttonColumn);
         }
+        */
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -361,11 +400,14 @@ public partial class sqlDriver
 
             connection.Open();
 
-            StringBuilder query = new StringBuilder("SELECT itemid as 'Item ID', title as 'Title', description as 'Description', postDate as 'Post Date', sellerId as 'Seller ID', currencyType as 'Currency Type', itemPrice as 'Item Price' FROM item");
+            string query = @"
+                        SELECT title as 'Title',itemPrice as 'Item Price', postDate as 'Post Date',description as 'Description'
+                        FROM item
+                        WHERE title LIKE @title AND buyerId IS NULL;
+                        ";
+  
 
-            query.Append(" WHERE title LIKE @title");
-
-            using (SQLiteCommand command = new SQLiteCommand(query.ToString(), connection))
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@title", "%" + titleQuery + "%");
 
@@ -428,7 +470,7 @@ public partial class sqlDriver
                         int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                         string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        string itemInfo = $"ItemId: {itemId}, savedUserId: {savedUserId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }
@@ -437,20 +479,13 @@ public partial class sqlDriver
         }
     }
 
-    //Todo
     public List<string> checkForBoughtItems()
     {
         List<string> itemList = new List<string>();
-        /*string query = @"
-                    SELECT i.itemId, i.sellerId, i.title
-                    FROM _user u
-                    LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
-                    WHERE u.userId = @userId;
-                    ";*/
         string query = @"
                     SELECT i.itemId, i.sellerId, i.title
                     FROM _user u
-                    LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
+                    JOIN item i ON u.userId = i.buyerId
                     WHERE u.userId = @userId;
                     ";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
@@ -461,18 +496,18 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
+                    if (!reader.HasRows)
+                    {
+                        return null;
+                    }
+
                     while (reader.Read())
                     {
                         int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
                         int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
                         string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        if (itemId == null)
-                        {
-                            return null;
-                        }
-
-                        string itemInfo = $"ItemId: {itemId}, SellerId: {sellerId}, Title: {title}";
+                        string itemInfo = $"{title}";
                         itemList.Add(itemInfo);
                     }
                 }

@@ -60,7 +60,7 @@
             // 
             pictureBox1.BackColor = SystemColors.ButtonHighlight;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(128, 104);
+            pictureBox1.Location = new Point(130, 104);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(630, 378);
             pictureBox1.TabIndex = 16;
@@ -186,7 +186,7 @@
             dataGridView.AllowUserToAddRows = false;
             dataGridView.AllowUserToDeleteRows = false;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(128, 142);
+            dataGridView.Location = new Point(130, 142);
             dataGridView.Margin = new Padding(2);
             dataGridView.Name = "dataGridView";
             dataGridView.RowHeadersWidth = 62;

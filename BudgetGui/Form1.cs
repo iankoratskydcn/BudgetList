@@ -41,11 +41,6 @@ namespace BudgetGui
             panel1.Controls.Add(_login_screen);
         }
 
-        public string getUserId()
-        {
-            return userId;
-        }
-
         public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
@@ -150,6 +145,7 @@ namespace BudgetGui
                     }
                     form1.panel1.Controls.Add(items_view);
                     items_view.Dock = DockStyle.Fill;
+                    items_view.checkItems();
                     break;
                 
                 case 8: //the user has selected to create an item

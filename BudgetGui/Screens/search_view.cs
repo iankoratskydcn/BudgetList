@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -25,8 +26,20 @@ namespace BudgetGui.Screens
             InitializeComponent();
             DoubleBuffered = true;
             mainForm = _mainForm;
+            dataGridView = sqlDriver.searchInitalize(dataGridView);
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+            dataGridView = sqlDriver.sButton("", dataGridView);
+            //dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
+            txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
+
+
             //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"
+
+            
+ 
+
 
         }
 
@@ -69,7 +82,7 @@ namespace BudgetGui.Screens
                 //DataTable commodities = sqlDriver.sButton(txtSearch.Text);
 
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
-
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
                 /*
                 // Create a new button column
@@ -108,6 +121,12 @@ namespace BudgetGui.Screens
                 DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
                 decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
                 string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
+
+                if (sellerId == Convert.ToInt32(Program.GlobalStrings[1]))
+                {
+                    MessageBox.Show($"You can't save your own items");
+                    return;
+                }
 
                 if (sqlDriver.checkIfItemAlreadySaved(itemId))
                 {
