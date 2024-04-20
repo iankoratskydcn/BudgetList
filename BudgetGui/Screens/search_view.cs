@@ -11,7 +11,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BudgetGui.sql.entities;
 using Newtonsoft.Json.Linq;
 
 
@@ -44,7 +43,6 @@ namespace BudgetGui.Screens
             dataGridView.Columns["Seller Name"].Visible = false;
             dataGridView.Columns["Post Date"].Visible = false;
             dataGridView.Columns["Item Price"].Visible = false;
-
 
             dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dataGridView.Columns[1].Width = 70;
@@ -88,30 +86,9 @@ namespace BudgetGui.Screens
         {
             try
             {
-                //DataTable commodities = sqlDriver.sButton(txtSearch.Text);
-
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
                 dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                /*
-                // Create a new button column
-                DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-                buttonColumn.Name = "buttonColumn";
-                buttonColumn.Text = "Save";
-                buttonColumn.HeaderText = "Save to Shopping";
-                buttonColumn.UseColumnTextForButtonValue = true;
-
-                // Add the button column to the DataGridView
-                dataGridView.Columns.Add(buttonColumn);
-
-
-               // dataGridView.DataSource = commodities;
-                */
-
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
-
-
-
             }
             catch (Exception ex)
             {
@@ -126,9 +103,6 @@ namespace BudgetGui.Screens
             {
                 return;
             }
-
-
-
 
             // If the clicked cell is in the button column
             if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
@@ -168,12 +142,7 @@ namespace BudgetGui.Screens
 
                 // Get the values from the clicked row
                 string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
-                //string title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
-                //string description = dataGridView.Rows[e.RowIndex].Cells["Description"].Value?.ToString() ?? "";
                 string sellerName = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
-                //DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
-                //decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
-                //string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
 
                 if (sellerName == Program.GlobalStrings[0])
                 {
@@ -181,7 +150,8 @@ namespace BudgetGui.Screens
                     return;
                 }
 
-                string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'";
+                string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'; " +
+                    $" ";
 
                 sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
                 MessageBox.Show($"Item has been bought");
@@ -189,24 +159,6 @@ namespace BudgetGui.Screens
                 dataGridView = sqlDriver.sButton("", dataGridView);
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
 
-
-
-                /*
-                if (sqlDriver.checkIfItemAlreadySaved(itemId))
-                {
-                    // Create SQL command
-                    string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'";
-
-                    sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
-                    MessageBox.Show($"Item has been bought");
-
-                    //Removes bought item from saved list if saved before buying
-                } 
-                else
-                {
-                    MessageBox.Show($"Item has already been bought");
-                }
-                */
             }
 
             int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
