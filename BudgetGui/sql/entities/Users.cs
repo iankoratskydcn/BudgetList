@@ -61,7 +61,7 @@ public partial class sqlDriver
             return obj;
         }
     }
-    public DataTable getUserById(string id)
+    public DataTable getUserById(int id)
     {
         string query = "SELECT * FROM _user WHERE userId = @userId";
         JObject obj;

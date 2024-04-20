@@ -77,5 +77,6 @@ namespace BudgetGui.Screens
             Program.GlobalStrings = null;
             Form1.changeState(0);
         }
+
     }
 }

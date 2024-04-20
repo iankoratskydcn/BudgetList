@@ -3,6 +3,7 @@ using Microsoft.VisualBasic;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,80 +19,98 @@ namespace BudgetGui.Screens
     public partial class messages_screen : UserControl
     {
         private static Form1 mainForm;
-        private static string selfId;
-        private static string currentConvoId;
+        private static int selfId;
+        private static int currentConvoId;
         private static messages_screen messages_Screen;
 
         static sqlDriver driver;
-
+        private static DataTable convs = new DataTable();
+        static FlowLayoutPanel convos_panel;
+        
         public messages_screen(Form1 _mainForm, sqlDriver _sqlDriver)
         {
+
             InitializeComponent();
-            DoubleBuffered = true;
+
             messages_Screen = this;
             mainForm = _mainForm;
-            selfId = Program.GlobalStrings[1];
+            selfId = Int32.Parse( Program.GlobalStrings[1]);
             driver = _sqlDriver;
-            conversations_fill();
-        }
-
-        private void home_Click(object sender, EventArgs e)
-        {
-            Form1.changeState(2);
-        }
-        private void viewConversation_Click(object sender, EventArgs e)
-        {
-            //Form1.changeState(8, 6);
-            //instead of changing the view, we'll instead fill the conversation box
+            convos_panel = this.conversations_cont;
 
         }
 
-        private void conversations_fill()
+        public void convos_load()
         {
-            DataTable conversations = new DataTable();
-            conversations.Load(driver.getConversations(selfId).CreateDataReader());
-            int[] ints = { };
+            convs.Load(driver.getConversations(selfId).CreateDataReader());
+        }
 
-            foreach (DataRow r in conversations.Rows)
+        public void conversations_fill()
+        {
+            string[] strings = { };
+
+            Parallel.ForEach(convs.AsEnumerable(), drow =>
             {
-                string[] strings = { r[0].ToString() };
-                add_convo(strings, ints);
+                int[] ints = { (int)drow["recipient"] };
+                conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
+                conversations_cont.Controls.Add(convo_card);
+            });
+
+        }
+
+        public void conversations_renew() {
+
+            convos_load();
+
+            List<Control> controls = new List<Control>();
+            foreach (Control e in conversations_cont.Controls)
+            {
+                controls.Add(e);
             }
 
+            conversations_cont.Controls.Clear();
+
+            conversations_fill();
+
+
+            Parallel.ForEach(controls.AsParallel().AsOrdered(),
+                (e) => {
+                    e.Dispose();
+                });
+
+            GC.Collect();
         }
 
-        private void add_convo(string[] strings, int[] ints)
-        {
-            conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
-            conversations.Controls.Add(convo_card);
-        }
 
-        private void add_self_msg(string[] strings, int[] ints)
+        public void change_convo(int otherId)
         {
-            self_message_card self_msg_card = new self_message_card(strings, ints);
-            messages.Controls.Add(self_msg_card);
-        }
 
-        private void add_msg(string[] strings, int[] ints)
-        {
-            message_card msg_card = new message_card(strings, ints);
-            messages.Controls.Add(msg_card);
-        }
-
-        public void change_convo(string otherId)
-        {
-            messages.Controls.Clear();
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
-            message_card x;
-            int c;
-            int max_w = messages.Size.Width - 10;
+
+            currentConvoId = otherId;
+            List<Control> controls = new List<Control>();
+            foreach (Control e in messages.Controls)
+            {
+                controls.Add(e);
+            }
+
+            messages.Controls.Clear();
+
             foreach (var item in convo_messages)
             {
-                item.Size = new Size(max_w, 40);
                 messages.Controls.Add(item);
-
             }
-            currentConvoId = otherId;
+
+            //Parallel.ForEach(convo_messages.AsParallel().AsOrdered(),
+            //    (e) => { messages.Controls.Add(e); } );
+
+            Parallel.ForEach(controls.AsParallel().AsOrdered(),
+                (e) => { 
+                    e.Dispose(); 
+                });
+
+            //controls.ForEach(e =>{e.Dispose();});
+            GC.Collect();
         }
 
         private void button1_Click(object sender, EventArgs e)
