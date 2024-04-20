@@ -59,6 +59,7 @@ namespace BudgetGui.Screens
 
         public void _convo_from_item_start(int buyerId, int itemId)
         {
+
             JObject item = driver.getItemById(itemId);
             int seller = Int32.Parse(item["sellerId"].ToString());
             string text = "Hello, I have a question about your " + item["title"].ToString();

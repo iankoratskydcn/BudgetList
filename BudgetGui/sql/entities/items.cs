@@ -18,6 +18,7 @@ using BudgetGui.sql.entities;
 using System.Data.SqlTypes;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 public partial class sqlDriver
 {
@@ -58,9 +59,9 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@itemId", itemId);
                 System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
                 var r = Serialize(reader);
-
-                obj = JObject.Parse(JsonConvert.SerializeObject(r));
-
+                string json = JsonConvert.SerializeObject(r, Newtonsoft.Json.Formatting.Indented);
+                MessageBox.Show(json);
+                obj = JObject.Parse(json.Remove(json.Length - 1).Remove(0, 1));
             }
             return obj;
         }

@@ -196,6 +196,8 @@ namespace BudgetGui.Screens
             int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
 
 
+            
+
 
 
             JObject j = sqlDriver.getItemById(itemIdnum);
