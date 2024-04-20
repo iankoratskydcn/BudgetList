@@ -331,13 +331,22 @@ public partial class sqlDriver
         {
             DataTable dt;
 
+
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.Name = "buttonColumn";
             buttonColumn.Text = "Save";
             buttonColumn.HeaderText = "Save to Shopping";
             buttonColumn.UseColumnTextForButtonValue = true;
 
+            DataGridViewButtonColumn buttonColumn2 = new DataGridViewButtonColumn();
+            buttonColumn2.Name = "buttonColumn2";
+            buttonColumn2.Text = "Buy";
+            buttonColumn2.HeaderText = "Purchasing";
+            buttonColumn2.UseColumnTextForButtonValue = true;
+
+            dgv.Columns.Add(buttonColumn2);
             dgv.Columns.Add(buttonColumn);
+ 
 
             connection.Open();
 
@@ -351,7 +360,7 @@ public partial class sqlDriver
             
             // title, price, postdate, description
             string query = @"
-                        SELECT title as 'Title', itemPrice as 'Item Price', postDate as 'Post Date', description as 'Description'
+                        SELECT title as 'Title', '$' || itemPrice as 'Item Price', postDate as 'Post Date', description as 'Description'
                         FROM item
                         WHERE buyerId IS NULL;
                         ";
@@ -401,7 +410,7 @@ public partial class sqlDriver
             connection.Open();
 
             string query = @"
-                        SELECT title as 'Title',itemPrice as 'Item Price', postDate as 'Post Date',description as 'Description'
+                        SELECT title as 'Title', '$' || itemPrice as 'Item Price', postDate as 'Post Date',description as 'Description'
                         FROM item
                         WHERE title LIKE @title AND buyerId IS NULL;
                         ";

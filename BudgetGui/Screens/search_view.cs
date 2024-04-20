@@ -30,7 +30,6 @@ namespace BudgetGui.Screens
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             dataGridView = sqlDriver.sButton("", dataGridView);
-            //dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
 
