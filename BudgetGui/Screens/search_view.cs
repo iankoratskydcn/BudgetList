@@ -26,20 +26,27 @@ namespace BudgetGui.Screens
             InitializeComponent();
             DoubleBuffered = true;
             mainForm = _mainForm;
+            //dgvInitialize();
+            /*
             dataGridView = sqlDriver.searchInitalize(dataGridView);
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             dataGridView = sqlDriver.sButton("", dataGridView);
+            */
             dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
 
-
             //"SELECT itemid, title, description, postDate, sellerId, currencyType, itemPrice FROM item"
 
-            
- 
+      
+        }
 
-
+        public void dgvInitialize()
+        {
+            dataGridView = sqlDriver.searchInitalize(dataGridView);
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+            dataGridView = sqlDriver.sButton("", dataGridView);
         }
 
 
@@ -149,17 +156,28 @@ namespace BudgetGui.Screens
                 string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
                 //string title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
                 //string description = dataGridView.Rows[e.RowIndex].Cells["Description"].Value?.ToString() ?? "";
-                int sellerId = dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value is int ? (int)dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value : 0;
+                string sellerName = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
                 //DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
                 //decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
                 //string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
 
-                if (sellerId == Convert.ToInt32(Program.GlobalStrings[1]))
+                if (sellerName == Program.GlobalStrings[0])
                 {
                     MessageBox.Show($"You can't buy your own items");
                     return;
                 }
 
+                string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'";
+
+                sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
+                MessageBox.Show($"Item has been bought");
+
+                dataGridView = sqlDriver.sButton("", dataGridView);
+                IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+
+
+
+                /*
                 if (sqlDriver.checkIfItemAlreadySaved(itemId))
                 {
                     // Create SQL command
@@ -167,11 +185,14 @@ namespace BudgetGui.Screens
 
                     sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
                     MessageBox.Show($"Item has been bought");
+
+                    //Removes bought item from saved list if saved before buying
                 } 
                 else
                 {
                     MessageBox.Show($"Item has already been bought");
                 }
+                */
             }
 
 
