@@ -141,6 +141,41 @@ namespace BudgetGui.Screens
                     MessageBox.Show($"Item is already saved");
                 }
             }
+
+
+            if (e.ColumnIndex == dataGridView.Columns["buttonColumn2"].Index)
+            {
+
+                // Get the values from the clicked row
+                string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
+                //string title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
+                //string description = dataGridView.Rows[e.RowIndex].Cells["Description"].Value?.ToString() ?? "";
+                int sellerId = dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value is int ? (int)dataGridView.Rows[e.RowIndex].Cells["Seller ID"].Value : 0;
+                //DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
+                //decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
+                //string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
+
+                if (sellerId == Convert.ToInt32(Program.GlobalStrings[1]))
+                {
+                    MessageBox.Show($"You can't buy your own items");
+                    return;
+                }
+
+                if (sqlDriver.checkIfItemAlreadySaved(itemId))
+                {
+                    // Create SQL command
+                    string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'";
+
+                    sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
+                    MessageBox.Show($"Item has been bought");
+                } 
+                else
+                {
+                    MessageBox.Show($"Item has already been bought");
+                }
+            }
+
+
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
