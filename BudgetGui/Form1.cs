@@ -36,7 +36,6 @@ namespace BudgetGui
             driver = _sqlDriver;
             this.DoubleBuffered = true;
             panel_1 = this.panel1;
-            panel_1.SetDoubleBuffered();
 
             _login_screen = new Login(form1);
             _login_screen.Dock = DockStyle.Fill;
@@ -127,16 +126,5 @@ namespace BudgetGui
         }
     }
 
-    public static class MyExtensions
-    {
-        public static void SetDoubleBuffered(this Panel panel)
-        {
-            typeof(Panel).InvokeMember(
-               "DoubleBuffered",
-               BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
-               null,
-               panel,
-               new object[] { true });
-        }
-    }
+    
 }

@@ -71,7 +71,7 @@ public partial class sqlDriver
                         {
                             _user_pic = "blank-profile-picture.png";
                         }
-
+                        MessageBox.Show(_user_pic);
                     }
                 }
             }
@@ -88,8 +88,10 @@ public partial class sqlDriver
 
                 using (var xx = command.ExecuteReader())
                 {
+                    
                     foreach (DbDataRecord s in xx)
                     {
+                        
                         if (s["profile_pic"] != null)
                         {
                             _other_pic = s["profile_pic"].ToString();
@@ -98,6 +100,7 @@ public partial class sqlDriver
                         {
                             _other_pic = "blank-profile-picture.png";
                         }
+                        MessageBox.Show(_other_pic);
                     }
                 }
             }
@@ -118,11 +121,11 @@ public partial class sqlDriver
 
                 using (var xx = command.ExecuteReader())
                 {
+                    
                     foreach (DbDataRecord s in xx)
                     {
                         string sender = s["sender"].ToString();
                         string text = s["text1"].ToString();
-
 
                         if(selfID == sender)
                         {
@@ -132,8 +135,6 @@ public partial class sqlDriver
                         {
                             ints[0] = 1;
                         }
-
-                        string pic_location = getUserById(sender).Rows[0]["profilePicture"].ToString() == "" ? "" : getUserById(sender).Rows[0]["profilePicture"].ToString();
 
                         string[] strings = { text, _user_pic, _other_pic };
                         message_card m = new message_card(strings, ints);

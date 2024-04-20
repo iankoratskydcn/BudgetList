@@ -57,10 +57,10 @@ namespace BudgetGui.Screens
 
         public void change_convo(string otherId)
         {
+
             messages.Controls.Clear();
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
-            message_card x;
-            int c;
+            MessageBox.Show(convo_messages.Count.ToString());
             int max_w = messages.Size.Width - 10;
             foreach (var item in convo_messages)
             {
@@ -112,5 +112,9 @@ namespace BudgetGui.Screens
             Form1.changeState(5);
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

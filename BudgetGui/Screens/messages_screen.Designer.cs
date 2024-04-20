@@ -40,6 +40,8 @@
             searchView = new Button();
             userView = new Button();
             logout = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -56,35 +58,35 @@
             // 
             conversations.BackgroundImageLayout = ImageLayout.Stretch;
             conversations.FlowDirection = FlowDirection.TopDown;
-            conversations.Location = new Point(135, 104);
+            conversations.Location = new Point(141, 116);
             conversations.Name = "conversations";
-            conversations.Size = new Size(187, 393);
+            conversations.Size = new Size(187, 319);
             conversations.TabIndex = 9;
             // 
             // messages
             // 
             messages.AutoScroll = true;
             messages.FlowDirection = FlowDirection.TopDown;
-            messages.Location = new Point(328, 104);
+            messages.Location = new Point(334, 116);
             messages.Name = "messages";
-            messages.Size = new Size(474, 393);
+            messages.Size = new Size(423, 319);
             messages.TabIndex = 10;
             messages.WrapContents = false;
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(135, 503);
+            richTextBox1.Location = new Point(141, 445);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(628, 28);
+            richTextBox1.Size = new Size(585, 28);
             richTextBox1.TabIndex = 11;
             richTextBox1.Text = "";
             richTextBox1.Enter += button1_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(769, 503);
+            button1.Location = new Point(732, 445);
             button1.Name = "button1";
-            button1.Size = new Size(33, 28);
+            button1.Size = new Size(25, 28);
             button1.TabIndex = 12;
             button1.Text = ">";
             button1.UseVisualStyleBackColor = true;
@@ -164,10 +166,26 @@
             logout.UseVisualStyleBackColor = true;
             logout.Click += logout_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.BackColor = SystemColors.ButtonHighlight;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(135, 104);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(630, 378);
+            pictureBox1.TabIndex = 21;
+            pictureBox1.TabStop = false;
+            // 
             // messages_screen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(button1);
+            Controls.Add(richTextBox1);
+            Controls.Add(messages);
+            Controls.Add(conversations);
+            Controls.Add(pictureBox1);
             Controls.Add(shopping);
             Controls.Add(items);
             Controls.Add(messageScreen);
@@ -175,12 +193,9 @@
             Controls.Add(userView);
             Controls.Add(logout);
             Controls.Add(label1);
-            Controls.Add(richTextBox1);
-            Controls.Add(messages);
-            Controls.Add(conversations);
-            Controls.Add(button1);
             Name = "messages_screen";
             Size = new Size(805, 534);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -199,5 +214,6 @@
         private Button searchView;
         private Button userView;
         private Button logout;
+        private PictureBox pictureBox1;
     }
 }
