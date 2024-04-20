@@ -113,13 +113,6 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(main_Screen);
                     main_Screen.Dock = DockStyle.Fill;
-
-                    //due to this one being slow af, i'm loading it right afterlogin
-                    message_Screen = new messages_screen(form1, driver);
-                    message_Screen.convos_load();
-                    message_Screen.conversations_fill();
-                    
-
                     break;
                
                 case 3: //the user has selected a user view
@@ -163,6 +156,7 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(message_Screen);
                     message_Screen.Dock = DockStyle.Fill;
+                    message_Screen.messageSelected = false;
                     break;
                 
                 case 7: //the user has selected to view their items

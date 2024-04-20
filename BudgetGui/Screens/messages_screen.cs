@@ -24,6 +24,7 @@ namespace BudgetGui.Screens
 
         static sqlDriver driver;
         private static DataTable convs = new DataTable();
+        public bool messageSelected = false;
 
         public messages_screen(Form1 _mainForm, sqlDriver _sqlDriver)
         {
@@ -98,7 +99,7 @@ namespace BudgetGui.Screens
 
         public void change_convo(int otherId)
         {
-
+            messageSelected = true;
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
 
@@ -136,6 +137,9 @@ namespace BudgetGui.Screens
         private void button1_Click(object sender, EventArgs e)
         {
             if (richTextBox1.Text == "") { return; }
+
+            if (messageSelected == false) { return; }
+
             DateTime cur = new DateTime();
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             driver.SendMessage(selfId, cur, currentConvoId, richTextBox1.Text.Trim());
