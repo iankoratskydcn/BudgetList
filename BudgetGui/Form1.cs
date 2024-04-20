@@ -122,6 +122,7 @@ namespace BudgetGui
                     }
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
+                    search_View.dgvInitialize();
                     break;
                 
                 case 5: //the user has selected shopping screen
