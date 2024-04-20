@@ -41,7 +41,6 @@ namespace BudgetGui.Screens
             conversations_cont.Controls.Clear();
             convs = new DataTable();
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
-            MessageBox.Show(selfId.ToString());
             convs.Load(driver.getConversations(selfId).CreateDataReader());
         }
 
@@ -52,28 +51,17 @@ namespace BudgetGui.Screens
 
             foreach (DataRow drow in convs.Rows)
             {
-            //    Parallel.ForEach(convs.AsEnumerable(), drow =>
-            //{
-                //try
-                //{
-                    int[] ints = { (int)drow["recipient"] };
-                    conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
-                    conversations_cont.Controls.Add(convo_card);
-
-                //}
-                //catch (Exception e)
-                //{
-                //    MessageBox.Show(e.Message);
-                //}
-            }//);
-
+                int[] ints = { (int)drow["recipient"] };
+                conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
+                conversations_cont.Controls.Add(convo_card);
+            }
         }
 
         public void _convo_from_item_start(int buyerId, int itemId)
         {
             JObject item = driver.getItemById(itemId);
             int seller = Int32.Parse(item["sellerId"].ToString());
-            string text = "Hello, I just bought your " + item["title"].ToString() + " and I have a question.";
+            string text = "Hello, I have a question about your " + item["title"].ToString();
 
 
             driver.SendMessage(buyerId, DateTime.Now, seller, text);
@@ -107,7 +95,7 @@ namespace BudgetGui.Screens
 
             GC.Collect();
         }
-        
+
         public void change_convo(int otherId)
         {
 
@@ -128,19 +116,21 @@ namespace BudgetGui.Screens
                 messages.Controls.Add(item);
             }
 
-            //Parallel.ForEach(convo_messages.AsParallel().AsOrdered(),
-            //    (e) => { messages.Controls.Add(e); } );
-
-            //controls.ForEach(
-
             Parallel.ForEach(controls.AsParallel().AsOrdered(),
                 (e) =>
                 {
                     e.Dispose();
                 });
 
-            //controls.ForEach(e =>{e.Dispose();});
             GC.Collect();
+        }
+
+        private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(this, new EventArgs());
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -148,7 +138,7 @@ namespace BudgetGui.Screens
             if (richTextBox1.Text == "") { return; }
             DateTime cur = new DateTime();
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
-            driver.SendMessage(selfId, cur, currentConvoId, richTextBox1.Text);
+            driver.SendMessage(selfId, cur, currentConvoId, richTextBox1.Text.Trim());
             richTextBox1.Text = "";
 
             //refresh messages
@@ -186,5 +176,9 @@ namespace BudgetGui.Screens
             Form1.changeState(5);
         }
 
+        private void messages_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

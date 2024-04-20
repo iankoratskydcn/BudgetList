@@ -115,7 +115,6 @@ namespace BudgetGui
                     main_Screen.Dock = DockStyle.Fill;
 
                     //due to this one being slow af, i'm loading it right afterlogin
-
                     message_Screen = new messages_screen(form1, driver);
                     message_Screen.convos_load();
                     message_Screen.conversations_fill();
