@@ -42,6 +42,8 @@ namespace BudgetGui
             _login_screen.Dock = DockStyle.Fill;
             panel1.Controls.Add(_login_screen);
 
+            
+
         }
 
         public string getUserId()

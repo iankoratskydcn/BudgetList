@@ -28,7 +28,8 @@ namespace BudgetGui.Screens.cards
 
             //unpack the arguments
             _secondary_user = _string_arguments[0];
-            _secondary_user = _string_arguments[0];
+
+
 
             //draw
             InitializeComponent();
@@ -38,7 +39,11 @@ namespace BudgetGui.Screens.cards
             {
                 if (j.Rows[0]["profile_pic"].ToString() != "" && j.Rows[0]["profile_pic"].ToString().Length != 0 && j.Rows[0]["profile_pic"].ToString() != null)
                 {
-                    pictureBox1.Image = Image.FromFile(j.Rows[0]["profile_pic"].ToString());
+
+
+                    pictureBox1.Image = Image.FromFile(
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"), 
+                        j.Rows[0]["profile_pic"].ToString()));
                 }
             }
             catch (Exception)
@@ -46,7 +51,7 @@ namespace BudgetGui.Screens.cards
             }
             linkLabel1.Text = j.Rows[0]["username"].ToString();
 
-
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
         }
 

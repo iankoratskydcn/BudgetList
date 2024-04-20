@@ -35,17 +35,6 @@ namespace BudgetGui.Screens
             conversations_fill();
         }
 
-        private void home_Click(object sender, EventArgs e)
-        {
-            Form1.changeState(2);
-        }
-        private void viewConversation_Click(object sender, EventArgs e)
-        {
-            //Form1.changeState(8, 6);
-            //instead of changing the view, we'll instead fill the conversation box
-
-        }
-
         private void conversations_fill()
         {
             DataTable conversations = new DataTable();
@@ -66,18 +55,6 @@ namespace BudgetGui.Screens
             conversations.Controls.Add(convo_card);
         }
 
-        private void add_self_msg(string[] strings, int[] ints)
-        {
-            self_message_card self_msg_card = new self_message_card(strings, ints);
-            messages.Controls.Add(self_msg_card);
-        }
-
-        private void add_msg(string[] strings, int[] ints)
-        {
-            message_card msg_card = new message_card(strings, ints);
-            messages.Controls.Add(msg_card);
-        }
-
         public void change_convo(string otherId)
         {
             messages.Controls.Clear();
@@ -89,7 +66,6 @@ namespace BudgetGui.Screens
             {
                 item.Size = new Size(max_w, 40);
                 messages.Controls.Add(item);
-
             }
             currentConvoId = otherId;
         }

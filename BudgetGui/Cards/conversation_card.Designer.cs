@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(conversation_card));
             tableLayoutPanel1 = new TableLayoutPanel();
-            linkLabel1 = new LinkLabel();
             linkLabel1 = new LinkLabel();
             pictureBox1 = new PictureBox();
             tableLayoutPanel1.SuspendLayout();
@@ -68,7 +68,10 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
             pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
             pictureBox1.Location = new Point(3, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(34, 39);

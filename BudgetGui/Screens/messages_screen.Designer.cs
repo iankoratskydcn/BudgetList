@@ -54,6 +54,7 @@
             // 
             // conversations
             // 
+            conversations.BackgroundImageLayout = ImageLayout.Stretch;
             conversations.FlowDirection = FlowDirection.TopDown;
             conversations.Location = new Point(135, 104);
             conversations.Name = "conversations";
