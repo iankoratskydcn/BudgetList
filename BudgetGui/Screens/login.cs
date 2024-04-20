@@ -47,6 +47,7 @@ namespace BudgetGui.Screens
             {
                 MessageBox.Show("Login Failed");
             }
+
         }
 
         private void register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -70,8 +70,7 @@ namespace BudgetGui.Screens
 
         private void logout_Click(object sender, EventArgs e)
         {
-            Program.GlobalStrings = null;
-            Form1.changeState(0);
+            mainForm.logout();
         }
 
         private void sButton_Click(object sender, EventArgs e)

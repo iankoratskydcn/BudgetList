@@ -23,7 +23,6 @@ namespace BudgetGui
         private static sqlDriver driver;
         
 
-        private static string userId;
 
 
         public Form1(sqlDriver _sqlDriver)
@@ -41,6 +40,27 @@ namespace BudgetGui
             panel1.Controls.Add(_login_screen);
         }
 
+        public void logout()
+        {
+
+            Program.GlobalStrings = new string[2];
+            Program.GlobalStrings[0] = "";
+            Program.GlobalStrings[1] = "";
+            //main_Screen = null;
+            //user_View = null;
+            //search_View = null;
+            //items_view = null;
+            //_create_item_screen = null;
+            //message_Screen = null;
+            //shopping_screen = null;
+            //registration = null;
+
+
+            GC.Collect();
+
+            Form1.changeState(0);
+        }
+
         public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
         {
             //check login to ensure that the user is logged in. If they're not, default to the login screen
@@ -56,26 +76,32 @@ namespace BudgetGui
             form1.SuspendLayout();
 
             //normally i'd add the Controls.Clear here, but trying to get messages to load faster
+            //foreach (var item in panel_1.Controls)
+            //{
+            //    item.Dispose();
+            //};
+            List<Control> controls = new List<Control>();
+            foreach (Control item in panel_1.Controls)
+            {
+                controls.Add(item);
+            }
+            panel_1.Controls.Clear();
+            controls.ForEach(e => { e.Dispose(); });
 
             switch (state)
             {
                 
                 case 0: //switch to the login screen and log the user out
-                    
-                    panel_1.Controls.Clear();
+                    _login_screen = new Login(form1);
+
                     form1.panel1.Controls.Add(_login_screen);
                     _login_screen.Dock = DockStyle.Fill;
 
                     break;
                 
                 case 1: //the user has selected create an account
+                    registration = new registration(form1);
 
-                    panel_1.Controls.Clear();
-                    if (registration == null)
-                    {
-                        registration = new registration(form1);
-
-                    }
 
                     form1.panel1.Controls.Add(registration);
                     registration.Dock = DockStyle.Fill;
@@ -83,15 +109,7 @@ namespace BudgetGui
                 
                 case 2: //the user has selected the main screen
                     
-                    panel_1.Controls.Clear();
-                    //make sure the user id is updated
-                    userId = Program.GlobalStrings[1];
-
-                    if (main_Screen == null)
-                    {
-                        main_Screen = new main_screen(form1);
-                    }
-
+                    main_Screen = new main_screen(form1);
                     form1.panel1.Controls.Add(main_Screen);
                     main_Screen.Dock = DockStyle.Fill;
 
@@ -103,34 +121,22 @@ namespace BudgetGui
                     break;
                
                 case 3: //the user has selected a user view
+                    user_View = new user_view(form1);
 
-                    panel_1.Controls.Clear();
-                    if (user_View == null)
-                    {
-                        user_View = new user_view(form1);
-                    } 
                     form1.panel1.Controls.Add(user_View);
                     user_View.Dock = DockStyle.Fill;
                     break;
                 
                 case 4: //the user has selected a searched items screen
+                    search_View = new search_view(form1);
 
-                    panel_1.Controls.Clear();
-                    if (search_View ==null)
-                    {
-                        search_View = new search_view(form1);
-                    }
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
                     break;
                 
                 case 5: //the user has selected shopping screen
+                    shopping_screen = new shopping(form1);
 
-                    panel_1.Controls.Clear();
-                    if (shopping_screen == null) { 
-
-                        shopping_screen = new shopping(form1); 
-                    }
                     form1.panel1.Controls.Add(shopping_screen);
                     shopping_screen.Dock = DockStyle.Fill;
                     shopping_screen.checkItems();
@@ -138,37 +144,25 @@ namespace BudgetGui
                 
                 case 6: //the user has selected to view their messages
 
-                    if(message_Screen ==null) //likely unnecessary for this one, since we're loading it earlier, but it's still safer to check
-                    {
-                        message_Screen = new messages_screen(form1, driver);
-                        message_Screen.convos_load();
-                        message_Screen.conversations_fill();
-                    }
+                    message_Screen = new messages_screen(form1, driver);
+                    message_Screen.convos_load();
+                    message_Screen.conversations_fill();
 
-                    panel_1.Controls.Clear();
                     form1.panel1.Controls.Add(message_Screen);
                     message_Screen.Dock = DockStyle.Fill;
                     break;
                 
                 case 7: //the user has selected to view their items
+                    items_view = new items_view(form1);
 
-                    panel_1.Controls.Clear();
-                    if (items_view ==null)
-                    {
-                        items_view = new items_view(form1);
-                    }
                     form1.panel1.Controls.Add(items_view);
                     items_view.Dock = DockStyle.Fill;
                     items_view.checkItems();
                     break;
                 
                 case 8: //the user has selected to create an item
+                    _create_item_screen = new create_item_screen(form1);
 
-                    panel_1.Controls.Clear();
-                    if (_create_item_screen ==null)
-                    {
-                        _create_item_screen = new create_item_screen(form1);
-                    }
                     form1.panel1.Controls.Add(_create_item_screen);
                     _create_item_screen.Dock = DockStyle.Fill;
                     break;

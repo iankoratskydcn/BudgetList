@@ -19,13 +19,11 @@ namespace BudgetGui.Screens
     public partial class messages_screen : UserControl
     {
         private static Form1 mainForm;
-        private static int selfId;
         private static int currentConvoId;
         private static messages_screen messages_Screen;
 
         static sqlDriver driver;
         private static DataTable convs = new DataTable();
-        static FlowLayoutPanel convos_panel;
 
         public messages_screen(Form1 _mainForm, sqlDriver _sqlDriver)
         {
@@ -34,19 +32,21 @@ namespace BudgetGui.Screens
 
             messages_Screen = this;
             mainForm = _mainForm;
-            selfId = Int32.Parse(Program.GlobalStrings[1]);
             driver = _sqlDriver;
-            convos_panel = this.conversations_cont;
 
         }
 
         public void convos_load()
         {
+            conversations_cont.Controls.Clear();
+            int selfId = Int32.Parse(Program.GlobalStrings[1]);
+            MessageBox.Show(selfId.ToString());
             convs.Load(driver.getConversations(selfId).CreateDataReader());
         }
 
         public void conversations_fill()
         {
+            conversations_cont.Controls.Clear();
             string[] strings = { };
 
             foreach (DataRow drow in convs.Rows)
@@ -110,6 +110,7 @@ namespace BudgetGui.Screens
         public void change_convo(int otherId)
         {
 
+            int selfId = Int32.Parse(Program.GlobalStrings[1]);
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
 
             currentConvoId = otherId;
@@ -145,6 +146,7 @@ namespace BudgetGui.Screens
         {
             if (richTextBox1.Text == "") { return; }
             DateTime cur = new DateTime();
+            int selfId = Int32.Parse(Program.GlobalStrings[1]);
             driver.SendMessage(selfId, cur, currentConvoId, richTextBox1.Text);
             richTextBox1.Text = "";
 
@@ -155,8 +157,7 @@ namespace BudgetGui.Screens
 
         private void logout_Click(object sender, EventArgs e)
         {
-            Program.GlobalStrings = null;
-            Form1.changeState(0);
+            mainForm.logout();
         }
 
         private void userView_Click(object sender, EventArgs e)
