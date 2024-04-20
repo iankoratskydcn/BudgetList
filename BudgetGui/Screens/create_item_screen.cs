@@ -66,7 +66,7 @@ namespace BudgetGui.Screens
                     iiii++;
                 }
             }
-            
+
             for (int i = 0; i < fields.Length; i++)
             {
                 if (string.IsNullOrEmpty(fields[i]))
@@ -127,11 +127,16 @@ namespace BudgetGui.Screens
             fileloader.Filter = "All Files (*.*)|*.*";
             fileloader.FilterIndex = 1;
 
-            if(fileloader.ShowDialog() == DialogResult.OK)
+            if (fileloader.ShowDialog() == DialogResult.OK)
             {
                 string path = fileloader.FileName;
                 textBox1.Text = path;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

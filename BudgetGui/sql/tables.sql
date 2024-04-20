@@ -11,7 +11,7 @@ CREATE TABLE _user(
     state VARCHAR(50),
     zip INT,
     profile_pic VARCHAR(128)
-    );
+);
 
 CREATE TABLE _message(
     sender INT NOT NULL,

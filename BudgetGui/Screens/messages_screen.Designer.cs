@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(messages_screen));
             label1 = new Label();
-            conversations = new FlowLayoutPanel();
+            conversations_cont = new FlowLayoutPanel();
             messages = new FlowLayoutPanel();
             richTextBox1 = new RichTextBox();
             button1 = new Button();
@@ -52,38 +53,43 @@
             label1.TabIndex = 6;
             label1.Text = "Messages";
             // 
-            // conversations
+            // conversations_cont
             // 
-            conversations.FlowDirection = FlowDirection.TopDown;
-            conversations.Location = new Point(135, 104);
-            conversations.Name = "conversations";
-            conversations.Size = new Size(187, 393);
-            conversations.TabIndex = 9;
+            conversations_cont.BackgroundImage = (Image)resources.GetObject("conversations_cont.BackgroundImage");
+            conversations_cont.BackgroundImageLayout = ImageLayout.Stretch;
+            conversations_cont.FlowDirection = FlowDirection.TopDown;
+            conversations_cont.Location = new Point(141, 104);
+            conversations_cont.Name = "conversations_cont";
+            conversations_cont.Size = new Size(187, 335);
+            conversations_cont.TabIndex = 9;
+            conversations_cont.UseWaitCursor = true;
             // 
             // messages
             // 
             messages.AutoScroll = true;
+            messages.BackColor = SystemColors.Control;
+            messages.BackgroundImage = (Image)resources.GetObject("messages.BackgroundImage");
             messages.FlowDirection = FlowDirection.TopDown;
-            messages.Location = new Point(328, 104);
+            messages.Location = new Point(334, 104);
             messages.Name = "messages";
-            messages.Size = new Size(474, 393);
+            messages.Size = new Size(423, 335);
             messages.TabIndex = 10;
             messages.WrapContents = false;
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(135, 503);
+            richTextBox1.Location = new Point(141, 445);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(628, 28);
+            richTextBox1.Size = new Size(579, 28);
             richTextBox1.TabIndex = 11;
             richTextBox1.Text = "";
             richTextBox1.Enter += button1_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(769, 503);
+            button1.Location = new Point(726, 445);
             button1.Name = "button1";
-            button1.Size = new Size(33, 28);
+            button1.Size = new Size(31, 28);
             button1.TabIndex = 12;
             button1.Text = ">";
             button1.UseVisualStyleBackColor = true;
@@ -167,6 +173,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(button1);
+            Controls.Add(richTextBox1);
+            Controls.Add(messages);
             Controls.Add(shopping);
             Controls.Add(items);
             Controls.Add(messageScreen);
@@ -174,10 +183,7 @@
             Controls.Add(userView);
             Controls.Add(logout);
             Controls.Add(label1);
-            Controls.Add(richTextBox1);
-            Controls.Add(messages);
-            Controls.Add(conversations);
-            Controls.Add(button1);
+            Controls.Add(conversations_cont);
             Name = "messages_screen";
             Size = new Size(805, 534);
             ResumeLayout(false);
@@ -187,7 +193,7 @@
         #endregion
 
         private Label label1;
-        private FlowLayoutPanel conversations;
+        private FlowLayoutPanel conversations_cont;
         private FlowLayoutPanel messages;
         private RichTextBox richTextBox1;
         private Button button1;
