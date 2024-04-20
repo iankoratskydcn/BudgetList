@@ -105,7 +105,6 @@
             label1.TabIndex = 5;
             label1.Text = "Create Account";
             label1.TextAlign = ContentAlignment.TopCenter;
-            label1.Click += label1_Click;
             // 
             // firstName
             // 
@@ -114,7 +113,6 @@
             firstName.PlaceholderText = "First Name";
             firstName.Size = new Size(253, 23);
             firstName.TabIndex = 6;
-            firstName.TextChanged += firstName_TextChanged;
             // 
             // loginHere
             // 

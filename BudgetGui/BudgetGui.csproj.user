@@ -7,13 +7,7 @@
     <Compile Update="Cards\conversation_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Cards\item_card.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="Cards\message_card.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Cards\review_card.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Cards\self_message_card.cs">

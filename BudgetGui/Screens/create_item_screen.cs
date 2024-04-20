@@ -58,11 +58,11 @@ namespace BudgetGui.Screens
                     if (!File.Exists(newpath))
                     {
                         MessageBox.Show(_path);
-                        File.SetAttributes(image_dir, FileAttributes.Normal);
+                        File.SetAttributes(_path, FileAttributes.Normal);
                         File.Copy(_path, newpath, true);
                         break;
                     }
-                    newpath = Path.Combine(image_dir, Path.GetFileNameWithoutExtension(_path), " (", iiii.ToString(), ")", Path.GetExtension(_path));
+                    newpath = Path.Combine(image_dir, Path.GetFileNameWithoutExtension(_path) + " (" + iiii.ToString() + ")" + Path.GetExtension(_path));
                     iiii++;
                 }
             }
@@ -85,6 +85,8 @@ namespace BudgetGui.Screens
                 sqlDriver.createNewItem(itemTitle.Text,itemDesc.Text, onlyFileName, itemPrice.Text);
                 //sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, itemPrice.Text);
                 MessageBox.Show("Item Created Successfully");
+
+
                 Form1.changeState(7);
             }
         }

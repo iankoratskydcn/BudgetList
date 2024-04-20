@@ -51,14 +51,5 @@ namespace BudgetGui.Screens
             Form1.changeState(0);    
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void firstName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
