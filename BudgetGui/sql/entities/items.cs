@@ -60,7 +60,7 @@ public partial class sqlDriver
                 System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
                 var r = Serialize(reader);
                 string json = JsonConvert.SerializeObject(r, Newtonsoft.Json.Formatting.Indented);
-                MessageBox.Show(json);
+                //MessageBox.Show(json);
                 obj = JObject.Parse(json.Remove(json.Length - 1).Remove(0, 1));
             }
             return obj;
