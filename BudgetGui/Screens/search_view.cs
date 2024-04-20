@@ -29,7 +29,6 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
 
             dataGridView = sqlDriver.searchInitalize(dataGridView);
-            dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
         }
 
