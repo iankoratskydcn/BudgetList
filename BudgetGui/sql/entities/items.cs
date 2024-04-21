@@ -352,8 +352,8 @@ public partial class sqlDriver
     {
         // Create SQL command
         string insertSavedItemQuery = $@"
-                                INSERT INTO savedItems (itemId, title, description, creatorUserId, savedUserId, postDate, currencyType, itemPrice) 
-                                SELECT itemId, title, description, sellerId, @userid, postDate, currencyType, itemPrice 
+                                INSERT INTO savedItems (itemId, title, description, creatorUserId, savedUserId, postDate, itemPrice) 
+                                SELECT itemId, title, description, sellerId, @userid, postDate, itemPrice 
                                 FROM item 
                                 WHERE itemId = @itemId;";
 

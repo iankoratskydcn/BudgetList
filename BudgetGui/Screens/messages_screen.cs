@@ -139,9 +139,8 @@ namespace BudgetGui.Screens
 
             if (messageSelected == false) { return; }
 
-            DateTime cur = new DateTime();
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
-            driver.SendMessage(selfId, cur, currentConvoId, richTextBox1.Text.Trim());
+            driver.SendMessage(selfId, DateTime.Now, currentConvoId, richTextBox1.Text.Trim());
             richTextBox1.Text = "";
 
             //refresh messages

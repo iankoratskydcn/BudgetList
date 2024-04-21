@@ -175,23 +175,22 @@ namespace BudgetGui.Screens
                 mainForm.passMessageScreen(seller);
             }
 
+            MessageBox.Show($"Row Index: {e.RowIndex}, Total Rows: {dataGridView.RowCount}");
 
-            int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
+            int itemIdnum;
+            if (e.RowIndex == dataGridView.RowCount)
+            {
+                itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex - 1].Cells["Item ID"].Value.ToString());
+            }
+            else
+            {
+                itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
+            }
 
             JObject j = sqlDriver.getItemById(itemIdnum);
-            try
-            {
-                pictureBox2.Image = Image.FromFile(
-                    Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
-                    j["photoUrl"].ToString()));
-                richTextBox1.Text = j["description"].ToString();
-
-            }
-            catch (Exception)
-            {
-            }
+            pictureBox2.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"), j["photoUrl"].ToString()));
+            richTextBox1.Text = j["description"].ToString();
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-
             label2.Text = "$" + j["itemPrice"].ToString();
 
         }
