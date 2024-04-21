@@ -51,7 +51,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel1.Size = new Size(177, 45);
+            tableLayoutPanel1.Size = new Size(164, 45);
             tableLayoutPanel1.TabIndex = 1;
             tableLayoutPanel1.Click += clicked;
             // 
@@ -76,7 +76,7 @@
             linkLabel1.Image = (Image)resources.GetObject("linkLabel1.Image");
             linkLabel1.Location = new Point(47, 0);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(127, 45);
+            linkLabel1.Size = new Size(114, 45);
             linkLabel1.TabIndex = 2;
             linkLabel1.Text = "label1";
             linkLabel1.TextAlign = ContentAlignment.MiddleLeft;
@@ -89,7 +89,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             Controls.Add(tableLayoutPanel1);
             Name = "conversation_card";
-            Size = new Size(177, 45);
+            Size = new Size(164, 45);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
