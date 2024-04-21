@@ -146,15 +146,8 @@ namespace BudgetGui.Screens
 
                 if (sqlDriver.checkIfItemAlreadySaved(itemId))
                 {
-                    // Create SQL command
-                    string insertSavedItemQuery = $@"
-                                INSERT INTO savedItems (itemId, title, description, creatorUserId, savedUserId, postDate, currencyType, itemPrice) 
-                                SELECT itemId, title, description, sellerId, {Program.GlobalStrings[1]}, postDate, currencyType, itemPrice 
-                                FROM item 
-                                WHERE itemId = '{itemId}';
-                            ";
+                    sqlDriver.save_item(Int32.Parse(itemId));
 
-                    sqlDriver.executeDbInsertQuery(insertSavedItemQuery);
                     MessageBox.Show($"Item has been saved");
                 }
                 else
@@ -169,12 +162,7 @@ namespace BudgetGui.Screens
 
                 // Get the values from the clicked row
                 string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
-                //string title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
-                //string description = dataGridView.Rows[e.RowIndex].Cells["Description"].Value?.ToString() ?? "";
                 string sellerName = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
-                //DateTime postDate = dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value is DateTime ? (DateTime)dataGridView.Rows[e.RowIndex].Cells["Post Date"].Value : DateTime.MinValue;
-                //decimal itemPrice = dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value is decimal ? (decimal)dataGridView.Rows[e.RowIndex].Cells["Item Price"].Value : 0;
-                //string currencyType = dataGridView.Rows[e.RowIndex].Cells["Currency Type"].Value?.ToString() ?? "";
 
                 if (sellerName == Program.GlobalStrings[0])
                 {
@@ -182,32 +170,12 @@ namespace BudgetGui.Screens
                     return;
                 }
 
-                string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'";
-
-                sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
+                sqlDriver.updated_bought_item(itemId);
                 MessageBox.Show($"Item has been bought");
 
                 dataGridView = sqlDriver.sButton("", dataGridView);
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
 
-
-
-                /*
-                if (sqlDriver.checkIfItemAlreadySaved(itemId))
-                {
-                    // Create SQL command
-                    string updateBoughtItemQuery = $"UPDATE item SET buyerId = '{Program.GlobalStrings[1]}', purchaseDate = '{DateTime.Today.ToString("yyyy-MM-dd")}' WHERE itemId = '{itemId}'";
-
-                    sqlDriver.executeDbInsertQuery(updateBoughtItemQuery);
-                    MessageBox.Show($"Item has been bought");
-
-                    //Removes bought item from saved list if saved before buying
-                } 
-                else
-                {
-                    MessageBox.Show($"Item has already been bought");
-                }
-                */
             }
 
             int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());

@@ -7,6 +7,8 @@ using System.Runtime.InteropServices.JavaScript;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data;
+using BudgetGui;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 public partial class sqlDriver
 {
@@ -80,4 +82,47 @@ public partial class sqlDriver
         }
         return dataTable;
     }
+
+    public void updateDoB(string itemId)
+    {
+
+        string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId";
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(updateBoughtItemQuery, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
+                command.Parameters.AddWithValue("@itemId", itemId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void updateDoB(string itemId)
+    {
+
+        string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId";
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(updateBoughtItemQuery, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
+                command.Parameters.AddWithValue("@itemId", itemId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
+        sqlDriver.executeDbInsertQuery($"UPDATE _user SET profile_pic = '{img_path.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+        sqlDriver.executeDbInsertQuery($"UPDATE _user SET DOB = '{dateOfBirth.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+        sqlDriver.executeDbInsertQuery($"UPDATE _user SET email = '{email.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+        sqlDriver.executeDbInsertQuery($"UPDATE _user SET _password = '{password.Text}' WHERE userId = {Program.GlobalStrings[1]};")
 }

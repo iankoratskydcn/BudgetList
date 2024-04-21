@@ -29,7 +29,6 @@ namespace BudgetGui.Screens
 
 
         }
-
         public void refresh_image()
         {
             //get the picture into the box
@@ -113,7 +112,7 @@ namespace BudgetGui.Screens
 
             if (!(string.IsNullOrEmpty(email.Text)))
             {
-                sqlDriver.executeDbInsertQuery($"UPDATE _user SET email = '{email.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+                sqlDriver.updateEmail(email.Text);
             }
 
             if (!(string.IsNullOrEmpty(password.Text)))
@@ -125,7 +124,7 @@ namespace BudgetGui.Screens
                 }
                 else
                 {
-                    sqlDriver.executeDbInsertQuery($"UPDATE _user SET _password = '{password.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+                    sqlDriver.updatePW(password.Text);
                 }
             }
 
@@ -139,14 +138,18 @@ namespace BudgetGui.Screens
                 }
                 else
                 {
-                    sqlDriver.executeDbInsertQuery($"UPDATE _user SET DOB = '{dateOfBirth.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+
+                    sqlDriver.updateDoB(dateOfBirth.Text);
                 }
             }
 
 
             if (!(string.IsNullOrEmpty(img_path.Text)))
             {
-                sqlDriver.executeDbInsertQuery($"UPDATE _user SET profile_pic = '{img_path.Text}' WHERE userId = {Program.GlobalStrings[1]};");
+
+
+                sqlDriver.updateProfilePic(img_path.Text);
+
                 img_path.Text = "";
                 refresh_image();
             }

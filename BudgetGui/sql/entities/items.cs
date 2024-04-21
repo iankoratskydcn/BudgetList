@@ -45,6 +45,32 @@ public partial class sqlDriver
             }
         }
     }
+
+    public void save_item(int item_id)
+    {
+        // Create SQL command
+        string insertSavedItemQuery = $@"
+                                INSERT INTO savedItems (itemId, title, description, creatorUserId, savedUserId, postDate, currencyType, itemPrice) 
+                                SELECT itemId, title, description, sellerId, @userid, postDate, currencyType, itemPrice 
+                                FROM item 
+                                WHERE itemId = @itemId;";
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+
+            using (SQLiteCommand command = new SQLiteCommand(insertSavedItemQuery, connection))
+            {
+
+                command.Parameters.AddWithValue("@userid", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@itemId", item_id);
+
+                command.ExecuteNonQuery();
+                MessageBox.Show($"Item has been saved");
+            }
+        }
+    }
+
     public JObject getItemById(int itemId)
     {
         string query = @"SELECT * FROM item WHERE itemId = @itemId";
@@ -88,6 +114,29 @@ public partial class sqlDriver
             return obj;
         }
     }
+
+    public void updated_bought_item(string itemId)
+    {
+
+        string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId";
+
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(updateBoughtItemQuery, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
+                command.Parameters.AddWithValue("@itemId", itemId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+    }
+
+;
+
     public JObject getItemsByStateAndCategory(string state, string category)
     {
 
