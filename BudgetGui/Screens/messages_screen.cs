@@ -58,16 +58,16 @@ namespace BudgetGui.Screens
             }
         }
 
-        public void _convo_from_item_start(int buyerId, int itemId)
+        public void _convo_from_item_start(int seller)
         {
 
-            JObject item = driver.getItemById(itemId);
-            int seller = Int32.Parse(item["sellerId"].ToString());
-            string text = "Hello, I have a question about your " + item["title"].ToString();
-
-            driver.SendMessage(buyerId, DateTime.Now, seller, text);
+            //JObject item = driver.getItemById(itemId);
+            //int seller = Int32.Parse(item["sellerId"].ToString());
+            //string text = "Hello, I have a question about your " + item["title"].ToString();
+            string text = "JObject";
+            driver.SendMessage(Int32.Parse(Program.GlobalStrings[1]), DateTime.Now, seller, text);
             conversations_renew();
-            Form1.changeState(6);
+            //Form1.changeState(6);
             change_convo(seller);
 
         }
