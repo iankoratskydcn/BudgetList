@@ -42,7 +42,6 @@ public partial class sqlDriver
         string _user_pic = "";
         string _other_pic = "";
 
-
         List<message_card> message_Cards = new List<message_card>();
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
@@ -142,23 +141,15 @@ public partial class sqlDriver
     public DataTable getConversations(int selfID)
     {
         string query = @"SELECT DISTINCT recipient FROM _message WHERE sender = @selfID ORDER BY DATE(timeDate) DESC";
-
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
             DataTable dataTable = new DataTable();
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                try
-                {
-                    command.Parameters.AddWithValue("@selfID", selfID);
-                    SQLiteDataReader reader = command.ExecuteReader();
-                    dataTable.Load(reader);
-                }
-                catch (Exception e)
-                {
-                }
-                
+                command.Parameters.AddWithValue("@selfID", selfID);
+                SQLiteDataReader reader = command.ExecuteReader();
+                dataTable.Load(reader);
             }
             return dataTable;
         }

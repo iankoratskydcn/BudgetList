@@ -1,4 +1,4 @@
- INSERT INTO _user (userId, fName, lName, username, _password, email, DOB, street, city, state, zip, profile_pic) --fix image links
+INSERT INTO _user (userId, fName, lName, username, _password, email, DOB, street, city, state, zip, profile_pic)
 VALUES
     (1, 'Joshua', 'Bernard', 'jbernard2024', 'Josh1234!', 'joshua@gmail.com', '2002-04-28', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download.png'),
     (2, 'John', 'Doe', 'johndoe', 'Password1!', 'john@gmail.com', '1990-01-01', '123 Main Street','New York', 'New York', 10001,'download (5).png'),
@@ -35,9 +35,7 @@ VALUES
     ('7', '2024-03-28 11:22:00','1', 'Great, I''ll see you then.'),
     ('8', '2024-03-28 11:23:00','1', 'Great, I''ll see you then.');
 
-    
-
-   Insert Into item(itemId, sellerId,  postDate,  title,  description,  photoUrl,  itemPrice )
+Insert Into item(itemId, sellerId,  postDate,  title,  description,  photoUrl,  itemPrice )
 VALUES
 (1,6,'2023-04-21 09:02:00','Logitech MX Master 3 Wireless Mouse','Introducing the Logitech MX Master 3 Wireless Mouse, the ultimate tool for productivity and precision. Engineered for comfort and performance, this ergonomic mouse features a customizable design with advanced features to enhance your workflow. With ultra-fast and precise tracking, the MX Master 3 allows you to navigate seamlessly across multiple screens and applications. Its customizable buttons and scroll wheel provide effortless control, while the long-lasting battery ensures uninterrupted use. Elevate your computing experience with the Logitech MX Master 3 Wireless Mouse.','Logitech_MX_Master_3_Wireless_Mouse.png',11.36),
 (2,4,'2023-04-22 09:03:00','Corsair K95 RGB Platinum Mechanical Gaming Keyboard','The Corsair K95 RGB Platinum Mechanical Gaming Keyboard offers top-of-the-line performance and customizable features for serious gamers. Equipped with Cherry MX key switches for ultra-fast and precise keystrokes, this keyboard ensures a responsive gaming experience. The dynamic RGB backlighting can be customized to match your setup or mood, while dedicated macro keys allow for advanced customization and control. With a durable aluminum frame and comfortable wrist rest, the Corsair K95 RGB Platinum is designed for long gaming sessions. Elevate your gaming experience with this high-performance keyboard.','Corsair_K95_RGB_Platinum_Mechanical_Gaming_Keyboard.png',10.4),
