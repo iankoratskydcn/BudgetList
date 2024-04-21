@@ -40,7 +40,6 @@ namespace BudgetGui.Screens
 
             dataGridView.Columns["Item ID"].Visible = false;
             dataGridView.Columns["Description"].Visible = false;
-            dataGridView.Columns["Seller Name"].Visible = false;
             dataGridView.Columns["Post Date"].Visible = false;
             dataGridView.Columns["Item Price"].Visible = false;
 
