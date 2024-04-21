@@ -60,16 +60,10 @@ namespace BudgetGui.Screens
 
         public void _convo_from_item_start(int seller)
         {
-
-            //JObject item = driver.getItemById(itemId);
-            //int seller = Int32.Parse(item["sellerId"].ToString());
-            //string text = "Hello, I have a question about your " + item["title"].ToString();
-            string text = "JObject";
+            string text = "New conversation";
             driver.SendMessage(Int32.Parse(Program.GlobalStrings[1]), DateTime.Now, seller, text);
             conversations_renew();
-            //Form1.changeState(6);
             change_convo(seller);
-
         }
 
         public void conversations_renew()
