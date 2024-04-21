@@ -33,7 +33,6 @@ namespace BudgetGui.Screens
         public void refresh_image()
         {
             //get the picture into the box
-
             DataTable j = sqlDriver.getUserById(Int32.Parse(Program.GlobalStrings[1].ToString()));
             try
             {
@@ -164,9 +163,7 @@ namespace BudgetGui.Screens
             {
                 string path = fileloader.FileName;
                 img_path.Text = path;
-
             }
-
            
         }
 

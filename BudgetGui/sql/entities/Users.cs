@@ -41,27 +41,6 @@ public partial class sqlDriver
         }
     }
 
-    public JObject getUsersByCity(string city)
-    {
-
-        string query = @"SELECT * FROM _user WHERE city = @city";
-
-        JObject obj;
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@itemId", city);
-                SQLiteDataReader reader = command.ExecuteReader();
-                var r = Serialize(reader);
-                obj = JObject.Parse(JsonConvert.SerializeObject(r));
-
-            }
-            return obj;
-        }
-    }
     public DataTable getUserById(int id)
     {
         string query = "SELECT * FROM _user WHERE userId = @userId";

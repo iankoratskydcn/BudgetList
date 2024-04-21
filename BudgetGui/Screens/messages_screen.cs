@@ -65,7 +65,6 @@ namespace BudgetGui.Screens
             int seller = Int32.Parse(item["sellerId"].ToString());
             string text = "Hello, I have a question about your " + item["title"].ToString();
 
-
             driver.SendMessage(buyerId, DateTime.Now, seller, text);
             conversations_renew();
             Form1.changeState(6);
@@ -88,7 +87,6 @@ namespace BudgetGui.Screens
 
             conversations_fill();
 
-            //controls.ForEach(
             Parallel.ForEach(controls.AsParallel(),
                 (e) =>
                 {

@@ -21,10 +21,8 @@ namespace BudgetGui
         private static Form1 form1;
         private static Panel panel_1;
         private static sqlDriver driver;
-        
 
         private static string userId;
-
 
         public Form1(sqlDriver _sqlDriver)
         {
@@ -43,19 +41,9 @@ namespace BudgetGui
 
         public void logout()
         {
-
             Program.GlobalStrings = new string[2];
             Program.GlobalStrings[0] = "";
             Program.GlobalStrings[1] = "";
-            //main_Screen = null;
-            //user_View = null;
-            //search_View = null;
-            //items_view = null;
-            //_create_item_screen = null;
-            //message_Screen = null;
-            //shopping_screen = null;
-            //registration = null;
-
 
             GC.Collect();
 
@@ -64,19 +52,7 @@ namespace BudgetGui
 
         public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
         {
-            //check login to ensure that the user is logged in. If they're not, default to the login screen
-
-            //while (panel_1.Controls.Count > 0)
-            //{
-            //    var ccc = panel_1.Controls[0];
-            //    panel_1.Controls.RemoveAt(0);
-            //    ccc.Dispose();
-            //    GC.Collect();
-            //}
-
             form1.SuspendLayout();
-
-            //normally i'd add the Controls.Clear here, but trying to get messages to load faster
             panel_1.Controls.Clear();
 
             switch (state)
@@ -86,7 +62,6 @@ namespace BudgetGui
                     
                     form1.panel1.Controls.Add(_login_screen);
                     _login_screen.Dock = DockStyle.Fill;
-
                     break;
                 
                 case 1: //the user has selected create an account
@@ -94,7 +69,6 @@ namespace BudgetGui
                     if (registration == null)
                     {
                         registration = new registration(form1);
-
                     }
 
                     form1.panel1.Controls.Add(registration);
@@ -121,6 +95,7 @@ namespace BudgetGui
                     {
                         user_View = new user_view(form1);
                     } 
+
                     form1.panel1.Controls.Add(user_View);
                     user_View.Dock = DockStyle.Fill;
                     user_View.refresh_image();
@@ -132,6 +107,7 @@ namespace BudgetGui
                     {
                         search_View = new search_view(form1);
                     }
+
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
                     search_View.dgvInitialize();
@@ -139,10 +115,11 @@ namespace BudgetGui
                 
                 case 5: //the user has selected shopping screen
 
-                    if (shopping_screen == null) { 
-
+                    if (shopping_screen == null) 
+                    { 
                         shopping_screen = new shopping(form1); 
                     }
+
                     form1.panel1.Controls.Add(shopping_screen);
                     shopping_screen.Dock = DockStyle.Fill;
                     shopping_screen.checkItems();
@@ -165,6 +142,7 @@ namespace BudgetGui
                     {
                         items_view = new items_view(form1);
                     }
+
                     form1.panel1.Controls.Add(items_view);
                     items_view.Dock = DockStyle.Fill;
                     items_view.checkItems();
@@ -176,6 +154,7 @@ namespace BudgetGui
                     {
                         _create_item_screen = new create_item_screen(form1);
                     }
+
                     form1.panel1.Controls.Add(_create_item_screen);
                     _create_item_screen.Dock = DockStyle.Fill;
                     break;
@@ -184,6 +163,7 @@ namespace BudgetGui
                 default: //error, do nothing
                     break;
             }
+
             form1.ResumeLayout(true);
 
         }
