@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using static System.Windows.Forms.AxHost;
 using BudgetGui;
 using System.Data;
-using BudgetGui.sql.entities;
 using System.Data.SqlTypes;
 using System.Text;
 using System.Windows.Forms;

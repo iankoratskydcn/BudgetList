@@ -11,7 +11,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BudgetGui.sql.entities;
 using Newtonsoft.Json.Linq;
 
 
@@ -29,7 +28,6 @@ namespace BudgetGui.Screens
             mainForm = _mainForm;
 
             dataGridView = sqlDriver.searchInitalize(dataGridView);
-            dataGridView.CellContentClick += new DataGridViewCellEventHandler(dataGridView_CellContentClick);
             txtSearch.KeyPress += new KeyPressEventHandler(txtSearch_KeyPress);
         }
 
@@ -46,11 +44,10 @@ namespace BudgetGui.Screens
             dataGridView.Columns["Post Date"].Visible = false;
             dataGridView.Columns["Item Price"].Visible = false;
 
-
             dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridView.Columns[1].Width = 70;
+            dataGridView.Columns[1].Width = 100;
             dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridView.Columns[0].Width = 70;
+            dataGridView.Columns[0].Width = 100;
 
         }
 
@@ -89,30 +86,9 @@ namespace BudgetGui.Screens
         {
             try
             {
-                //DataTable commodities = sqlDriver.sButton(txtSearch.Text);
-
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
                 dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                /*
-                // Create a new button column
-                DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-                buttonColumn.Name = "buttonColumn";
-                buttonColumn.Text = "Save";
-                buttonColumn.HeaderText = "Save to Shopping";
-                buttonColumn.UseColumnTextForButtonValue = true;
-
-                // Add the button column to the DataGridView
-                dataGridView.Columns.Add(buttonColumn);
-
-
-               // dataGridView.DataSource = commodities;
-                */
-
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
-
-
-
             }
             catch (Exception ex)
             {
@@ -127,9 +103,6 @@ namespace BudgetGui.Screens
             {
                 return;
             }
-
-
-
 
             // If the clicked cell is in the button column
             if (e.ColumnIndex == dataGridView.Columns["buttonColumn"].Index)
@@ -171,7 +144,7 @@ namespace BudgetGui.Screens
                 }
 
                 sqlDriver.updated_bought_item(itemId);
-                MessageBox.Show($"Item has been bought");
+               
 
                 dataGridView = sqlDriver.sButton("", dataGridView);
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";

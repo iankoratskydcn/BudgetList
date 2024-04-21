@@ -36,35 +36,11 @@ namespace BudgetGui.Screens
             string monetaryPattern = @"^\d+(\.\d{2})?$";
             string[] fields = { itemTitle.Text, itemDesc.Text, itemPrice.Text };
             string[] labels = { "Title", "Description", "Price", "" };
+            string _path = textBox1.Text; //for uploading an image
 
-            //for uploading an image
-            string _path = textBox1.Text;
-            string newpath = "";
-            string onlyFileName = "";
-
-            if (_path != "")
+            if (_path == "")
             {
-
-                onlyFileName = Path.GetFileName(_path);
-
-                int iiii = 0;
-
-                string image_dir = Path.Combine(Environment.CurrentDirectory, @"..\..\..\images\items\");
-                string initial_path = Path.GetFullPath(image_dir + onlyFileName);
-                newpath = initial_path;
-
-                while (true)
-                {
-                    if (!File.Exists(newpath))
-                    {
-                        MessageBox.Show(_path);
-                        File.SetAttributes(_path, FileAttributes.Normal);
-                        File.Copy(_path, newpath, true);
-                        break;
-                    }
-                    newpath = Path.Combine(image_dir, Path.GetFileNameWithoutExtension(_path) + " (" + iiii.ToString() + ")" + Path.GetExtension(_path));
-                    iiii++;
-                }
+                _path = "blank-image.png";
             }
 
             for (int i = 0; i < fields.Length; i++)
@@ -82,8 +58,7 @@ namespace BudgetGui.Screens
             else
             {
                 string dt = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-                sqlDriver.createNewItem(itemTitle.Text,itemDesc.Text, onlyFileName, itemPrice.Text);
-                //sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, itemPrice.Text);
+                sqlDriver.createNewItem(itemTitle.Text,itemDesc.Text, _path, itemPrice.Text);
                 MessageBox.Show("Item Created Successfully");
 
 
