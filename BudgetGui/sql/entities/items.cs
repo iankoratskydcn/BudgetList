@@ -175,27 +175,6 @@ public partial class sqlDriver
         }
     }
 
-    public void createItemSearchView()
-    {
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-
-            string createViewQuery = @"
-            CREATE VIEW IF NOT EXISTS itemSearch AS
-            SELECT i.title, i.itemPrice, u.username, i.postDate, i.itemId, i.description
-            FROM item i
-            JOIN _user u ON u.userId = i.sellerId
-            WHERE i.buyerId IS NULL;
-        ";
-
-            using (SQLiteCommand command = new SQLiteCommand(createViewQuery, connection))
-            {
-                command.ExecuteNonQuery();
-            }
-        }
-    }
-
     public DataGridView searchInitalize(DataGridView dgv)
     {
 
@@ -222,56 +201,7 @@ public partial class sqlDriver
         dgv.Columns.Add(buttonColumn3);
 
         return dgv;
-        /*
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            DataTable dt;
 
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "buttonColumn";
-            buttonColumn.Text = "Save";
-            buttonColumn.HeaderText = "Save to Shopping";
-            buttonColumn.UseColumnTextForButtonValue = true;
-
-            DataGridViewButtonColumn buttonColumn2 = new DataGridViewButtonColumn();
-            buttonColumn2.Name = "buttonColumn2";
-            buttonColumn2.Text = "Buy";
-            buttonColumn2.HeaderText = "Purchase";
-            buttonColumn2.UseColumnTextForButtonValue = true;
-
-            DataGridViewButtonColumn buttonColumn3 = new DataGridViewButtonColumn();
-            buttonColumn3.Name = "buttonColumn3";
-            buttonColumn3.Text = "Message";
-            buttonColumn3.HeaderText = "Send a Message";
-            buttonColumn3.UseColumnTextForButtonValue = true;
-
-            dgv.Columns.Add(buttonColumn2);
-            dgv.Columns.Add(buttonColumn);
-            dgv.Columns.Add(buttonColumn3);
-
-            return dgv;
-
-            
-            connection.Open();
- 
-            string query = @"
-                            SELECT i.title as 'Title', '$' || i.itemPrice as 'Item Price', u.username as 'Seller Name', i.postDate as 'Post Date', i.itemId as 'Item ID', i.description as 'Description'
-                            FROM item i
-                            JOIN _user u ON u.userId = i.sellerId
-                            WHERE i.buyerId IS NULL;
-                        ";
-
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                SQLiteDataAdapter adapter = new SQLiteDataAdapter(command);
-                dt = new DataTable("Items");
-                adapter.Fill(dt);
-                dgv.DataSource = dt;
-                return dgv;
-            }
-            
-        }
-        */
     }
 
     public DataGridView sButton(string titleQuery, DataGridView dgv)
@@ -287,7 +217,7 @@ public partial class sqlDriver
             string query = @"
                         SELECT title as 'Title', '$' || itemPrice as 'Item Price', username as 'Seller Name', postDate as 'Post Date', itemId as 'Item ID', description as 'Description'
                         FROM itemSearch
-                        WHERE Title LIKE @title AND 'Buyer ID' IS NULL;
+                        WHERE Title LIKE @title;
                     ";
 
 
