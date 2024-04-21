@@ -27,9 +27,6 @@ namespace BudgetGui.Screens
             DoubleBuffered = true;
             mainForm = _mainForm;
 
-            refresh_image();
-
-
             load_text_to_boxes();
 
         }
@@ -56,7 +53,10 @@ namespace BudgetGui.Screens
             v = j.Rows[0]["zip"].ToString();
             zip.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
 
-
+            pictureBox2.Image = Image.FromFile(
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
+                        j.Rows[0]["profile_pic"].ToString()));
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         public void refresh_image()
