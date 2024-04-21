@@ -175,6 +175,27 @@ public partial class sqlDriver
         }
     }
 
+    public void createItemSearchView()
+    {
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+
+            string createViewQuery = @"
+            CREATE VIEW itemSearch AS
+            SELECT i.title, i.itemPrice, u.username, i.postDate, i.itemId, i.description
+            FROM item i
+            JOIN _user u ON u.userId = i.sellerId
+            WHERE i.buyerId IS NULL;
+        ";
+
+            using (SQLiteCommand command = new SQLiteCommand(createViewQuery, connection))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
     public DataGridView searchInitalize(DataGridView dgv)
     {
 
@@ -262,13 +283,13 @@ public partial class sqlDriver
 
             connection.Open();
 
+
             string query = @"
-                            SELECT i.title as 'Title', '$' || i.itemPrice as 'Item Price', u.username as 'Seller Name', i.postDate as 'Post Date', i.itemId as 'Item ID', i.description as 'Description'
-                            FROM item i
-                            JOIN _user u ON u.userId = i.sellerId
-                            WHERE i.title LIKE @title AND i.buyerId IS NULL;
-                        ";
-  
+                        SELECT title as 'Title', '$' || itemPrice as 'Item Price', username as 'Seller Name', postDate as 'Post Date', itemId as 'Item ID', description as 'Description'
+                        FROM itemSearch
+                        WHERE Title LIKE @title AND 'Buyer ID' IS NULL;
+                    ";
+
 
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
