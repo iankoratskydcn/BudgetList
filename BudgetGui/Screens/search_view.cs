@@ -175,8 +175,6 @@ namespace BudgetGui.Screens
                 mainForm.passMessageScreen(seller);
             }
 
-            MessageBox.Show($"Row Index: {e.RowIndex}, Total Rows: {dataGridView.RowCount}");
-
             int itemIdnum;
             if (e.RowIndex == dataGridView.RowCount)
             {
