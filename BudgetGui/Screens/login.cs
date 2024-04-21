@@ -52,5 +52,6 @@ namespace BudgetGui.Screens
         {
             Form1.changeState(1);
         }
+
     }
 }

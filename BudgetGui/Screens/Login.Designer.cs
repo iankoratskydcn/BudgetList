@@ -98,8 +98,8 @@
             // 
             textBox2.Location = new Point(93, 254);
             textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Password";
             textBox2.PasswordChar = '*';
+            textBox2.PlaceholderText = "Password";
             textBox2.Size = new Size(253, 23);
             textBox2.TabIndex = 12;
             textBox2.Text = "Josh1234!";

@@ -117,6 +117,8 @@ public partial class sqlDriver
     public void updated_bought_item(string itemId)
     {
 
+
+        string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId";
         string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId";
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
@@ -127,7 +129,16 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@itemId", Program.GlobalStrings[1]);
                 command.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
                 command.Parameters.AddWithValue("@itemId", itemId);
+                command.ExecuteNonQuery();
+            }
+        }
 
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(delete_saved, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", itemId);
                 command.ExecuteNonQuery();
             }
         }

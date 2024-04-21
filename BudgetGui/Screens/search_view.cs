@@ -144,7 +144,8 @@ namespace BudgetGui.Screens
                 }
 
                 sqlDriver.updated_bought_item(itemId);
-               
+                MessageBox.Show($"Item has been bought");
+
 
                 dataGridView = sqlDriver.sButton("", dataGridView);
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";

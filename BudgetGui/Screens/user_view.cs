@@ -36,38 +36,27 @@ namespace BudgetGui.Screens
         private void load_text_to_boxes()
         {
             DataTable j = sqlDriver.getUserById(Int32.Parse(Program.GlobalStrings[1].ToString()));
-            try
-            {
-                if (j.Rows[0]["profile_pic"].ToString() != "" && j.Rows[0]["profile_pic"].ToString().Length != 0 && j.Rows[0]["profile_pic"].ToString() != null)
-                {
-
-                    pictureBox2.Image = Image.FromFile(
-                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
-                        j.Rows[0]["profile_pic"].ToString()));
-                }
-            }
-            catch (Exception)
-            {
-            }
 
             string v;
-            
+
             v = j.Rows[0]["email"].ToString();
-            email.Text = (v != "" && v.Length != 0 && v != null) ? "" : "";
-            password.Text = "";
-            dateOfBirth.Text = "";
-            img_path.Text = "";
-            street.Text = "";
-            city.Text = "";
-            state.Text = "";
-            zip.Text = "";
+            email.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
+            v = j.Rows[0]["_password"].ToString();
+            password.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
+            v = j.Rows[0]["DOB"].ToString();
+            dateOfBirth.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
+            v = j.Rows[0]["profile_pic"].ToString();
+            img_path.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
+            v = j.Rows[0]["street"].ToString();
+            street.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
+            v = j.Rows[0]["city"].ToString();
+            city.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
+            v = j.Rows[0]["state"].ToString();
+            state.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
+            v = j.Rows[0]["zip"].ToString();
+            zip.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
 
 
-        }
-
-        public testvalue(string v)
-        {
-            bool condition = ()
         }
 
         public void refresh_image()
@@ -195,6 +184,7 @@ namespace BudgetGui.Screens
                 refresh_image();
             }
 
+            load_text_to_boxes();
             MessageBox.Show($"Saved Successfully");
         }
 
@@ -210,13 +200,6 @@ namespace BudgetGui.Screens
                 img_path.Text = path;
 
             }
-
-
-        }
-
-        private void email_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

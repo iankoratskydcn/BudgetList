@@ -183,6 +183,7 @@
             // 
             password.Location = new Point(460, 205);
             password.Name = "password";
+            password.PasswordChar = '*';
             password.PlaceholderText = "Password";
             password.Size = new Size(253, 23);
             password.TabIndex = 23;
@@ -194,7 +195,6 @@
             email.PlaceholderText = "Email";
             email.Size = new Size(253, 23);
             email.TabIndex = 24;
-            email.TextChanged += email_TextChanged;
             // 
             // shopping
             // 
