@@ -194,6 +194,7 @@
             email.PlaceholderText = "Email";
             email.Size = new Size(253, 23);
             email.TabIndex = 24;
+            email.TextChanged += email_TextChanged;
             // 
             // shopping
             // 

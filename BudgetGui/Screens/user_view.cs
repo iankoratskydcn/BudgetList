@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using static System.Data.Entity.Infrastructure.Design.Executor;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BudgetGui.Screens
@@ -29,7 +30,46 @@ namespace BudgetGui.Screens
             refresh_image();
 
 
+            load_text_to_boxes();
+
         }
+        private void load_text_to_boxes()
+        {
+            DataTable j = sqlDriver.getUserById(Int32.Parse(Program.GlobalStrings[1].ToString()));
+            try
+            {
+                if (j.Rows[0]["profile_pic"].ToString() != "" && j.Rows[0]["profile_pic"].ToString().Length != 0 && j.Rows[0]["profile_pic"].ToString() != null)
+                {
+
+                    pictureBox2.Image = Image.FromFile(
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
+                        j.Rows[0]["profile_pic"].ToString()));
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            string v;
+            
+            v = j.Rows[0]["email"].ToString();
+            email.Text = (v != "" && v.Length != 0 && v != null) ? "" : "";
+            password.Text = "";
+            dateOfBirth.Text = "";
+            img_path.Text = "";
+            street.Text = "";
+            city.Text = "";
+            state.Text = "";
+            zip.Text = "";
+
+
+        }
+
+        public testvalue(string v)
+        {
+            bool condition = ()
+        }
+
         public void refresh_image()
         {
             //get the picture into the box
@@ -171,8 +211,12 @@ namespace BudgetGui.Screens
 
             }
 
-           
+
         }
 
+        private void email_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
