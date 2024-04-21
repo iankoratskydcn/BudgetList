@@ -50,5 +50,11 @@ CREATE TABLE savedItems(
 	CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)
 );
 
+ CREATE VIEW IF NOT EXISTS itemSearch AS
+ SELECT i.title, i.itemPrice, u.username, i.postDate, i.itemId, i.description
+ FROM item i
+ JOIN _user u ON u.userId = i.sellerId
+ WHERE i.buyerId IS NULL;
+
 
 
