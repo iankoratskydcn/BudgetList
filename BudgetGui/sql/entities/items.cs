@@ -190,12 +190,19 @@ public partial class sqlDriver
             DataGridViewButtonColumn buttonColumn2 = new DataGridViewButtonColumn();
             buttonColumn2.Name = "buttonColumn2";
             buttonColumn2.Text = "Buy";
-            buttonColumn2.HeaderText = "Purchasing";
+            buttonColumn2.HeaderText = "Purchase";
             buttonColumn2.UseColumnTextForButtonValue = true;
+
+            DataGridViewButtonColumn buttonColumn3 = new DataGridViewButtonColumn();
+            buttonColumn3.Name = "buttonColumn2";
+            buttonColumn3.Text = "Message";
+            buttonColumn3.HeaderText = "Send a Message";
+            buttonColumn3.UseColumnTextForButtonValue = true;
 
             dgv.Columns.Add(buttonColumn2);
             dgv.Columns.Add(buttonColumn);
- 
+            dgv.Columns.Add(buttonColumn3);
+
             connection.Open();
  
             string query = @"
@@ -361,7 +368,6 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@itemId", item_id);
 
                 command.ExecuteNonQuery();
-                MessageBox.Show($"Item has been saved");
             }
         }
     }
@@ -378,7 +384,7 @@ public partial class sqlDriver
             connection.Open();
             using (SQLiteCommand command = new SQLiteCommand(updateBoughtItemQuery, connection))
             {
-                command.Parameters.AddWithValue("@itemId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@buyerId", Program.GlobalStrings[1]);
                 command.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
                 command.Parameters.AddWithValue("@itemId", itemId);
                 command.ExecuteNonQuery();

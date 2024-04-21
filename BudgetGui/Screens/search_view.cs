@@ -45,12 +45,13 @@ namespace BudgetGui.Screens
             dataGridView.Columns["Item Price"].Visible = false;
 
             dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridView.Columns[1].Width = 70;
+            dataGridView.Columns[1].Width = 90;
             dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridView.Columns[0].Width = 70;
+            dataGridView.Columns[0].Width = 90;
 
-            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
+            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView.Columns[2].Width = 90;
+
 
         }
 
