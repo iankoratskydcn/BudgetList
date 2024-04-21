@@ -52,7 +52,7 @@ namespace BudgetGui.Screens
 
             foreach (DataRow drow in convs.Rows)
             {
-                int[] ints = { (int)drow["recipient"] };
+                int[] ints = { (int)drow["ID"] };
                 conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
                 conversations_cont.Controls.Add(convo_card);
             }

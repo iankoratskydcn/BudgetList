@@ -28,7 +28,10 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@timeDate", timeDate);
                 command.Parameters.AddWithValue("@recipient", recipient);
                 command.Parameters.AddWithValue("@text1", text1);
-                command.ExecuteNonQuery();
+                MessageBox.Show(command.ExecuteNonQuery().ToString());
+                //tt
+                //t123456T!
+
             }
         }
     }
@@ -140,7 +143,12 @@ public partial class sqlDriver
 
     public DataTable getConversations(int selfID)
     {
-        string query = @"SELECT DISTINCT recipient FROM _message WHERE sender = @selfID ORDER BY DATE(timeDate) DESC";
+        string query = @"SELECT DISTINCT ID FROM (
+                            SELECT DISTINCT recipient AS ID, timeDate FROM _message WHERE sender = @selfID
+                            UNION
+                            SELECT DISTINCT sender AS ID, timeDate FROM _message WHERE recipient = @selfID)
+                            ORDER BY DATE(timeDate) DESC;";
+        MessageBox.Show(query);
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
