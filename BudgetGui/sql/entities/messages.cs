@@ -33,12 +33,6 @@ public partial class sqlDriver
         }
     }
 
-    /// <summary>
-    /// this will get the messages between two people, if any
-    /// </summary>
-    /// <param name="selfID"></param>
-    /// <param name="otherID"></param>
-    /// <returns></returns>
     public List<message_card> getMessages(int selfID, int otherID)
     {
         string query = @"SELECT * FROM _message WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate DESC";
@@ -166,8 +160,6 @@ public partial class sqlDriver
                 }
                 
             }
-
-           
             return dataTable;
         }
     }

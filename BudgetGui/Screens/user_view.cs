@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -124,6 +125,7 @@ namespace BudgetGui.Screens
                 }
                 else
                 {
+
                     sqlDriver.updatePW(password.Text);
                 }
             }
@@ -146,7 +148,6 @@ namespace BudgetGui.Screens
 
             if (!(string.IsNullOrEmpty(img_path.Text)))
             {
-
 
                 sqlDriver.updateProfilePic(img_path.Text);
 

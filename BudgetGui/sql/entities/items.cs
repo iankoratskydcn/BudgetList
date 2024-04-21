@@ -135,8 +135,6 @@ public partial class sqlDriver
 
     }
 
-;
-
     public JObject getItemsByStateAndCategory(string state, string category)
     {
 
