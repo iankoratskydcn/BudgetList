@@ -156,8 +156,31 @@ namespace BudgetGui.Screens
 
             }
 
-            int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
+            if (e.ColumnIndex == dataGridView.Columns["buttonColumn3"].Index)
+            {
 
+                // Get the values from the clicked row
+                string username = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
+                string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
+
+                if (username == Program.GlobalStrings[0])
+                {
+                    MessageBox.Show($"You can't message yourself");
+                    return;
+                }
+
+                JObject item = sqlDriver.getItemById(Int32.Parse(itemId));
+                int seller = Int32.Parse(item["sellerId"].ToString());
+
+                int numItemId = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
+
+
+                //Call func
+                mainForm.passMessageScreen(numItemId, seller);
+            }
+
+
+            int itemIdnum = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
 
             JObject j = sqlDriver.getItemById(itemIdnum);
             try

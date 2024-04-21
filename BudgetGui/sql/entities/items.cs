@@ -194,7 +194,7 @@ public partial class sqlDriver
             buttonColumn2.UseColumnTextForButtonValue = true;
 
             DataGridViewButtonColumn buttonColumn3 = new DataGridViewButtonColumn();
-            buttonColumn3.Name = "buttonColumn2";
+            buttonColumn3.Name = "buttonColumn3";
             buttonColumn3.Text = "Message";
             buttonColumn3.HeaderText = "Send a Message";
             buttonColumn3.UseColumnTextForButtonValue = true;

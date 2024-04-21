@@ -24,10 +24,14 @@ namespace BudgetGui
 
         private static string userId;
 
+        public static bool isPresent = false;
+
         public Form1(sqlDriver _sqlDriver)
         {
+
             InitializeComponent();
-            
+
+
             //create a login screen in the container
             form1 = this;
             driver = _sqlDriver;
@@ -37,6 +41,17 @@ namespace BudgetGui
             _login_screen = new Login(form1);
             _login_screen.Dock = DockStyle.Fill;
             panel1.Controls.Add(_login_screen);
+
+
+
+        }
+
+        public void passMessageScreen(int itemId, int seller)
+        {
+            isPresent = true;
+            changeState(6,seller);
+            //message_Screen.change_convo(seller);
+
         }
 
         public void logout()
@@ -50,7 +65,7 @@ namespace BudgetGui
             Form1.changeState(0);
         }
 
-        public static void changeState(int state, string[] string_arguments = null, int[] int_arguments = null)
+        public static void changeState(int state, int seller = 0)
         {
             form1.SuspendLayout();
             panel_1.Controls.Clear();
@@ -103,11 +118,13 @@ namespace BudgetGui
                 
                 case 4: //the user has selected a searched items screen
 
-                    if (search_View ==null)
+                    
+                    if (search_View == null)
                     {
                         search_View = new search_view(form1);
                     }
-
+                    
+                    
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
                     search_View.dgvInitialize();
@@ -126,8 +143,15 @@ namespace BudgetGui
                     break;
                 
                 case 6: //the user has selected to view their messages
-                   
+
                     message_Screen = new messages_screen(form1, driver);
+
+                    if (isPresent == true)
+                    {
+                        message_Screen._convo_from_item_start(seller);
+                        isPresent = false;
+                    }
+
                     message_Screen.convos_load();
                     message_Screen.conversations_fill();
 
