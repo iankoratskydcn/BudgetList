@@ -46,7 +46,7 @@ namespace BudgetGui
 
         }
 
-        public void passMessageScreen(int itemId, int seller)
+        public void passMessageScreen(int seller)
         {
             isPresent = true;
             changeState(6,seller);

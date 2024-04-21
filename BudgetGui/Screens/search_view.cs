@@ -171,11 +171,8 @@ namespace BudgetGui.Screens
                 JObject item = sqlDriver.getItemById(Int32.Parse(itemId));
                 int seller = Int32.Parse(item["sellerId"].ToString());
 
-                int numItemId = Int32.Parse(dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value.ToString());
-
-
                 //Call func
-                mainForm.passMessageScreen(numItemId, seller);
+                mainForm.passMessageScreen(seller);
             }
 
 
