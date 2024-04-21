@@ -96,11 +96,20 @@ namespace BudgetGui.Screens
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
 
+            
+
             currentConvoId = otherId;
             List<Control> controls = new List<Control>();
-            foreach (Control e in messages.Controls)
+            List<conversation_card> convo_controls = new List<conversation_card>();
+
+            foreach (Control mess in messages.Controls)
             {
-                controls.Add(e);
+                controls.Add(mess);
+            }
+
+            foreach (conversation_card convo in conversations_cont.Controls)
+            {
+                convo_controls.Add(convo);
             }
 
             messages.Controls.Clear();
@@ -114,6 +123,19 @@ namespace BudgetGui.Screens
                 (e) =>
                 {
                     e.Dispose();
+                });
+
+            convo_controls.ForEach(
+                (e) =>
+                {
+                    if (e.get_id() != otherId)
+                    {
+                        e.set_black();
+                    }
+                    else
+                    {
+                        e.set_grey();
+                    }
                 });
 
             GC.Collect();
@@ -166,6 +188,5 @@ namespace BudgetGui.Screens
         {
             Form1.changeState(5);
         }
-
     }
 }
