@@ -177,6 +177,31 @@ public partial class sqlDriver
 
     public DataGridView searchInitalize(DataGridView dgv)
     {
+
+        DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+        buttonColumn.Name = "buttonColumn";
+        buttonColumn.Text = "Save";
+        buttonColumn.HeaderText = "Save to Shopping";
+        buttonColumn.UseColumnTextForButtonValue = true;
+
+        DataGridViewButtonColumn buttonColumn2 = new DataGridViewButtonColumn();
+        buttonColumn2.Name = "buttonColumn2";
+        buttonColumn2.Text = "Buy";
+        buttonColumn2.HeaderText = "Purchase";
+        buttonColumn2.UseColumnTextForButtonValue = true;
+
+        DataGridViewButtonColumn buttonColumn3 = new DataGridViewButtonColumn();
+        buttonColumn3.Name = "buttonColumn3";
+        buttonColumn3.Text = "Message";
+        buttonColumn3.HeaderText = "Send a Message";
+        buttonColumn3.UseColumnTextForButtonValue = true;
+
+        dgv.Columns.Add(buttonColumn2);
+        dgv.Columns.Add(buttonColumn);
+        dgv.Columns.Add(buttonColumn3);
+
+        return dgv;
+        /*
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             DataTable dt;
@@ -203,6 +228,9 @@ public partial class sqlDriver
             dgv.Columns.Add(buttonColumn);
             dgv.Columns.Add(buttonColumn3);
 
+            return dgv;
+
+            
             connection.Open();
  
             string query = @"
@@ -220,7 +248,9 @@ public partial class sqlDriver
                 dgv.DataSource = dt;
                 return dgv;
             }
+            
         }
+        */
     }
 
     public DataGridView sButton(string titleQuery, DataGridView dgv)

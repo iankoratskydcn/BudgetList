@@ -90,7 +90,8 @@ namespace BudgetGui.Screens
             try
             {
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
-                dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                //dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             }
             catch (Exception ex)
