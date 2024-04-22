@@ -196,7 +196,18 @@ namespace BudgetGui.Screens
             if (fileloader.ShowDialog() == DialogResult.OK)
             {
                 string path = fileloader.FileName;
-                img_path.Text = path;
+
+                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png")
+                {
+                    MessageBox.Show("Please select a png file");
+                }
+                else
+                {
+                    img_path.Text = path;
+                    pictureBox2.Image = System.Drawing.Image.FromFile(path);
+                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
             }
         }
     }

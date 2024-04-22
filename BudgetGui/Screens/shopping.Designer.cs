@@ -126,7 +126,7 @@
             label1.BackColor = SystemColors.ButtonHighlight;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(225, 133);
+            label1.Location = new Point(226, 133);
             label1.Name = "label1";
             label1.Size = new Size(102, 21);
             label1.TabIndex = 34;
@@ -138,7 +138,7 @@
             label2.BackColor = SystemColors.ButtonHighlight;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(568, 133);
+            label2.Location = new Point(540, 133);
             label2.Name = "label2";
             label2.Size = new Size(112, 21);
             label2.TabIndex = 35;
@@ -158,18 +158,18 @@
             // 
             boughtItems.FormattingEnabled = true;
             boughtItems.ItemHeight = 15;
-            boughtItems.Location = new Point(444, 162);
+            boughtItems.Location = new Point(465, 166);
             boughtItems.Name = "boughtItems";
-            boughtItems.Size = new Size(316, 319);
+            boughtItems.Size = new Size(279, 304);
             boughtItems.TabIndex = 37;
             // 
             // savedItems
             // 
             savedItems.FormattingEnabled = true;
             savedItems.ItemHeight = 15;
-            savedItems.Location = new Point(130, 162);
+            savedItems.Location = new Point(151, 166);
             savedItems.Name = "savedItems";
-            savedItems.Size = new Size(316, 319);
+            savedItems.Size = new Size(279, 304);
             savedItems.TabIndex = 36;
             // 
             // shopping

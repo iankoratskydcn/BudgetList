@@ -58,9 +58,10 @@ namespace BudgetGui.Screens
             else
             {
                 string dt = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-                sqlDriver.createNewItem(itemTitle.Text,itemDesc.Text, _path, itemPrice.Text);
+                sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, _path, itemPrice.Text);
                 MessageBox.Show("Item Created Successfully");
-
+                pictureBox2.Image = System.Drawing.Image.FromFile("BudgetList/BudgetGui/images/items/blank - image.png");
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 Form1.changeState(7);
             }
@@ -106,11 +107,29 @@ namespace BudgetGui.Screens
             if (fileloader.ShowDialog() == DialogResult.OK)
             {
                 string path = fileloader.FileName;
-                textBox1.Text = path;
+
+                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png") {
+                    MessageBox.Show("Please select a png file");
+                }
+                else
+                {
+                    textBox1.Text = path;
+                    pictureBox2.Image = System.Drawing.Image.FromFile(path);
+                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
             }
         }
 
+
+
+
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void itemPrice_TextChanged(object sender, EventArgs e)
         {
 
         }

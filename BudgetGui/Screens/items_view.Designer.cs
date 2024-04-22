@@ -124,18 +124,18 @@
             // 
             myItems.FormattingEnabled = true;
             myItems.ItemHeight = 15;
-            myItems.Location = new Point(130, 162);
+            myItems.Location = new Point(147, 162);
             myItems.Name = "myItems";
-            myItems.Size = new Size(316, 319);
+            myItems.Size = new Size(283, 274);
             myItems.TabIndex = 23;
             // 
             // soldItems
             // 
             soldItems.FormattingEnabled = true;
             soldItems.ItemHeight = 15;
-            soldItems.Location = new Point(444, 162);
+            soldItems.Location = new Point(461, 162);
             soldItems.Name = "soldItems";
-            soldItems.Size = new Size(316, 319);
+            soldItems.Size = new Size(283, 274);
             soldItems.TabIndex = 24;
             // 
             // label1
@@ -144,7 +144,7 @@
             label1.BackColor = SystemColors.ButtonHighlight;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(225, 133);
+            label1.Location = new Point(250, 133);
             label1.Name = "label1";
             label1.Size = new Size(80, 21);
             label1.TabIndex = 25;
@@ -156,7 +156,7 @@
             label2.BackColor = SystemColors.ButtonHighlight;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(568, 133);
+            label2.Location = new Point(557, 133);
             label2.Name = "label2";
             label2.Size = new Size(90, 21);
             label2.TabIndex = 26;
@@ -175,9 +175,9 @@
             // 
             // createItem
             // 
-            createItem.Location = new Point(388, 114);
+            createItem.Location = new Point(388, 445);
             createItem.Name = "createItem";
-            createItem.Size = new Size(113, 42);
+            createItem.Size = new Size(113, 28);
             createItem.TabIndex = 30;
             createItem.Text = "Create New Item";
             createItem.UseVisualStyleBackColor = true;

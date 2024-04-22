@@ -28,10 +28,7 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@timeDate", timeDate);
                 command.Parameters.AddWithValue("@recipient", recipient);
                 command.Parameters.AddWithValue("@text1", text1);
-                MessageBox.Show(command.ExecuteNonQuery().ToString());
-                //tt
-                //t123456T!
-
+                command.ExecuteNonQuery();
             }
         }
     }
@@ -103,6 +100,8 @@ public partial class sqlDriver
 
             connection.Close();
         }
+
+
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -131,10 +130,12 @@ public partial class sqlDriver
                         }
 
                         string[] strings = { text, _user_pic, _other_pic };
+
                         message_card m = new message_card(strings, ints);
                         message_Cards.Add(m);
                     }
                 }
+
                 return message_Cards;
             }
         }
@@ -148,7 +149,6 @@ public partial class sqlDriver
                             UNION
                             SELECT DISTINCT sender AS ID, timeDate FROM _message WHERE recipient = @selfID)
                             ORDER BY DATE(timeDate) DESC;";
-        MessageBox.Show(query);
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();

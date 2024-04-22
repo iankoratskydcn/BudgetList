@@ -43,7 +43,10 @@ namespace BudgetGui.Screens
             convs = new DataTable();
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             convs.Load(driver.getConversations(selfId).CreateDataReader());
+
+            
         }
+
 
         public void conversations_fill()
         {
@@ -56,6 +59,19 @@ namespace BudgetGui.Screens
                 conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
                 conversations_cont.Controls.Add(convo_card);
             }
+
+            List<conversation_card> convo_controls = new List<conversation_card>();
+
+            foreach (conversation_card convo in conversations_cont.Controls)
+            {
+                convo_controls.Add(convo);
+            }
+
+            convo_controls.ForEach(
+               (e) =>
+               {
+                   e.set_black();
+               });
         }
 
         public void _convo_from_item_start(int seller)
@@ -95,8 +111,6 @@ namespace BudgetGui.Screens
             messageSelected = true;
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
-
-            
 
             currentConvoId = otherId;
             List<Control> controls = new List<Control>();
