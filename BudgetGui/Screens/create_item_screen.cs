@@ -122,18 +122,5 @@ namespace BudgetGui.Screens
 
             }
         }
-
-
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void itemPrice_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -163,7 +163,6 @@
             itemPrice.PlaceholderText = "Price";
             itemPrice.Size = new Size(253, 23);
             itemPrice.TabIndex = 35;
-            itemPrice.TextChanged += itemPrice_TextChanged;
             // 
             // itemDesc
             // 
@@ -203,7 +202,6 @@
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(173, 23);
             textBox1.TabIndex = 43;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // pictureBox2
             // 

@@ -24,7 +24,6 @@ namespace BudgetGui.Screens
 
         static sqlDriver driver;
         private static DataTable convs = new DataTable();
-        public bool messageSelected = false;
 
         public messages_screen(Form1 _mainForm, sqlDriver _sqlDriver)
         {
@@ -80,6 +79,7 @@ namespace BudgetGui.Screens
             driver.SendMessage(Int32.Parse(Program.GlobalStrings[1]), DateTime.Now, seller, text);
             conversations_renew();
             change_convo(seller);
+            
         }
 
         public void conversations_renew()
@@ -104,11 +104,13 @@ namespace BudgetGui.Screens
                 });
 
             GC.Collect();
+
+            richTextBox1.Text = "";
         }
 
         public void change_convo(int otherId)
         {
-            messageSelected = true;
+            //messageSelected = true;
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
 
@@ -133,12 +135,6 @@ namespace BudgetGui.Screens
                 messages.Controls.Add(item);
             }
 
-            Parallel.ForEach(controls.AsParallel().AsOrdered(),
-                (e) =>
-                {
-                    e.Dispose();
-                });
-
             convo_controls.ForEach(
                 (e) =>
                 {
@@ -152,11 +148,19 @@ namespace BudgetGui.Screens
                     }
                 });
 
+            //Parallel.ForEach(controls.AsParallel().AsOrdered(),
+            controls.ForEach(
+                (e) =>
+                {
+                    e.Dispose();
+                });
+
             GC.Collect();
         }
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            //MessageBox.Show("Test");
             if (e.KeyCode == Keys.Enter)
             {
                 button1_Click(this, new EventArgs());
@@ -165,9 +169,10 @@ namespace BudgetGui.Screens
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show("Test");
             if (richTextBox1.Text == "") { return; }
 
-            if (messageSelected == false) { return; }
+            //if (messageSelected == false) { return; }
 
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             driver.SendMessage(selfId, DateTime.Now, currentConvoId, richTextBox1.Text.Trim());
