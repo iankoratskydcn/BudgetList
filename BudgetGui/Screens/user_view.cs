@@ -30,7 +30,7 @@ namespace BudgetGui.Screens
             load_text_to_boxes();
 
         }
-        private void load_text_to_boxes()
+        public void load_text_to_boxes()
         {
             DataTable j = sqlDriver.getUserById(Int32.Parse(Program.GlobalStrings[1].ToString()));
 

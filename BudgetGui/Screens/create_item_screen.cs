@@ -69,6 +69,13 @@ namespace BudgetGui.Screens
             }
         }
 
+        public void clearText()
+        {
+            itemTitle.Clear();
+            itemDesc.Clear();
+            itemPrice.Clear();
+            textBox1.Clear();
+        }
 
         private void userView_Click(object sender, EventArgs e)
         {

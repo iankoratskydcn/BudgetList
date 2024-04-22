@@ -31,7 +31,6 @@ namespace BudgetGui
 
             InitializeComponent();
 
-
             //create a login screen in the container
             form1 = this;
             driver = _sqlDriver;
@@ -42,16 +41,12 @@ namespace BudgetGui
             _login_screen.Dock = DockStyle.Fill;
             panel1.Controls.Add(_login_screen);
 
-
-
         }
 
         public void passMessageScreen(int seller)
         {
             isPresent = true;
             changeState(6, seller);
-            //message_Screen.change_convo(seller);
-
         }
 
         public void logout()
@@ -88,6 +83,7 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(registration);
                     registration.Dock = DockStyle.Fill;
+                    registration.clearText();
                     break;
 
                 case 2: //the user has selected the main screen
@@ -113,17 +109,16 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(user_View);
                     user_View.Dock = DockStyle.Fill;
+                    user_View.load_text_to_boxes();
                     user_View.refresh_image();
                     break;
 
                 case 4: //the user has selected a searched items screen
 
-
                     if (search_View == null)
                     {
                         search_View = new search_view(form1);
                     }
-
 
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
@@ -157,7 +152,6 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(message_Screen);
                     message_Screen.Dock = DockStyle.Fill;
-                    //message_Screen.messageSelected = false;
                     break;
 
                 case 7: //the user has selected to view their items
@@ -181,8 +175,8 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(_create_item_screen);
                     _create_item_screen.Dock = DockStyle.Fill;
+                    _create_item_screen.clearText();
                     break;
-
 
                 default: //error, do nothing
                     break;
