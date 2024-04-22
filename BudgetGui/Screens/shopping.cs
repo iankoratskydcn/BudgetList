@@ -77,5 +77,14 @@ namespace BudgetGui.Screens
             mainForm.logout();
         }
 
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void savedItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
