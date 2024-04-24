@@ -212,7 +212,7 @@
             label2.AutoSize = true;
             label2.BackColor = SystemColors.ButtonHighlight;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(352, 117);
+            label2.Location = new Point(352, 138);
             label2.Name = "label2";
             label2.Size = new Size(203, 21);
             label2.TabIndex = 42;
@@ -243,11 +243,12 @@
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(183, 176);
+            pictureBox2.Location = new Point(183, 182);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(250, 250);
             pictureBox2.TabIndex = 46;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // user_view
             // 

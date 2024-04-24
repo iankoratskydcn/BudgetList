@@ -34,13 +34,13 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.Transparent;
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(789, 495);
             panel1.TabIndex = 0;
-            panel1.BackColor = Color.Transparent;
             // 
             // Form1
             // 
@@ -51,6 +51,8 @@
             ClientSize = new Size(789, 495);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Form1";
             Text = "BudgetList";
             ResumeLayout(false);

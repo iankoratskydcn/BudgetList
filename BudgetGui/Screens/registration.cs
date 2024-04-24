@@ -47,6 +47,16 @@ namespace BudgetGui.Screens
             }
         }
 
+        public void clearText()
+        {
+            firstName.Clear();
+            lastName.Clear();
+            email.Clear();
+            username.Clear();
+            password1.Clear();
+            password2.Clear();
+        }
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             Form1.changeState(0);    
         }

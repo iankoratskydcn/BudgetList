@@ -55,6 +55,7 @@
             // 
             // conversations_cont
             // 
+            conversations_cont.AutoScroll = true;
             conversations_cont.BackgroundImage = (Image)resources.GetObject("conversations_cont.BackgroundImage");
             conversations_cont.BackgroundImageLayout = ImageLayout.Stretch;
             conversations_cont.FlowDirection = FlowDirection.TopDown;
@@ -63,6 +64,7 @@
             conversations_cont.Size = new Size(187, 335);
             conversations_cont.TabIndex = 9;
             conversations_cont.UseWaitCursor = true;
+            conversations_cont.WrapContents = false;
             // 
             // messages
             // 

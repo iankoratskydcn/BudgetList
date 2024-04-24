@@ -39,12 +39,11 @@
             logout = new Button();
             txtSearch = new TextBox();
             sButton = new Button();
+            IbITotal = new Label();
             dataGridView = new DataGridView();
             pictureBox2 = new PictureBox();
             richTextBox1 = new RichTextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -140,21 +139,20 @@
             // txtSearch
             // 
             txtSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearch.Location = new Point(146, 124);
+            txtSearch.Location = new Point(146, 123);
             txtSearch.Margin = new Padding(2);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Enter item name";
-            txtSearch.Size = new Size(338, 29);
+            txtSearch.Size = new Size(326, 29);
             txtSearch.TabIndex = 18;
             txtSearch.Text = "\r\n";
-            txtSearch.TextChanged += txtSearch_TextChanged;
             txtSearch.KeyPress += txtSearch_KeyPress;
             // 
             // sButton
             // 
             sButton.FlatAppearance.BorderSize = 0;
             sButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            sButton.Location = new Point(488, 124);
+            sButton.Location = new Point(476, 123);
             sButton.Margin = new Padding(2);
             sButton.Name = "sButton";
             sButton.Size = new Size(78, 29);
@@ -163,6 +161,18 @@
             sButton.UseVisualStyleBackColor = true;
             sButton.Click += sButton_Click;
             // 
+            // IbITotal
+            // 
+            IbITotal.AutoSize = true;
+            IbITotal.BackColor = SystemColors.ButtonHighlight;
+            IbITotal.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            IbITotal.Location = new Point(146, 454);
+            IbITotal.Margin = new Padding(2, 0, 2, 0);
+            IbITotal.Name = "IbITotal";
+            IbITotal.Size = new Size(130, 21);
+            IbITotal.TabIndex = 22;
+            IbITotal.Text = "Total Records: ???";
+            // 
             // dataGridView
             // 
             dataGridView.AllowUserToAddRows = false;
@@ -170,78 +180,59 @@
             dataGridView.AllowUserToResizeColumns = false;
             dataGridView.AllowUserToResizeRows = false;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(146, 157);
+            dataGridView.ColumnHeadersVisible = false;
+            dataGridView.Location = new Point(146, 155);
             dataGridView.Margin = new Padding(2);
             dataGridView.Name = "dataGridView";
             dataGridView.ReadOnly = true;
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 62;
             dataGridView.RowTemplate.Height = 33;
-            dataGridView.Size = new Size(420, 214);
+            dataGridView.Size = new Size(408, 297);
             dataGridView.TabIndex = 20;
             dataGridView.CellClick += dataGridView_CellContentClick;
-            dataGridView.CellContentClick += dataGridView_CellContentClick_1;
             // 
             // pictureBox2
             // 
+            pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(588, 124);
+            pictureBox2.Location = new Point(583, 123);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(157, 148);
+            pictureBox2.Size = new Size(145, 145);
             pictureBox2.TabIndex = 23;
             pictureBox2.TabStop = false;
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(146, 392);
+            richTextBox1.Location = new Point(568, 278);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
-            richTextBox1.Size = new Size(599, 78);
+            richTextBox1.Size = new Size(176, 174);
             richTextBox1.TabIndex = 24;
             richTextBox1.Text = "";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
-            // button1
+            // label2
             // 
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(588, 288);
-            button1.Name = "button1";
-            button1.Size = new Size(157, 23);
-            button1.TabIndex = 25;
-            button1.Text = "Buy: $0";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(588, 319);
-            button2.Name = "button2";
-            button2.Size = new Size(157, 23);
-            button2.TabIndex = 26;
-            button2.Text = "Save Item";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(588, 348);
-            button3.Name = "button3";
-            button3.Size = new Size(157, 23);
-            button3.TabIndex = 27;
-            button3.Text = "Message Seller";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.ButtonHighlight;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(617, 454);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(60, 21);
+            label2.TabIndex = 25;
+            label2.Text = "Price: 0";
             // 
             // search_view
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(label2);
             Controls.Add(richTextBox1);
             Controls.Add(pictureBox2);
             Controls.Add(sButton);
+            Controls.Add(IbITotal);
             Controls.Add(dataGridView);
             Controls.Add(txtSearch);
             Controls.Add(shopping);
@@ -272,11 +263,10 @@
         private Button logout;
         private TextBox txtSearch;
         private Button sButton;
+        private Label IbITotal;
         private DataGridView dataGridView;
         private PictureBox pictureBox2;
         private RichTextBox richTextBox1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Label label2;
     }
 }

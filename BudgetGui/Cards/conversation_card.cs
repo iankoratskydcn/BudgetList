@@ -6,9 +6,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Label = System.Windows.Forms.Label;
 
 namespace BudgetGui.Screens.cards
 {
@@ -64,6 +66,21 @@ namespace BudgetGui.Screens.cards
             {
             }
         }
+
+        public int get_id()
+        {
+            return _secondary_user;
+        }
+        public void set_black(){
+            linkLabel1.Font = new Font(Label.DefaultFont, FontStyle.Regular);
+            linkLabel1.ForeColor = System.Drawing.Color.Black;
+        }
+        public void set_grey()
+        {
+            linkLabel1.Font = new Font(Label.DefaultFont, FontStyle.Bold);
+            linkLabel1.ForeColor = System.Drawing.Color.DarkGray;
+        }
+
 
     }
 }

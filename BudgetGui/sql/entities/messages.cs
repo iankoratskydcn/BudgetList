@@ -14,6 +14,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 public partial class sqlDriver
 {
+
+    ////////////////////////////////////////////////////////
+    //////////////////// insert queries ////////////////////
+    ////////////////////////////////////////////////////////
+
     public void SendMessage(int sender, DateTime timeDate, int recipient, string text1)
     {
 
@@ -32,6 +37,11 @@ public partial class sqlDriver
             }
         }
     }
+
+
+    ////////////////////////////////////////////////////////
+    ///////////////////// get queries //////////////////////
+    ////////////////////////////////////////////////////////
 
     public List<message_card> getMessages(int selfID, int otherID)
     {
@@ -100,6 +110,8 @@ public partial class sqlDriver
 
             connection.Close();
         }
+
+
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -128,19 +140,24 @@ public partial class sqlDriver
                         }
 
                         string[] strings = { text, _user_pic, _other_pic };
+
                         message_card m = new message_card(strings, ints);
                         message_Cards.Add(m);
                     }
                 }
+
                 return message_Cards;
             }
         }
     }
 
-
     public DataTable getConversations(int selfID)
     {
-        string query = @"SELECT DISTINCT recipient FROM _message WHERE sender = @selfID ORDER BY DATE(timeDate) DESC";
+        string query = @"SELECT DISTINCT ID FROM (
+                            SELECT DISTINCT recipient AS ID, timeDate FROM _message WHERE sender = @selfID
+                            UNION
+                            SELECT DISTINCT sender AS ID, timeDate FROM _message WHERE recipient = @selfID)
+                            ORDER BY DATE(timeDate) DESC;";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();

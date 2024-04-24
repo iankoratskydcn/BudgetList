@@ -24,7 +24,6 @@ namespace BudgetGui.Screens
 
         static sqlDriver driver;
         private static DataTable convs = new DataTable();
-        public bool messageSelected = false;
 
         public messages_screen(Form1 _mainForm, sqlDriver _sqlDriver)
         {
@@ -43,7 +42,10 @@ namespace BudgetGui.Screens
             convs = new DataTable();
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             convs.Load(driver.getConversations(selfId).CreateDataReader());
+
+            
         }
+
 
         public void conversations_fill()
         {
@@ -52,10 +54,23 @@ namespace BudgetGui.Screens
 
             foreach (DataRow drow in convs.Rows)
             {
-                int[] ints = { (int)drow["recipient"] };
+                int[] ints = { (int)drow["ID"] };
                 conversation_card convo_card = new conversation_card(strings, ints, driver, messages_Screen);
                 conversations_cont.Controls.Add(convo_card);
             }
+
+            List<conversation_card> convo_controls = new List<conversation_card>();
+
+            foreach (conversation_card convo in conversations_cont.Controls)
+            {
+                convo_controls.Add(convo);
+            }
+
+            convo_controls.ForEach(
+               (e) =>
+               {
+                   e.set_black();
+               });
         }
 
         public void _convo_from_item_start(int seller)
@@ -64,6 +79,7 @@ namespace BudgetGui.Screens
             driver.SendMessage(Int32.Parse(Program.GlobalStrings[1]), DateTime.Now, seller, text);
             conversations_renew();
             change_convo(seller);
+            
         }
 
         public void conversations_renew()
@@ -88,19 +104,28 @@ namespace BudgetGui.Screens
                 });
 
             GC.Collect();
+
+            richTextBox1.Text = "";
         }
 
         public void change_convo(int otherId)
         {
-            messageSelected = true;
+            //messageSelected = true;
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
 
             currentConvoId = otherId;
             List<Control> controls = new List<Control>();
-            foreach (Control e in messages.Controls)
+            List<conversation_card> convo_controls = new List<conversation_card>();
+
+            foreach (Control mess in messages.Controls)
             {
-                controls.Add(e);
+                controls.Add(mess);
+            }
+
+            foreach (conversation_card convo in conversations_cont.Controls)
+            {
+                convo_controls.Add(convo);
             }
 
             messages.Controls.Clear();
@@ -110,7 +135,21 @@ namespace BudgetGui.Screens
                 messages.Controls.Add(item);
             }
 
-            Parallel.ForEach(controls.AsParallel().AsOrdered(),
+            convo_controls.ForEach(
+                (e) =>
+                {
+                    if (e.get_id() != otherId)
+                    {
+                        e.set_black();
+                    }
+                    else
+                    {
+                        e.set_grey();
+                    }
+                });
+
+            //Parallel.ForEach(controls.AsParallel().AsOrdered(),
+            controls.ForEach(
                 (e) =>
                 {
                     e.Dispose();
@@ -121,6 +160,7 @@ namespace BudgetGui.Screens
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            //MessageBox.Show("Test");
             if (e.KeyCode == Keys.Enter)
             {
                 button1_Click(this, new EventArgs());
@@ -129,9 +169,10 @@ namespace BudgetGui.Screens
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //MessageBox.Show("Test");
             if (richTextBox1.Text == "") { return; }
 
-            if (messageSelected == false) { return; }
+            //if (messageSelected == false) { return; }
 
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             driver.SendMessage(selfId, DateTime.Now, currentConvoId, richTextBox1.Text.Trim());
@@ -166,6 +207,5 @@ namespace BudgetGui.Screens
         {
             Form1.changeState(5);
         }
-
     }
 }

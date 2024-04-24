@@ -27,13 +27,10 @@ namespace BudgetGui.Screens
             DoubleBuffered = true;
             mainForm = _mainForm;
 
-            refresh_image();
-
-
             load_text_to_boxes();
 
         }
-        private void load_text_to_boxes()
+        public void load_text_to_boxes()
         {
             DataTable j = sqlDriver.getUserById(Int32.Parse(Program.GlobalStrings[1].ToString()));
 
@@ -56,7 +53,10 @@ namespace BudgetGui.Screens
             v = j.Rows[0]["zip"].ToString();
             zip.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
 
-
+            pictureBox2.Image = Image.FromFile(
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
+                        j.Rows[0]["profile_pic"].ToString()));
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         public void refresh_image()
@@ -196,8 +196,24 @@ namespace BudgetGui.Screens
             if (fileloader.ShowDialog() == DialogResult.OK)
             {
                 string path = fileloader.FileName;
-                img_path.Text = path;
+
+                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png")
+                {
+                    MessageBox.Show("Please select a png file");
+                }
+                else
+                {
+                    img_path.Text = path;
+                    pictureBox2.Image = System.Drawing.Image.FromFile(path);
+                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

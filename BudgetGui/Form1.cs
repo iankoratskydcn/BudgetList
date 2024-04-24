@@ -31,7 +31,6 @@ namespace BudgetGui
 
             InitializeComponent();
 
-
             //create a login screen in the container
             form1 = this;
             driver = _sqlDriver;
@@ -42,16 +41,12 @@ namespace BudgetGui
             _login_screen.Dock = DockStyle.Fill;
             panel1.Controls.Add(_login_screen);
 
-
-
         }
 
         public void passMessageScreen(int seller)
         {
             isPresent = true;
-            changeState(6,seller);
-            //message_Screen.change_convo(seller);
-
+            changeState(6, seller);
         }
 
         public void logout()
@@ -72,13 +67,13 @@ namespace BudgetGui
 
             switch (state)
             {
-                
+
                 case 0: //switch to the login screen and log the user out
-                    
+
                     form1.panel1.Controls.Add(_login_screen);
                     _login_screen.Dock = DockStyle.Fill;
                     break;
-                
+
                 case 1: //the user has selected create an account
 
                     if (registration == null)
@@ -88,10 +83,11 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(registration);
                     registration.Dock = DockStyle.Fill;
+                    registration.clearText();
                     break;
-                
+
                 case 2: //the user has selected the main screen
-                    
+
                     //make sure the user id is updated
                     userId = Program.GlobalStrings[1];
 
@@ -103,45 +99,44 @@ namespace BudgetGui
                     form1.panel1.Controls.Add(main_Screen);
                     main_Screen.Dock = DockStyle.Fill;
                     break;
-               
+
                 case 3: //the user has selected a user view
 
                     if (user_View == null)
                     {
                         user_View = new user_view(form1);
-                    } 
+                    }
 
                     form1.panel1.Controls.Add(user_View);
                     user_View.Dock = DockStyle.Fill;
+                    user_View.load_text_to_boxes();
                     user_View.refresh_image();
                     break;
-                
+
                 case 4: //the user has selected a searched items screen
 
-                    
                     if (search_View == null)
                     {
                         search_View = new search_view(form1);
                     }
-                    
-                    
+
                     form1.panel1.Controls.Add(search_View);
                     search_View.Dock = DockStyle.Fill;
                     search_View.dgvInitialize();
                     break;
-                
+
                 case 5: //the user has selected shopping screen
 
-                    if (shopping_screen == null) 
-                    { 
-                        shopping_screen = new shopping(form1); 
+                    if (shopping_screen == null)
+                    {
+                        shopping_screen = new shopping(form1);
                     }
 
                     form1.panel1.Controls.Add(shopping_screen);
                     shopping_screen.Dock = DockStyle.Fill;
                     shopping_screen.checkItems();
                     break;
-                
+
                 case 6: //the user has selected to view their messages
 
                     message_Screen = new messages_screen(form1, driver);
@@ -157,12 +152,11 @@ namespace BudgetGui
 
                     form1.panel1.Controls.Add(message_Screen);
                     message_Screen.Dock = DockStyle.Fill;
-                    message_Screen.messageSelected = false;
                     break;
-                
+
                 case 7: //the user has selected to view their items
 
-                    if (items_view ==null)
+                    if (items_view == null)
                     {
                         items_view = new items_view(form1);
                     }
@@ -171,18 +165,18 @@ namespace BudgetGui
                     items_view.Dock = DockStyle.Fill;
                     items_view.checkItems();
                     break;
-                
+
                 case 8: //the user has selected to create an item
 
-                    if (_create_item_screen ==null)
+                    if (_create_item_screen == null)
                     {
                         _create_item_screen = new create_item_screen(form1);
                     }
 
                     form1.panel1.Controls.Add(_create_item_screen);
                     _create_item_screen.Dock = DockStyle.Fill;
+                    _create_item_screen.clearText();
                     break;
-
 
                 default: //error, do nothing
                     break;
@@ -191,5 +185,6 @@ namespace BudgetGui
             form1.ResumeLayout(true);
 
         }
+
     }
 }
