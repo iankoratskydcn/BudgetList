@@ -197,7 +197,7 @@ namespace BudgetGui.Screens
             pictureBox2.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"), j["photoUrl"].ToString()));
             richTextBox1.Text = j["description"].ToString();
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            button1.Text = "Buy for Only $" + j["itemPrice"].ToString();
+            //button1.Text = "Buy for Only $" + j["itemPrice"].ToString();
 
         }
 
@@ -207,53 +207,5 @@ namespace BudgetGui.Screens
                 sButton.PerformClick();
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    // Get the values from the clicked row
-        //    string username = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
-        //    string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
-
-        //    if (username == Program.GlobalStrings[0])
-        //    {
-        //        MessageBox.Show($"You can't save your own items");
-        //        return;
-        //    }
-
-        //    if (sqlDriver.checkIfItemAlreadySaved(itemId))
-        //    {
-        //        sqlDriver.save_item(Int32.Parse(itemId));
-
-        //        MessageBox.Show($"Item has been saved");
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show($"Item is already saved");
-        //    }
-        //}
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
