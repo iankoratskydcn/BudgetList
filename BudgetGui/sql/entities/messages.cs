@@ -14,6 +14,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 public partial class sqlDriver
 {
+
+    ////////////////////////////////////////////////////////
+    //////////////////// insert queries ////////////////////
+    ////////////////////////////////////////////////////////
+
     public void SendMessage(int sender, DateTime timeDate, int recipient, string text1)
     {
 
@@ -32,6 +37,11 @@ public partial class sqlDriver
             }
         }
     }
+
+
+    ////////////////////////////////////////////////////////
+    ///////////////////// get queries //////////////////////
+    ////////////////////////////////////////////////////////
 
     public List<message_card> getMessages(int selfID, int otherID)
     {
@@ -140,7 +150,6 @@ public partial class sqlDriver
             }
         }
     }
-
 
     public DataTable getConversations(int selfID)
     {
