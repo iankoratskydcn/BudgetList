@@ -190,7 +190,7 @@
             tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(608, 318);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "Shopping";
+            tabPage1.Text = "Saved Items";
             // 
             // button4
             // 
