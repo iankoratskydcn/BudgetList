@@ -88,13 +88,5 @@ namespace BudgetGui.Screens
         {
 
         }
-
-        private void duplicate_item(object sender, EventArgs e)
-        {
-            //do this the easy way: save the item id for the currently selected item
-
-            //query it by * then just upload it again
-
-        }
     }
 }

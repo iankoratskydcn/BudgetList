@@ -41,6 +41,7 @@
             shopping = new Button();
             tabControl1 = new TabControl();
             tabPag1 = new TabPage();
+            button6 = new Button();
             button5 = new Button();
             pictureBox2 = new PictureBox();
             textBox1 = new TextBox();
@@ -54,10 +55,8 @@
             pictureBox3 = new PictureBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
-            button4 = new Button();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
-            button6 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabPag1.SuspendLayout();
@@ -202,6 +201,15 @@
             tabPag1.TabIndex = 0;
             tabPag1.Text = "My Items";
             // 
+            // button6
+            // 
+            button6.Location = new Point(453, 293);
+            button6.Name = "button6";
+            button6.Size = new Size(119, 23);
+            button6.TabIndex = 56;
+            button6.Text = "Delete";
+            button6.UseVisualStyleBackColor = true;
+            // 
             // button5
             // 
             button5.Location = new Point(65, 293);
@@ -281,7 +289,6 @@
             tabPage2.Controls.Add(pictureBox3);
             tabPage2.Controls.Add(textBox2);
             tabPage2.Controls.Add(textBox3);
-            tabPage2.Controls.Add(button4);
             tabPage2.Controls.Add(textBox4);
             tabPage2.Controls.Add(textBox5);
             tabPage2.Controls.Add(soldItems);
@@ -294,7 +301,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(452, 293);
+            button3.Location = new Point(380, 293);
             button3.Name = "button3";
             button3.Size = new Size(120, 23);
             button3.TabIndex = 62;
@@ -328,16 +335,6 @@
             textBox3.Size = new Size(253, 23);
             textBox3.TabIndex = 58;
             // 
-            // button4
-            // 
-            button4.Location = new Point(319, 293);
-            button4.Name = "button4";
-            button4.Size = new Size(120, 23);
-            button4.TabIndex = 57;
-            button4.Text = "List Duplicate";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += duplicate_item;
-            // 
             // textBox4
             // 
             textBox4.Location = new Point(319, 235);
@@ -353,15 +350,6 @@
             textBox5.PlaceholderText = "Description";
             textBox5.Size = new Size(253, 23);
             textBox5.TabIndex = 55;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(453, 293);
-            button6.Name = "button6";
-            button6.Size = new Size(119, 23);
-            button6.TabIndex = 56;
-            button6.Text = "Delete";
-            button6.UseVisualStyleBackColor = true;
             // 
             // items_view
             // 
@@ -414,7 +402,6 @@
         private PictureBox pictureBox3;
         private TextBox textBox2;
         private TextBox textBox3;
-        private Button button4;
         private TextBox textBox4;
         private TextBox textBox5;
         private Button button5;
