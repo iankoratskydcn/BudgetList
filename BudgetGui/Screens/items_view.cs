@@ -76,7 +76,6 @@ namespace BudgetGui.Screens
         private void logout_Click(object sender, EventArgs e)
         {
             mainForm.logout();
-
         }
 
         private void createItem_Click(object sender, EventArgs e)
