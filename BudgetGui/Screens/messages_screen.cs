@@ -75,7 +75,7 @@ namespace BudgetGui.Screens
 
         public void _convo_from_item_start(int seller)
         {
-            string text = "New conversation";
+            string text = "Hello, I have a question about one of your items!";
             driver.SendMessage(Int32.Parse(Program.GlobalStrings[1]), DateTime.Now, seller, text);
             conversations_renew();
             change_convo(seller);

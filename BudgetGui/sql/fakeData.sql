@@ -1,13 +1,13 @@
 INSERT INTO _user (userId, fName, lName, username, _password, email, DOB, street, city, state, zip, profile_pic)
 VALUES
-    (1, 'Joshua', 'Bernard', 'jbernard2024', 'Josh1234!', 'joshua@gmail.com', '2002-04-28', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download.png'),
-    (2, 'John', 'Doe', 'johndoe', 'Password1!', 'john@gmail.com', '1990-01-01', '123 Main Street','New York', 'New York', 10001,'download (5).png'),
-    (3, 'Jane', 'Smith', 'janesmith', 'Password2!', 'jane@gmail.com', '1985-05-15', '456 Broadway', 'Los Angeles', 'California', 90001,'download (2).png'),
-    (4, 'Alice', 'Johnson', 'alicejohnson', 'Password3!', 'alice@gmail.com', '1982-11-20', '789 Oak Avenue', 'Chicago', 'Illinois', 60601,'download.png'),
-    (5, 'Bob', 'Brown', 'bobbrown', 'Password4!', 'bob@gmail.com', '1978-07-10', '1011 Cedar Street', 'Houston', 'Texas', 77002,'download (3).png'),
-    (6, 'Emily', 'Taylor', 'emilytaylor', 'Password5!', 'emily@gmail.com', '1995-03-25', '1213 Elm Road', 'Miami', 'Florida', 33101,'download (7).png'),
-    (7, 'Daniel', 'Lujo', 'DLujo', 'Daniel1234!', 'daniel@gmail.com', '2002-01-05', '1213 E. Fowler Avenue', 'Tampa', 'Forida', 33620,'download (3).png'),
-    (8, 'Tommy', 'Wazoo', 'TWazoo', 'Twz1234!', 'tommy@gmail.com', '2002-01-09', '1213 E. Fowler Avenue', 'Tampa', 'Forida', 33620,'download (6).png');
+    (1, 'Joshua', 'Bernard', 'jbernard2024', '0ed073fdf33980ca41fa85df0ed8847093ef9b57f4967999c65647fe722ea0de', 'joshua@gmail.com', '2002-04-28', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download.png'),
+    (2, 'John', 'Doe', 'johndoe', '1d707811988069ca760826861d6d63a10e8c3b7f171c4441a6472ea58c11711b', 'john@gmail.com', '1990-01-01', '123 Main Street','New York', 'New York', 10001,'download (5).png'),
+    (3, 'Jane', 'Smith', 'janesmith', '330eb31d7ecbf6cc920672905670a78adac5c44fc0d1cf369aec8f5a5d8ea756', 'jane@gmail.com', '1985-05-15', '456 Broadway', 'Los Angeles', 'California', 90001,'download (2).png'),
+    (4, 'Alice', 'Johnson', 'alicejohnson', '08676262827036899e54c34f312486111e1952559899acdd0f604b8e4b221e03', 'alice@gmail.com', '1982-11-20', '789 Oak Avenue', 'Chicago', 'Illinois', 60601,'download.png'),
+    (5, 'Bob', 'Brown', 'bobbrown', '24bd6b84d6cf21d3beedd541a7c807475df0230de0128f028471e52e759411fd', 'bob@gmail.com', '1978-07-10', '1011 Cedar Street', 'Houston', 'Texas', 77002,'download (3).png'),
+    (6, 'Emily', 'Taylor', 'emilytaylor', '55c396a6e934952f45038c0f0094afd948839714d575d91a30e1e2dfa3300e7d', 'emily@gmail.com', '1995-03-25', '1213 Elm Road', 'Miami', 'Florida', 33101,'download (7).png'),
+    (7, 'Daniel', 'Lujo', 'DLujo', '0f81d86b71458a68415c847e95fb0571cba2ed1978cafceae08aba6c36eaa7ee', 'daniel@gmail.com', '2002-01-05', '1213 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download (3).png'),
+    (8, 'Tommy', 'Wazoo', 'TWazoo', '9aa6ae58633f2baafaa6309694d7fe0e61b77b54313957fe1c906c79dfebf4b9', 'tommy@gmail.com', '2002-01-09', '1213 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download (6).png');
     
 INSERT INTO _message(sender,timeDate,recipient,text1)
 VALUES

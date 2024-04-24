@@ -3,7 +3,7 @@ CREATE TABLE _user(
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
-    _password VARCHAR(50) NOT NULL,
+    _password VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL,
     DOB VARCHAR(10),
     street VARCHAR(100),
@@ -23,15 +23,15 @@ CREATE TABLE _message(
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
 
-CREATE TABLE item(--This table needs NOT NULL constrainsts for sellerID and buyerID
+CREATE TABLE item(
     itemId INT PRIMARY KEY NOT NULL,
-    sellerId INT NOT NULL, --Sells relationship
-    buyerId INT, --Buys relationship
+    sellerId INT NOT NULL,
+    buyerId INT,
     postDate DATE,
-    purchaseDate TIMESTAMP,--Buys relationship attribute
+    purchaseDate TIMESTAMP,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(1000),
-    itemPrice DECIMAL(10,2), --change to just itemPrice
+    itemPrice DECIMAL(10,2),
     photoUrl VARCHAR(100),
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)

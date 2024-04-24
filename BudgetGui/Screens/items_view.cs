@@ -18,7 +18,7 @@ namespace BudgetGui.Screens
         public items_view(Form1 _mainForm)
         {
             InitializeComponent();
-            mainForm = _mainForm; 
+            mainForm = _mainForm;
             DoubleBuffered = true;
         }
 
@@ -76,7 +76,6 @@ namespace BudgetGui.Screens
         private void logout_Click(object sender, EventArgs e)
         {
             mainForm.logout();
-            
         }
 
         private void createItem_Click(object sender, EventArgs e)
@@ -84,5 +83,9 @@ namespace BudgetGui.Screens
             Form1.changeState(8);
         }
 
+        private void submit_edited_item(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -77,5 +77,57 @@ namespace BudgetGui.Screens
             mainForm.logout();
         }
 
+        private void buy_Click(object sender, EventArgs e)
+        {
+            //use Josh's buy script
+        }
+
+
+        private void remove_Click(object sender, EventArgs e)
+        {
+            //get the item id
+
+            //user id
+            int userid = Int32.Parse(Program.GlobalStrings[1]);
+            //get the saved item
+            //delete it
+
+        }
+
+        private void message_saved_Click(object sender, EventArgs e)
+        {
+
+            //get item id
+            int item_id = 0;
+            //get user id by item id
+            int seller_id = 0;
+
+            //get the item title
+            string item_title = "";
+            message_result(item_id, item_title);
+
+        }
+
+
+        private void message_bought_Click(object sender, EventArgs e)
+        {
+
+            //get item id
+            int item_id = 0;
+            //get user id by item id
+            int seller_id = 0;
+
+            //get the item title
+            string item_title = "";
+            message_result(item_id, item_title);
+
+        }
+
+        private void message_result(int seller_id,  string item_title) 
+        {
+
+            //use daniel's message script
+
+        }
     }
 }

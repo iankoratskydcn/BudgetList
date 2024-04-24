@@ -31,7 +31,7 @@ namespace BudgetGui.Screens
 
             //get username and password
             string username = textBox1.Text;
-            string password = textBox2.Text;
+            string password = Form1.hashPassword(textBox2.Text);
             string result = sqlDriver.login(username, password);
 
             //if success, next screen

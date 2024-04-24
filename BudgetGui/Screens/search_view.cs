@@ -35,14 +35,12 @@ namespace BudgetGui.Screens
         {
             txtSearch.Clear();
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            //sqlDriver.createItemSearchView();
             dataGridView = sqlDriver.sButton("", dataGridView);
             IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
 
             dataGridView.Columns["Item ID"].Visible = false;
             dataGridView.Columns["Description"].Visible = false;
             dataGridView.Columns["Post Date"].Visible = false;
-            dataGridView.Columns["Item Price"].Visible = false;
             dataGridView.Columns["Item Price"].Visible = false;
 
             dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -52,11 +50,8 @@ namespace BudgetGui.Screens
             dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dataGridView.Columns[2].Width = 60;
 
-
             dataGridView.Columns["Title"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns["Seller Name"].Visible = false;
-
-
+            dataGridView.Columns["Seller Name"].Visible = true;
         }
 
 
@@ -96,7 +91,7 @@ namespace BudgetGui.Screens
             {
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
                 dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                //dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
             }
             catch (Exception ex)
@@ -104,6 +99,8 @@ namespace BudgetGui.Screens
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -196,7 +193,6 @@ namespace BudgetGui.Screens
             richTextBox1.Text = j["description"].ToString();
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             label2.Text = "$" + j["itemPrice"].ToString();
-
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
