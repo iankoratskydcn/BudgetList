@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -45,7 +46,8 @@ namespace BudgetGui.Screens
             } else if (sqlDriver.checkIfUsernameExists(username.Text)) {
                 MessageBox.Show("Username Already Exists");
             } else {
-                sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, password1.Text, email.Text, "blank-profile-picture.png");
+                string hashedPassword = Form1.hashPassword(password1.Text);
+                sqlDriver.InsertUser(firstName.Text, lastName.Text, username.Text, hashedPassword, email.Text, "blank-profile-picture.png");
                 MessageBox.Show("Account Created Successfully");
                 Form1.changeState(0);
             }

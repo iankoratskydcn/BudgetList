@@ -3,7 +3,7 @@ CREATE TABLE _user(
     fName VARCHAR(50) NOT NULL,
     lName VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
-    _password VARCHAR(50) NOT NULL,
+    _password VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL,
     DOB VARCHAR(10),
     street VARCHAR(100),
