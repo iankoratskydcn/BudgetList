@@ -38,8 +38,6 @@ namespace BudgetGui.Screens
 
             v = j.Rows[0]["email"].ToString();
             email.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
-            //v = j.Rows[0]["_password"].ToString();
-            //password.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
             v = j.Rows[0]["DOB"].ToString();
             dateOfBirth.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
             v = j.Rows[0]["profile_pic"].ToString();
