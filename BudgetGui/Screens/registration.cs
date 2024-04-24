@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -27,6 +28,7 @@ namespace BudgetGui.Screens
 
             string[] fields = { firstName.Text, lastName.Text, email.Text, username.Text, password1.Text, password2.Text };
             string[] labels = { "First Name", "Last Name", "Email", "Username", "Password", "Repeat Password" };
+            string emailPattern = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
 
             for (int i = 0; i < fields.Length; i++) {
                 if (string.IsNullOrEmpty(fields[i])) {
@@ -34,7 +36,9 @@ namespace BudgetGui.Screens
                     return;
                 }
             }
-            if (!password1.Text.Any(char.IsUpper) || !password1.Text.Any(char.IsDigit) || !password1.Text.Any(char.IsPunctuation) || password1.Text.Length < 8) {
+            if (!Regex.IsMatch(email.Text, emailPattern)) {
+                MessageBox.Show("Invalid email address format");
+            } else if (!password1.Text.Any(char.IsUpper) || !password1.Text.Any(char.IsDigit) || !password1.Text.Any(char.IsPunctuation) || password1.Text.Length < 8) {
                 MessageBox.Show("Password must contain a capital letter, a digit, a special character, and have at least 8 characters");
             } else if (password1.Text != password2.Text) {
                 MessageBox.Show("Passwords do not Match");
