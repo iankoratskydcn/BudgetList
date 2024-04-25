@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,8 +13,14 @@ namespace BudgetGui.Screens
 {
     public partial class shopping : UserControl
     {
+        DataTable saved_items_DT = new DataTable();
+        DataTable bought_items_DT = new DataTable();
         sqlDriver sqlDriver = new sqlDriver();
         static Form1 mainForm;
+
+        int currently_selected_saved_item = 0;
+        int currently_selected_bought_item = 0;
+
         public shopping(Form1 _mainForm)
         {
             InitializeComponent();
@@ -23,8 +30,29 @@ namespace BudgetGui.Screens
 
         public void checkItems()
         {
+            //data tables
+            saved_items_DT.Rows.Clear();
+            bought_items_DT.Rows.Clear();
+
+
+            //string lists
             savedItems.Items.Clear();
-            List<string> itemList = sqlDriver.checkForSavedItems();
+            boughtItems.Items.Clear();
+
+            //get info from DataTables
+
+            saved_items_DT = sqlDriver.checkForSavedItems();
+            bought_items_DT = sqlDriver.checkForBoughtItems();
+
+
+            //list comprehension
+            List<string> itemList = saved_items_DT.Rows.Count > 0
+                ? saved_items_DT.AsEnumerable().Select(x => x["title"].ToString()).ToList()
+                : new List<string>();//sqlDriver.checkForSavedItems();
+            List<string> itemList2 = bought_items_DT.Rows.Count > 0
+                ? bought_items_DT.AsEnumerable().Select(x => x["title"].ToString()).ToList()
+                : new List<string>();//sqlDriver.checkForBoughtItems();
+
             if (itemList != null)
             {
                 foreach (string item in itemList)
@@ -37,8 +65,6 @@ namespace BudgetGui.Screens
                 savedItems.Items.Add("You have no items.");
             }
 
-            boughtItems.Items.Clear();
-            List<string> itemList2 = sqlDriver.checkForBoughtItems();
             if (itemList2 != null)
             {
                 foreach (string item2 in itemList2)
@@ -80,18 +106,19 @@ namespace BudgetGui.Screens
         private void buy_Click(object sender, EventArgs e)
         {
             //use Josh's buy script
+            sqlDriver.updated_bought_item(currently_selected_saved_item.ToString());
+            checkItems();
         }
 
 
         private void remove_Click(object sender, EventArgs e)
         {
-            //get the item id
-
             //user id
             int userid = Int32.Parse(Program.GlobalStrings[1]);
-            //get the saved item
-            //delete it
+            sqlDriver.remove_saved_item(currently_selected_saved_item, userid);
 
+            //cleanup
+            checkItems();
         }
 
         private void message_saved_Click(object sender, EventArgs e)
@@ -104,7 +131,7 @@ namespace BudgetGui.Screens
 
             //get the item title
             string item_title = "";
-            message_result(item_id, item_title);
+            mainForm.passMessageScreen(seller_id, item_title);
 
         }
 
@@ -119,15 +146,150 @@ namespace BudgetGui.Screens
 
             //get the item title
             string item_title = "";
-            message_result(item_id, item_title);
+            mainForm.passMessageScreen(seller_id, item_title);
+
+
+        }
+        
+        private void boughtItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clear_bought();
+            currently_selected_bought_item = boughtItems.SelectedIndex;
+
+            bought_title.Clear();
+            bought_desc.Clear();
+
+            string test_t = bought_items_DT.Rows[currently_selected_bought_item]["title"].ToString();
+            string test_d = bought_items_DT.Rows[currently_selected_bought_item]["desc"].ToString();
+            string test_p = bought_items_DT.Rows[currently_selected_bought_item]["photoUrl"].ToString();
+
+            if (test_t.Length > 0) { bought_title.Text = test_t; }
+            if (test_d.Length > 0) { bought_desc.Text = test_d; }
+
+            if (test_p.Length > 0)
+            {
+                try
+                {
+                    bought_pic.Image = System.Drawing.Image.FromFile(
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           test_p));
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            else
+            {
+                bought_pic.Image = System.Drawing.Image.FromFile(
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           "blank-image.png"));
+            }
+
+            bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
 
         }
 
-        private void message_result(int seller_id,  string item_title) 
+
+        private void savedItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            clear_saved();
+            currently_selected_saved_item = savedItems.SelectedIndex;
 
-            //use daniel's message script
 
+
+            saved_Title.Clear();
+            saved_Desc.Clear();
+
+            string test_t = saved_items_DT.Rows[currently_selected_saved_item]["title"].ToString();
+            string test_d = saved_items_DT.Rows[currently_selected_saved_item]["desc"].ToString();
+            string test_p = saved_items_DT.Rows[currently_selected_saved_item]["photoUrl"].ToString();
+
+            if (test_t.Length > 0) { saved_Title.Text = test_t; }
+            if (test_d.Length > 0) { saved_Desc.Text = test_d; }
+
+            if (test_p.Length > 0)
+            {
+                try
+                {
+                    saved_pic.Image = System.Drawing.Image.FromFile(
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           test_p));
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            else
+            {
+                saved_pic.Image = System.Drawing.Image.FromFile(
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           "blank-image.png"));
+            }
+
+            saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+
+
+        }
+
+
+        private void clear_saved()
+        {
+            saved_Title.Clear();
+            saved_Desc.Clear();
+
+            saved_pic.Image = System.Drawing.Image.FromFile(
+                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                       "blank-image.png"));
+
+            saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        private void clear_bought()
+        {
+            bought_title.Clear();
+            bought_desc.Clear();
+
+            bought_pic.Image = System.Drawing.Image.FromFile(
+                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                       "blank-image.png"));
+
+            bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+
+        private void change_tab(object sender, EventArgs e)
+        {
+            clear_bought();
+            clear_saved();
+        }
+
+        //for later
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileloader = new OpenFileDialog();
+            fileloader.Filter = "All Files (*.*)|*.*";
+            fileloader.FilterIndex = 1;
+
+            if (fileloader.ShowDialog() == DialogResult.OK)
+            {
+                string path = fileloader.FileName;
+
+                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png")
+                {
+                    MessageBox.Show("Please select a png file");
+                }
+                else
+                {
+                    bought_title.Text = path;
+                    bought_pic.Image = System.Drawing.Image.FromFile(path);
+                    bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
+            }
         }
     }
 }

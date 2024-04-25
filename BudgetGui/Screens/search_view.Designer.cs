@@ -169,9 +169,9 @@
             IbITotal.Location = new Point(146, 454);
             IbITotal.Margin = new Padding(2, 0, 2, 0);
             IbITotal.Name = "IbITotal";
-            IbITotal.Size = new Size(130, 21);
+            IbITotal.Size = new Size(128, 21);
             IbITotal.TabIndex = 22;
-            IbITotal.Text = "Total Records: ???";
+            IbITotal.Text = "Search for items!";
             // 
             // dataGridView
             // 
@@ -196,7 +196,7 @@
             // 
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(583, 123);
+            pictureBox2.Location = new Point(589, 123);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(145, 145);
             pictureBox2.TabIndex = 23;
@@ -204,11 +204,11 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(568, 278);
+            richTextBox1.Location = new Point(573, 296);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
-            richTextBox1.Size = new Size(176, 174);
+            richTextBox1.Size = new Size(176, 179);
             richTextBox1.TabIndex = 24;
             richTextBox1.Text = "";
             // 
@@ -217,12 +217,13 @@
             label2.AutoSize = true;
             label2.BackColor = SystemColors.ButtonHighlight;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(617, 454);
+            label2.Location = new Point(584, 272);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(60, 21);
+            label2.Size = new Size(155, 21);
             label2.TabIndex = 25;
-            label2.Text = "Price: 0";
+            label2.Text = "Please Select an Item";
+            label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // search_view
             // 

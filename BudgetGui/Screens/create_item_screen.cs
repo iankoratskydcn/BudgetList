@@ -77,6 +77,30 @@ namespace BudgetGui.Screens
             textBox1.Clear();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileloader = new OpenFileDialog();
+            fileloader.Filter = "All Files (*.*)|*.*";
+            fileloader.FilterIndex = 1;
+
+            if (fileloader.ShowDialog() == DialogResult.OK)
+            {
+                string path = fileloader.FileName;
+
+                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png")
+                {
+                    MessageBox.Show("Please select a png file");
+                }
+                else
+                {
+                    textBox1.Text = path;
+                    pictureBox2.Image = System.Drawing.Image.FromFile(path);
+                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
+            }
+        }
+
         private void userView_Click(object sender, EventArgs e)
         {
             Form1.changeState(3);
@@ -107,27 +131,6 @@ namespace BudgetGui.Screens
             mainForm.logout();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog fileloader = new OpenFileDialog();
-            fileloader.Filter = "All Files (*.*)|*.*";
-            fileloader.FilterIndex = 1;
-
-            if (fileloader.ShowDialog() == DialogResult.OK)
-            {
-                string path = fileloader.FileName;
-
-                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png") {
-                    MessageBox.Show("Please select a png file");
-                }
-                else
-                {
-                    textBox1.Text = path;
-                    pictureBox2.Image = System.Drawing.Image.FromFile(path);
-                    pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-
-            }
-        }
+        
     }
 }

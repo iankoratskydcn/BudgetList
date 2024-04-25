@@ -36,7 +36,12 @@ namespace BudgetGui.Screens
             txtSearch.Clear();
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView = sqlDriver.sButton("", dataGridView);
-            IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+            IbITotal.Text = $"{dataGridView.RowCount} results";
+
+            if (txtSearch.Text.Length>0)
+            {
+                IbITotal.Text = $"{dataGridView.RowCount} results for "+ txtSearch.Text.Length;
+            }
 
             dataGridView.Columns["Item ID"].Visible = false;
             dataGridView.Columns["Description"].Visible = false;
@@ -54,7 +59,7 @@ namespace BudgetGui.Screens
             dataGridView.Columns["Seller Name"].Visible = true;
         }
 
-
+        
         private void home_Click(object sender, EventArgs e)
         {
             Form1.changeState(2);
@@ -164,6 +169,7 @@ namespace BudgetGui.Screens
                 // Get the values from the clicked row
                 string username = dataGridView.Rows[e.RowIndex].Cells["Seller Name"].Value?.ToString() ?? "";
                 string itemId = dataGridView.Rows[e.RowIndex].Cells["Item ID"].Value?.ToString() ?? "";
+                string _title = dataGridView.Rows[e.RowIndex].Cells["Title"].Value?.ToString() ?? "";
 
                 if (username == Program.GlobalStrings[0])
                 {
@@ -175,7 +181,7 @@ namespace BudgetGui.Screens
                 int seller = Int32.Parse(item["sellerId"].ToString());
 
                 //Call func
-                mainForm.passMessageScreen(seller);
+                mainForm.passMessageScreen(seller, _title);
             }
 
             int itemIdnum;
@@ -192,7 +198,8 @@ namespace BudgetGui.Screens
             pictureBox2.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"), j["photoUrl"].ToString()));
             richTextBox1.Text = j["description"].ToString();
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            label2.Text = "$" + j["itemPrice"].ToString();
+            label2.Text = "Only $" + j["itemPrice"].ToString();
+
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)

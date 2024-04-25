@@ -41,28 +41,28 @@
             shopping = new Button();
             tabControl1 = new TabControl();
             tabPag1 = new TabPage();
-            button6 = new Button();
-            button5 = new Button();
-            pictureBox2 = new PictureBox();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            itemTitle = new TextBox();
-            button2 = new Button();
-            itemPrice = new TextBox();
-            itemDesc = new TextBox();
+            delete_button = new Button();
+            create_item = new Button();
+            my_pic = new PictureBox();
+            myPic_path = new TextBox();
+            my_pic_button = new Button();
+            my_item = new TextBox();
+            edit_button = new Button();
+            my_price = new TextBox();
+            my_desc = new TextBox();
             tabPage2 = new TabPage();
-            button3 = new Button();
-            pictureBox3 = new PictureBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            message_buyer = new Button();
+            sold_pic = new PictureBox();
+            sold_pic_path = new TextBox();
+            sold_title = new TextBox();
+            sold_price = new TextBox();
+            sold_desc = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabPag1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)my_pic).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sold_pic).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -184,15 +184,15 @@
             // tabPag1
             // 
             tabPag1.BackColor = Color.White;
-            tabPag1.Controls.Add(button6);
-            tabPag1.Controls.Add(button5);
-            tabPag1.Controls.Add(pictureBox2);
-            tabPag1.Controls.Add(textBox1);
-            tabPag1.Controls.Add(button1);
-            tabPag1.Controls.Add(itemTitle);
-            tabPag1.Controls.Add(button2);
-            tabPag1.Controls.Add(itemPrice);
-            tabPag1.Controls.Add(itemDesc);
+            tabPag1.Controls.Add(delete_button);
+            tabPag1.Controls.Add(create_item);
+            tabPag1.Controls.Add(my_pic);
+            tabPag1.Controls.Add(myPic_path);
+            tabPag1.Controls.Add(my_pic_button);
+            tabPag1.Controls.Add(my_item);
+            tabPag1.Controls.Add(edit_button);
+            tabPag1.Controls.Add(my_price);
+            tabPag1.Controls.Add(my_desc);
             tabPag1.Controls.Add(myItems);
             tabPag1.Location = new Point(4, 27);
             tabPag1.Name = "tabPag1";
@@ -201,96 +201,95 @@
             tabPag1.TabIndex = 0;
             tabPag1.Text = "My Items";
             // 
-            // button6
+            // delete_button
             // 
-            button6.Location = new Point(453, 293);
-            button6.Name = "button6";
-            button6.Size = new Size(119, 23);
-            button6.TabIndex = 56;
-            button6.Text = "Delete";
-            button6.UseVisualStyleBackColor = true;
+            delete_button.Location = new Point(453, 293);
+            delete_button.Name = "delete_button";
+            delete_button.Size = new Size(119, 23);
+            delete_button.TabIndex = 56;
+            delete_button.Text = "Delete";
+            delete_button.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // create_item
             // 
-            button5.Location = new Point(65, 293);
-            button5.Name = "button5";
-            button5.Size = new Size(171, 23);
-            button5.TabIndex = 55;
-            button5.Text = "Create Item";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += createItem_Click;
+            create_item.Location = new Point(65, 293);
+            create_item.Name = "create_item";
+            create_item.Size = new Size(171, 23);
+            create_item.TabIndex = 55;
+            create_item.Text = "Create Item";
+            create_item.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
+            // my_pic
             // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(361, 6);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(165, 165);
-            pictureBox2.TabIndex = 54;
-            pictureBox2.TabStop = false;
+            my_pic.BackgroundImage = (Image)resources.GetObject("my_pic.BackgroundImage");
+            my_pic.BackgroundImageLayout = ImageLayout.Stretch;
+            my_pic.Location = new Point(361, 6);
+            my_pic.Name = "my_pic";
+            my_pic.Size = new Size(165, 165);
+            my_pic.TabIndex = 54;
+            my_pic.TabStop = false;
             // 
-            // textBox1
+            // myPic_path
             // 
-            textBox1.Location = new Point(319, 264);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Image Path";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(173, 23);
-            textBox1.TabIndex = 53;
+            myPic_path.Location = new Point(319, 264);
+            myPic_path.Name = "myPic_path";
+            myPic_path.PlaceholderText = "Image Path";
+            myPic_path.ReadOnly = true;
+            myPic_path.Size = new Size(173, 23);
+            myPic_path.TabIndex = 53;
             // 
-            // button1
+            // my_pic_button
             // 
-            button1.Location = new Point(498, 264);
-            button1.Name = "button1";
-            button1.Size = new Size(74, 23);
-            button1.TabIndex = 52;
-            button1.Text = "Open File";
-            button1.UseVisualStyleBackColor = true;
+            my_pic_button.Location = new Point(498, 264);
+            my_pic_button.Name = "my_pic_button";
+            my_pic_button.Size = new Size(74, 23);
+            my_pic_button.TabIndex = 52;
+            my_pic_button.Text = "Open File";
+            my_pic_button.UseVisualStyleBackColor = true;
             // 
-            // itemTitle
+            // my_item
             // 
-            itemTitle.Location = new Point(319, 177);
-            itemTitle.Name = "itemTitle";
-            itemTitle.PlaceholderText = "Title";
-            itemTitle.Size = new Size(253, 23);
-            itemTitle.TabIndex = 51;
+            my_item.Location = new Point(319, 177);
+            my_item.Name = "my_item";
+            my_item.PlaceholderText = "Title";
+            my_item.Size = new Size(253, 23);
+            my_item.TabIndex = 51;
             // 
-            // button2
+            // edit_button
             // 
-            button2.Location = new Point(319, 293);
-            button2.Name = "button2";
-            button2.Size = new Size(119, 23);
-            button2.TabIndex = 50;
-            button2.Text = "Edit Item";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += submit_edited_item;
+            edit_button.Location = new Point(319, 293);
+            edit_button.Name = "edit_button";
+            edit_button.Size = new Size(119, 23);
+            edit_button.TabIndex = 50;
+            edit_button.Text = "Save Edits";
+            edit_button.UseVisualStyleBackColor = true;
+            edit_button.Click += submit_edited_item;
             // 
-            // itemPrice
+            // my_price
             // 
-            itemPrice.Location = new Point(319, 235);
-            itemPrice.Name = "itemPrice";
-            itemPrice.PlaceholderText = "Price";
-            itemPrice.Size = new Size(253, 23);
-            itemPrice.TabIndex = 49;
+            my_price.Location = new Point(319, 235);
+            my_price.Name = "my_price";
+            my_price.PlaceholderText = "Price";
+            my_price.Size = new Size(253, 23);
+            my_price.TabIndex = 49;
             // 
-            // itemDesc
+            // my_desc
             // 
-            itemDesc.Location = new Point(319, 206);
-            itemDesc.Name = "itemDesc";
-            itemDesc.PlaceholderText = "Description";
-            itemDesc.Size = new Size(253, 23);
-            itemDesc.TabIndex = 48;
+            my_desc.Location = new Point(319, 206);
+            my_desc.Name = "my_desc";
+            my_desc.PlaceholderText = "Description";
+            my_desc.Size = new Size(253, 23);
+            my_desc.TabIndex = 48;
             // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
-            tabPage2.Controls.Add(button3);
-            tabPage2.Controls.Add(pictureBox3);
-            tabPage2.Controls.Add(textBox2);
-            tabPage2.Controls.Add(textBox3);
-            tabPage2.Controls.Add(textBox4);
-            tabPage2.Controls.Add(textBox5);
+            tabPage2.Controls.Add(message_buyer);
+            tabPage2.Controls.Add(sold_pic);
+            tabPage2.Controls.Add(sold_pic_path);
+            tabPage2.Controls.Add(sold_title);
+            tabPage2.Controls.Add(sold_price);
+            tabPage2.Controls.Add(sold_desc);
             tabPage2.Controls.Add(soldItems);
             tabPage2.Location = new Point(4, 27);
             tabPage2.Name = "tabPage2";
@@ -299,57 +298,57 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Sold";
             // 
-            // button3
+            // message_buyer
             // 
-            button3.Location = new Point(380, 293);
-            button3.Name = "button3";
-            button3.Size = new Size(120, 23);
-            button3.TabIndex = 62;
-            button3.Text = "Message Buyer";
-            button3.UseVisualStyleBackColor = true;
+            message_buyer.Location = new Point(380, 293);
+            message_buyer.Name = "message_buyer";
+            message_buyer.Size = new Size(120, 23);
+            message_buyer.TabIndex = 62;
+            message_buyer.Text = "Message Buyer";
+            message_buyer.UseVisualStyleBackColor = true;
             // 
-            // pictureBox3
+            // sold_pic
             // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox3.Location = new Point(361, 6);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(165, 165);
-            pictureBox3.TabIndex = 61;
-            pictureBox3.TabStop = false;
+            sold_pic.BackgroundImage = (Image)resources.GetObject("sold_pic.BackgroundImage");
+            sold_pic.BackgroundImageLayout = ImageLayout.Stretch;
+            sold_pic.Location = new Point(361, 6);
+            sold_pic.Name = "sold_pic";
+            sold_pic.Size = new Size(165, 165);
+            sold_pic.TabIndex = 61;
+            sold_pic.TabStop = false;
             // 
-            // textBox2
+            // sold_pic_path
             // 
-            textBox2.Location = new Point(319, 264);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Image Path";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(253, 23);
-            textBox2.TabIndex = 60;
+            sold_pic_path.Location = new Point(319, 264);
+            sold_pic_path.Name = "sold_pic_path";
+            sold_pic_path.PlaceholderText = "Image Path";
+            sold_pic_path.ReadOnly = true;
+            sold_pic_path.Size = new Size(253, 23);
+            sold_pic_path.TabIndex = 60;
             // 
-            // textBox3
+            // sold_title
             // 
-            textBox3.Location = new Point(319, 177);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Title";
-            textBox3.Size = new Size(253, 23);
-            textBox3.TabIndex = 58;
+            sold_title.Location = new Point(319, 177);
+            sold_title.Name = "sold_title";
+            sold_title.PlaceholderText = "Title";
+            sold_title.Size = new Size(253, 23);
+            sold_title.TabIndex = 58;
             // 
-            // textBox4
+            // sold_price
             // 
-            textBox4.Location = new Point(319, 235);
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = "Price";
-            textBox4.Size = new Size(253, 23);
-            textBox4.TabIndex = 56;
+            sold_price.Location = new Point(319, 235);
+            sold_price.Name = "sold_price";
+            sold_price.PlaceholderText = "Price";
+            sold_price.Size = new Size(253, 23);
+            sold_price.TabIndex = 56;
             // 
-            // textBox5
+            // sold_desc
             // 
-            textBox5.Location = new Point(319, 206);
-            textBox5.Name = "textBox5";
-            textBox5.PlaceholderText = "Description";
-            textBox5.Size = new Size(253, 23);
-            textBox5.TabIndex = 55;
+            sold_desc.Location = new Point(319, 206);
+            sold_desc.Name = "sold_desc";
+            sold_desc.PlaceholderText = "Description";
+            sold_desc.Size = new Size(253, 23);
+            sold_desc.TabIndex = 55;
             // 
             // items_view
             // 
@@ -370,10 +369,10 @@
             tabControl1.ResumeLayout(false);
             tabPag1.ResumeLayout(false);
             tabPag1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)my_pic).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sold_pic).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -392,20 +391,20 @@
         private TabControl tabControl1;
         private TabPage tabPag1;
         private TabPage tabPage2;
-        private PictureBox pictureBox2;
-        private TextBox textBox1;
-        private Button button1;
-        private TextBox itemTitle;
-        private Button button2;
-        private TextBox itemPrice;
-        private TextBox itemDesc;
-        private PictureBox pictureBox3;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private Button button5;
-        private Button button3;
-        private Button button6;
+        private PictureBox my_pic;
+        private TextBox myPic_path;
+        private Button my_pic_button;
+        private TextBox my_item;
+        private Button edit_button;
+        private TextBox my_price;
+        private TextBox my_desc;
+        private PictureBox sold_pic;
+        private TextBox sold_pic_path;
+        private TextBox sold_title;
+        private TextBox sold_price;
+        private TextBox sold_desc;
+        private Button create_item;
+        private Button message_buyer;
+        private Button delete_button;
     }
 }

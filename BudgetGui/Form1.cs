@@ -45,10 +45,9 @@ namespace BudgetGui
 
         }
 
-        public void passMessageScreen(int seller)
+        public void passMessageScreen(int seller, string itemTitle)
         {
-            isPresent = true;
-            changeState(6, seller);
+            changeState(6, seller, itemTitle);
         }
 
         public static string hashPassword(string password)
@@ -76,7 +75,7 @@ namespace BudgetGui
             Form1.changeState(0);
         }
 
-        public static void changeState(int state, int seller = 0)
+        public static void changeState(int state, int seller = 0, string itemTitle ="")
         {
             form1.SuspendLayout();
             panel_1.Controls.Clear();
@@ -159,7 +158,7 @@ namespace BudgetGui
 
                     if (isPresent == true)
                     {
-                        message_Screen._convo_from_item_start(seller);
+                        message_Screen._convo_from_item_start(seller, itemTitle);
                         isPresent = false;
                     }
 

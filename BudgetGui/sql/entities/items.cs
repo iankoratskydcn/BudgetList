@@ -18,6 +18,7 @@ using System.Data.SqlTypes;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Data.Common;
 
 public partial class sqlDriver
 {
@@ -74,6 +75,22 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userid", Program.GlobalStrings[1]);
                 command.Parameters.AddWithValue("@itemId", item_id);
 
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public void remove_saved_item(int itemId, int userid)
+    {
+
+        string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId and savedUserId = @userid";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            using (SQLiteCommand command = new SQLiteCommand(delete_saved, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", itemId);
+                command.Parameters.AddWithValue("@userid", userid);
                 command.ExecuteNonQuery();
             }
         }
@@ -176,14 +193,15 @@ public partial class sqlDriver
         }
     }
 
-    public List<string> checkForSavedItems()
+    public DataTable checkForSavedItems()
     {
-        List<string> itemList = new List<string>();
+        DataTable itemList = new DataTable();
+        //List<string> itemList = new List<string>();
         string query = @"
-                SELECT itemId, savedUserId, title 
+                SELECT *
                 FROM savedItems
                 WHERE savedUserId = @userId;
-                ";
+                "; // itemId, savedUserId, title 
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -193,35 +211,40 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    if (!reader.HasRows)
-                    {
-                        return null;
-                    }
 
-                    while (reader.Read())
-                    {
-                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                        int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+                    itemList.Load(reader);
+                    //if (!reader.HasRows)
+                    //{
+                    //    return null;
+                    //}
 
-                        string itemInfo = $"{title}";
-                        itemList.Add(itemInfo);
-                    }
+                    //while (reader.Read())
+                    //{
+                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                    //    int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+
+                    //    string itemInfo = $"{title}";
+                    //    itemList.Add(itemInfo);
+
+
+                    //}
                 }
                 return itemList;
             }
         }
     }
 
-    public List<string> checkForBoughtItems()
+    public DataTable checkForBoughtItems()
     {
-        List<string> itemList = new List<string>();
+        DataTable itemList = new DataTable();
+        //List<string> itemList = new List<string>();
         string query = @"
-                    SELECT i.itemId, i.sellerId, i.title
+                    SELECT *
                     FROM _user u
                     JOIN item i ON u.userId = i.buyerId
                     WHERE u.userId = @userId;
-                    ";
+                    "; //
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -230,20 +253,21 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    if (!reader.HasRows)
-                    {
-                        return null;
-                    }
+                    itemList.Load(reader);
+                    //if (!reader.HasRows)
+                    //{
+                    //    return null;
+                    //}
 
-                    while (reader.Read())
-                    {
-                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                        int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+                    //while (reader.Read())
+                    //{
+                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        string itemInfo = $"{title}";
-                        itemList.Add(itemInfo);
-                    }
+                    //    string itemInfo = $"{title}";
+                    //    itemList.Add(itemInfo);
+                    //}
                 }
                 return itemList;
             }
@@ -271,15 +295,17 @@ public partial class sqlDriver
         }
     }
 
-    public List<string> checkForItemsBeingSold()
+    public DataTable checkForItemsBeingSold()
     {
-        List<string> itemList = new List<string>();
+        DataTable itemList = new DataTable();
+        //List<string> itemList = new List<string>();
         string query = @"
-                    SELECT i.itemId, i.sellerId, i.title
+                    SELECT i.*, u.*
                     FROM _user u
                     LEFT JOIN item i ON u.userId = i.sellerId
                     WHERE u.userId = @userId AND i.buyerId IS NULL;
-                    ";
+                    ";//i.itemId, i.sellerId, i.title
+
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -288,31 +314,34 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                        int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+                    itemList.Load(reader);
 
-                        if (itemId == null)
-                        {
-                            return null;
-                        }
+                    //while (reader.Read())
+                    //{
+                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        string itemInfo = $"{title}";
-                        itemList.Add(itemInfo);
-                    }
+                    //    if (itemId == null)
+                    //    {
+                    //        return null;
+                    //    }
+
+                    //    string itemInfo = $"{title}";
+                    //    itemList.Add(itemInfo);
+                    //}
                 }
                 return itemList;
             }
         }
     }
 
-    public List<string> checkForItemsSold()
+    public DataTable checkForItemsSold()
     {
-        List<string> itemList = new List<string>();
+        DataTable dataTable = new DataTable();
+        //List<string> itemList = new List<string>();
         string query = @"
-                    SELECT i.itemId, i.sellerId, i.title
+                    SELECT i.*, u.*
                     FROM _user u
                     LEFT JOIN item i ON u.userId = i.sellerId AND i.buyerId IS NOT NULL
                     WHERE u.userId = @userId;
@@ -325,22 +354,23 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                        int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                        string title = reader.IsDBNull(2) ? null : reader.GetString(2);
+                    //while (reader.Read())
+                    //{
+                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
+                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
+                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
 
-                        if (itemId == null)
-                        {
-                            return null;
-                        }
+                    //    if (itemId == null)
+                    //    {
+                    //        return null;
+                    //    }
 
-                        string itemInfo = $"{title}";
-                        itemList.Add(itemInfo);
-                    }
+                    //    string itemInfo = $"{title}";
+                    //    itemList.Add(itemInfo);
+                    //}
+                    dataTable.Load(reader);
                 }
-                return itemList;
+                return dataTable;
             }
         }
     }
