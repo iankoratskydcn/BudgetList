@@ -36,7 +36,10 @@ namespace BudgetGui.Screens
             txtSearch.Clear();
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView = sqlDriver.sButton("", dataGridView);
-            IbITotal.Text = $"{dataGridView.RowCount} results";
+            if (dataGridView.RowCount == 1)
+                IbITotal.Text = $"{dataGridView.RowCount} result";
+            else
+                IbITotal.Text = $"{dataGridView.RowCount} results";
 
             if (txtSearch.Text.Length>0)
             {
@@ -97,7 +100,10 @@ namespace BudgetGui.Screens
                 dataGridView = sqlDriver.sButton(txtSearch.Text, dataGridView);
                 dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                 dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+                if (dataGridView.RowCount == 1)
+                    IbITotal.Text = $"{dataGridView.RowCount} result";
+                else
+                    IbITotal.Text = $"{dataGridView.RowCount} results";
             }
             catch (Exception ex)
             {
@@ -159,7 +165,10 @@ namespace BudgetGui.Screens
 
 
                 dataGridView = sqlDriver.sButton("", dataGridView);
-                IbITotal.Text = $"Total Records: {dataGridView.RowCount}";
+                if (dataGridView.RowCount == 1)
+                    IbITotal.Text = $"{dataGridView.RowCount} result";
+                else
+                    IbITotal.Text = $"{dataGridView.RowCount} results";
 
             }
 

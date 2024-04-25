@@ -332,7 +332,11 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    itemList.Load(reader);
+                    if (reader.Read())
+                    {
+                        itemList.Load(reader);
+                    }
+
 
                     //while (reader.Read())
                     //{
