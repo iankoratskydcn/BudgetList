@@ -11,29 +11,29 @@ VALUES
     
 INSERT INTO _message(sender,timeDate,recipient,text1)
 VALUES
-    ('2', '2024-03-28 11:00:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('3', '2024-03-28 11:01:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('4', '2024-03-28 11:02:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('5', '2024-03-28 11:03:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('6', '2024-03-28 11:04:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('7', '2024-03-28 11:05:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('8', '2024-03-28 11:06:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (2, '2024-03-28 11:00:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (3, '2024-03-28 11:01:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (4, '2024-03-28 11:02:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (5, '2024-03-28 11:03:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (6, '2024-03-28 11:04:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (7, '2024-03-28 11:05:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (8, '2024-03-28 11:06:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
 
-    ('1', '2024-03-28 11:10:00','2', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:11:00','3', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:12:00','4', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:13:00','5', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:14:00','6', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:15:00','7', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:16:00','8', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:10:00',2, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:11:00',3, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:12:00',4, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:13:00',5, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:14:00',6, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:15:00',7, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:16:00',8, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
 
-    ('2', '2024-03-28 11:17:00','1', 'Great, I''ll see you then.'),
-    ('3', '2024-03-28 11:18:00','1', 'Great, I''ll see you then.'),
-    ('4', '2024-03-28 11:19:00','1', 'Great, I''ll see you then.'),
-    ('5', '2024-03-28 11:20:00','1', 'Great, I''ll see you then.'),
-    ('6', '2024-03-28 11:21:00','1', 'Great, I''ll see you then.'),
-    ('7', '2024-03-28 11:22:00','1', 'Great, I''ll see you then.'),
-    ('8', '2024-03-28 11:23:00','1', 'Great, I''ll see you then.');
+    (2, '2024-03-28 11:17:00',1, 'Great, I''ll see you then.'),
+    (3, '2024-03-28 11:18:00',1, 'Great, I''ll see you then.'),
+    (4, '2024-03-28 11:19:00',1, 'Great, I''ll see you then.'),
+    (5, '2024-03-28 11:20:00',1, 'Great, I''ll see you then.'),
+    (6, '2024-03-28 11:21:00',1, 'Great, I''ll see you then.'),
+    (7, '2024-03-28 11:22:00',1, 'Great, I''ll see you then.'),
+    (8, '2024-03-28 11:23:00',1, 'Great, I''ll see you then.');
 
 Insert Into item(itemId, sellerId,  postDate,  title,  description,  photoUrl,  itemPrice )
 VALUES

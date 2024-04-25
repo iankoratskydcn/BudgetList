@@ -149,6 +149,7 @@
             myItems.Name = "myItems";
             myItems.Size = new Size(253, 274);
             myItems.TabIndex = 23;
+            myItems.SelectedIndexChanged += myItems_SelectedIndexChanged;
             // 
             // soldItems
             // 
@@ -158,6 +159,7 @@
             soldItems.Name = "soldItems";
             soldItems.Size = new Size(253, 304);
             soldItems.TabIndex = 24;
+            soldItems.SelectedIndexChanged += soldItems_SelectedIndexChanged;
             // 
             // shopping
             // 
@@ -180,6 +182,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(615, 356);
             tabControl1.TabIndex = 31;
+            tabControl1.SelectedIndexChanged += soldItems_SelectedIndexChanged;
             // 
             // tabPag1
             // 
@@ -209,6 +212,7 @@
             delete_button.TabIndex = 56;
             delete_button.Text = "Delete";
             delete_button.UseVisualStyleBackColor = true;
+            delete_button.Click += delete_button_Click;
             // 
             // create_item
             // 
@@ -218,6 +222,7 @@
             create_item.TabIndex = 55;
             create_item.Text = "Create Item";
             create_item.UseVisualStyleBackColor = true;
+            create_item.Click += createItem_Click;
             // 
             // my_pic
             // 
@@ -246,6 +251,7 @@
             my_pic_button.TabIndex = 52;
             my_pic_button.Text = "Open File";
             my_pic_button.UseVisualStyleBackColor = true;
+            my_pic_button.Click += my_pic_button_Click;
             // 
             // my_item
             // 
@@ -306,6 +312,7 @@
             message_buyer.TabIndex = 62;
             message_buyer.Text = "Message Buyer";
             message_buyer.UseVisualStyleBackColor = true;
+            message_buyer.Click += message_buyer_Click;
             // 
             // sold_pic
             // 

@@ -199,7 +199,8 @@ public partial class sqlDriver
         //List<string> itemList = new List<string>();
         string query = @"
                 SELECT *
-                FROM savedItems
+                FROM savedItems s
+                JOIN item i ON i.itemId = s.itemId
                 WHERE savedUserId = @userId;
                 "; // itemId, savedUserId, title 
 
@@ -211,8 +212,16 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
+                    try
+                    {
+                        itemList.Load(reader);
 
-                    itemList.Load(reader);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
                     //if (!reader.HasRows)
                     //{
                     //    return null;
@@ -241,8 +250,8 @@ public partial class sqlDriver
         //List<string> itemList = new List<string>();
         string query = @"
                     SELECT *
-                    FROM _user u
-                    JOIN item i ON u.userId = i.buyerId
+                    FROM item i
+                    JOIN _user u ON u.userId = i.buyerId
                     WHERE u.userId = @userId;
                     "; //
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
@@ -253,7 +262,16 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    itemList.Load(reader);
+
+                    try
+                    {
+                        itemList.Load(reader);
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                     //if (!reader.HasRows)
                     //{
                     //    return null;
@@ -368,7 +386,15 @@ public partial class sqlDriver
                     //    string itemInfo = $"{title}";
                     //    itemList.Add(itemInfo);
                     //}
-                    dataTable.Load(reader);
+                    try
+                    {
+                        dataTable.Load(reader);
+
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
                 return dataTable;
             }

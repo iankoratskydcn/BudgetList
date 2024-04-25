@@ -30,6 +30,8 @@ namespace BudgetGui.Screens
 
         public void checkItems()
         {
+            button2.Text = "Buy for $--";
+
             //data tables
             saved_items_DT.Rows.Clear();
             bought_items_DT.Rows.Clear();
@@ -107,6 +109,7 @@ namespace BudgetGui.Screens
         {
             //use Josh's buy script
             sqlDriver.updated_bought_item(currently_selected_saved_item.ToString());
+            MessageBox.Show("Item Bought!");
             checkItems();
         }
 
@@ -124,13 +127,12 @@ namespace BudgetGui.Screens
         private void message_saved_Click(object sender, EventArgs e)
         {
 
-            //get item id
-            int item_id = 0;
             //get user id by item id
-            int seller_id = 0;
+            int seller_id = int.Parse(saved_items_DT.Rows[savedItems.SelectedIndex]["sellerId"].ToString());
 
             //get the item title
-            string item_title = "";
+
+            string item_title = savedItems.SelectedItem.ToString();
             mainForm.passMessageScreen(seller_id, item_title);
 
         }
@@ -139,13 +141,12 @@ namespace BudgetGui.Screens
         private void message_bought_Click(object sender, EventArgs e)
         {
 
-            //get item id
-            int item_id = 0;
             //get user id by item id
-            int seller_id = 0;
+            int seller_id = int.Parse(bought_items_DT.Rows[boughtItems.SelectedIndex]["sellerId"].ToString());
 
             //get the item title
-            string item_title = "";
+
+            string item_title = boughtItems.SelectedItem.ToString();
             mainForm.passMessageScreen(seller_id, item_title);
 
 
@@ -200,13 +201,29 @@ namespace BudgetGui.Screens
 
             saved_Title.Clear();
             saved_Desc.Clear();
+            string cols = "";
+            foreach (DataColumn column in saved_items_DT.Columns)
+            {
+                cols =  column.ColumnName + ", "+ cols;
+            }
+            //MessageBox.Show(cols);
+            
+
 
             string test_t = saved_items_DT.Rows[currently_selected_saved_item]["title"].ToString();
-            string test_d = saved_items_DT.Rows[currently_selected_saved_item]["desc"].ToString();
+            string test_d = saved_items_DT.Rows[currently_selected_saved_item]["description"].ToString();
             string test_p = saved_items_DT.Rows[currently_selected_saved_item]["photoUrl"].ToString();
+            string test_pr = saved_items_DT.Rows[currently_selected_saved_item]["itemPrice"].ToString();
 
             if (test_t.Length > 0) { saved_Title.Text = test_t; }
             if (test_d.Length > 0) { saved_Desc.Text = test_d; }
+            if (test_pr.Length > 0) 
+            { 
+                saved_Desc.Text = test_pr;
+                button2.Text = "Buy for $"+ test_pr;
+            }
+
+
 
             if (test_p.Length > 0)
             {

@@ -176,15 +176,22 @@ namespace BudgetGui.Screens
             clear_bought();
             currently_selected_sold_item = soldItems.SelectedIndex;
 
+            if (currently_selected_sold_item == -1)
+            {
+                return;
+            }
+
             sold_title.Clear();
             sold_desc.Clear();
 
             string test_t = sold_items_DT.Rows[currently_selected_sold_item]["title"].ToString();
-            string test_d = sold_items_DT.Rows[currently_selected_sold_item]["desc"].ToString();
+            string test_d = sold_items_DT.Rows[currently_selected_sold_item]["description"].ToString();
             string test_p = sold_items_DT.Rows[currently_selected_sold_item]["photoUrl"].ToString();
+            string test_pr = sold_items_DT.Rows[currently_selected_sold_item]["itemPrice"].ToString();
 
             if (test_t.Length > 0) { sold_title.Text = test_t; }
             if (test_d.Length > 0) { sold_desc.Text = test_d; }
+            if (test_pr.Length > 0) { sold_price.Text = test_pr; }
 
             if (test_p.Length > 0)
             {
@@ -193,6 +200,7 @@ namespace BudgetGui.Screens
                     sold_pic.Image = System.Drawing.Image.FromFile(
                            Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
                            test_p));
+                    sold_pic_path.Text = test_p;
                 }
                 catch (Exception)
                 {
@@ -222,11 +230,13 @@ namespace BudgetGui.Screens
             my_desc.Clear();
 
             string test_t = my_items_DT.Rows[currently_selected_my_item]["title"].ToString();
-            string test_d = my_items_DT.Rows[currently_selected_my_item]["desc"].ToString();
+            string test_d = my_items_DT.Rows[currently_selected_my_item]["description"].ToString();
             string test_p = my_items_DT.Rows[currently_selected_my_item]["photoUrl"].ToString();
+            string test_pr = my_items_DT.Rows[currently_selected_my_item]["itemPrice"].ToString();
 
             if (test_t.Length > 0) { my_item.Text = test_t; }
             if (test_d.Length > 0) { my_desc.Text = test_d; }
+            if (test_pr.Length > 0) { my_price.Text = test_pr; }
 
             if (test_p.Length > 0)
             {
@@ -235,6 +245,7 @@ namespace BudgetGui.Screens
                     my_pic.Image = System.Drawing.Image.FromFile(
                            Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
                            test_p));
+                    myPic_path.Text = test_p;
                 }
                 catch (Exception)
                 {
@@ -312,7 +323,49 @@ namespace BudgetGui.Screens
             }
         }
 
+        private void delete_button_Click(object sender, EventArgs e)
+        {
 
+        }
+
+
+        private void my_pic_button_Click(object sender, EventArgs e)
+        {
+            if (myItems.SelectedIndex == -1) { return; }
+
+            OpenFileDialog fileloader = new OpenFileDialog();
+            fileloader.Filter = "All Files (*.*)|*.*";
+            fileloader.FilterIndex = 1;
+
+            if (fileloader.ShowDialog() == DialogResult.OK)
+            {
+                string path = fileloader.FileName;
+
+                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png")
+                {
+                    MessageBox.Show("Please select a png file");
+                }
+                else
+                {
+                    myPic_path.Text = path;
+                    my_pic.Image = System.Drawing.Image.FromFile(path);
+                    my_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
+            }
+        }
+
+
+        private void message_buyer_Click(object sender, EventArgs e)
+        {
+            //get user id by item id
+            int seller_id = int.Parse(sold_items_DT.Rows[soldItems.SelectedIndex]["buyerId"].ToString());
+
+            //get the item title
+
+            string item_title = soldItems.SelectedItem.ToString();
+            mainForm.passMessageScreen(seller_id, item_title);
+        }
     }
 }
 

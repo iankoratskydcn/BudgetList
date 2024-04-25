@@ -107,18 +107,7 @@ namespace BudgetGui.Screens
             Form1.changeState(5);
         }
 
-        private void image_open_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog fileloader = new OpenFileDialog();
-            fileloader.Filter = "All Files (*.*)|*.*";
-            fileloader.FilterIndex = 1;
-
-            if (fileloader.ShowDialog() == DialogResult.OK)
-            {
-                string path = fileloader.FileName;
-                img_path.Text = path;
-            }
-        }
+        
 
         private void save_Click(object sender, EventArgs e)
         {
@@ -209,9 +198,5 @@ namespace BudgetGui.Screens
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
