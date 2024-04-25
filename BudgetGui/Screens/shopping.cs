@@ -126,30 +126,39 @@ namespace BudgetGui.Screens
 
         private void message_saved_Click(object sender, EventArgs e)
         {
+            if (savedItems.SelectedIndex == -1)
+            {
+                MessageBox.Show($"Select a saved item");
+            }
+            else
+            {
+                //get user id by item id
+                int seller_id = int.Parse(saved_items_DT.Rows[savedItems.SelectedIndex]["sellerId"].ToString());
 
-            //get user id by item id
-            int seller_id = int.Parse(saved_items_DT.Rows[savedItems.SelectedIndex]["sellerId"].ToString());
+                //get the item title
 
-            //get the item title
-
-            string item_title = savedItems.SelectedItem.ToString();
-            mainForm.passMessageScreen(seller_id, item_title);
-
+                string item_title = savedItems.SelectedItem.ToString();
+                mainForm.passMessageScreen(seller_id, item_title);
+            }
         }
 
 
         private void message_bought_Click(object sender, EventArgs e)
         {
+            if (boughtItems.SelectedIndex == -1)
+            {
+                MessageBox.Show($"Select a bought item");
+            }
+            else
+            {
+                //get user id by item id
+                int seller_id = int.Parse(bought_items_DT.Rows[boughtItems.SelectedIndex]["sellerId"].ToString());
 
-            //get user id by item id
-            int seller_id = int.Parse(bought_items_DT.Rows[boughtItems.SelectedIndex]["sellerId"].ToString());
+                //get the item title
 
-            //get the item title
-
-            string item_title = boughtItems.SelectedItem.ToString();
-            mainForm.passMessageScreen(seller_id, item_title);
-
-
+                string item_title = boughtItems.SelectedItem.ToString();
+                mainForm.passMessageScreen(seller_id, item_title);
+            }
         }
         
         private void boughtItems_SelectedIndexChanged(object sender, EventArgs e)

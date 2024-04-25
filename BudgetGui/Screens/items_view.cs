@@ -358,13 +358,18 @@ namespace BudgetGui.Screens
 
         private void message_buyer_Click(object sender, EventArgs e)
         {
-            //get user id by item id
-            int seller_id = int.Parse(sold_items_DT.Rows[soldItems.SelectedIndex]["buyerId"].ToString());
+            if (soldItems.SelectedIndex == -1)
+            {
+                MessageBox.Show($"Select a sold item");
+            } 
+            else
+            {
+                int seller_id = int.Parse(sold_items_DT.Rows[soldItems.SelectedIndex]["buyerId"].ToString());
 
-            //get the item title
-
-            string item_title = soldItems.SelectedItem.ToString();
-            mainForm.passMessageScreen(seller_id, item_title);
+                //get the item title
+                string item_title = soldItems.SelectedItem.ToString();
+                mainForm.passMessageScreen(seller_id, item_title);
+            }
         }
     }
 }

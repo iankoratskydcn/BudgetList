@@ -1,6 +1,6 @@
 INSERT INTO _user (userId, fName, lName, username, _password, email, DOB, street, city, state, zip, profile_pic)
 VALUES
-    (1, 'Joshua', 'Bernard', 'jbernard2024', '0ed073fdf33980ca41fa85df0ed8847093ef9b57f4967999c65647fe722ea0de', 'joshua@gmail.com', '2002-04-28', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download.png'),
+    (1, 'Joshua', 'Bernard', 'jbernard2024', '0ed073fdf33980ca41fa85df0ed8847093ef9b57f4967999c65647fe722ea0de', 'joshua@gmail.com', '2002-01-15', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download.png'),
     (2, 'John', 'Doe', 'johndoe', '1d707811988069ca760826861d6d63a10e8c3b7f171c4441a6472ea58c11711b', 'john@gmail.com', '1990-01-01', '123 Main Street','New York', 'New York', 10001,'download (5).png'),
     (3, 'Jane', 'Smith', 'janesmith', '330eb31d7ecbf6cc920672905670a78adac5c44fc0d1cf369aec8f5a5d8ea756', 'jane@gmail.com', '1985-05-15', '456 Broadway', 'Los Angeles', 'California', 90001,'download (2).png'),
     (4, 'Alice', 'Johnson', 'alicejohnson', '08676262827036899e54c34f312486111e1952559899acdd0f604b8e4b221e03', 'alice@gmail.com', '1982-11-20', '789 Oak Avenue', 'Chicago', 'Illinois', 60601,'download.png'),
