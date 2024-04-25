@@ -59,7 +59,6 @@ namespace BudgetGui.Screens
             {
                 string dt = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
                 sqlDriver.createNewItem(itemTitle.Text, itemDesc.Text, _path, itemPrice.Text);
-                MessageBox.Show("Item Created Successfully");
                 pictureBox2.Image = System.Drawing.Image.FromFile(
                         Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
                         "blank-image.png"));
