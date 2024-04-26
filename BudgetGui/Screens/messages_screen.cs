@@ -73,9 +73,9 @@ namespace BudgetGui.Screens
                });
         }
 
-        public void _convo_from_item_start(int seller)
+        public void _convo_from_item_start(int seller, string itemTitle)
         {
-            string text = "Hello, I have a question about one of your items!";
+            string text = "Hello, I have a question about" + itemTitle +"?";
             driver.SendMessage(Int32.Parse(Program.GlobalStrings[1]), DateTime.Now, seller, text);
             conversations_renew();
             change_convo(seller);

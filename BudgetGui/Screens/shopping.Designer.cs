@@ -43,20 +43,20 @@
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
-            textBox2 = new TextBox();
-            richTextBox2 = new RichTextBox();
-            pictureBox3 = new PictureBox();
+            saved_Title = new TextBox();
+            saved_Desc = new RichTextBox();
+            saved_pic = new PictureBox();
             tabPage2 = new TabPage();
             button5 = new Button();
-            textBox1 = new TextBox();
-            richTextBox1 = new RichTextBox();
-            pictureBox2 = new PictureBox();
+            bought_title = new TextBox();
+            bought_desc = new RichTextBox();
+            bought_pic = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)saved_pic).BeginInit();
             tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bought_pic).BeginInit();
             SuspendLayout();
             // 
             // title
@@ -163,6 +163,7 @@
             savedItems.Name = "savedItems";
             savedItems.Size = new Size(157, 304);
             savedItems.TabIndex = 36;
+            savedItems.SelectedIndexChanged += savedItems_SelectedIndexChanged;
             // 
             // tabControl1
             // 
@@ -174,6 +175,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(616, 349);
             tabControl1.TabIndex = 38;
+            tabControl1.SelectedIndexChanged += change_tab;
             // 
             // tabPage1
             // 
@@ -181,9 +183,9 @@
             tabPage1.Controls.Add(button4);
             tabPage1.Controls.Add(button3);
             tabPage1.Controls.Add(button2);
-            tabPage1.Controls.Add(textBox2);
-            tabPage1.Controls.Add(richTextBox2);
-            tabPage1.Controls.Add(pictureBox3);
+            tabPage1.Controls.Add(saved_Title);
+            tabPage1.Controls.Add(saved_Desc);
+            tabPage1.Controls.Add(saved_pic);
             tabPage1.Controls.Add(savedItems);
             tabPage1.Location = new Point(4, 27);
             tabPage1.Name = "tabPage1";
@@ -222,36 +224,36 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += buy_Click;
             // 
-            // textBox2
+            // saved_Title
             // 
-            textBox2.Location = new Point(185, 12);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(232, 23);
-            textBox2.TabIndex = 44;
+            saved_Title.Location = new Point(185, 12);
+            saved_Title.Name = "saved_Title";
+            saved_Title.Size = new Size(232, 23);
+            saved_Title.TabIndex = 44;
             // 
-            // richTextBox2
+            // saved_Desc
             // 
-            richTextBox2.Location = new Point(445, 11);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(157, 210);
-            richTextBox2.TabIndex = 43;
-            richTextBox2.Text = "";
+            saved_Desc.Location = new Point(445, 11);
+            saved_Desc.Name = "saved_Desc";
+            saved_Desc.Size = new Size(157, 210);
+            saved_Desc.TabIndex = 43;
+            saved_Desc.Text = "";
             // 
-            // pictureBox3
+            // saved_pic
             // 
-            pictureBox3.Location = new Point(172, 43);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(260, 260);
-            pictureBox3.TabIndex = 42;
-            pictureBox3.TabStop = false;
+            saved_pic.Location = new Point(172, 43);
+            saved_pic.Name = "saved_pic";
+            saved_pic.Size = new Size(260, 260);
+            saved_pic.TabIndex = 42;
+            saved_pic.TabStop = false;
             // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
             tabPage2.Controls.Add(button5);
-            tabPage2.Controls.Add(textBox1);
-            tabPage2.Controls.Add(richTextBox1);
-            tabPage2.Controls.Add(pictureBox2);
+            tabPage2.Controls.Add(bought_title);
+            tabPage2.Controls.Add(bought_desc);
+            tabPage2.Controls.Add(bought_pic);
             tabPage2.Controls.Add(boughtItems);
             tabPage2.Location = new Point(4, 27);
             tabPage2.Name = "tabPage2";
@@ -270,28 +272,28 @@
             button5.UseVisualStyleBackColor = true;
             button5.Click += message_bought_Click;
             // 
-            // textBox1
+            // bought_title
             // 
-            textBox1.Location = new Point(185, 12);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(232, 23);
-            textBox1.TabIndex = 41;
+            bought_title.Location = new Point(185, 12);
+            bought_title.Name = "bought_title";
+            bought_title.Size = new Size(232, 23);
+            bought_title.TabIndex = 41;
             // 
-            // richTextBox1
+            // bought_desc
             // 
-            richTextBox1.Location = new Point(445, 11);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(157, 301);
-            richTextBox1.TabIndex = 39;
-            richTextBox1.Text = "";
+            bought_desc.Location = new Point(445, 11);
+            bought_desc.Name = "bought_desc";
+            bought_desc.Size = new Size(157, 301);
+            bought_desc.TabIndex = 39;
+            bought_desc.Text = "";
             // 
-            // pictureBox2
+            // bought_pic
             // 
-            pictureBox2.Location = new Point(185, 48);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(232, 232);
-            pictureBox2.TabIndex = 38;
-            pictureBox2.TabStop = false;
+            bought_pic.Location = new Point(185, 48);
+            bought_pic.Name = "bought_pic";
+            bought_pic.Size = new Size(232, 232);
+            bought_pic.TabIndex = 38;
+            bought_pic.TabStop = false;
             // 
             // shopping
             // 
@@ -313,10 +315,10 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)saved_pic).EndInit();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bought_pic).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -336,12 +338,12 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private PictureBox pictureBox2;
-        private TextBox textBox2;
-        private RichTextBox richTextBox2;
-        private PictureBox pictureBox3;
-        private TextBox textBox1;
-        private RichTextBox richTextBox1;
+        private PictureBox bought_pic;
+        private TextBox saved_Title;
+        private RichTextBox saved_Desc;
+        private PictureBox saved_pic;
+        private TextBox bought_title;
+        private RichTextBox bought_desc;
         private Button button3;
         private Button button2;
         private Button button4;

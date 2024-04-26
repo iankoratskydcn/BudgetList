@@ -1,6 +1,6 @@
 INSERT INTO _user (userId, fName, lName, username, _password, email, DOB, street, city, state, zip, profile_pic)
 VALUES
-    (1, 'Joshua', 'Bernard', 'jbernard2024', '0ed073fdf33980ca41fa85df0ed8847093ef9b57f4967999c65647fe722ea0de', 'joshua@gmail.com', '2002-04-28', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download.png'),
+    (1, 'Joshua', 'Bernard', 'jbernard2024', '0ed073fdf33980ca41fa85df0ed8847093ef9b57f4967999c65647fe722ea0de', 'joshua@gmail.com', '2002-01-15', '4202 E. Fowler Avenue', 'Tampa', 'Florida', 33620,'download.png'),
     (2, 'John', 'Doe', 'johndoe', '1d707811988069ca760826861d6d63a10e8c3b7f171c4441a6472ea58c11711b', 'john@gmail.com', '1990-01-01', '123 Main Street','New York', 'New York', 10001,'download (5).png'),
     (3, 'Jane', 'Smith', 'janesmith', '330eb31d7ecbf6cc920672905670a78adac5c44fc0d1cf369aec8f5a5d8ea756', 'jane@gmail.com', '1985-05-15', '456 Broadway', 'Los Angeles', 'California', 90001,'download (2).png'),
     (4, 'Alice', 'Johnson', 'alicejohnson', '08676262827036899e54c34f312486111e1952559899acdd0f604b8e4b221e03', 'alice@gmail.com', '1982-11-20', '789 Oak Avenue', 'Chicago', 'Illinois', 60601,'download.png'),
@@ -11,29 +11,29 @@ VALUES
     
 INSERT INTO _message(sender,timeDate,recipient,text1)
 VALUES
-    ('2', '2024-03-28 11:00:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('3', '2024-03-28 11:01:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('4', '2024-03-28 11:02:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('5', '2024-03-28 11:03:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('6', '2024-03-28 11:04:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('7', '2024-03-28 11:05:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
-    ('8', '2024-03-28 11:06:00','1', 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (2, '2024-03-28 11:00:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (3, '2024-03-28 11:01:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (4, '2024-03-28 11:02:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (5, '2024-03-28 11:03:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (6, '2024-03-28 11:04:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (7, '2024-03-28 11:05:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
+    (8, '2024-03-28 11:06:00',1, 'Hello, I''ve purchased your item. When can I pick it up?'),
 
-    ('1', '2024-03-28 11:10:00','2', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:11:00','3', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:12:00','4', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:13:00','5', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:14:00','6', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:15:00','7', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
-    ('1', '2024-03-28 11:16:00','8', 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:10:00',2, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:11:00',3, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:12:00',4, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:13:00',5, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:14:00',6, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:15:00',7, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
+    (1, '2024-03-28 11:16:00',8, 'Hi, congratulations on your purchase! You can pick it up anytime after 3 pm tomorrow.'),
 
-    ('2', '2024-03-28 11:17:00','1', 'Great, I''ll see you then.'),
-    ('3', '2024-03-28 11:18:00','1', 'Great, I''ll see you then.'),
-    ('4', '2024-03-28 11:19:00','1', 'Great, I''ll see you then.'),
-    ('5', '2024-03-28 11:20:00','1', 'Great, I''ll see you then.'),
-    ('6', '2024-03-28 11:21:00','1', 'Great, I''ll see you then.'),
-    ('7', '2024-03-28 11:22:00','1', 'Great, I''ll see you then.'),
-    ('8', '2024-03-28 11:23:00','1', 'Great, I''ll see you then.');
+    (2, '2024-03-28 11:17:00',1, 'Great, I''ll see you then.'),
+    (3, '2024-03-28 11:18:00',1, 'Great, I''ll see you then.'),
+    (4, '2024-03-28 11:19:00',1, 'Great, I''ll see you then.'),
+    (5, '2024-03-28 11:20:00',1, 'Great, I''ll see you then.'),
+    (6, '2024-03-28 11:21:00',1, 'Great, I''ll see you then.'),
+    (7, '2024-03-28 11:22:00',1, 'Great, I''ll see you then.'),
+    (8, '2024-03-28 11:23:00',1, 'Great, I''ll see you then.');
 
 Insert Into item(itemId, sellerId,  postDate,  title,  description,  photoUrl,  itemPrice )
 VALUES

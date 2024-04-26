@@ -248,7 +248,7 @@
             pictureBox2.Size = new Size(250, 250);
             pictureBox2.TabIndex = 46;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
+            
             // 
             // user_view
             // 

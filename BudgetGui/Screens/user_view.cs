@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Data.Entity.Infrastructure.Design.Executor;
@@ -107,23 +108,14 @@ namespace BudgetGui.Screens
             Form1.changeState(5);
         }
 
-        private void image_open_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog fileloader = new OpenFileDialog();
-            fileloader.Filter = "All Files (*.*)|*.*";
-            fileloader.FilterIndex = 1;
-
-            if (fileloader.ShowDialog() == DialogResult.OK)
-            {
-                string path = fileloader.FileName;
-                img_path.Text = path;
-            }
-        }
+        
 
         private void save_Click(object sender, EventArgs e)
         {
             string[] fields = { street.Text, city.Text, state.Text, zip.Text };
             string[] labels = { "Street", "City", "State", "Zip" };
+            string emailPattern = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
+
             if (!(string.IsNullOrEmpty(street.Text)) || !(string.IsNullOrEmpty(city.Text)) || !(string.IsNullOrEmpty(state.Text)) || !(string.IsNullOrEmpty(zip.Text)))
             {
                 for (int i = 0; i < fields.Length; i++)
@@ -139,7 +131,14 @@ namespace BudgetGui.Screens
 
             if (!(string.IsNullOrEmpty(email.Text)))
             {
-                sqlDriver.updateEmail(email.Text);
+                if (!Regex.IsMatch(email.Text, emailPattern))
+                {
+                    MessageBox.Show("Invalid email address format");
+                    return;
+                } else
+                {
+                    sqlDriver.updateEmail(email.Text);
+                }
             }
 
             if (!(string.IsNullOrEmpty(password.Text)))
@@ -209,9 +208,5 @@ namespace BudgetGui.Screens
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
