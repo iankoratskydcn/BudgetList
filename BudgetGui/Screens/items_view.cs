@@ -177,55 +177,6 @@ namespace BudgetGui.Screens
             }
         }
 
-        //from  the other
-        private void buy_Click(object sender, EventArgs e)
-        {
-            sqlDriver.updated_bought_item(int.Parse(currently_selected_my_item.ToString()));
-            checkItems();
-        }
-
-
-        private void remove_Click(object sender, EventArgs e)
-        {
-            //user id
-            int userid = Int32.Parse(Program.GlobalStrings[1]);
-            sqlDriver.remove_saved_item(currently_selected_my_item, userid);
-
-            //cleanup
-            checkItems();
-        }
-
-        private void message_saved_Click(object sender, EventArgs e)
-        {
-
-            //get item id
-            int item_id = 0;
-            //get user id by item id
-            int seller_id = 0;
-
-            //get the item title
-            string item_title = "";
-            mainForm.passMessageScreen(seller_id, item_title);
-            System.GC.Collect();
-
-        }
-
-
-        private void message_bought_Click(object sender, EventArgs e)
-        {
-
-            //get item id
-            int item_id = 0;
-            //get user id by item id
-            int seller_id = 0;
-
-            //get the item title
-            string item_title = "";
-            mainForm.passMessageScreen(seller_id, item_title);
-            System.GC.Collect();
-
-        }
-
         private void soldItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             clear_bought();
@@ -273,7 +224,6 @@ namespace BudgetGui.Screens
             System.GC.Collect();
         }
 
-
         private void myItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             clear_my_item();
@@ -318,7 +268,6 @@ namespace BudgetGui.Screens
 
         }
 
-
         public void clear_my_item()
         {
             my_item.Text = "";
@@ -352,40 +301,6 @@ namespace BudgetGui.Screens
             System.GC.Collect();
         }
 
-
-        private void change_tab(object sender, EventArgs e)
-        {
-            clear_bought();
-            clear_my_item();
-            System.GC.Collect();
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog fileloader = new OpenFileDialog();
-            fileloader.Filter = "All Files (*.*)|*.*";
-            fileloader.FilterIndex = 1;
-
-            if (fileloader.ShowDialog() == DialogResult.OK)
-            {
-                string path = fileloader.FileName;
-
-                if (path.Split('.').Length != 2 || path.Split('.')[1] != "png")
-                {
-                    MessageBox.Show("Please select a png file");
-                }
-                else
-                {
-                    sold_title.Text = path;
-                    sold_pic.Image = System.Drawing.Image.FromFile(path);
-                    sold_pic.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-
-            }
-            System.GC.Collect();
-        }
-
         private void delete_button_Click(object sender, EventArgs e)
         {
 
@@ -402,7 +317,6 @@ namespace BudgetGui.Screens
                 clear_my_item();
             }
         }
-
 
         private void my_pic_button_Click(object sender, EventArgs e)
         {
@@ -429,7 +343,6 @@ namespace BudgetGui.Screens
 
             }
         }
-
 
         private void message_buyer_Click(object sender, EventArgs e)
         {

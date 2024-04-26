@@ -49,22 +49,4 @@ public partial class sqlDriver
         }
         return count > 0;
     }
-
-    public int getUserIdByUsername(string username)
-    {
-        string query = @"SELECT userId FROM _user WHERE username = @username";
-
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-
-            using (SQLiteCommand command = new SQLiteCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@username", username);
-                System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader();
-                return reader.GetInt32(reader.GetOrdinal("userId"));
-            }
-        }
-    }
-
 }
