@@ -421,7 +421,7 @@ namespace BudgetGui.Screens
             if (soldItems.SelectedIndex == -1)
             {
                 MessageBox.Show($"Select a sold item");
-            } 
+            }
             else
             {
                 int seller_id = int.Parse(sold_items_DT.Rows[soldItems.SelectedIndex]["buyerId"].ToString());
@@ -431,6 +431,7 @@ namespace BudgetGui.Screens
                 mainForm.passMessageScreen(seller_id, item_title);
             }
         }
+
     }
 }
 
