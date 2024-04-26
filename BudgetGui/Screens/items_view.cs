@@ -226,6 +226,12 @@ namespace BudgetGui.Screens
 
         private void myItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            if (myItems.SelectedIndex == -1)
+            {
+                return;
+            }
+
             clear_my_item();
             currently_selected_my_item = myItems.SelectedIndex;
 
