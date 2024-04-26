@@ -42,12 +42,12 @@ CREATE TABLE item(
 
 CREATE TABLE savedItems(
     itemId INT NOT NULL,
-    --title VARCHAR(100) NOT NULL,
-    --description VARCHAR(255),
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
     postDate DATE,
     creatorUserId INT NOT NULL,
     savedUserId INT NOT NULL,
-    --itemPrice DECIMAL(10,2),
+    itemPrice DECIMAL(10,2),
     CHECK (creatorUserId != savedUserId),
 	PRIMARY KEY(savedUserId, itemId),
 	CONSTRAINT fk_userId FOREIGN KEY(savedUserId) REFERENCES _user(userId),

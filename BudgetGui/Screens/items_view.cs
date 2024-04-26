@@ -119,42 +119,67 @@ namespace BudgetGui.Screens
 
         private void submit_edited_item(object sender, EventArgs e)
         {
+
+            if (String.Equals(my_item.Text, ""))
+            {
+                MessageBox.Show("Your item must have a title!");
+                myItems_SelectedIndexChanged(sender, e);
+                return;
+            }
+            if (String.Equals(my_price.Text, ""))
+            {
+                MessageBox.Show("Your item must have a price!");
+                myItems_SelectedIndexChanged(sender, e);
+                return;
+            }
+
             bool submit = false;
 
+            int itemId = int.Parse(my_items_DT.Rows[currently_selected_my_item]["itemId"].ToString());
             string test_t = my_items_DT.Rows[currently_selected_my_item]["title"].ToString();
-            string test_d = my_items_DT.Rows[currently_selected_my_item]["description"].ToString();
-            string test_p = my_items_DT.Rows[currently_selected_my_item]["photoUrl"].ToString();
             string test_pr = my_items_DT.Rows[currently_selected_my_item]["itemPrice"].ToString();
 
-            if (test_t != my_item.Text)
+
+            string test_d = my_items_DT.Rows[currently_selected_my_item]["description"].ToString();
+            string test_p = my_items_DT.Rows[currently_selected_my_item]["photoUrl"].ToString();
+
+
+            if (!String.Equals(test_t, my_item.Text))
             {
                 test_t = my_item.Text;
                 submit = true;
             }
-            if (test_d != my_desc.Text)
+            if (!String.Equals(test_d, my_desc.Text))
             {
+
                 test_d = my_desc.Text;
                 submit = true;
             }
-            if (test_p != my_price.Text)
+            if (!String.Equals(test_p, myPic_path.Text))
             {
-                test_p = my_price.Text;
+
+                test_p = myPic_path.Text;
                 submit = true;
             }
-            if (test_pr != myPic_path.Text)
+            if (!String.Equals(test_pr, my_price.Text))
             {
-                test_pr = myPic_path.Text;
+
+                test_pr = my_price.Text;
                 submit = true;
             }
 
-
+            if (submit)
+            {
+                sqlDriver.updateItem(itemId, test_t, test_d, test_p, test_pr);
+                checkItems();
+            }
         }
 
         //from  the other
         private void buy_Click(object sender, EventArgs e)
         {
             //use Josh's buy script
-            sqlDriver.updated_bought_item(currently_selected_my_item.ToString());
+            sqlDriver.updated_bought_item(int.Parse(currently_selected_my_item.ToString()));
             checkItems();
         }
 
@@ -249,7 +274,7 @@ namespace BudgetGui.Screens
 
         private void myItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clear_saved();
+            clear_my_item();
             currently_selected_my_item = myItems.SelectedIndex;
 
 
@@ -293,7 +318,7 @@ namespace BudgetGui.Screens
         }
 
 
-        private void clear_saved()
+        private void clear_my_item()
         {
             my_item.Clear();
             my_desc.Clear();
@@ -323,7 +348,7 @@ namespace BudgetGui.Screens
         private void change_tab(object sender, EventArgs e)
         {
             clear_bought();
-            clear_saved();
+            clear_my_item();
         }
 
         //for later
@@ -359,7 +384,7 @@ namespace BudgetGui.Screens
             {
                 sqlDriver.delete_item_by_id(currently_selected_my_item);
                 checkItems();
-                clear_saved();
+                clear_my_item();
             }
         }
 

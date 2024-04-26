@@ -160,7 +160,7 @@ namespace BudgetGui.Screens
                     return;
                 }
 
-                sqlDriver.updated_bought_item(itemId);
+                sqlDriver.updated_bought_item(int.Parse(itemId));
                 MessageBox.Show($"Item has been bought");
 
 

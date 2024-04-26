@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(shopping));
             title = new Label();
             button1 = new Button();
             items = new Button();
@@ -154,6 +155,7 @@
             boughtItems.Name = "boughtItems";
             boughtItems.Size = new Size(157, 304);
             boughtItems.TabIndex = 37;
+            boughtItems.SelectedIndexChanged += boughtItems_SelectedIndexChanged;
             // 
             // savedItems
             // 
@@ -241,9 +243,11 @@
             // 
             // saved_pic
             // 
+            saved_pic.Image = (Image)resources.GetObject("saved_pic.Image");
             saved_pic.Location = new Point(172, 43);
             saved_pic.Name = "saved_pic";
             saved_pic.Size = new Size(260, 260);
+            saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
             saved_pic.TabIndex = 42;
             saved_pic.TabStop = false;
             // 
@@ -289,9 +293,12 @@
             // 
             // bought_pic
             // 
+            bought_pic.ErrorImage = (Image)resources.GetObject("bought_pic.ErrorImage");
+            bought_pic.Image = (Image)resources.GetObject("bought_pic.Image");
             bought_pic.Location = new Point(185, 48);
             bought_pic.Name = "bought_pic";
             bought_pic.Size = new Size(232, 232);
+            bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
             bought_pic.TabIndex = 38;
             bought_pic.TabStop = false;
             // 

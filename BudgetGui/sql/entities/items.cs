@@ -113,7 +113,7 @@ public partial class sqlDriver
                 {
 
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Item Created Successfully");
+                    //MessageBox.Show("Item Created Successfully");
 
                 }
                 catch (SQLiteException ex)
@@ -203,16 +203,12 @@ public partial class sqlDriver
     public void updateItem(int itemId, string title, string description, string photoUrl, string itemPrice)
     {
         string query = @"
-                        UPDATE item 
-                        SET 
-                        sellerId = @sellerId,
-                        postDate = @postDate,
+                        UPDATE item SET 
                         title = @title,
                         description = @description, 
                         photoUrl = @photoUrl,
                         itemPrice = @itemPrice
-                        WHERE itemID = @itemId
-                        ;";
+                        WHERE itemID = @itemId ;";
         int newItemId = 1;
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -221,28 +217,24 @@ public partial class sqlDriver
             
             using (SQLiteCommand command = new SQLiteCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@itemId", newItemId);
-                command.Parameters.AddWithValue("@sellerId", Program.GlobalStrings[1]);
-                command.Parameters.AddWithValue("@postDate", DateTime.Now);
                 command.Parameters.AddWithValue("@title", title);
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@photoUrl", photoUrl);
                 command.Parameters.AddWithValue("@itemPrice", itemPrice);
+                command.Parameters.AddWithValue("@itemId", itemId);
 
                 try
                 {
+                    //MessageBox.Show(command.CommandText);
 
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Item Created Successfully");
+                    //MessageBox.Show("Item Created Successfully");
 
                 }
                 catch (SQLiteException ex)
                 {
-                    if (ex.Message.Contains("CHECK constraint failed:"))
-                    {
 
-                        MessageBox.Show("Error: Please double check your inputs.");
-                    }
+                    //MessageBox.Show(ex.Message);
                 }
                 return;
 
@@ -253,10 +245,10 @@ public partial class sqlDriver
     /////////////////// multiple queries ///////////////////
     ////////////////////////////////////////////////////////
 
-    public void updated_bought_item(string itemId)
+    public void updated_bought_item(int itemId)
     {
 
-
+        //MessageBox.Show(itemId.ToString());
         string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId";
         string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId";
 
@@ -272,27 +264,28 @@ public partial class sqlDriver
                 command_d.Parameters.AddWithValue("@itemId", itemId);
 
                 command_u.Parameters.AddWithValue("@buyerId", Program.GlobalStrings[1]);
-                command_u.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
+                command_u.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd hh:mm:ss"));
 
                 try
                 {
-                    command_u.ExecuteNonQuery();
                     command_d.ExecuteNonQuery();
+                    command_u.ExecuteNonQuery();
                     transaction.Commit();
-                    MessageBox.Show("Item Updated Successfully");
+                    //MessageBox.Show("Item Updated Successfully");
 
                 }
                 catch (SQLiteException ex)
                 {
+                    MessageBox.Show("");
+                    MessageBox.Show(ex.Message);
                     transaction.Rollback();
-                    MessageBox.Show("Error: Please double check your inputs.");
                 }
                 finally
                 {
                     command_d.Dispose();
                     command_u.Dispose();
                     transaction.Dispose();
-
+                    //MessageBox.Show("Test");
                 }
             }
             return;
