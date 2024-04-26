@@ -24,6 +24,25 @@ public partial class sqlDriver
 {
 
     ////////////////////////////////////////////////////////
+    /////////////////// delete queries ////////////////////
+    ////////////////////////////////////////////////////////
+    public void delete_item_by_id(int item_id)
+    {
+        string delete_query = "DELETE FROM item WHERE itemId = @item_id;";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+
+            using (SQLiteCommand command = new SQLiteCommand(delete_query, connection))
+            {
+
+                command.Parameters.AddWithValue("@item_id", item_id);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    ////////////////////////////////////////////////////////
     //////////////////// update queries ////////////////////
     ////////////////////////////////////////////////////////
 
@@ -47,7 +66,22 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@state", state);
                 command.Parameters.AddWithValue("@zip", zip);
                 command.Parameters.AddWithValue("@id", Program.GlobalStrings[1]);
-                command.ExecuteNonQuery();
+
+                try
+                {
+
+                    command.ExecuteNonQuery();
+
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("CHECK constraint failed:"))
+                    {
+
+                        MessageBox.Show("Error: Please double check your inputs.");
+                    }
+                }
+                return;
             }
         }
     }
@@ -75,7 +109,16 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userid", Program.GlobalStrings[1]);
                 command.Parameters.AddWithValue("@itemId", item_id);
 
-                command.ExecuteNonQuery();
+                 try
+                {
+
+                    command.ExecuteNonQuery();
+
+                }
+                catch (SQLiteException ex)
+                {
+                }
+                return;
             }
         }
     }
@@ -135,10 +178,9 @@ public partial class sqlDriver
                 }
                 catch (SQLiteException ex)
                 {
-                    if (ex.Message.Contains("CHECK constraint failed: itemPrice >= 1 AND itemPrice <= 100000"))
+                    if (ex.Message.Contains("CHECK constraint failed:"))
                     {
-
-                        MessageBox.Show("Error: Price must be between $1 and $100,000.");
+                        MessageBox.Show("Error: Please double check your inputs.");
                         return;
                     }
                     else
@@ -152,40 +194,91 @@ public partial class sqlDriver
         }
     }
 
+    public void updateItem(int itemId, string title, string description, string photoUrl, string itemPrice)
+    {
+        string query = @"
+                        UPDATE item SET 
+                        title = @title,
+                        description = @description, 
+                        photoUrl = @photoUrl,
+                        itemPrice = @itemPrice
+                        WHERE itemID = @itemId ;";
+        int newItemId = 1;
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@title", title);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@photoUrl", photoUrl);
+                command.Parameters.AddWithValue("@itemPrice", itemPrice);
+                command.Parameters.AddWithValue("@itemId", itemId);
 
+                try
+                {
+
+                    command.ExecuteNonQuery();
+
+                }
+                catch (SQLiteException ex)
+                {
+
+                }
+                return;
+
+            }
+        }
+    }
     ////////////////////////////////////////////////////////
     /////////////////// multiple queries ///////////////////
     ////////////////////////////////////////////////////////
 
-    public void updated_bought_item(string itemId)
+    public void updated_bought_item(int itemId)
     {
 
-
+        //MessageBox.Show(itemId.ToString());
         string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId";
         string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId";
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(updateBoughtItemQuery, connection))
-            {
-                command.Parameters.AddWithValue("@buyerId", Program.GlobalStrings[1]);
-                command.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
-                command.Parameters.AddWithValue("@itemId", itemId);
-                command.ExecuteNonQuery();
-            }
-        }
 
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(delete_saved, connection))
+            using (SQLiteTransaction transaction = connection.BeginTransaction())
+            using (SQLiteCommand command_d = new SQLiteCommand(delete_saved, connection))
+            using (SQLiteCommand command_u = new SQLiteCommand(updateBoughtItemQuery, connection))
             {
-                command.Parameters.AddWithValue("@itemId", itemId);
-                command.ExecuteNonQuery();
-            }
-        }
+                command_u.Parameters.AddWithValue("@itemId", itemId);
+                command_d.Parameters.AddWithValue("@itemId", itemId);
 
+                command_u.Parameters.AddWithValue("@buyerId", Program.GlobalStrings[1]);
+                command_u.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd hh:mm:ss"));
+
+                try
+                {
+                    command_d.ExecuteNonQuery();
+                    command_u.ExecuteNonQuery();
+                    transaction.Commit();
+
+                }
+                catch (SQLiteException ex)
+                {
+                    MessageBox.Show("");
+                    MessageBox.Show(ex.Message);
+                    transaction.Rollback();
+                }
+                finally
+                {
+                    command_d.Dispose();
+                    command_u.Dispose();
+                    transaction.Dispose();
+                }
+            }
+            return;
+        }
     }
 
 
@@ -218,13 +311,12 @@ public partial class sqlDriver
     public DataTable checkForSavedItems()
     {
         DataTable itemList = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                 SELECT *
                 FROM savedItems s
                 JOIN item i ON i.itemId = s.itemId
                 WHERE savedUserId = @userId;
-                "; // itemId, savedUserId, title 
+                "; 
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -244,22 +336,6 @@ public partial class sqlDriver
 
                     }
 
-                    //if (!reader.HasRows)
-                    //{
-                    //    return null;
-                    //}
-
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-
-
-                    //}
                 }
                 return itemList;
             }
@@ -269,7 +345,6 @@ public partial class sqlDriver
     public DataTable checkForBoughtItems()
     {
         DataTable itemList = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                     SELECT *
                     FROM item i
@@ -294,20 +369,7 @@ public partial class sqlDriver
                     {
 
                     }
-                    //if (!reader.HasRows)
-                    //{
-                    //    return null;
-                    //}
-
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-                    //}
+                    
                 }
                 return itemList;
             }
@@ -338,13 +400,12 @@ public partial class sqlDriver
     public DataTable checkForItemsBeingSold()
     {
         DataTable itemList = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                     SELECT i.*, u.*
                     FROM _user u
                     LEFT JOIN item i ON u.userId = i.sellerId
                     WHERE u.userId = @userId AND i.buyerId IS NULL;
-                    ";//i.itemId, i.sellerId, i.title
+                    ";
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -359,21 +420,6 @@ public partial class sqlDriver
                         itemList.Load(reader);
                     }
 
-
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    if (itemId == null)
-                    //    {
-                    //        return null;
-                    //    }
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-                    //}
                 }
                 return itemList;
             }
@@ -383,7 +429,6 @@ public partial class sqlDriver
     public DataTable checkForItemsSold()
     {
         DataTable dataTable = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                     SELECT i.*, u.*
                     FROM _user u
@@ -398,20 +443,7 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    if (itemId == null)
-                    //    {
-                    //        return null;
-                    //    }
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-                    //}
+                    
                     try
                     {
                         dataTable.Load(reader);

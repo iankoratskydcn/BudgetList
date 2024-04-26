@@ -42,10 +42,8 @@ namespace BudgetGui.Screens
             boughtItems.Items.Clear();
 
             //get info from DataTables
-
             saved_items_DT = sqlDriver.checkForSavedItems();
             bought_items_DT = sqlDriver.checkForBoughtItems();
-
 
             //list comprehension
             List<string> itemList = saved_items_DT.Rows.Count > 0
@@ -54,7 +52,7 @@ namespace BudgetGui.Screens
             List<string> itemList2 = bought_items_DT.Rows.Count > 0
                 ? bought_items_DT.AsEnumerable().Select(x => x["title"].ToString()).ToList()
                 : new List<string>();//sqlDriver.checkForBoughtItems();
-
+            
             if (itemList != null)
             {
                 foreach (string item in itemList)
@@ -78,6 +76,7 @@ namespace BudgetGui.Screens
             {
                 boughtItems.Items.Add("You have no items.");
             }
+            System.GC.Collect();
         }
 
         private void userView_Click(object sender, EventArgs e)
@@ -107,21 +106,36 @@ namespace BudgetGui.Screens
 
         private void buy_Click(object sender, EventArgs e)
         {
-            //use Josh's buy script
-            sqlDriver.updated_bought_item(currently_selected_saved_item.ToString());
+            if (savedItems.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an Item");
+                return;
+            }
+            sqlDriver.updated_bought_item(int.Parse(saved_items_DT.Rows[currently_selected_saved_item]["itemId"].ToString()));
             MessageBox.Show("Item Bought!");
+            clear_saved();
             checkItems();
+            System.GC.Collect();
         }
 
 
         private void remove_Click(object sender, EventArgs e)
         {
+
+            if (savedItems.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an Item");
+                return;
+            }
             //user id
             int userid = Int32.Parse(Program.GlobalStrings[1]);
-            sqlDriver.remove_saved_item(currently_selected_saved_item, userid);
+
+            sqlDriver.remove_saved_item(int.Parse(saved_items_DT.Rows[currently_selected_saved_item]["itemId"].ToString()), userid);
 
             //cleanup
             checkItems();
+            clear_saved();
+            System.GC.Collect();
         }
 
         private void message_saved_Click(object sender, EventArgs e)
@@ -160,9 +174,14 @@ namespace BudgetGui.Screens
                 mainForm.passMessageScreen(seller_id, item_title);
             }
         }
-        
+
         private void boughtItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (boughtItems.SelectedIndex == -1)
+            {
+                return;
+            }
+
             clear_bought();
             currently_selected_bought_item = boughtItems.SelectedIndex;
 
@@ -170,7 +189,7 @@ namespace BudgetGui.Screens
             bought_desc.Clear();
 
             string test_t = bought_items_DT.Rows[currently_selected_bought_item]["title"].ToString();
-            string test_d = bought_items_DT.Rows[currently_selected_bought_item]["desc"].ToString();
+            string test_d = bought_items_DT.Rows[currently_selected_bought_item]["description"].ToString();
             string test_p = bought_items_DT.Rows[currently_selected_bought_item]["photoUrl"].ToString();
 
             if (test_t.Length > 0) { bought_title.Text = test_t; }
@@ -197,27 +216,28 @@ namespace BudgetGui.Screens
             }
 
             bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            System.GC.Collect();
         }
 
 
         private void savedItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (savedItems.SelectedIndex == -1)
+            {
+                return;
+            }
+
             clear_saved();
             currently_selected_saved_item = savedItems.SelectedIndex;
-
-
 
             saved_Title.Clear();
             saved_Desc.Clear();
             string cols = "";
             foreach (DataColumn column in saved_items_DT.Columns)
             {
-                cols =  column.ColumnName + ", "+ cols;
+                cols = column.ColumnName + ", " + cols;
             }
             //MessageBox.Show(cols);
-            
-
 
             string test_t = saved_items_DT.Rows[currently_selected_saved_item]["title"].ToString();
             string test_d = saved_items_DT.Rows[currently_selected_saved_item]["description"].ToString();
@@ -226,10 +246,10 @@ namespace BudgetGui.Screens
 
             if (test_t.Length > 0) { saved_Title.Text = test_t; }
             if (test_d.Length > 0) { saved_Desc.Text = test_d; }
-            if (test_pr.Length > 0) 
-            { 
-                saved_Desc.Text = test_pr;
-                button2.Text = "Buy for $"+ test_pr;
+            if (test_pr.Length > 0)
+            {
+                
+                button2.Text = "Buy for $" + test_pr;
             }
 
 
@@ -256,11 +276,11 @@ namespace BudgetGui.Screens
 
             saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
 
-
+            System.GC.Collect();
         }
 
 
-        private void clear_saved()
+        public void clear_saved()
         {
             saved_Title.Clear();
             saved_Desc.Clear();
@@ -270,9 +290,10 @@ namespace BudgetGui.Screens
                        "blank-image.png"));
 
             saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            System.GC.Collect();
         }
 
-        private void clear_bought()
+        public void clear_bought()
         {
             bought_title.Clear();
             bought_desc.Clear();
@@ -282,6 +303,7 @@ namespace BudgetGui.Screens
                        "blank-image.png"));
 
             bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            System.GC.Collect();
         }
 
 
@@ -316,6 +338,8 @@ namespace BudgetGui.Screens
                 }
 
             }
+            System.GC.Collect();
         }
+
     }
 }

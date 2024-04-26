@@ -29,6 +29,7 @@ namespace BudgetGui.Screens
         int currently_selected_my_item = 0;
         int currently_selected_sold_item = 0;
 
+
         public void checkItems()
         {
 
@@ -42,7 +43,6 @@ namespace BudgetGui.Screens
             soldItems.Items.Clear();
 
             //get info from DataTables
-
             my_items_DT = sqlDriver.checkForItemsBeingSold();
             sold_items_DT = sqlDriver.checkForItemsSold();
 
@@ -50,15 +50,14 @@ namespace BudgetGui.Screens
             //list comprehension
             List<string> itemList = my_items_DT.Rows.Count > 0
                 ? my_items_DT.AsEnumerable().Select(x => x["title"].ToString()).ToList()
-                : new List<string>();//sqlDriver.checkFormyItems();
+                : new List<string>();
 
             List<string> itemList2 = sold_items_DT.Rows.Count > 0
                 ? sold_items_DT.AsEnumerable().Select(x => x["title"].ToString()).ToList()
-                : new List<string>();//sqlDriver.checkForsoldItems();
+                : new List<string>();
 
 
             myItems.Items.Clear();
-            //List<string> itemList = sqlDriver.checkForItemsSold();
             if (itemList != null)
             {
                 foreach (string item in itemList)
@@ -72,7 +71,6 @@ namespace BudgetGui.Screens
             }
 
             soldItems.Items.Clear();
-            //List<string> itemList2 = sqlDriver.checkForItemsSold();
             if (itemList2 != null)
             {
                 foreach (string item2 in itemList2)
@@ -119,14 +117,70 @@ namespace BudgetGui.Screens
 
         private void submit_edited_item(object sender, EventArgs e)
         {
+            if(myItems.SelectedIndex==-1)
+            {
+                return;
+            }
 
+            if (String.Equals(my_item.Text, ""))
+            {
+                MessageBox.Show("Your item must have a title!");
+                myItems_SelectedIndexChanged(sender, e);
+                return;
+            }
+            if (String.Equals(my_price.Text, ""))
+            {
+                MessageBox.Show("Your item must have a price!");
+                myItems_SelectedIndexChanged(sender, e);
+                return;
+            }
+
+            bool submit = false;
+
+            int itemId = int.Parse(my_items_DT.Rows[currently_selected_my_item]["itemId"].ToString());
+            string test_t = my_items_DT.Rows[currently_selected_my_item]["title"].ToString();
+            string test_pr = my_items_DT.Rows[currently_selected_my_item]["itemPrice"].ToString();
+
+
+            string test_d = my_items_DT.Rows[currently_selected_my_item]["description"].ToString();
+            string test_p = my_items_DT.Rows[currently_selected_my_item]["photoUrl"].ToString();
+
+
+            if (!String.Equals(test_t, my_item.Text))
+            {
+                test_t = my_item.Text;
+                submit = true;
+            }
+            if (!String.Equals(test_d, my_desc.Text))
+            {
+
+                test_d = my_desc.Text;
+                submit = true;
+            }
+            if (!String.Equals(test_p, myPic_path.Text))
+            {
+
+                test_p = myPic_path.Text;
+                submit = true;
+            }
+            if (!String.Equals(test_pr, my_price.Text))
+            {
+
+                test_pr = my_price.Text;
+                submit = true;
+            }
+
+            if (submit)
+            {
+                sqlDriver.updateItem(itemId, test_t, test_d, test_p, test_pr);
+                checkItems();
+            }
         }
 
         //from  the other
         private void buy_Click(object sender, EventArgs e)
         {
-            //use Josh's buy script
-            sqlDriver.updated_bought_item(currently_selected_my_item.ToString());
+            sqlDriver.updated_bought_item(int.Parse(currently_selected_my_item.ToString()));
             checkItems();
         }
 
@@ -152,6 +206,7 @@ namespace BudgetGui.Screens
             //get the item title
             string item_title = "";
             mainForm.passMessageScreen(seller_id, item_title);
+            System.GC.Collect();
 
         }
 
@@ -167,7 +222,7 @@ namespace BudgetGui.Screens
             //get the item title
             string item_title = "";
             mainForm.passMessageScreen(seller_id, item_title);
-
+            System.GC.Collect();
 
         }
 
@@ -215,15 +270,14 @@ namespace BudgetGui.Screens
             }
 
             sold_pic.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            System.GC.Collect();
         }
 
 
         private void myItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clear_saved();
+            clear_my_item();
             currently_selected_my_item = myItems.SelectedIndex;
-
 
 
             my_item.Clear();
@@ -260,43 +314,51 @@ namespace BudgetGui.Screens
             }
 
             my_pic.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            System.GC.Collect();
 
         }
 
 
-        private void clear_saved()
+        public void clear_my_item()
         {
-            my_item.Clear();
-            my_desc.Clear();
+            my_item.Text = "";
+            my_desc.Text = "";
+            my_price.Text = "";
+            myPic_path.Text = "";
+
 
             my_pic.Image = System.Drawing.Image.FromFile(
                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
                        "blank-image.png"));
 
             my_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            System.GC.Collect();
         }
 
-        private void clear_bought()
+        public void clear_bought()
         {
-            sold_title.Clear();
-            sold_desc.Clear();
+            sold_title.Text = "";
+            sold_desc.Text = "";
+            sold_price.Text = "";
+            sold_pic_path.Text = "";
 
             sold_pic.Image = System.Drawing.Image.FromFile(
                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
                        "blank-image.png"));
 
             sold_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            System.GC.Collect();
         }
 
 
         private void change_tab(object sender, EventArgs e)
         {
             clear_bought();
-            clear_saved();
+            clear_my_item();
+            System.GC.Collect();
         }
-
-        //for later
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -321,11 +383,24 @@ namespace BudgetGui.Screens
                 }
 
             }
+            System.GC.Collect();
         }
 
         private void delete_button_Click(object sender, EventArgs e)
         {
 
+            if(myItems.SelectedIndex ==-1)
+            {
+                return;
+            }
+
+            if (MessageBox.Show("Confirm Delete?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                checkItems();
+                sqlDriver.delete_item_by_id(int.Parse(my_items_DT.Rows[currently_selected_my_item]["itemId"].ToString()));
+                checkItems();
+                clear_my_item();
+            }
         }
 
 
@@ -361,7 +436,7 @@ namespace BudgetGui.Screens
             if (soldItems.SelectedIndex == -1)
             {
                 MessageBox.Show($"Select a sold item");
-            } 
+            }
             else
             {
                 int seller_id = int.Parse(sold_items_DT.Rows[soldItems.SelectedIndex]["buyerId"].ToString());
@@ -371,6 +446,7 @@ namespace BudgetGui.Screens
                 mainForm.passMessageScreen(seller_id, item_title);
             }
         }
+
     }
 }
 

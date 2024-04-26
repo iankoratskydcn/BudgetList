@@ -43,7 +43,7 @@ namespace BudgetGui.Screens
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             convs.Load(driver.getConversations(selfId).CreateDataReader());
 
-            
+            System.GC.Collect();
         }
 
 
@@ -71,11 +71,12 @@ namespace BudgetGui.Screens
                {
                    e.set_black();
                });
+            System.GC.Collect();
         }
 
         public void _convo_from_item_start(int seller, string itemTitle)
         {
-            string text = "Hello, I have a question about " + itemTitle +".";
+            string text = "Hello, I have a question about the " + itemTitle +".";
             driver.SendMessage(Int32.Parse(Program.GlobalStrings[1]), DateTime.Now, seller, text);
             conversations_renew();
             change_convo(seller);
@@ -110,7 +111,6 @@ namespace BudgetGui.Screens
 
         public void change_convo(int otherId)
         {
-            //messageSelected = true;
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             List<message_card> convo_messages = driver.getMessages(selfId, otherId);
 
@@ -148,7 +148,6 @@ namespace BudgetGui.Screens
                     }
                 });
 
-            //Parallel.ForEach(controls.AsParallel().AsOrdered(),
             controls.ForEach(
                 (e) =>
                 {
@@ -160,7 +159,6 @@ namespace BudgetGui.Screens
 
         private void richTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            //MessageBox.Show("Test");
             if (e.KeyCode == Keys.Enter)
             {
                 button1_Click(this, new EventArgs());
@@ -169,10 +167,8 @@ namespace BudgetGui.Screens
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Test");
             if (richTextBox1.Text == "") { return; }
 
-            //if (messageSelected == false) { return; }
 
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             driver.SendMessage(selfId, DateTime.Now, currentConvoId, richTextBox1.Text.Trim());

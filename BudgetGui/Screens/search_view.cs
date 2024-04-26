@@ -93,6 +93,20 @@ namespace BudgetGui.Screens
             mainForm.logout();
         }
 
+        public void clearIt()
+        {
+            richTextBox1.Text = "";
+            label2.Text = "Please Select an Item";
+
+            pictureBox2.Image = System.Drawing.Image.FromFile(
+                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                       "blank-image.png"));
+
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            System.GC.Collect();
+        }
+
         private void sButton_Click(object sender, EventArgs e)
         {
             try
@@ -160,7 +174,7 @@ namespace BudgetGui.Screens
                     return;
                 }
 
-                sqlDriver.updated_bought_item(itemId);
+                sqlDriver.updated_bought_item(int.Parse(itemId));
                 MessageBox.Show($"Item has been bought");
 
 
@@ -208,13 +222,14 @@ namespace BudgetGui.Screens
             richTextBox1.Text = j["description"].ToString();
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             label2.Text = "Only $" + j["itemPrice"].ToString();
-
+            System.GC.Collect();
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
                 sButton.PerformClick();
+            System.GC.Collect();
         }
 
     }

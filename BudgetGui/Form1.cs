@@ -80,6 +80,8 @@ namespace BudgetGui
             form1.SuspendLayout();
             panel_1.Controls.Clear();
 
+
+
             switch (state)
             {
 
@@ -196,8 +198,27 @@ namespace BudgetGui
                 default: //error, do nothing
                     break;
             }
+            if (shopping_screen != null)
+            {
+                shopping_screen.clear_bought();
+                shopping_screen.clear_saved();
+            }
 
+            if (items_view != null)
+            {
+                items_view.checkItems();
+                items_view.clear_my_item();
+                items_view.clear_bought();
+
+            }
+            if(search_View != null)
+            {
+                search_View.clearIt();
+            }
+
+            System.GC.Collect();
             form1.ResumeLayout(true);
+
 
         }
 

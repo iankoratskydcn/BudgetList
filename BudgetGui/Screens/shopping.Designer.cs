@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(shopping));
             title = new Label();
             button1 = new Button();
             items = new Button();
@@ -154,6 +155,7 @@
             boughtItems.Name = "boughtItems";
             boughtItems.Size = new Size(157, 304);
             boughtItems.TabIndex = 37;
+            boughtItems.SelectedIndexChanged += boughtItems_SelectedIndexChanged;
             // 
             // savedItems
             // 
@@ -228,6 +230,7 @@
             // 
             saved_Title.Location = new Point(185, 12);
             saved_Title.Name = "saved_Title";
+            saved_Title.ReadOnly = true;
             saved_Title.Size = new Size(232, 23);
             saved_Title.TabIndex = 44;
             // 
@@ -235,15 +238,18 @@
             // 
             saved_Desc.Location = new Point(445, 11);
             saved_Desc.Name = "saved_Desc";
+            saved_Desc.ReadOnly = true;
             saved_Desc.Size = new Size(157, 210);
             saved_Desc.TabIndex = 43;
             saved_Desc.Text = "";
             // 
             // saved_pic
             // 
+            saved_pic.Image = (Image)resources.GetObject("saved_pic.Image");
             saved_pic.Location = new Point(172, 43);
             saved_pic.Name = "saved_pic";
             saved_pic.Size = new Size(260, 260);
+            saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
             saved_pic.TabIndex = 42;
             saved_pic.TabStop = false;
             // 
@@ -276,6 +282,7 @@
             // 
             bought_title.Location = new Point(185, 12);
             bought_title.Name = "bought_title";
+            bought_title.ReadOnly = true;
             bought_title.Size = new Size(232, 23);
             bought_title.TabIndex = 41;
             // 
@@ -283,15 +290,19 @@
             // 
             bought_desc.Location = new Point(445, 11);
             bought_desc.Name = "bought_desc";
+            bought_desc.ReadOnly = true;
             bought_desc.Size = new Size(157, 301);
             bought_desc.TabIndex = 39;
             bought_desc.Text = "";
             // 
             // bought_pic
             // 
+            bought_pic.ErrorImage = (Image)resources.GetObject("bought_pic.ErrorImage");
+            bought_pic.Image = (Image)resources.GetObject("bought_pic.Image");
             bought_pic.Location = new Point(185, 48);
             bought_pic.Name = "bought_pic";
             bought_pic.Size = new Size(232, 232);
+            bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
             bought_pic.TabIndex = 38;
             bought_pic.TabStop = false;
             // 

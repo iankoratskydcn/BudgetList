@@ -66,6 +66,8 @@ namespace BudgetGui.Screens
 
                 Form1.changeState(7);
             }
+
+            System.GC.Collect();
         }
 
         public void clearText()
@@ -98,6 +100,7 @@ namespace BudgetGui.Screens
                 }
 
             }
+
         }
 
         private void userView_Click(object sender, EventArgs e)

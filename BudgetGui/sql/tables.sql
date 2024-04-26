@@ -19,6 +19,7 @@ CREATE TABLE _message(
     timeDate DATE NOT NULL,
     recipient INT NOT NULL,
     text1 VARCHAR(1024),
+    CHECK (sender != recipient),
     CONSTRAINT fk_sender FOREIGN KEY(sender) REFERENCES _user(userId),
     CONSTRAINT fk_recipient FOREIGN KEY(recipient) REFERENCES _user(userId)
 );
@@ -33,19 +34,21 @@ CREATE TABLE item(
     description VARCHAR(1000),
     itemPrice DECIMAL(10,2),
     photoUrl VARCHAR(100),
-    CHECK (itemPrice >= 1 AND itemPrice <= 100000)
+    CHECK (sellerId != buyerId),
+    CHECK (itemPrice >= 1 AND itemPrice <= 100000),
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
 
 CREATE TABLE savedItems(
     itemId INT NOT NULL,
-    --title VARCHAR(100) NOT NULL,
-    --description VARCHAR(255),
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(255),
     postDate DATE,
     creatorUserId INT NOT NULL,
     savedUserId INT NOT NULL,
-    --itemPrice DECIMAL(10,2),
+    itemPrice DECIMAL(10,2),
+    CHECK (creatorUserId != savedUserId),
 	PRIMARY KEY(savedUserId, itemId),
 	CONSTRAINT fk_userId FOREIGN KEY(savedUserId) REFERENCES _user(userId),
 	CONSTRAINT fk_itemId FOREIGN KEY(itemId) REFERENCES item(itemId)

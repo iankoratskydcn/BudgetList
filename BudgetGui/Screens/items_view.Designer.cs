@@ -338,6 +338,7 @@
             sold_title.Location = new Point(319, 177);
             sold_title.Name = "sold_title";
             sold_title.PlaceholderText = "Title";
+            sold_title.ReadOnly = true;
             sold_title.Size = new Size(253, 23);
             sold_title.TabIndex = 58;
             // 
@@ -346,6 +347,7 @@
             sold_price.Location = new Point(319, 235);
             sold_price.Name = "sold_price";
             sold_price.PlaceholderText = "Price";
+            sold_price.ReadOnly = true;
             sold_price.Size = new Size(253, 23);
             sold_price.TabIndex = 56;
             // 
@@ -354,6 +356,7 @@
             sold_desc.Location = new Point(319, 206);
             sold_desc.Name = "sold_desc";
             sold_desc.PlaceholderText = "Description";
+            sold_desc.ReadOnly = true;
             sold_desc.Size = new Size(253, 23);
             sold_desc.TabIndex = 55;
             // 
