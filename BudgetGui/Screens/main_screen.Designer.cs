@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main_screen));
             logout = new Button();
             userView = new Button();
             searchView = new Button();
             messageScreen = new Button();
-            title = new Label();
             items = new Button();
             pictureBox1 = new PictureBox();
             label2 = new Label();
@@ -84,18 +84,6 @@
             messageScreen.UseVisualStyleBackColor = true;
             messageScreen.Click += messageScreen_Click;
             // 
-            // title
-            // 
-            title.AutoSize = true;
-            title.BackColor = Color.Transparent;
-            title.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            title.ForeColor = Color.Black;
-            title.Location = new Point(130, 44);
-            title.Name = "title";
-            title.Size = new Size(145, 32);
-            title.TabIndex = 5;
-            title.Text = "Main Menu";
-            // 
             // items
             // 
             items.BackgroundImageLayout = ImageLayout.Stretch;
@@ -110,7 +98,8 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.ButtonHighlight;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.Location = new Point(130, 104);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(630, 378);
@@ -120,11 +109,12 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = SystemColors.ButtonHighlight;
-            label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(325, 189);
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(214, 51);
             label2.Name = "label2";
-            label2.Size = new Size(233, 30);
+            label2.Size = new Size(439, 50);
             label2.TabIndex = 8;
             label2.Text = "Welcome to BudgetList!";
             // 
@@ -148,7 +138,6 @@
             Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(items);
-            Controls.Add(title);
             Controls.Add(messageScreen);
             Controls.Add(searchView);
             Controls.Add(userView);
@@ -165,7 +154,6 @@
         private Button userView;
         private Button searchView;
         private Button messageScreen;
-        private Label title;
         private Button items;
         private PictureBox pictureBox1;
         private Label label2;
