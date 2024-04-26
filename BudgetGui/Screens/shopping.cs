@@ -269,7 +269,7 @@ namespace BudgetGui.Screens
         }
 
 
-        private void clear_saved()
+        public void clear_saved()
         {
             saved_Title.Clear();
             saved_Desc.Clear();
@@ -281,7 +281,7 @@ namespace BudgetGui.Screens
             saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        private void clear_bought()
+        public void clear_bought()
         {
             bought_title.Clear();
             bought_desc.Clear();

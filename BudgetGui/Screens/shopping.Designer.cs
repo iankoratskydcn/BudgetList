@@ -230,6 +230,7 @@
             // 
             saved_Title.Location = new Point(185, 12);
             saved_Title.Name = "saved_Title";
+            saved_Title.ReadOnly = true;
             saved_Title.Size = new Size(232, 23);
             saved_Title.TabIndex = 44;
             // 
@@ -237,6 +238,7 @@
             // 
             saved_Desc.Location = new Point(445, 11);
             saved_Desc.Name = "saved_Desc";
+            saved_Desc.ReadOnly = true;
             saved_Desc.Size = new Size(157, 210);
             saved_Desc.TabIndex = 43;
             saved_Desc.Text = "";
@@ -280,6 +282,7 @@
             // 
             bought_title.Location = new Point(185, 12);
             bought_title.Name = "bought_title";
+            bought_title.ReadOnly = true;
             bought_title.Size = new Size(232, 23);
             bought_title.TabIndex = 41;
             // 
@@ -287,6 +290,7 @@
             // 
             bought_desc.Location = new Point(445, 11);
             bought_desc.Name = "bought_desc";
+            bought_desc.ReadOnly = true;
             bought_desc.Size = new Size(157, 301);
             bought_desc.TabIndex = 39;
             bought_desc.Text = "";
