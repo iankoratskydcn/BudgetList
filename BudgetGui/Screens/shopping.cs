@@ -200,7 +200,7 @@ namespace BudgetGui.Screens
                 try
                 {
                     bought_pic.Image = System.Drawing.Image.FromFile(
-                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"),
                            test_p));
                 }
                 catch (Exception)
@@ -211,7 +211,7 @@ namespace BudgetGui.Screens
             else
             {
                 bought_pic.Image = System.Drawing.Image.FromFile(
-                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"),
                            "blank-image.png"));
             }
 
@@ -259,7 +259,7 @@ namespace BudgetGui.Screens
                 try
                 {
                     saved_pic.Image = System.Drawing.Image.FromFile(
-                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"),
                            test_p));
                 }
                 catch (Exception)
@@ -270,7 +270,7 @@ namespace BudgetGui.Screens
             else
             {
                 saved_pic.Image = System.Drawing.Image.FromFile(
-                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                           Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"),
                            "blank-image.png"));
             }
 
@@ -286,7 +286,7 @@ namespace BudgetGui.Screens
             saved_Desc.Clear();
 
             saved_pic.Image = System.Drawing.Image.FromFile(
-                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"),
                        "blank-image.png"));
 
             saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -299,7 +299,7 @@ namespace BudgetGui.Screens
             bought_desc.Clear();
 
             bought_pic.Image = System.Drawing.Image.FromFile(
-                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"),
                        "blank-image.png"));
 
             bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;

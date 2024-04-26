@@ -99,7 +99,7 @@ namespace BudgetGui.Screens
             label2.Text = "Please Select an Item";
 
             pictureBox2.Image = System.Drawing.Image.FromFile(
-                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"),
                        "blank-image.png"));
 
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -218,7 +218,7 @@ namespace BudgetGui.Screens
             }
 
             JObject j = sqlDriver.getItemById(itemIdnum);
-            pictureBox2.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"), j["photoUrl"].ToString()));
+            pictureBox2.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\items"), j["photoUrl"].ToString()));
             richTextBox1.Text = j["description"].ToString();
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             label2.Text = "Only $" + j["itemPrice"].ToString();

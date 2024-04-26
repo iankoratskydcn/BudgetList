@@ -53,7 +53,7 @@ namespace BudgetGui.Screens
             zip.Text = (v != "" && v.Length != 0 && v != null) ? v : "";
 
             pictureBox2.Image = Image.FromFile(
-                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\profile"),
                         j.Rows[0]["profile_pic"].ToString()));
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
         }
@@ -68,7 +68,7 @@ namespace BudgetGui.Screens
                 {
 
                     pictureBox2.Image = Image.FromFile(
-                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\profile"),
                         j.Rows[0]["profile_pic"].ToString()));
                 }
             }

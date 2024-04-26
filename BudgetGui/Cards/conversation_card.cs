@@ -43,7 +43,7 @@ namespace BudgetGui.Screens.cards
 
 
                     pictureBox1.Image = Image.FromFile(
-                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"),
+                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\profile"),
                         j.Rows[0]["profile_pic"].ToString()));
                 }
             }

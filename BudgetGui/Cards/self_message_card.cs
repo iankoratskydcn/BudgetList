@@ -24,7 +24,7 @@ namespace BudgetGui.Screens.cards
 
             //set the image and text
             richTextBox1.Text = text;
-            pictureBox1.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\profile"), image_location));
+            pictureBox1.Image = Image.FromFile(Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "images\\profile"), image_location));
 
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
