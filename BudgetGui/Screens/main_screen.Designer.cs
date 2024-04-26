@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main_screen));
             logout = new Button();
             userView = new Button();
             searchView = new Button();
@@ -98,7 +97,6 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = SystemColors.ButtonHighlight;
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.Location = new Point(130, 104);
             pictureBox1.Name = "pictureBox1";
@@ -109,10 +107,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
+            label2.BackColor = Color.White;
             label2.Font = new Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(214, 51);
+            label2.Location = new Point(230, 191);
             label2.Name = "label2";
             label2.Size = new Size(439, 50);
             label2.TabIndex = 8;
