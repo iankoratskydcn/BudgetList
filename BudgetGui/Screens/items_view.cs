@@ -120,6 +120,10 @@ namespace BudgetGui.Screens
 
         private void submit_edited_item(object sender, EventArgs e)
         {
+            if(myItems.SelectedIndex==-1)
+            {
+                return;
+            }
 
             if (String.Equals(my_item.Text, ""))
             {
@@ -380,6 +384,12 @@ namespace BudgetGui.Screens
 
         private void delete_button_Click(object sender, EventArgs e)
         {
+
+            if(myItems.SelectedIndex ==-1)
+            {
+                return;
+            }
+
             if (MessageBox.Show("Confirm Delete?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 checkItems();

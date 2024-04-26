@@ -204,6 +204,11 @@ namespace BudgetGui
                 shopping_screen.clear_saved();
             }
 
+            if (items_view != null)
+            {
+                items_view.checkItems();
+            }
+
             form1.ResumeLayout(true);
 
 
