@@ -66,7 +66,22 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@state", state);
                 command.Parameters.AddWithValue("@zip", zip);
                 command.Parameters.AddWithValue("@id", Program.GlobalStrings[1]);
-                command.ExecuteNonQuery();
+
+                try
+                {
+
+                    command.ExecuteNonQuery();
+
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("CHECK constraint failed:"))
+                    {
+
+                        MessageBox.Show("Error: Please double check your inputs.");
+                    }
+                }
+                return;
             }
         }
     }
@@ -94,7 +109,22 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userid", Program.GlobalStrings[1]);
                 command.Parameters.AddWithValue("@itemId", item_id);
 
-                command.ExecuteNonQuery();
+                 try
+                {
+
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Item Created Successfully");
+
+                }
+                catch (SQLiteException ex)
+                {
+                    //if (ex.Message.Contains("CHECK constraint failed:"))
+                    //{
+
+                    //    throw;
+                    //}
+                }
+                return;
             }
         }
     }
@@ -144,12 +174,81 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@photoUrl", photoUrl);
                 command.Parameters.AddWithValue("@itemPrice", itemPrice);
-                command.ExecuteNonQuery();
+
+                try
+                {
+
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Item Created Successfully");
+
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("CHECK constraint failed:"))
+                    {
+                        MessageBox.Show("Error: Please double check your inputs.");
+                        return;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }            
+
+               
             }
         }
     }
 
+    public void updateItem(int itemId, string title, string description, string photoUrl, string itemPrice)
+    {
+        string query = @"
+                        UPDATE item 
+                        SET 
+                        sellerId = @sellerId,
+                        postDate = @postDate,
+                        title = @title,
+                        description = @description, 
+                        photoUrl = @photoUrl,
+                        itemPrice = @itemPrice
+                        WHERE itemID = @itemId
+                        ;";
+        int newItemId = 1;
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+            
+            
+            using (SQLiteCommand command = new SQLiteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@itemId", newItemId);
+                command.Parameters.AddWithValue("@sellerId", Program.GlobalStrings[1]);
+                command.Parameters.AddWithValue("@postDate", DateTime.Now);
+                command.Parameters.AddWithValue("@title", title);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@photoUrl", photoUrl);
+                command.Parameters.AddWithValue("@itemPrice", itemPrice);
 
+                try
+                {
+
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Item Created Successfully");
+
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("CHECK constraint failed:"))
+                    {
+
+                        MessageBox.Show("Error: Please double check your inputs.");
+                    }
+                }
+                return;
+
+            }
+        }
+    }
     ////////////////////////////////////////////////////////
     /////////////////// multiple queries ///////////////////
     ////////////////////////////////////////////////////////
@@ -164,25 +263,40 @@ public partial class sqlDriver
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(updateBoughtItemQuery, connection))
-            {
-                command.Parameters.AddWithValue("@buyerId", Program.GlobalStrings[1]);
-                command.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
-                command.Parameters.AddWithValue("@itemId", itemId);
-                command.ExecuteNonQuery();
-            }
-        }
 
-        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
-        {
-            connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand(delete_saved, connection))
+            using (SQLiteTransaction transaction = connection.BeginTransaction())
+            using (SQLiteCommand command_d = new SQLiteCommand(delete_saved, connection))
+            using (SQLiteCommand command_u = new SQLiteCommand(updateBoughtItemQuery, connection))
             {
-                command.Parameters.AddWithValue("@itemId", itemId);
-                command.ExecuteNonQuery();
-            }
-        }
+                command_u.Parameters.AddWithValue("@itemId", itemId);
+                command_d.Parameters.AddWithValue("@itemId", itemId);
 
+                command_u.Parameters.AddWithValue("@buyerId", Program.GlobalStrings[1]);
+                command_u.Parameters.AddWithValue("@dateTime", DateTime.Today.ToString("yyyy-MM-dd"));
+
+                try
+                {
+                    command_u.ExecuteNonQuery();
+                    command_d.ExecuteNonQuery();
+                    transaction.Commit();
+                    MessageBox.Show("Item Updated Successfully");
+
+                }
+                catch (SQLiteException ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Error: Please double check your inputs.");
+                }
+                finally
+                {
+                    command_d.Dispose();
+                    command_u.Dispose();
+                    transaction.Dispose();
+
+                }
+            }
+            return;
+        }
     }
 
 
