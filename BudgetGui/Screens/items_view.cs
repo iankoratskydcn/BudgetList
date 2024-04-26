@@ -43,7 +43,6 @@ namespace BudgetGui.Screens
             soldItems.Items.Clear();
 
             //get info from DataTables
-
             my_items_DT = sqlDriver.checkForItemsBeingSold();
             sold_items_DT = sqlDriver.checkForItemsSold();
 
@@ -51,15 +50,14 @@ namespace BudgetGui.Screens
             //list comprehension
             List<string> itemList = my_items_DT.Rows.Count > 0
                 ? my_items_DT.AsEnumerable().Select(x => x["title"].ToString()).ToList()
-                : new List<string>();//sqlDriver.checkFormyItems();
+                : new List<string>();
 
             List<string> itemList2 = sold_items_DT.Rows.Count > 0
                 ? sold_items_DT.AsEnumerable().Select(x => x["title"].ToString()).ToList()
-                : new List<string>();//sqlDriver.checkForsoldItems();
+                : new List<string>();
 
 
             myItems.Items.Clear();
-            //List<string> itemList = sqlDriver.checkForItemsSold();
             if (itemList != null)
             {
                 foreach (string item in itemList)
@@ -73,7 +71,6 @@ namespace BudgetGui.Screens
             }
 
             soldItems.Items.Clear();
-            //List<string> itemList2 = sqlDriver.checkForItemsSold();
             if (itemList2 != null)
             {
                 foreach (string item2 in itemList2)
@@ -362,8 +359,6 @@ namespace BudgetGui.Screens
             clear_my_item();
             System.GC.Collect();
         }
-
-        //for later
 
 
         private void button1_Click(object sender, EventArgs e)

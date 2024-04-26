@@ -113,16 +113,10 @@ public partial class sqlDriver
                 {
 
                     command.ExecuteNonQuery();
-                    //MessageBox.Show("Item Created Successfully");
 
                 }
                 catch (SQLiteException ex)
                 {
-                    //if (ex.Message.Contains("CHECK constraint failed:"))
-                    //{
-
-                    //    throw;
-                    //}
                 }
                 return;
             }
@@ -225,16 +219,13 @@ public partial class sqlDriver
 
                 try
                 {
-                    //MessageBox.Show(command.CommandText);
 
                     command.ExecuteNonQuery();
-                    //MessageBox.Show("Item Created Successfully");
 
                 }
                 catch (SQLiteException ex)
                 {
 
-                    //MessageBox.Show(ex.Message);
                 }
                 return;
 
@@ -271,7 +262,6 @@ public partial class sqlDriver
                     command_d.ExecuteNonQuery();
                     command_u.ExecuteNonQuery();
                     transaction.Commit();
-                    //MessageBox.Show("Item Updated Successfully");
 
                 }
                 catch (SQLiteException ex)
@@ -285,7 +275,6 @@ public partial class sqlDriver
                     command_d.Dispose();
                     command_u.Dispose();
                     transaction.Dispose();
-                    //MessageBox.Show("Test");
                 }
             }
             return;
@@ -322,13 +311,12 @@ public partial class sqlDriver
     public DataTable checkForSavedItems()
     {
         DataTable itemList = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                 SELECT *
                 FROM savedItems s
                 JOIN item i ON i.itemId = s.itemId
                 WHERE savedUserId = @userId;
-                "; // itemId, savedUserId, title 
+                "; 
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -348,22 +336,6 @@ public partial class sqlDriver
 
                     }
 
-                    //if (!reader.HasRows)
-                    //{
-                    //    return null;
-                    //}
-
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? savedUserId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-
-
-                    //}
                 }
                 return itemList;
             }
@@ -373,7 +345,6 @@ public partial class sqlDriver
     public DataTable checkForBoughtItems()
     {
         DataTable itemList = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                     SELECT *
                     FROM item i
@@ -398,20 +369,7 @@ public partial class sqlDriver
                     {
 
                     }
-                    //if (!reader.HasRows)
-                    //{
-                    //    return null;
-                    //}
-
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-                    //}
+                    
                 }
                 return itemList;
             }
@@ -442,13 +400,12 @@ public partial class sqlDriver
     public DataTable checkForItemsBeingSold()
     {
         DataTable itemList = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                     SELECT i.*, u.*
                     FROM _user u
                     LEFT JOIN item i ON u.userId = i.sellerId
                     WHERE u.userId = @userId AND i.buyerId IS NULL;
-                    ";//i.itemId, i.sellerId, i.title
+                    ";
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -463,21 +420,6 @@ public partial class sqlDriver
                         itemList.Load(reader);
                     }
 
-
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    if (itemId == null)
-                    //    {
-                    //        return null;
-                    //    }
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-                    //}
                 }
                 return itemList;
             }
@@ -487,7 +429,6 @@ public partial class sqlDriver
     public DataTable checkForItemsSold()
     {
         DataTable dataTable = new DataTable();
-        //List<string> itemList = new List<string>();
         string query = @"
                     SELECT i.*, u.*
                     FROM _user u
@@ -502,20 +443,7 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    //while (reader.Read())
-                    //{
-                    //    int? itemId = reader.IsDBNull(0) ? null : (int?)reader.GetInt32(0);
-                    //    int? sellerId = reader.IsDBNull(1) ? null : (int?)reader.GetInt32(1);
-                    //    string title = reader.IsDBNull(2) ? null : reader.GetString(2);
-
-                    //    if (itemId == null)
-                    //    {
-                    //        return null;
-                    //    }
-
-                    //    string itemInfo = $"{title}";
-                    //    itemList.Add(itemInfo);
-                    //}
+                    
                     try
                     {
                         dataTable.Load(reader);
