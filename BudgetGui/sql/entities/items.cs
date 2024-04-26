@@ -24,6 +24,25 @@ public partial class sqlDriver
 {
 
     ////////////////////////////////////////////////////////
+    /////////////////// delete queries ////////////////////
+    ////////////////////////////////////////////////////////
+    public void delete_item_by_id(int item_id)
+    {
+        string delete_query = "DELETE FROM item WHERE itemId = @item_id;";
+        using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
+        {
+            connection.Open();
+
+            using (SQLiteCommand command = new SQLiteCommand(delete_query, connection))
+            {
+
+                command.Parameters.AddWithValue("@item_id", item_id);
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    ////////////////////////////////////////////////////////
     //////////////////// update queries ////////////////////
     ////////////////////////////////////////////////////////
 

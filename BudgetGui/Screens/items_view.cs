@@ -119,6 +119,34 @@ namespace BudgetGui.Screens
 
         private void submit_edited_item(object sender, EventArgs e)
         {
+            bool submit = false;
+
+            string test_t = my_items_DT.Rows[currently_selected_my_item]["title"].ToString();
+            string test_d = my_items_DT.Rows[currently_selected_my_item]["description"].ToString();
+            string test_p = my_items_DT.Rows[currently_selected_my_item]["photoUrl"].ToString();
+            string test_pr = my_items_DT.Rows[currently_selected_my_item]["itemPrice"].ToString();
+
+            if (test_t != my_item.Text)
+            {
+                test_t = my_item.Text;
+                submit = true;
+            }
+            if (test_d != my_desc.Text)
+            {
+                test_d = my_desc.Text;
+                submit = true;
+            }
+            if (test_p != my_price.Text)
+            {
+                test_p = my_price.Text;
+                submit = true;
+            }
+            if (test_pr != myPic_path.Text)
+            {
+                test_pr = myPic_path.Text;
+                submit = true;
+            }
+
 
         }
 
@@ -269,6 +297,8 @@ namespace BudgetGui.Screens
         {
             my_item.Clear();
             my_desc.Clear();
+            my_price.Clear();
+            myPic_path.Clear();
 
             my_pic.Image = System.Drawing.Image.FromFile(
                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
@@ -325,7 +355,12 @@ namespace BudgetGui.Screens
 
         private void delete_button_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Confirm Delete?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                sqlDriver.delete_item_by_id(currently_selected_my_item);
+                checkItems();
+                clear_saved();
+            }
         }
 
 
