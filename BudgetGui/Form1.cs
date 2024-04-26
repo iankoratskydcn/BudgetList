@@ -25,7 +25,6 @@ namespace BudgetGui
         private static sqlDriver driver;
 
         private static string userId;
-
         public static bool isPresent = false;
 
         public Form1(sqlDriver _sqlDriver)
@@ -47,6 +46,7 @@ namespace BudgetGui
 
         public void passMessageScreen(int seller, string itemTitle)
         {
+            isPresent = true;
             changeState(6, seller, itemTitle);
         }
 
