@@ -125,7 +125,29 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@photoUrl", photoUrl);
                 command.Parameters.AddWithValue("@itemPrice", itemPrice);
-                command.ExecuteNonQuery();
+
+                try
+                {
+
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Item Created Successfully");
+
+                }
+                catch (SQLiteException ex)
+                {
+                    if (ex.Message.Contains("CHECK constraint failed: itemPrice >= 1 AND itemPrice <= 100000"))
+                    {
+
+                        MessageBox.Show("Error: Price must be between $1 and $100,000.");
+                        return;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }            
+
+               
             }
         }
     }

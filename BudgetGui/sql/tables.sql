@@ -33,6 +33,7 @@ CREATE TABLE item(
     description VARCHAR(1000),
     itemPrice DECIMAL(10,2),
     photoUrl VARCHAR(100),
+    CHECK (itemPrice >= 1 AND itemPrice <= 100000)
     CONSTRAINT fk_seller FOREIGN KEY(sellerId) REFERENCES _user(userId),
     CONSTRAINT fk_buyerId FOREIGN KEY(buyerId) REFERENCES _user(userId)
 );
