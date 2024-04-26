@@ -322,7 +322,7 @@ namespace BudgetGui.Screens
         }
 
 
-        private void clear_my_item()
+        public void clear_my_item()
         {
             my_item.Clear();
             my_desc.Clear();
@@ -336,7 +336,7 @@ namespace BudgetGui.Screens
             my_pic.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        private void clear_bought()
+        public void clear_bought()
         {
             sold_title.Clear();
             sold_desc.Clear();

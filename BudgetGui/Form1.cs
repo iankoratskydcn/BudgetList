@@ -207,6 +207,9 @@ namespace BudgetGui
             if (items_view != null)
             {
                 items_view.checkItems();
+                items_view.clear_my_item();
+                items_view.clear_bought();
+
             }
 
             form1.ResumeLayout(true);
