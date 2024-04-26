@@ -12,7 +12,7 @@ public partial class sqlDriver
 
     public string login(string username, string password)
     {
-        string query = "SELECT userId FROM _user WHERE username = @username AND _password = @password";
+        string query = "SELECT userId FROM _user WHERE username = @username AND _password = @password;";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -36,7 +36,7 @@ public partial class sqlDriver
 
     public bool checkIfUsernameExists(string username)
     {
-        string query = "SELECT COUNT(*) FROM _user WHERE username = @username";
+        string query = "SELECT COUNT(*) FROM _user WHERE username = @username;";
         int count = 0;
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {

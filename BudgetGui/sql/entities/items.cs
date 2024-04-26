@@ -24,7 +24,7 @@ public partial class sqlDriver
 {
 
     ////////////////////////////////////////////////////////
-    /////////////////// delete queries ////////////////////
+    /////////////////// delete queries /////////////////////
     ////////////////////////////////////////////////////////
     public void delete_item_by_id(int item_id)
     {
@@ -126,7 +126,7 @@ public partial class sqlDriver
     public void remove_saved_item(int itemId, int userid)
     {
 
-        string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId and savedUserId = @userid";
+        string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId and savedUserId = @userid;";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -142,7 +142,7 @@ public partial class sqlDriver
     public void createNewItem(string title, string description, string photoUrl, string itemPrice)
     {
 
-        string maxItemIdQuery = "SELECT MAX(itemId) FROM item";
+        string maxItemIdQuery = "SELECT MAX(itemId) FROM item;";
         string query = @"
                         INSERT INTO item (itemId, sellerId, postDate, title, description, photoUrl, itemPrice)
                         VALUES (@itemId, @sellerId, @postDate, @title, @description, @photoUrl, @itemPrice);
@@ -240,8 +240,8 @@ public partial class sqlDriver
     {
 
         //MessageBox.Show(itemId.ToString());
-        string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId";
-        string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId";
+        string delete_saved = @"DELETE FROM savedItems WHERE itemId = @itemId;";
+        string updateBoughtItemQuery = @"UPDATE item SET buyerId = @buyerId, purchaseDate = @dateTime WHERE itemId = @itemId;";
 
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
@@ -378,7 +378,7 @@ public partial class sqlDriver
 
     public JObject getItemById(int itemId)
     {
-        string query = @"SELECT * FROM item WHERE itemId = @itemId";
+        string query = @"SELECT * FROM item WHERE itemId = @itemId;";
 
         JObject obj;
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))

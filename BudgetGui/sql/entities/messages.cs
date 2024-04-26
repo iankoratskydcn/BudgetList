@@ -22,7 +22,7 @@ public partial class sqlDriver
     public void SendMessage(int sender, DateTime timeDate, int recipient, string text1)
     {
 
-        string query = @"INSERT INTO _message (sender, timeDate, recipient, text1) VALUES (@sender, @timeDate, @recipient, @text1)";
+        string query = @"INSERT INTO _message (sender, timeDate, recipient, text1) VALUES (@sender, @timeDate, @recipient, @text1);";
         using (SQLiteConnection connection = new SQLiteConnection($"Data Source={databaseFilePath};Version=3;"))
         {
             connection.Open();
@@ -40,14 +40,14 @@ public partial class sqlDriver
 
 
     ////////////////////////////////////////////////////////
-    ///////////////////// get queries //////////////////////
+    //////////////////// select queries ////////////////////
     ////////////////////////////////////////////////////////
 
     public List<message_card> getMessages(int selfID, int otherID)
     {
-        string query = @"SELECT * FROM _message WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate ASC";
-        string query_photo_user = @"SELECT profile_pic FROM _user WHERE userId = @selfID LIMIT 1";
-        string query_photo_other = @"SELECT profile_pic FROM _user WHERE userId = @otherID LIMIT 1";
+        string query = @"SELECT * FROM _message WHERE (sender = @selfID AND recipient = @otherID) OR (sender = @otherID AND recipient = @selfID) ORDER BY timeDate ASC;";
+        string query_photo_user = @"SELECT profile_pic FROM _user WHERE userId = @selfID LIMIT 1;";
+        string query_photo_other = @"SELECT profile_pic FROM _user WHERE userId = @otherID LIMIT 1;";
 
         string _user_pic = "";
         string _other_pic = "";
