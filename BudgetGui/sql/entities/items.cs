@@ -415,9 +415,13 @@ public partial class sqlDriver
                 command.Parameters.AddWithValue("@userId", Program.GlobalStrings[1]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    if (reader.Read())
+                    try
                     {
                         itemList.Load(reader);
+                    }
+                    catch (Exception ex)
+                    {
+
                     }
 
                 }
