@@ -29,6 +29,7 @@ namespace BudgetGui.Screens
         int currently_selected_my_item = 0;
         int currently_selected_sold_item = 0;
 
+
         public void checkItems()
         {
 
@@ -279,6 +280,9 @@ namespace BudgetGui.Screens
 
 
 
+
+
+
             my_item.Clear();
             my_desc.Clear();
 
@@ -382,7 +386,8 @@ namespace BudgetGui.Screens
         {
             if (MessageBox.Show("Confirm Delete?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                sqlDriver.delete_item_by_id(currently_selected_my_item);
+
+                sqlDriver.delete_item_by_id(int.Parse(sold_items_DT.Rows[currently_selected_my_item]["itemId"].ToString()));
                 checkItems();
                 clear_my_item();
             }
