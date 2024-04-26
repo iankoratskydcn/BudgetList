@@ -81,8 +81,6 @@ namespace BudgetGui
             panel_1.Controls.Clear();
 
 
-            shopping_screen.clear_bought();
-            shopping_screen.clear_saved();
 
             switch (state)
             {
@@ -200,8 +198,14 @@ namespace BudgetGui
                 default: //error, do nothing
                     break;
             }
+            if (shopping_screen != null)
+            {
+                shopping_screen.clear_bought();
+                shopping_screen.clear_saved();
+            }
 
             form1.ResumeLayout(true);
+
 
         }
 
