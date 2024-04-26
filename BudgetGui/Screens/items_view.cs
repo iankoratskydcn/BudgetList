@@ -273,7 +273,7 @@ namespace BudgetGui.Screens
             }
 
             sold_pic.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            System.GC.Collect();
         }
 
 
@@ -317,7 +317,7 @@ namespace BudgetGui.Screens
             }
 
             my_pic.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            System.GC.Collect();
 
         }
 
@@ -334,6 +334,8 @@ namespace BudgetGui.Screens
                        "blank-image.png"));
 
             my_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            System.GC.Collect();
         }
 
         public void clear_bought()
@@ -341,11 +343,14 @@ namespace BudgetGui.Screens
             sold_title.Clear();
             sold_desc.Clear();
 
+
             sold_pic.Image = System.Drawing.Image.FromFile(
                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
                        "blank-image.png"));
 
             sold_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            System.GC.Collect();
         }
 
 
@@ -353,6 +358,7 @@ namespace BudgetGui.Screens
         {
             clear_bought();
             clear_my_item();
+            System.GC.Collect();
         }
 
         //for later
@@ -380,6 +386,7 @@ namespace BudgetGui.Screens
                 }
 
             }
+            System.GC.Collect();
         }
 
         private void delete_button_Click(object sender, EventArgs e)

@@ -43,7 +43,7 @@ namespace BudgetGui.Screens
             int selfId = Int32.Parse(Program.GlobalStrings[1]);
             convs.Load(driver.getConversations(selfId).CreateDataReader());
 
-            
+            System.GC.Collect();
         }
 
 
@@ -71,6 +71,7 @@ namespace BudgetGui.Screens
                {
                    e.set_black();
                });
+            System.GC.Collect();
         }
 
         public void _convo_from_item_start(int seller, string itemTitle)

@@ -208,13 +208,14 @@ namespace BudgetGui.Screens
             richTextBox1.Text = j["description"].ToString();
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             label2.Text = "Only $" + j["itemPrice"].ToString();
-
+            System.GC.Collect();
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
                 sButton.PerformClick();
+            System.GC.Collect();
         }
 
     }

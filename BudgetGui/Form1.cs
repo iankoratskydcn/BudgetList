@@ -211,7 +211,7 @@ namespace BudgetGui
                 items_view.clear_bought();
 
             }
-
+            System.GC.Collect();
             form1.ResumeLayout(true);
 
 

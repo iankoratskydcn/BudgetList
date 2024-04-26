@@ -76,6 +76,7 @@ namespace BudgetGui.Screens
             {
                 boughtItems.Items.Add("You have no items.");
             }
+
         }
 
         private void userView_Click(object sender, EventArgs e)
