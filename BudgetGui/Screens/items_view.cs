@@ -324,10 +324,11 @@ namespace BudgetGui.Screens
 
         public void clear_my_item()
         {
-            my_item.Clear();
-            my_desc.Clear();
-            my_price.Clear();
-            myPic_path.Clear();
+            my_item.Text = "";
+            my_desc.Text = "";
+            my_price.Text = "";
+            myPic_path.Text = "";
+
 
             my_pic.Image = System.Drawing.Image.FromFile(
                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),

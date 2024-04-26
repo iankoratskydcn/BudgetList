@@ -93,6 +93,8 @@ namespace BudgetGui.Screens
             mainForm.logout();
         }
 
+
+
         private void sButton_Click(object sender, EventArgs e)
         {
             try

@@ -76,7 +76,7 @@ namespace BudgetGui.Screens
             {
                 boughtItems.Items.Add("You have no items.");
             }
-
+            System.GC.Collect();
         }
 
         private void userView_Click(object sender, EventArgs e)
@@ -115,6 +115,7 @@ namespace BudgetGui.Screens
             MessageBox.Show("Item Bought!");
             clear_saved();
             checkItems();
+            System.GC.Collect();
         }
 
 
@@ -134,6 +135,7 @@ namespace BudgetGui.Screens
             //cleanup
             checkItems();
             clear_saved();
+            System.GC.Collect();
         }
 
         private void message_saved_Click(object sender, EventArgs e)
@@ -214,7 +216,7 @@ namespace BudgetGui.Screens
             }
 
             bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            System.GC.Collect();
         }
 
 
@@ -274,7 +276,7 @@ namespace BudgetGui.Screens
 
             saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
 
-
+            System.GC.Collect();
         }
 
 
@@ -288,6 +290,7 @@ namespace BudgetGui.Screens
                        "blank-image.png"));
 
             saved_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            System.GC.Collect();
         }
 
         public void clear_bought()
@@ -300,6 +303,7 @@ namespace BudgetGui.Screens
                        "blank-image.png"));
 
             bought_pic.SizeMode = PictureBoxSizeMode.StretchImage;
+            System.GC.Collect();
         }
 
 
@@ -334,6 +338,7 @@ namespace BudgetGui.Screens
                 }
 
             }
+            System.GC.Collect();
         }
 
     }
