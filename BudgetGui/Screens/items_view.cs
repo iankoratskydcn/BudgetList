@@ -183,7 +183,6 @@ namespace BudgetGui.Screens
         //from  the other
         private void buy_Click(object sender, EventArgs e)
         {
-            //use Josh's buy script
             sqlDriver.updated_bought_item(int.Parse(currently_selected_my_item.ToString()));
             checkItems();
         }
@@ -210,6 +209,7 @@ namespace BudgetGui.Screens
             //get the item title
             string item_title = "";
             mainForm.passMessageScreen(seller_id, item_title);
+            System.GC.Collect();
 
         }
 
@@ -225,7 +225,7 @@ namespace BudgetGui.Screens
             //get the item title
             string item_title = "";
             mainForm.passMessageScreen(seller_id, item_title);
-
+            System.GC.Collect();
 
         }
 
@@ -341,9 +341,10 @@ namespace BudgetGui.Screens
 
         public void clear_bought()
         {
-            sold_title.Clear();
-            sold_desc.Clear();
-
+            sold_title.Text = "";
+            sold_desc.Text = "";
+            sold_price.Text = "";
+            sold_pic_path.Text = "";
 
             sold_pic.Image = System.Drawing.Image.FromFile(
                        Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),

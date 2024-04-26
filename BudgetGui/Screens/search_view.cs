@@ -93,7 +93,19 @@ namespace BudgetGui.Screens
             mainForm.logout();
         }
 
+        public void clearIt()
+        {
+            richTextBox1.Text = "";
+            label2.Text = "Please Select an Item";
 
+            pictureBox2.Image = System.Drawing.Image.FromFile(
+                       Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\images\\items"),
+                       "blank-image.png"));
+
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            System.GC.Collect();
+        }
 
         private void sButton_Click(object sender, EventArgs e)
         {

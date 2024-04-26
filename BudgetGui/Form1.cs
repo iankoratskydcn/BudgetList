@@ -211,6 +211,11 @@ namespace BudgetGui
                 items_view.clear_bought();
 
             }
+            if(search_View != null)
+            {
+                search_View.clearIt();
+            }
+
             System.GC.Collect();
             form1.ResumeLayout(true);
 
