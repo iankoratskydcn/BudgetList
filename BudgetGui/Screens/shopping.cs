@@ -174,6 +174,11 @@ namespace BudgetGui.Screens
 
         private void boughtItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (boughtItems.SelectedIndex == -1)
+            {
+                return;
+            }
+
             clear_bought();
             currently_selected_bought_item = boughtItems.SelectedIndex;
 
@@ -214,6 +219,11 @@ namespace BudgetGui.Screens
 
         private void savedItems_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (savedItems.SelectedIndex == -1)
+            {
+                return;
+            }
+
             clear_saved();
             currently_selected_saved_item = savedItems.SelectedIndex;
 
@@ -225,8 +235,6 @@ namespace BudgetGui.Screens
                 cols = column.ColumnName + ", " + cols;
             }
             //MessageBox.Show(cols);
-
-
 
             string test_t = saved_items_DT.Rows[currently_selected_saved_item]["title"].ToString();
             string test_d = saved_items_DT.Rows[currently_selected_saved_item]["description"].ToString();
