@@ -23,8 +23,19 @@ To compile, open BudgetGui and run.
   - SQL Injection Prevention
   - Garbage Collection to avoid memory leaks
   - Email Validation
+  - Secure Password Requirements
+
+## Pictures
+![Login](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/login.png)
+![Registration](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/register.png)
+![Account](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/account.png)
+![Search](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/search.png)
+![Items](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/items.png)
+![Shopping](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/shopping.png)
+![Messages](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/messages.png)
 
 ## Requirements
+- Windows
 - [Visual Studio 2022](https://visualstudio.com)
 - System.Data.SQLite
 - SQLite and SQL Server Compact Toolbox (Optional for viewing db file)
