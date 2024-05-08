@@ -25,6 +25,12 @@ To compile, open BudgetGui and run.
   - Email Validation
   - Secure Password Requirements
 
+## Requirements
+- Windows
+- [Visual Studio 2022](https://visualstudio.com)
+- System.Data.SQLite
+- SQLite and SQL Server Compact Toolbox (Optional for viewing db file)
+
 ## Pictures
 ![Login](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/login.png)
 ![Registration](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/register.png)
@@ -34,8 +40,3 @@ To compile, open BudgetGui and run.
 ![Shopping](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/shopping.png)
 ![Messages](https://github.com/iankoratskydcn/BudgetList/blob/main/BudgetGui/images/README/messages.png)
 
-## Requirements
-- Windows
-- [Visual Studio 2022](https://visualstudio.com)
-- System.Data.SQLite
-- SQLite and SQL Server Compact Toolbox (Optional for viewing db file)
